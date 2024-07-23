@@ -1,0 +1,12 @@
+.navbar.fixed-top{
+    border: none;
+}
+
+.navbar{
+    .container-fluid{
+        justify-content: center;
+        border:1px solid #000;
+        border-radius: 5px;
+        max-width: 830px;
+    }
+}
