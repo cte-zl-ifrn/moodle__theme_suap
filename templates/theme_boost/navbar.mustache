@@ -83,7 +83,7 @@
     }
 }}
 <nav class="navbar fixed-top navbar-light bg-white navbar-expand" aria-label="{{#str}}sitemenubar, admin{{/str}}">
-    <div>
+    <div id="teste">
         <a href="{{config.wwwroot}}" class="ava-name">AVA Acadêmico</a>
             <button aria-label="expandir menu" type="button" class="navbar-expand">
                 <i class="fa-solid fa-bars" aria-hidden="true"></i>
@@ -92,7 +92,7 @@
     <div class="container-fluid">
         
         <ul class="breadcrumb">
-            <li class="breadcrumb-item home action-item">
+            <li  class="breadcrumb-item home action-item">
                 <a href="{{config.wwwroot}}"><i class="icon fa fa-home"></i></a>
             </li>        
             {{#get_items}}
@@ -118,7 +118,7 @@
             {{/get_items}}
         </ul>
 
-        {{! {{{ output.edit_switch }}
+        {{{ output.edit_switch }}}
     </div>
 </nav>
 
