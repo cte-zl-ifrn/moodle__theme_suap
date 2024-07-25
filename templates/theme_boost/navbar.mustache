@@ -85,9 +85,9 @@
 <nav class="navbar fixed-top navbar-light bg-white navbar-expand" aria-label="{{#str}}sitemenubar, admin{{/str}}">
     <div id="teste">
         <a href="{{config.wwwroot}}" class="ava-name">AVA Acadêmico</a>
-            <button aria-label="expandir menu" type="button" class="navbar-expand">
+            {{! <button aria-label="expandir menu" type="button" class="navbar-expand">
                 <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            </button>
+            </button> }}
     </div>
     <div class="container-fluid">
         
@@ -95,27 +95,8 @@
             <li  class="breadcrumb-item home action-item">
                 <a href="{{config.wwwroot}}"><i class="icon fa fa-home"></i></a>
             </li>        
-            {{#get_items}}
-                {{#has_action}}
-                    <li class="breadcrumb-item{{#is_hidden}} dimmed_text{{/is_hidden}}">
-                        <a href="{{{action}}}"
-                            {{#is_last}}aria-current="page"{{/is_last}}
-                            {{#get_title}}title="{{get_title}}"{{/get_title}}
-                            {{#attributes}}{{name}}="{{value}}" {{/attributes}}
-                        >
-                            {{{get_content}}}
-                        </a>
-                    </li>
-                {{/has_action}}
-                {{^has_action}}
-                    <li class="breadcrumb-item{{#is_hidden}} dimmed_text{{/is_hidden}}">
-                        <span {{#attributes}}{{name}}="{{value}}" {{/attributes}}>
-                            {{{text}}}
-                        </span>
-                    </li>
+            {{{navbar_plugin_output}}}
 
-                {{/has_action}}
-            {{/get_items}}
         </ul>
 
         {{{ output.edit_switch }}}

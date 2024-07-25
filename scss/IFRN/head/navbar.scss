@@ -3,18 +3,41 @@
 }
 
 .navbar{
+    padding-left: 0;
     .container-fluid{        
         justify-content: space-between;
         gap: 10px;
         border-radius: 16px;
-        max-width: 1156px;
-        max-height: 48px;
+        width: 100%;
         padding: 0 16px 0 16px;
+        margin: 0 16px 0 16px;
         box-shadow: 0px 4px 4px 0px #00000040;
 
     }
 }
 #teste{
+    width: 20%;
     background-color: var(--primary);
-    padding: 10px;
+    border-top-right-radius: 16px;
+    a{
+        color: aliceblue;
+    }
+}
+
+.editmode-switch-form{
+    border-left: 1px solid #dee2e6 !important;
+    padding-left: 15px;
+    height: 75%;
+
+}
+.divider{
+    display: none;
+}
+.input-group{
+    background-color:#EBEBEB;
+    flex-direction: row-reverse;
+    padding: 3px;
+    border-radius: 16px;
+
+
 }
