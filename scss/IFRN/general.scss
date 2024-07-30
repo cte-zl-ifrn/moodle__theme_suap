@@ -182,26 +182,25 @@ ul, ol {
 .drawers {
     pointer-events: all;
     .drawer-content {
-        display: none;
-        margin-top: 64px;
+        position: absolute;
+        width: 0px;
         height: calc(100vh - 132px);
-        width: var(--drawer-open);
+        margin-top: 64px;
+        overflow: hidden;
         background-color: var(--light-lighter);
-        padding: 1rem;
         border-top-right-radius: 1rem;
         border-bottom-right-radius: 1rem;
         box-shadow: var(--shadow-primary);
-        transition: all .2s ease-in;
+        transition: width .2s ease-in;
     }
 
     .drawer-header {
-        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid var(--light-dark);
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
+        padding-block: 1rem;
+        margin-inline: 1rem;
         .drawer-header-info {
             display: flex;
             align-items: flex-end;
@@ -210,6 +209,7 @@ ul, ol {
         h2 {
             font: var(--font-heading2);
             margin-bottom: 0;
+            white-space: nowrap;
         }
         .drawer-close {
             color: var(--danger-dark );
@@ -219,7 +219,8 @@ ul, ol {
         }
     }
 
-    .drawer-list { 
+    .drawer-list {
+        padding: 1rem; 
         .drawer-item a {
             padding: .5rem 1rem;
             display: inline-block;
@@ -235,7 +236,7 @@ ul, ol {
 }
 
 .drawer-content.active-drawer {
-    display: block;
+    width: var(--drawer-open);
 }
 
 
@@ -243,6 +244,7 @@ ul, ol {
     margin-left: var(--counter-default);
     margin-top: 54px;
     padding: 2rem;
+    transition: all .2s ease-in-out;
 }
 .content {
     max-width: 830px;
