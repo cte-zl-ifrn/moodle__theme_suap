@@ -56,75 +56,92 @@
 <div id="page-wrapper" class="d-print-block">
 
     {{{ output.standard_top_of_body_html }}}
-    {{! }}
 
     {{!> theme_boost/navbar }}
+    <div class="header-theme">
+        <div class="container-counter">
 
-    <div class="main-section">
-
-        <div class="counter">
-            <div class="counter-content">
-                <div class="drawer-toggler" data-drawer="drawer-user">
-                    {{#usermenu}}
-                        {{> core/user_menu }}
-                    {{/usermenu}}
+            <div class="counter">
+                <div class="counter-header">
+                    <a href="" class="ava-name counter-label">AVA Acadêmico</a>
+                    <button class="counter-toggler">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
                 </div>
-
-                {{# output.search_box }}
-                    {{{ output.search_box }}}
-                {{/output.search_box}}
-
-                {{{ output.navbar_plugin_output }}}
-
-                {{#courseindex}}
-                    <div class="drawer-toggler drawer-left-toggle open-nav d-print-none" data-drawer="drawer-blocks">
-                        <button
-                            class="btn icon-no-margin"
-                            data-toggler="drawers"
-                            data-action="toggle"
-                            data-target="theme_boost-drawers-courseindex"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                            title="{{#str}}opendrawerindex, core{{/str}}"
-                        >
-                            <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
-                            {{#pix}} t/index_drawer, moodle {{/pix}}
-                        </button>
+                <div class="counter-content">
+                    {{#usermenu}}
+                    <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
+                        {{> core/user_menu_metadata }}
+                        <div class="user-info counter-label">
+                            <p class="user-name">
+                                {{userfullname}}
+                            </p>
+                            <span class="user-function">Professor</span>
+                        </div>
                     </div>
-                {{/courseindex}}
-
-                {{#hasblocks}}
-                    <div class="drawer-toggler drawer-right-toggle ml-auto d-print-none" data-drawer="drawer-index">
-                        <button
-                            class="btn icon-no-margin"
-                            data-toggler="drawers"
-                            data-action="toggle"
-                            data-target="theme_boost-drawers-blocks"
-                            data-toggle="tooltip"
-                            data-placement="right"
-                            title="{{#str}}opendrawerblocks, core{{/str}}"
-                        >
-                            <span class="sr-only">{{#str}}opendrawerblocks, core{{/str}}</span>
-                            <span class="dir-rtl-hide">{{#pix}}t/blocks_drawer, core{{/pix}}</span>
-                            <span class="dir-ltr-hide">{{#pix}}t/blocks_drawer_rtl, core{{/pix}}</span>
-                        </button>
+                    {{/usermenu}}
+                    <div class="search-box">
+                        <input type="text" placeholder="Busca">
                     </div>
-                {{/hasblocks}}
-
+                    <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="counter-label">Notificações</span>
+                    </div>
+                    <div class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
+                        <i class="fa-regular fa-comment"></i>
+                        <span class="counter-label">Mensagens</span>
+                    </div>
+                    <div class="bug-box counter-option">
+                        <i class="fa-solid fa-bug"></i>
+                        <span class="counter-label">Bug</span>
+                    </div>
+                    <div class="drawer-toggler counter-option" data-drawer="drawer-index">
+                        <i class="fa-solid fa-bug"></i>
+                        <span class="counter-label">Índice da disciplina</span>
+                    </div>
+                    <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
+                        <i class="fa-solid fa-bug"></i>
+                        <span class="counter-label">Gaveta de blocos</span>
+                    </div>
+                </div>
             </div>
+
             <div class="drawers">
-                <aside class="content-drawer" id="drawer-user">
-                    <h2>Menu do usuário</h2>
-                    <ul>
-                        <li>Perfil</li>
-                        <li>Notas</li>
-                        <li>Calendário</li>
-                        <li>Mensagens</li>
-                        <li>Arquivos Privados</li>
-                        <li>Relatórios</li>
+                {{#usermenu}}
+                <div class="drawer-content" id="drawer-user">
+                    <div class="drawer-header">
+                        <div class="drawer-header-info">
+                            <i class="fa-regular fa-user"></i>
+                            <h2>Menu do usuário</h2>
+                        </div>
+                        <a href="#" class="drawer-close" data-drawer="drawer-user">
+                            <i class="fa-solid fa-x"></i>
+                        </a>
+                    </div>
+                    <ul class="drawer-list">
+                        {{> core/user_action_menu_items }}
                     </ul>
-                </aside>
-                <aside class="content-drawer" id="drawer-notifications">
+                    {{#submenus}}
+                        <div id="carousel-item-{{id}}" role="menu" class="carousel-item submenu" tabindex="-1" aria-label="{{title}}">
+                            <div class="d-flex flex-column h-100">
+                                <div class="header">
+                                    <button type="button" class="btn btn-icon carousel-navigation-link text-decoration-none text-body" data-carousel-target-id="carousel-item-main" aria-label="{{#str}}usermenugoback{{/str}}">
+                                        <span class="dir-rtl-hide">{{#pix}}i/arrow-left{{/pix}}</span>
+                                        <span class="dir-ltr-hide">{{#pix}}i/arrow-right{{/pix}}</span>
+                                    </button>
+                                    <span class="pl-2" id="carousel-item-title-{{id}}">{{title}}</span>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="items h-100 overflow-auto" role="menu" aria-labelledby="carousel-item-title-{{id}}">
+                                    {{> core/user_action_menu_submenu_items }}
+                                </div>
+                            </div>
+                        </div>
+                    {{/submenus}}             
+                </div>
+                {{/usermenu}}
+
+                <div class="drawer-content" id="drawer-notifications">
                     <h2>Notificações</h2>
                     <ul>
                         <li>Perfil</li>
@@ -133,10 +150,10 @@
                         <li>Mensagens</li>
                         <li>Arquivos Privados</li>
                         <li>Relatórios</li>
-                    </ul>
-                </aside>
-                <aside class="content-drawer" id="drawer-messages">
-                    <h2>Mensagens</h2>
+                    </ul>                      
+                </div>
+                <div class="drawer-content" id="drawer-messages">
+                    <h2>Messagens</h2>
                     <ul>
                         <li>Perfil</li>
                         <li>Notas</li>
@@ -144,10 +161,10 @@
                         <li>Mensagens</li>
                         <li>Arquivos Privados</li>
                         <li>Relatórios</li>
-                    </ul>
-                </aside>
-                <aside class="content-drawer" id="drawer-bug">
-                    <h2>Bug</h2>
+                    </ul>                      
+                </div>
+                <div class="drawer-content" id="drawer-index">
+                    <h2>Menu de index</h2>
                     <ul>
                         <li>Perfil</li>
                         <li>Notas</li>
@@ -155,20 +172,9 @@
                         <li>Mensagens</li>
                         <li>Arquivos Privados</li>
                         <li>Relatórios</li>
-                    </ul>
-                </aside>
-                <aside class="content-drawer" id="drawer-index">
-                    <h2>Index</h2>
-                    <ul>
-                        <li>Perfil</li>
-                        <li>Notas</li>
-                        <li>Calendário</li>
-                        <li>Mensagens</li>
-                        <li>Arquivos Privados</li>
-                        <li>Relatórios</li>
-                    </ul>
-                </aside>
-                <aside class="content-drawer" id="drawer-blocks">
+                    </ul>                      
+                </div>
+                <div class="drawer-content" id="drawer-blocks">
                     <h2>Blocks</h2>
                     <ul>
                         <li>Perfil</li>
@@ -177,127 +183,126 @@
                         <li>Mensagens</li>
                         <li>Arquivos Privados</li>
                         <li>Relatórios</li>
-                    </ul>
-                </aside>                                                                
-            </div>
-        </div>
-
-        <div class="content-main">
-
-            {{{ output.full_header }}}
-
-            {{#secondarymoremenu}}
-                <div class="secondary-navigation d-print-none">
-                    {{> core/moremenu}}
-                </div>
-            {{/secondarymoremenu}}
-
-            <div id="page-content" class="pb-3 d-print-block">
-                <div id="region-main-box">
-                    {{#hasregionmainsettingsmenu}}
-                    <div id="region-main-settings-menu" class="d-print-none">
-                        <div> {{{ regionmainsettingsmenu }}} </div>
-                    </div>
-                    {{/hasregionmainsettingsmenu}}
-                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
-
-                        {{#hasregionmainsettingsmenu}}
-                            <div class="region_main_settings_menu_proxy"></div>
-                        {{/hasregionmainsettingsmenu}}
-                        {{{ output.course_content_header }}}
-                        {{#headercontent}}
-                            {{> core/activity_header }}
-                        {{/headercontent}}
-                        {{#overflow}}
-                            <div class="container-fluid tertiary-navigation">
-                                <div class="navitem">
-                                    {{> core/url_select}}
-                                </div>
-                            </div>
-                        {{/overflow}}
-                        {{{ output.main_content }}}
-                        {{{ output.activity_navigation }}}
-                        {{{ output.course_content_footer }}}
-
-                    </section>
-                </div>
+                    </ul>                      
+                </div>                    
             </div>
 
         </div>
 
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ol class="">
+                <li class="breadcrumb-item">
+                    <a href=""><i class="fa-solid fa-house"></i></a>                        
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">20231.1.15121.2E.TSUB.0005</a>            
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Princípios de Design e Projeto Gráfico
+                </li>
+                
+            </ul>
+        </nav>
     </div>
 
-    {{#courseindex}} {{! conteúdo gaveta esquerda - index do curso }}
-        {{< theme_boost/drawer }}
-            {{$id}}theme_boost-drawers-courseindex{{/id}}
-            {{$drawerheadercontent}}
-                {{> theme_boost/courseindexdrawercontrols}}
-            {{/drawerheadercontent}}
-            {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
-            {{$drawercontent}}
-                {{{courseindex}}}
-            {{/drawercontent}}
-            {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
-            {{$drawerstate}}show-drawer-left{{/drawerstate}}
-            {{$tooltipplacement}}right{{/tooltipplacement}}
-            {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
-        {{/ theme_boost/drawer}}
-    {{/courseindex}}
-    
-    {{#hasblocks}}
-        {{< theme_boost/drawer }}
-            {{$id}}theme_boost-drawers-blocks{{/id}}
-            {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
-            {{$drawercontent}}
-                <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
-                    {{{ addblockbutton }}}
-                    {{{ sidepreblocks }}}
+
+    <div class="content-main">
+
+        {{{ output.full_header }}}
+
+        {{#secondarymoremenu}}
+            <div class="secondary-navigation d-print-none">
+                {{> core/moremenu}}
+            </div>
+        {{/secondarymoremenu}}
+
+        <div id="page-content" class="pb-3 d-print-block">
+            <div id="region-main-box">
+                {{#hasregionmainsettingsmenu}}
+                <div id="region-main-settings-menu" class="d-print-none">
+                    <div> {{{ regionmainsettingsmenu }}} </div>
+                </div>
+                {{/hasregionmainsettingsmenu}}
+                <section id="region-main" aria-label="{{#str}}content{{/str}}">
+
+                    {{#hasregionmainsettingsmenu}}
+                        <div class="region_main_settings_menu_proxy"></div>
+                    {{/hasregionmainsettingsmenu}}
+                    {{{ output.course_content_header }}}
+                    {{#headercontent}}
+                        {{> core/activity_header }}
+                    {{/headercontent}}
+                    {{#overflow}}
+                        <div class="container-fluid tertiary-navigation">
+                            <div class="navitem">
+                                {{> core/url_select}}
+                            </div>
+                        </div>
+                    {{/overflow}}
+                    {{{ output.main_content }}}
+                    {{{ output.activity_navigation }}}
+                    {{{ output.course_content_footer }}}
                 </section>
-            {{/drawercontent}}
-            {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
-            {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
-            {{$drawerstate}}show-drawer-right{{/drawerstate}}
-            {{$tooltipplacement}}left{{/tooltipplacement}}
-            {{$drawercloseonresize}}1{{/drawercloseonresize}}
-            {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
-        {{/ theme_boost/drawer}}
-    {{/hasblocks}}
-
-
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
-        <div id="topofscroll" class="main-inner">
-
-
+            </div>
         </div>
         {{> theme_boost/footer }}
     </div>
     {{{ output.standard_after_main_region_html }}}
+
+
 </div>
 
 </body>
 </html>
 {{#js}}
-function open_drawer() {
-    const body = document.body;
-    let drawers = document.querySelectorAll('.content-drawer');
-    let drawersToggler = document.querySelectorAll('.drawer-toggler');
+const body = document.body;
+let drawers = document.querySelectorAll('.drawer-content');
+let drawersToggler = document.querySelectorAll('.drawer-toggler');
+let closeButtons = document.querySelectorAll('.drawer-close');
 
+function toggleCounter() {
+    const counter = document.querySelector('.header .counter');
+    body.classList.toggle('counter-close');
+}
+
+function closeAllDrawers(drawers) {
+    body.classList.remove('drawer-open');
+    drawers.forEach((drawer) => {
+        drawer.classList.remove('active-drawer');
+    })
     drawersToggler.forEach((toggler) => {
-        toggler.addEventListener('click', () => {
-            let drawerId = toggler.getAttribute('data-drawer');
-
-            drawers.forEach((drawer) => {
-                if (drawer.id == drawerId) {
-                    body.classList.add('drawer-open');
-                    drawer.classList.add('active-drawer');
-                } else {
-                    drawer.classList.remove('active-drawer');
-                }
-            })
-        })
+        toggler.classList.remove('active-toggler');
     })
 }
-open_drawer();
+
+const counterToggler = document.querySelector('.counter-toggler');
+counterToggler.addEventListener('click', () => {
+    toggleCounter();
+})
+
+drawersToggler.forEach((toggler) => {
+    toggler.addEventListener('click', () => {
+        let drawerId = toggler.getAttribute('data-drawer');
+        let drawer = document.getElementById(drawerId);
+
+        if (drawer.classList.contains('active-drawer')) {
+            drawer.classList.remove('active-drawer');
+            toggler.classList.remove('active-toggler');
+            body.classList.remove('drawer-open');
+        } else {
+            closeAllDrawers(drawers, drawersToggler);
+            drawer.classList.add('active-drawer');
+            toggler.classList.add('active-toggler');
+            body.classList.add('drawer-open');
+        }
+    })
+})
+
+closeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        closeAllDrawers(drawers, drawersToggler);
+    })
+})
 
 M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
