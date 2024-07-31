@@ -5,9 +5,9 @@
 defined('MOODLE_INTERNAL') || die();                                                                                                
                                                                                                                                     
 // A description shown in the admin theme selector.                                                                                 
-$string['choosereadme'] = 'Theme IFRN is a child theme of Boost.';                
+$string['choosereadme'] = 'Theme SUAP is a child theme of Boost.';                
 // The name of our plugin.                                                                                                          
-$string['pluginname'] = 'IFRN';                                                                                                    
+$string['pluginname'] = 'SUAP';                                                                                                    
 // We need to include a lang string for each block region.                                                                          
 $string['region-side-pre'] = 'Right';
 // The name of the second tab in the theme settings.                                                                                
@@ -17,7 +17,7 @@ $string['brandcolor'] = 'Brand colour';
 // The brand colour setting description.                                                                                            
 $string['brandcolor_desc'] = 'The accent colour.';     
 // A description shown in the admin theme selector.                                                                                                                                                                                    
-$string['configtitle'] = 'IFRN settings';                                                                                          
+$string['configtitle'] = 'SUAP settings';                                                                                          
 // Name of the first settings tab.                                                                                                  
 $string['generalsettings'] = 'General settings';                                                                                                                                                                                    
 // Preset files setting.                                                                                                            

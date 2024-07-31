@@ -1,4 +1,4 @@
-# theme_ifrn
+# theme_suap
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://codelab.ifrn.edu.br/dead-zl/ava/lms/theme_ifrn.git
+git remote add origin https://codelab.ifrn.edu.br/dead-zl/ava/lms/theme_suap.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://codelab.ifrn.edu.br/dead-zl/ava/lms/theme_ifrn/-/settings/integrations)
+- [ ] [Set up project integrations](https://codelab.ifrn.edu.br/dead-zl/ava/lms/theme_suap/-/settings/integrations)
 
 ## Collaborate with your team
 
