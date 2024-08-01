@@ -63,7 +63,7 @@
 
             <div class="counter">
                 <div class="counter-header">
-                    <a href="" class="ava-name counter-label">AVA Acadêmico</a>
+                    <a href="{{config.wwwroot}}" class="ava-name counter-label">AVA Acadêmico</a>
                     <button class="counter-toggler">
                         <i class="fa-solid fa-bars" aria-hidden="true"></i>
                     </button>
@@ -80,9 +80,12 @@
                         </div>
                     </div>
                     {{/usermenu}}
-                    <div class="search-box">
-                        <input type="text" placeholder="Busca">
-                    </div>
+
+                    {{# output.search_box }}
+                        {{{ output.search_box }}}
+                        <div class="divider border-left h-75 align-self-center mx-1"></div>
+                    {{/output.search_box}}
+
                     <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
                         <i class="fa-regular fa-bell"></i>
                         <span class="counter-label">Notificações</span>
@@ -260,10 +263,26 @@ let drawers = document.querySelectorAll('.drawer-content');
 let drawersToggler = document.querySelectorAll('.drawer-toggler');
 let closeButtons = document.querySelectorAll('.drawer-close');
 
-function toggleCounter() {
+const counterToggler = document.querySelector('.counter-toggler');
+
+const searchForm = document.querySelector('.searchform-js');
+const searchSubmit = searchForm.querySelector('.search-js');
+const searchInput = searchForm.querySelector('.input-js');
+
+if(searchForm) {
+    searchSubmit.addEventListener('click', () => {
+        body.classList.remove('counter-close');
+        searchInput.focus();
+    })
+}
+
+counterToggler.addEventListener('click', () => {
     const counter = document.querySelector('.header .counter');
     body.classList.toggle('counter-close');
-}
+    if(searchForm) {
+        searchInput.value = "";
+    };
+});
 
 function closeAllDrawers(drawers) {
     body.classList.remove('drawer-open');
@@ -275,10 +294,6 @@ function closeAllDrawers(drawers) {
     })
 }
 
-const counterToggler = document.querySelector('.counter-toggler');
-counterToggler.addEventListener('click', () => {
-    toggleCounter();
-})
 
 drawersToggler.forEach((toggler) => {
     toggler.addEventListener('click', () => {

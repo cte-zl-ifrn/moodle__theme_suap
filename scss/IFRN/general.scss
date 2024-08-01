@@ -179,6 +179,45 @@ ul, ol {
     padding: 0;
 }
 
+.simplesearchform {
+    margin-bottom: 1rem;
+    .searchform-navbar {
+        padding-inline: .5rem;
+    }
+    .input-group {
+        border-bottom: 1px solid var(--general-white);
+        flex-direction: row-reverse;
+    }
+    .form-control {
+        background-color: transparent;
+        border: none;
+        color: var(--general-white);
+        font: var(--font-paragraph2);
+        padding-left: .5rem;
+        &::placeholder {
+            color: var(--general-white);
+        }
+    }
+    .btn-submit {
+        background-color: transparent;
+        border: none;
+        color: var(--general-white);
+    }
+}
+.counter-close .simplesearchform {
+    .searchform-navbar {
+        justify-content: center;
+    }
+    .input-group {
+        border-bottom: none;
+        width: auto;
+    }
+    .form-control {
+        display: none;
+    }
+}
+
+
 .drawers {
     pointer-events: all;
     .drawer-content {
