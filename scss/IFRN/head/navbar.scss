@@ -1,5 +1,6 @@
 .navbar.fixed-top{
     border: none;
+    height: 46px;
 }
 
 .navbar{
@@ -12,6 +13,7 @@
         padding: 0 16px 0 16px;
         margin: 0 16px 0 16px;
         box-shadow: 0px 4px 4px 0px #00000040;
+        background-color: var(--general-white);
     }
 
     .breadcrumb{
@@ -25,6 +27,30 @@
         }
     }
 
+    .editmode-switch-form{
+        border-left: 1px solid #dee2e6 !important;
+        padding-left: 15px;
+    }
+
+    .divider{
+        display: none;
+    }
+
+    .input-group{
+        background-color:var(--light);
+        flex-direction: row-reverse;
+        height: 24px;
+        width: 109px;
+        padding: 3px;
+        border-radius: 16px;
+        label{
+            font: var(--font-heading6);
+        }.custom-control{
+            top: 4px;
+            left:4px;
+            height: 16px;
+        }
+    }
 
 
 
@@ -37,28 +63,6 @@
         color: aliceblue;
     }
 }
-
-.editmode-switch-form{
-    border-left: 1px solid #dee2e6 !important;
-    padding-left: 15px;
-    height: 75%;
-
-}
-.divider{
-    display: none;
-}
-.input-group{
-    background-color:#EBEBEB;
-    flex-direction: row-reverse;
-    padding: 3px;
-    border-radius: 16px;
-
-
-}
-
-
-
-
 
 
 #navbar-breadcrumb::after{
