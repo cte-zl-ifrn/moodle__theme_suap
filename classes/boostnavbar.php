@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace theme_ifrn;
+namespace theme_suap;
 
 use core\navigation\views\view;
 use navigation_node;

@@ -12,8 +12,22 @@
         padding: 0 16px 0 16px;
         margin: 0 16px 0 16px;
         box-shadow: 0px 4px 4px 0px #00000040;
-
     }
+
+    .breadcrumb{
+        align-items: center;
+        font: var(--font-button3);
+        a{
+            color: var(--primary);
+        }
+        span{
+            color: var(--dark-light);
+        }
+    }
+
+
+
+
 }
 #teste{
     width: 20%;
@@ -40,4 +54,16 @@
     border-radius: 16px;
 
 
+}
+
+
+
+
+
+
+#navbar-breadcrumb::after{
+    float: right;
+    padding-right: .5rem;
+    color: #6a737b;
+    content: "/"
 }

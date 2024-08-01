@@ -91,12 +91,10 @@
     </div>
     <div class="container-fluid">
         
-        <ul class="breadcrumb">
-            <li  class="breadcrumb-item home action-item">
-                <a href="{{config.wwwroot}}"><i class="icon fa fa-home"></i></a>
-            </li>        
-            {{{navbar_plugin_output}}}
-
+        <ul   class="breadcrumb">            
+            <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>   
+            
+            {{{navbar}}}
         </ul>
 
         {{{ output.edit_switch }}}
