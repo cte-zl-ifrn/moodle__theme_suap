@@ -39,16 +39,11 @@
     .input-group{
         background-color:var(--light);
         flex-direction: row-reverse;
-        height: 24px;
-        width: 109px;
-        padding: 3px;
+        align-items: center;
         border-radius: 16px;
         label{
             font: var(--font-heading6);
-        }.custom-control{
-            top: 4px;
-            left:4px;
-            height: 16px;
+            
         }
     }
 
@@ -71,3 +66,28 @@
     color: #6a737b;
     content: "/"
 }
+
+.custom-switch .custom-control-label::before{
+    width: 28px;
+    height: 16px;
+    left: -2rem;
+    background-color: var(--light-dark);
+    border: none;
+}
+.custom-switch .custom-control-label::after{
+    width: 12px;
+    height: 12px;
+    left: -1.9rem;
+    background-color: var(--general-white);
+}
+
+.custom-control-input:checked~.custom-control-label::before{
+    background-color: var(--primary);
+}
+
+.custom-switch .custom-control-input:checked~.custom-control-label::after{
+    transform: translateX(0.8rem);
+}
+.text-primary{
+                color: var(--primary) !important;
+            }
