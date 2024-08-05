@@ -81,6 +81,7 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
+$navbar = $OUTPUT->navbar();
 
 
 $templatecontext = [
@@ -103,6 +104,7 @@ $templatecontext = [
     'overflow' => $overflow,
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
+    'navbar' => $navbar,
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
