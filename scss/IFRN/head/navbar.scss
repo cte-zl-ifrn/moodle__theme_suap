@@ -3,21 +3,34 @@
     height: 46px;
 }
 
+.counter-close{
+    .navbar{
+        .container-fluid{        
+            width: calc(100% - var(--counter-close) - 32px);
+            transition: all .2s ease-in;
+
+        }
+    }
+
+}
+
 .navbar{
     padding-left: 0;
     .container-fluid{        
         justify-content: space-between;
         gap: 10px;
         border-radius: 16px;
-        width: 100%;
+        width: calc(100% - var(--counter-default) - 32px);
         height: 48px;
         padding: 0 16px 0 16px;
-        margin: 8px 16px 8px 16px;
+        position: absolute;
+        right: 0;
         box-shadow: 0px 4px 4px 0px #00000040;
         background-color: var(--general-white);
+        transition: all .2s ease-out;
     }
 
-    .breadcrumb {
+    #breadcrumb {
         display: flex;
         align-items: center;
         font: var(--font-button3);

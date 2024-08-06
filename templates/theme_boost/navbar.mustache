@@ -82,16 +82,12 @@
 
     }
 }}
-<nav class="navbar fixed-top navbar-light bg-white navbar-expand" aria-label="{{#str}}sitemenubar, admin{{/str}}">
-   
-    <div class="container-fluid">
-        
-        <ul   class="breadcrumb">            
-            <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>   
-            
+<nav class="navbar fixed-top navbar-light bg-white navbar-expand" aria-label="{{#str}}sitemenubar, admin{{/str}}">   
+    <div class="container-fluid">        
+        <ul class="breadcrumb">            
+            <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
             {{{navbar}}}
         </ul>
-
         {{{ output.edit_switch }}}
     </div>
 </nav>
