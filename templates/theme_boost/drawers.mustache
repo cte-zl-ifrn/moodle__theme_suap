@@ -203,7 +203,7 @@
                 <li class="breadcrumb-item active" aria-current="page">
                     Princípios de Design e Projeto Gráfico
                 </li>
-                
+            
             </ul>
         </nav>
     </div>
@@ -266,10 +266,11 @@ let closeButtons = document.querySelectorAll('.drawer-close');
 const counterToggler = document.querySelector('.counter-toggler');
 
 const searchForm = document.querySelector('.searchform-js');
-const searchSubmit = searchForm.querySelector('.search-js');
-const searchInput = searchForm.querySelector('.input-js');
+
 
 if(searchForm) {
+    const searchSubmit = searchForm.querySelector('.search-js');
+    const searchInput = searchForm.querySelector('.input-js');
     searchSubmit.addEventListener('click', () => {
         body.classList.remove('counter-close');
         searchInput.focus();
