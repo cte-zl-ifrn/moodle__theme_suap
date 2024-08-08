@@ -281,8 +281,7 @@ if(searchForm) {
 
 
 counterToggler.addEventListener('click', () => {
-    const counter = document.querySelector('.header .counter');
-    const widthBreadcrumb = document.querySelector('.navbar .container-fluid');
+    const searchInput = searchForm.querySelector('.input-js');
 
     body.classList.toggle('counter-close');
     if(searchForm) {
@@ -327,8 +326,6 @@ closeButtons.forEach((button) => {
     })
 })
 
-
-    let teste = document.querySelector('counter-close')
 
 
 M.util.js_pending('theme_boost/loader');
