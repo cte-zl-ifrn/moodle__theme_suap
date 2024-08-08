@@ -57,7 +57,8 @@
         }
 
         .breadcrumb-item{
-
+            max-width: 18rem;
+            display: block;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;

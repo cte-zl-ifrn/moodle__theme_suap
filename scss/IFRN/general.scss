@@ -75,6 +75,9 @@ ul, ol {
     pointer-events: none;
 }
 
+.container-counter {
+    display: flex;
+}
 .counter {
     background-color: var(--primary);
     height: 100vh;
