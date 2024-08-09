@@ -205,7 +205,7 @@
         {{!> theme_boost/navbar }}
 
     <div class="content-main">
-         
+    
 
         {{{ output.full_header }}}
         {{#secondarymoremenu}}
@@ -281,10 +281,11 @@ if(searchForm) {
 
 
 counterToggler.addEventListener('click', () => {
-    const searchInput = searchForm.querySelector('.input-js');
+   
 
     body.classList.toggle('counter-close');
     if(searchForm) {
+        const searchInput = searchForm.querySelector('.input-js');
         searchInput.value = "";
     };
 });
