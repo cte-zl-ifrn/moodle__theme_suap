@@ -1,14 +1,4 @@
 #drawer-index {
-    .drawer {
-        position: static;
-        background-color: transparent;
-        &.not-initialized {
-            display: block;
-        }
-    }
-    .drawercontent {
-        z-index: 0;
-    }
     div.courseindex-item {
         .courseindex-link {
             color: var(--secondary);

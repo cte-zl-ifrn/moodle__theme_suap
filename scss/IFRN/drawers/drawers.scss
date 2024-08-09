@@ -1,0 +1,12 @@
+#drawer-index, #drawer-blocks {
+    .drawer {
+        position: static;
+        &.not-initialized {
+            display: block;
+            background-color: transparent;
+        }
+    }
+    .drawercontent {
+        z-index: 0;
+    }
+}

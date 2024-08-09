@@ -103,7 +103,9 @@
                             <span class="counter-label">Índice da disciplina</span>
                         </div>
                         <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
-                            <i class="fa-solid fa-bug"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12.314" viewBox="0 0 16 12.314">
+                                <path id="União_26" data-name="União 26" d="M11038.57-10430.343a2.14,2.14,0,0,1-.568-1.579v-9.013a1.22,1.22,0,0,1,1.221-1.221h13.558a1.219,1.219,0,0,1,1.221,1.221v9.016a2.127,2.127,0,0,1-.569,1.576,2.052,2.052,0,0,1-1.5.5l-11.968,0A1.893,1.893,0,0,1,11038.57-10430.343Zm1-9.807v8.259a.578.578,0,0,0,0,.071.427.427,0,0,0,.44.405h12a.431.431,0,0,0,.414-.41v-8.325a.435.435,0,0,0-.433-.436h-11.99A.436.436,0,0,0,11039.572-10440.149Zm3.792,2.921a.785.785,0,0,1-.785-.785.786.786,0,0,1,.785-.785h5a.786.786,0,0,1,.785.785.785.785,0,0,1-.785.785Z" transform="translate(-11038.001 10442.155)" fill="#fff"/>
+                            </svg>
                             <span class="counter-label">Gaveta de blocos</span>
                         </div>
                     </div>
@@ -195,15 +197,37 @@
                         {{/courseindex}}                      
                     </div>
                     <div class="drawer-content" id="drawer-blocks">
-                        <h2>Blocks</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
+                        <div class="drawer-header">
+                            <div class="drawer-header-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12.314" viewBox="0 0 16 12.314">
+                                    <path id="União_26" data-name="União 26" d="M11038.57-10430.343a2.14,2.14,0,0,1-.568-1.579v-9.013a1.22,1.22,0,0,1,1.221-1.221h13.558a1.219,1.219,0,0,1,1.221,1.221v9.016a2.127,2.127,0,0,1-.569,1.576,2.052,2.052,0,0,1-1.5.5l-11.968,0A1.893,1.893,0,0,1,11038.57-10430.343Zm1-9.807v8.259a.578.578,0,0,0,0,.071.427.427,0,0,0,.44.405h12a.431.431,0,0,0,.414-.41v-8.325a.435.435,0,0,0-.433-.436h-11.99A.436.436,0,0,0,11039.572-10440.149Zm3.792,2.921a.785.785,0,0,1-.785-.785.786.786,0,0,1,.785-.785h5a.786.786,0,0,1,.785.785.785.785,0,0,1-.785.785Z" transform="translate(-11038.001 10442.155)" fill="#2B2B2B"/>
+                                </svg>
+                                <h2>Gaveta de blocos</h2>
+                            </div>
+                            <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </div>
+
+                        {{#hasblocks}}
+                            {{< theme_boost/drawer }}
+                                {{$id}}theme_boost-drawers-blocks{{/id}}
+                                {{$drawerclasses}}drawer{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
+                                {{$drawercontent}}
+                                    <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+                                        {{{ addblockbutton }}}
+                                        {{{ sidepreblocks }}}
+                                    </section>
+                                {{/drawercontent}}
+                                {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
+                                {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
+                                {{$drawerstate}}show-drawer-right{{/drawerstate}}
+                                {{$tooltipplacement}}left{{/tooltipplacement}}
+                                {{$drawercloseonresize}}1{{/drawercloseonresize}}
+                                {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
+                            {{/ theme_boost/drawer}}
+                        {{/hasblocks}}
+
                     </div>                    
                 </div>
 
