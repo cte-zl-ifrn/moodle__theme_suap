@@ -99,7 +99,7 @@
                             <span class="counter-label">Bug</span>
                         </div>
                         <div class="drawer-toggler counter-option" data-drawer="drawer-index">
-                            <i class="fa-solid fa-bug"></i>
+                            <i class="fa-solid fa-align-left"></i>
                             <span class="counter-label">Índice da disciplina</span>
                         </div>
                         <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
@@ -167,15 +167,32 @@
                         </ul>                      
                     </div>
                     <div class="drawer-content" id="drawer-index">
-                        <h2>Menu de index</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
+                        <div class="drawer-header">
+                            <div class="drawer-header-info">
+                                <i class="fa-solid fa-align-left"></i>
+                                <h2>Índice da Disciplina</h2>
+                            </div>
+                            <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </div>
+
+                        {{#courseindex}}
+                            {{< theme_boost/drawer }}
+                                {{$id}}theme_boost-drawers-courseindex{{/id}}
+                                {{$drawerheadercontent}}
+                                    {{> theme_boost/courseindexdrawercontrols}}
+                                {{/drawerheadercontent}}
+                                {{$drawerclasses}}drawer {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
+                                {{$drawercontent}}
+                                    {{{courseindex}}}
+                                {{/drawercontent}}
+                                {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
+                                {{$drawerstate}}show-drawer-left{{/drawerstate}}
+                                {{$tooltipplacement}}right{{/tooltipplacement}}
+                                {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
+                            {{/ theme_boost/drawer}}
+                        {{/courseindex}}                      
                     </div>
                     <div class="drawer-content" id="drawer-blocks">
                         <h2>Blocks</h2>
@@ -250,13 +267,31 @@
 
 
 </div>
+
 <div class="container-fluid">        
-                <ul class="breadcrumb">            
-                    <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                    {{{navbar}}}
-                </ul>
-                {{{ output.edit_switch }}}
-            </div>
+    <ul class="breadcrumb">            
+        <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+        {{{navbar}}}
+    </ul>
+    {{{ output.edit_switch }}}
+</div>
+
+{{#courseindex}}
+    <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
+        <button
+            class="btn icon-no-margin"
+            data-toggler="drawers"
+            data-action="toggle"
+            data-target="theme_boost-drawers-courseindex"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="{{#str}}opendrawerindex, core{{/str}}"
+        >
+            <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
+            {{#pix}} t/index_drawer, moodle {{/pix}}
+        </button>
+    </div>
+{{/courseindex}}
 
 </body>
 </html>
