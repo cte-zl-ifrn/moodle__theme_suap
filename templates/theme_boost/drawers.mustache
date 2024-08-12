@@ -90,7 +90,7 @@
                             <i class="fa-regular fa-bell"></i>
                             <span class="counter-label">Notificações</span>
                         </div>
-                        <div class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
+                        <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
                             <i class="fa-regular fa-comment"></i>
                             <span class="counter-label">Mensagens</span>
                         </div>
@@ -156,15 +156,8 @@
                         </ul>                      
                     </div>
                     <div class="drawer-content" id="drawer-messages">
-                        <h2>Messagens</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
+                       
+                        {{{ output.standard_after_main_region_html }}}
                     </div>
                     <div class="drawer-content" id="drawer-index">
                         <h2>Menu de index</h2>
@@ -246,7 +239,7 @@
         </div>
         {{> theme_boost/footer }}
     </div>
-    {{{ output.standard_after_main_region_html }}}
+
 
 
 </div>
@@ -260,6 +253,21 @@
 
 </body>
 </html>
+{{#js}}
+require(
+[
+    'jquery',
+    'core_message/message_popover'
+],
+function(
+    $,
+    Popover
+) {
+    var toggle = $('#message-drawer-toggle-{{uniqid}}');
+    Popover.init(toggle);
+});
+{{/js}}
+
 {{#js}}
 const body = document.body;
 let drawers = document.querySelectorAll('.drawer-content');
@@ -285,7 +293,7 @@ counterToggler.addEventListener('click', () => {
 
     body.classList.toggle('counter-close');
     if(searchForm) {
-        const searchInput = searchForm.querySelector('.input-js');
+         const searchInput = searchForm.querySelector('.input-js');
         searchInput.value = "";
     };
 });
