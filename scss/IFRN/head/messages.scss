@@ -3,7 +3,10 @@
     position: static;
     width: auto;
     height: 100%;
-    background-color: aliceblue;
+    [data-region="message-drawer"]{
+        background-color:var(--light-lighter);
+
+    }
     h2{
         color: var(--dark);
         font: var(--font-heading2);
@@ -21,4 +24,15 @@
         visibility: visible;
     }
 
+}
+.drawers .drawer-header .drawer-header-info{
+    align-items: center;
+}
+
+[data-region="view-overview-search-input"]{
+    background-color:var(--light) !important;
+    &::placeholder{
+        color: var(--dark) !important;
+
+    }
 }
