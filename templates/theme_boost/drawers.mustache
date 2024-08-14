@@ -147,16 +147,68 @@
                     {{/usermenu}}
 
                     <div class="drawer-content" id="drawer-notifications">
-                        <h2>Notificações</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
+                        <div class="drawer-header">
+                            <div class="drawer-header-info">
+                                <i class="fa-regular fa-user"></i>
+                                <h2>Notificações</h2>
+                            </div>
+                            <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </div>
+
+                        {{< core/popover_region }}
+                            {{$classes}}popover-region-notifications{{/classes}}
+                            {{$attributes}}id="nav-notification-popover-container" data-userid="{{userid}}"{{/attributes}}
+
+                            {{$togglelabel}}{{!
+                                }}{{^unreadcount}} {{#str}} shownotificationwindownonew, message {{/str}} {{/unreadcount}} {{!
+                                }}{{#unreadcount}} {{#str}} shownotificationwindowwithcount, message, {{.}} {{/str}} {{/unreadcount}} {{!
+                            }}{{/togglelabel}}
+                            {{$togglecontent}}
+                                <i class="fa-regular fa-bell" title="{{#str}} togglenotificationmenu, message {{/str}}" role="img" aria-label="{{#str}} togglenotificationmenu, message {{/str}}"></i>
+                                <div
+                                    class="count-container {{^unreadcount}}hidden{{/unreadcount}}"
+                                    data-region="count-container"
+                                    aria-hidden=true
+                                >
+                                    {{unreadcount}}
+                                </div>
+                            {{/togglecontent}}
+
+                            {{$containerlabel}}{{#str}} notificationwindow, message {{/str}}{{/containerlabel}}
+
+                            {{$headertext}}{{#str}} notifications, message {{/str}}{{/headertext}}
+                            {{$headeractions}}
+                                <a class="mark-all-read-button"
+                                href="#"
+                                title="{{#str}} markallread {{/str}}"
+                                data-action="mark-all-read"
+                                role="button"
+                                aria-label="{{#str}} markallread {{/str}}">
+                                    <span class="normal-icon">{{#pix}} t/markasread, core {{/pix}}</span>
+                                    {{> core/loading }}
+                                </a>
+                                {{# urls.preferences }}
+                                    <a href="{{{ . }}}"
+                                    title="{{#str}} notificationpreferences, message {{/str}}"
+                                    aria-label="{{#str}} notificationpreferences, message {{/str}}">
+                                        {{#pix}} i/settings, core {{/pix}}</a>
+                                {{/ urls.preferences }}
+                            {{/headeractions}}
+
+                            {{$content}}
+                                <div class="all-notifications"
+                                    data-region="all-notifications"
+                                    role="log"
+                                    aria-busy="false"
+                                    aria-atomic="false"
+                                    aria-relevant="additions"></div>
+                                <div class="empty-message" tabindex="0" data-region="empty-message">{{#str}} nonotifications, message {{/str}}</div>
+                            {{/content}}
+                        {{/ core/popover_region }}                  
                     </div>
+
                     <div class="drawer-content" id="drawer-messages">
                         <h2>Messagens</h2>
                         <ul>
@@ -319,6 +371,23 @@
 
 </body>
 </html>
+
+{{#js}}
+const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
+const toggleNotification = document.querySelector('#nav-notification-popover-container .popover-region-toggle')
+
+drawerNotification.addEventListener('click', function() {
+    toggleNotification.click();
+})
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, Controller) {
+    var container = $('.popover-region-notifications');
+    var controller = new Controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+{{/js}}
+
 {{#js}}
 const body = document.body;
 let drawers = document.querySelectorAll('.drawer-content');

@@ -83,6 +83,7 @@ $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 $navbar = $OUTPUT->navbar();
 
+$userid = $USER->id;
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -105,6 +106,7 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
+    'userid' => $userid
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

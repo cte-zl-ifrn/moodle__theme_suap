@@ -10,3 +10,18 @@
         z-index: 0;
     }
 }
+
+#nav-notification-popover-container {
+    &.collapsed {
+        .popover-region-container {
+            opacity: 1;
+            visibility: visible;
+            height: 100%;
+            width: 100%;
+            position: static;
+        }
+    }
+    .popover-region-toggle {
+        display: none;
+    }
+}
