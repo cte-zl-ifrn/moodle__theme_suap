@@ -224,6 +224,8 @@ ul, ol {
         position: absolute;
         width: 0px;
         height: calc(100vh - 132px);
+        display: grid;
+        grid-template-rows: auto 1fr;
         margin-top: 64px;
         overflow: hidden;
         background-color: var(--light-lighter);
@@ -243,7 +245,7 @@ ul, ol {
 
         .drawer-header-info {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             gap: .5rem;
         }
         h2 {
@@ -261,17 +263,33 @@ ul, ol {
 
     .drawer-list {
         padding: 1rem; 
-        .drawer-item a {
-            padding: .5rem 1rem;
-            display: inline-block;
-            width: 100%;
-            font: var(--font-button2);
-            color: var(--dark);
-            border-radius: 2rem;
-            &:hover {
-                background-color: var(--light      );
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        .drawer-item {
+            &:last-child {
+                margin-top: auto;
+                a {
+                    background-color: var(--danger-light);
+                    color: var(--danger-dark);
+                    &:hover {
+                        background-color: var(--danger-dark);
+                        color: var(--danger-light);
+                    }
+                }
             }
-        }
+            a {
+                padding: .5rem 1rem;
+                display: inline-block;
+                width: 100%;
+                font: var(--font-button2);
+                color: var(--dark);
+                border-radius: 2rem;
+                &:hover {
+                    background-color: var(--light      );
+                }
+            }
+        } 
     }
 }
 
