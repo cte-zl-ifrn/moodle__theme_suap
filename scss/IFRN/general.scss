@@ -98,11 +98,11 @@ ul, ol {
         margin-bottom: .5rem;
         cursor: pointer;
         border-radius: 2rem;
+        &.active-toggler, &:hover {
+            background-color: var(--primary-dark);
+        }
         span {
             font: var(--font-button2);
-        }
-        &:hover {
-            background-color: var(--primary-dark);
         }
     }
 }
