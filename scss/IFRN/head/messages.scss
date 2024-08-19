@@ -7,6 +7,10 @@
         background-color:var(--light-lighter);
 
     }
+    &.hidden {
+        visibility: visible;
+        opacity: 1;
+    }
     h2{
         color: var(--dark);
         font: var(--font-heading2);
