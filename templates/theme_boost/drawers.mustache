@@ -58,8 +58,7 @@
     {{{ output.standard_top_of_body_html }}}
 
     <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">   
-        <div class="header-theme">
-            <div class="container-counter">
+        <div class="container-counter">
 
                 <div class="counter">
                     <div class="counter-header">
@@ -110,7 +109,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="drawers">
                     {{#usermenu}}
                     <div class="drawer-content" id="drawer-user">
@@ -147,7 +145,7 @@
                     {{/usermenu}}
 
                     <div class="drawer-content" id="drawer-notifications">
-                        <div class="drawer-header">
+                        {{! <div class="drawer-header">
                             <div class="drawer-header-info">
                                 <i class="fa-regular fa-user"></i>
                                 <h2>Notificações</h2>
@@ -155,8 +153,7 @@
                             <a href="#" class="drawer-close" data-drawer="drawer-user">
                                 <i class="fa-solid fa-x"></i>
                             </a>
-                        </div>
-
+                        </div> }}
                         {{< core/popover_region }}
                             {{$classes}}popover-region-notifications{{/classes}}
                             {{$attributes}}id="nav-notification-popover-container" data-userid="{{userid}}"{{/attributes}}
@@ -282,8 +279,7 @@
 
                     </div>                    
                 </div>
-
-            </div>
+                
         </div>
 
         <div class="container-fluid">   

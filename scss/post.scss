@@ -1,10 +1,7 @@
 @import "IFRN/general";
+@import "IFRN/variables";
 
 @import "IFRN/head/navbar.scss";
 
-@import "IFRN/drawers/drawers.scss";
-@import "IFRN/drawers/courseindex.scss";
-
-@import "IFRN/variables/colours";
-@import "IFRN/variables/fonts";
-@import "IFRN/variables/sizes";
+@import "IFRN/drawers/drawers";
+@import "IFRN/drawers/courseindex";
