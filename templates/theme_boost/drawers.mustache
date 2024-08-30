@@ -281,13 +281,12 @@ const searchForm = document.querySelector('.searchform-js');
 if(searchForm) {
     const searchSubmit = searchForm.querySelector('.search-js');
     const searchInput = searchForm.querySelector('.input-js');
-    const searchSubmit = searchForm.querySelector('.search-js');
-    const searchInput = searchForm.querySelector('.input-js');
     searchSubmit.addEventListener('click', () => {
         body.classList.remove('counter-close');
         searchInput.focus();
     })
 }
+
 
 
 counterToggler.addEventListener('click', () => {
