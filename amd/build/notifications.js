@@ -71,6 +71,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
             console.log('Todas as notificações foram marcadas como lidas: ', response)
         })
         getNotifications();
+        getUnreadCount();
     }
 
     function showNotifications(data) {
