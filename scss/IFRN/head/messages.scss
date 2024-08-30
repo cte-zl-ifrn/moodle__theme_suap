@@ -28,16 +28,30 @@
         visibility: visible;
     }
 
-}
-.drawers .drawer-header .drawer-header-info{
-    align-items: center;
-}
+    // }
+    // .drawers .drawer-header .drawer-header-info{
+    //     align-items: center;
+    // }
+    #drawer-header-message{
+        border-bottom: none;
 
-[data-region="view-overview-search-input"]{
-    background-color:var(--light) !important;
-    &::placeholder{
-        color: var(--dark) !important;
-
+        .drawer-header-info{
+            align-items: center;   
+        }
     }
     
+    //1px solid var(--light-dark)
+    [data-region="view-overview-search-input"]{
+ 
+        &::placeholder{
+            padding-left: 20px;
+            color: var(--dark) !important;
+
+        }
+        
+    }
 }
+
+// #search-contact-drawer{
+//         background-color: aqua;
+//     }
