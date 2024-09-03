@@ -65,7 +65,8 @@
                     <div class="counter-header">
                         <a href="{{config.wwwroot}}" class="ava-name counter-label">AVA Acadêmico</a>
                         <button class="counter-toggler">
-                            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                            
+                           {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
                         </button>
                     </div>
                     <div class="counter-content">
@@ -76,7 +77,8 @@
                                 <p class="user-name">
                                     {{userfullname}}
                                 </p>
-                                <span class="user-function">Professor</span>
+                                
+                                <span class="user-function">{{rolename}}</span>
                             </div>
                         </div>
                         {{/usermenu}}
@@ -88,24 +90,28 @@
 
                         <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
                             <i class="fa-regular fa-bell"></i>
-                            <span class="counter-label">Notificações</span>
+                            <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
                         </div>
                         <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
                             <i class="fa-regular fa-comment"></i>
-                            <span class="counter-label">Mensagens</span>
+                            <span class="counter-label">{{#str}} messages,core_message {{/str}}</span>
                         </div>
                         <div class="bug-box counter-option">
                             <i class="fa-solid fa-bug"></i>
                             <span class="counter-label">Bug</span>
                         </div>
-                        <div class="drawer-toggler counter-option" data-drawer="drawer-index">
-                            <i class="fa-solid fa-bug"></i>
-                            <span class="counter-label">Índice da disciplina</span>
-                        </div>
-                        <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
-                            <i class="fa-solid fa-bug"></i>
-                            <span class="counter-label">Gaveta de blocos</span>
-                        </div>
+                        {{#courseindex}}
+                            <div class="drawer-toggler counter-option" data-drawer="drawer-index">
+                                <i class="fa-solid fa-align-left"></i>
+                                <span class="counter-label">{{#str}}  drawer_course_index, theme_suap {{/str}}</span>
+                            </div>
+                        {{/courseindex}}
+                        {{#hasblocks}}   
+                            <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
+                                
+                                <span class="counter-label"><i>{{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}</i>{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
+                            </div>
+                        {{/hasblocks}}
                     </div>
                 </div>
 
@@ -286,7 +292,6 @@ if(searchForm) {
         searchInput.focus();
     })
 }
-
 
 counterToggler.addEventListener('click', () => {
    

@@ -30,6 +30,17 @@ require_once($CFG->dirroot . '/course/lib.php');
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
+//var_dump($enrolplugin->enrol_user($instance, $user->id, $role->id));
+
+$context = context_course::instance($COURSE->id);
+$roles = get_user_roles($context, $USER->id, true);
+$role = key($roles);
+$rolename = $roles[$role]->shortname;
+
+
+
+
+
 if (isloggedin()) {
     $courseindexopen = (get_user_preferences('drawer-open-index', true) == true);
     $blockdraweropen = (get_user_preferences('drawer-open-block') == true);
@@ -105,6 +116,8 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
+    'rolename' => $rolename,
+    
 ];
 
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

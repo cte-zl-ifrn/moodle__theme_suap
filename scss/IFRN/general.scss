@@ -127,6 +127,9 @@ ul, ol {
     white-space: nowrap;
 }
 
+.counter-toggler .icon {
+    margin-right: 0px;
+}
 .counter-label {
     white-space: nowrap;
 }
@@ -319,3 +322,4 @@ ul, ol {
 .drawer-open .breadcrumb {
     margin-left: calc(var(--drawer-open) * -1);
 }
+
