@@ -1,0 +1,37 @@
+.notifications-list {
+    display: grid;
+    gap: .5rem;
+    .empty-message {
+        text-align: center;
+    }
+}
+
+.notification_card {
+    background-color: var(--general-white);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    transition: all .1s ease-in;
+    border: 1px solid transparent;
+    &.unread {
+        background-color: var(--light);
+    }
+    &:hover {
+        border: 1px solid var(--primary);
+        background-color: var(--primary-light);
+    }
+    .card-title {
+        font: var(--font-paragraph2);
+    }
+    .card-bottom {
+        display: flex;
+        justify-content: space-between;
+        .card-time {
+            font: var(--font-heading6);
+            color: var(--dark-light);
+        }
+        .card-showmore {
+            font: var(--font-heading5);
+            color: var(--primary);
+        }
+    }
+}

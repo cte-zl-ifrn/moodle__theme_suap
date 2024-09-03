@@ -44,11 +44,18 @@
 
 {{#notifications}}
     <div class="notification_card {{^read}}unread{{/read}}">
-        <h3>{{shortenedsubject}}</h3>
-        <span>{{timecreatedpretty}}</span>
-        <span>{{#str}} viewmore, core{{/str}}</span>
+        <h3 class="card-title">{{shortenedsubject}}</h3>
+        <div class="card-bottom">
+            <span class="card-time">{{timecreatedpretty}}</span>
+            <span class="card-showmore">{{#str}} viewmore, core{{/str}}</span>
+        </div>
     </div>
 {{/notifications}}
+
+<div class="notification-full hidden">
+    
+</div>
+
 {{^notifications}}
     <div data-region="empty-message">
         {{#str}} nonotifications, message {{/str}}
