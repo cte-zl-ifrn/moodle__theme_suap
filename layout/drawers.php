@@ -118,7 +118,7 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
-    'userid' => $userid
+    'userid' => $userid,
     'rolename' => $rolename,
     'isloggedin' => $isloggedin,
     
