@@ -148,58 +148,155 @@
                         </div>
                         {{/usermenu}}
 
-                        <div class="drawer-content" id="drawer-notifications">
-                            <h2>Notificações</h2>
-                            <ul>
-                                <li>Perfil</li>
-                                <li>Notas</li>
-                                <li>Calendário</li>
-                                <li>Mensagens</li>
-                                <li>Arquivos Privados</li>
-                                <li>Relatórios</li>
-                            </ul>                      
-                        </div>
-                        <div class="drawer-content" id="drawer-messages">
-                        
-                            {{{ output.standard_after_main_region_html }}}
-                        </div>
-                        <div class="drawer-content" id="drawer-index">
-                            <h2>Menu de index</h2>
-                            <ul>
-                                <li>Perfil</li>
-                                <li>Notas</li>
-                                <li>Calendário</li>
-                                <li>Mensagens</li>
-                                <li>Arquivos Privados</li>
-                                <li>Relatórios</li>
-                            </ul>                      
-                        </div>
-                        <div class="drawer-content" id="drawer-blocks">
-                            <h2>Blocks</h2>
-                            <ul>
-                                <li>Perfil</li>
-                                <li>Notas</li>
-                                <li>Calendário</li>
-                                <li>Mensagens</li>
-                                <li>Arquivos Privados</li>
-                                <li>Relatórios</li>
-                            </ul>                      
-                        </div>                    
+                    <div class="drawer-content" id="drawer-notifications">                 
+                        {{! <div class="drawer-header">
+                            <div class="drawer-header-info">
+                                <i class="fa-regular fa-user"></i>
+                                <h2>Notificações</h2>
+                            </div>
+                            <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </div> }}
+                        {{< core/popover_region }}
+                            {{$classes}}popover-region-notifications{{/classes}}
+                            {{$attributes}}id="nav-notification-popover-container" data-userid="{{userid}}"{{/attributes}}
+
+                            {{$togglelabel}}{{!
+                                }}{{^unreadcount}} {{#str}} shownotificationwindownonew, message {{/str}} {{/unreadcount}} {{!
+                                }}{{#unreadcount}} {{#str}} shownotificationwindowwithcount, message, {{.}} {{/str}} {{/unreadcount}} {{!
+                            }}{{/togglelabel}}
+                            {{$togglecontent}}
+                                <i class="fa-regular fa-bell" title="{{#str}} togglenotificationmenu, message {{/str}}" role="img" aria-label="{{#str}} togglenotificationmenu, message {{/str}}"></i>
+                                <div
+                                    class="count-container {{^unreadcount}}hidden{{/unreadcount}}"
+                                    data-region="count-container"
+                                    aria-hidden=true
+                                >
+                                    {{unreadcount}}
+                                </div>
+                            {{/togglecontent}}
+
+                            {{$containerlabel}}{{#str}} notificationwindow, message {{/str}}{{/containerlabel}}
+
+                            {{$headertext}}{{#str}} notifications, message {{/str}}{{/headertext}}
+                            {{$headeractions}}
+                                <a class="mark-all-read-button"
+                                href="#"
+                                title="{{#str}} markallread {{/str}}"
+                                data-action="mark-all-read"
+                                role="button"
+                                aria-label="{{#str}} markallread {{/str}}">
+                                    <span class="normal-icon">{{#pix}} t/markasread, core {{/pix}}</span>
+                                    {{> core/loading }}
+                                </a>
+                                {{# urls.preferences }}
+                                    <a href="{{{ . }}}"
+                                    title="{{#str}} notificationpreferences, message {{/str}}"
+                                    aria-label="{{#str}} notificationpreferences, message {{/str}}">
+                                        {{#pix}} i/settings, core {{/pix}}</a>
+                                {{/ urls.preferences }}
+                            {{/headeractions}}
+
+                            {{$content}}
+                                <div class="all-notifications"
+                                    data-region="all-notifications"
+                                    role="log"
+                                    aria-busy="false"
+                                    aria-atomic="false"
+                                    aria-relevant="additions"></div>
+                                <div class="empty-message" tabindex="0" data-region="empty-message">{{#str}} nonotifications, message {{/str}}</div>
+                            {{/content}}
+                        {{/ core/popover_region }}                  
                     </div>
+
+                    <div class="drawer-content" id="drawer-messages">
+                        <h2>Messagens</h2>
+                        <ul>
+                            <li>Perfil</li>
+                            <li>Notas</li>
+                            <li>Calendário</li>
+                            <li>Mensagens</li>
+                            <li>Arquivos Privados</li>
+                            <li>Relatórios</li>
+                        </ul>                      
+                    </div>
+                    <div class="drawer-content" id="drawer-index">
+                        <div class="drawer-header">
+                            <div class="drawer-header-info">
+                                <i class="fa-solid fa-align-left"></i>
+                                <h2>Índice da Disciplina</h2>
+                            </div>
+                            <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </div>
+
+                        {{#courseindex}}
+                            {{< theme_boost/drawer }}
+                                {{$id}}theme_boost-drawers-courseindex{{/id}}
+                                {{$drawerheadercontent}}
+                                    {{> theme_boost/courseindexdrawercontrols}}
+                                {{/drawerheadercontent}}
+                                {{$drawerclasses}}drawer {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
+                                {{$drawercontent}}
+                                    {{{courseindex}}}
+                                {{/drawercontent}}
+                                {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
+                                {{$drawerstate}}show-drawer-left{{/drawerstate}}
+                                {{$tooltipplacement}}right{{/tooltipplacement}}
+                                {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
+                            {{/ theme_boost/drawer}}
+                        {{/courseindex}}                      
+                    </div>
+                    <div class="drawer-content" id="drawer-blocks">
+                        <div class="drawer-header">
+                            <div class="drawer-header-info">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12.314" viewBox="0 0 16 12.314">
+                                    <path id="União_26" data-name="União 26" d="M11038.57-10430.343a2.14,2.14,0,0,1-.568-1.579v-9.013a1.22,1.22,0,0,1,1.221-1.221h13.558a1.219,1.219,0,0,1,1.221,1.221v9.016a2.127,2.127,0,0,1-.569,1.576,2.052,2.052,0,0,1-1.5.5l-11.968,0A1.893,1.893,0,0,1,11038.57-10430.343Zm1-9.807v8.259a.578.578,0,0,0,0,.071.427.427,0,0,0,.44.405h12a.431.431,0,0,0,.414-.41v-8.325a.435.435,0,0,0-.433-.436h-11.99A.436.436,0,0,0,11039.572-10440.149Zm3.792,2.921a.785.785,0,0,1-.785-.785.786.786,0,0,1,.785-.785h5a.786.786,0,0,1,.785.785.785.785,0,0,1-.785.785Z" transform="translate(-11038.001 10442.155)" fill="#2B2B2B"/>
+                                </svg>
+                                <h2>Gaveta de blocos</h2>
+                            </div>
+                            <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                <i class="fa-solid fa-x"></i>
+                            </a>
+                        </div>
+
+                        {{#hasblocks}}
+                            {{< theme_boost/drawer }}
+                                {{$id}}theme_boost-drawers-blocks{{/id}}
+                                {{$drawerclasses}}drawer{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
+                                {{$drawercontent}}
+                                    <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+                                        {{{ addblockbutton }}}
+                                        {{{ sidepreblocks }}}
+                                    </section>
+                                {{/drawercontent}}
+                                {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
+                                {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
+                                {{$drawerstate}}show-drawer-right{{/drawerstate}}
+                                {{$tooltipplacement}}left{{/tooltipplacement}}
+                                {{$drawercloseonresize}}1{{/drawercloseonresize}}
+                                {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
+                            {{/ theme_boost/drawer}}
+                        {{/hasblocks}}
+
+                    </div>                    
                 </div>
-            </div>
-            <div style="background: #0f6cbf;">
-                <div class="container-fluid">   
-                    <ul id="breadcrumb">            
-                        <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                        {{{navbar}}} 
-                    </ul>     
-                    {{{ output.edit_switch }}}
-                </div>
-            </div>
-           
-        </nav>
-    {{/isloggedin}}
+                
+        </div>
+
+        <div class="container-fluid">   
+            <ul id="breadcrumb">            
+                <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+                 {{{navbar}}} 
+            </ul>     
+             {{{ output.edit_switch }}}
+        </div>
+    </nav>
+
+        {{!> theme_boost/navbar }}
+
     <div class="content-main">
     
 
@@ -247,21 +344,49 @@
 
 </div>
 
+<div class="container-fluid">        
+    <ul class="breadcrumb">            
+        <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+        {{{navbar}}}
+    </ul>
+    {{{ output.edit_switch }}}
+</div>
+
+{{#courseindex}}
+    <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
+        <button
+            class="btn icon-no-margin"
+            data-toggler="drawers"
+            data-action="toggle"
+            data-target="theme_boost-drawers-courseindex"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="{{#str}}opendrawerindex, core{{/str}}"
+        >
+            <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
+            {{#pix}} t/index_drawer, moodle {{/pix}}
+        </button>
+    </div>
+{{/courseindex}}
 
 </body>
 </html>
+
 {{#js}}
-require(
-[
-    'jquery',
-    'core_message/message_popover'
-],
-function(
-    $,
-    Popover
-) {
-    var toggle = $('#message-drawer-toggle-{{uniqid}}');
-    Popover.init(toggle);
+require(['theme_suap/notifications'], (module) => module.init());
+
+const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
+const toggleNotification = document.querySelector('#nav-notification-popover-container .popover-region-toggle')
+
+drawerNotification.addEventListener('click', function() {
+    toggleNotification.click();
+})
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, Controller) {
+    var container = $('.popover-region-notifications');
+    var controller = new Controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
 });
 {{/js}}
 
@@ -274,6 +399,7 @@ let closeButtons = document.querySelectorAll('.drawer-close');
 const counterToggler = document.querySelector('.counter-toggler');
 
 const searchForm = document.querySelector('.searchform-js');
+
 
 if(searchForm) {
     const searchSubmit = searchForm.querySelector('.search-js');
