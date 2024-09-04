@@ -5,36 +5,36 @@
 defined('MOODLE_INTERNAL') || die();                                                                                                
                                                                                                                                     
 // A description shown in the admin theme selector.                                                                                 
-$string['choosereadme'] = 'Theme SUAP is a child theme of Boost.';                
+$string['choosereadme'] = 'O tema SUAP é um tema filho do tema Boost';                
 // The name of our plugin.                                                                                                          
 $string['pluginname'] = 'SUAP';                                                                                                    
 // We need to include a lang string for each block region.                                                                          
-$string['region-side-pre'] = 'Right';
+$string['region-side-pre'] = 'Direita';
 // The name of the second tab in the theme settings.                                                                                
-$string['advancedsettings'] = 'Advanced settings';                                                                                  
+$string['advancedsettings'] = 'Configurações avançadas';                                                                                  
 // The brand colour setting.                                                                                                        
-$string['brandcolor'] = 'Brand colour';                                                                                             
+$string['brandcolor'] = 'Cor da marca';                                                                                             
 // The brand colour setting description.                                                                                            
-$string['brandcolor_desc'] = 'The accent colour.';     
+$string['brandcolor_desc'] = 'Cor de destaque';     
 // A description shown in the admin theme selector.                                                                                                                                                                                    
-$string['configtitle'] = 'SUAP settings';                                                                                          
+$string['configtitle'] = 'Configurações do SUAP';                                                                                          
 // Name of the first settings tab.                                                                                                  
-$string['generalsettings'] = 'General settings';                                                                                                                                                                                    
+$string['generalsettings'] = 'Configurações gerais';                                                                                                                                                                                    
 // Preset files setting.                                                                                                            
-$string['presetfiles'] = 'Additional theme preset files';                                                                           
+$string['presetfiles'] = 'Arquivos adicionais de predefinição de tema';                                                                           
 // Preset files help text.                                                                                                          
-$string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href=https://docs.moodle.org/dev/Boost_Presets>Boost presets</a> for information on creating and sharing your own preset files, and see the <a href=http://moodle.net/boost>Presets repository</a> for presets that others have shared.';
+$string['presetfiles_desc'] = 'Arquivos predefinidos podem ser usados ​​para alterar drasticamente a aparência do tema. Consulte <a href=https://docs.moodle.org/dev/Boost_Presets>Predefinições de Boost</a> para obter informações sobre como criar e compartilhar seus próprios arquivos predefinidos e consulte <a href=http://moodle.net/boost>Repositório de predefinições</a> para predefinições que outras pessoas compartilharam.';
 // Preset setting.                                                                                                                  
-$string['preset'] = 'Theme preset';                                                                                                 
+$string['preset'] = 'Tema predefinido';                                                                                                 
 // Preset help text.                                                                                                                
-$string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.';                                                  
+$string['preset_desc'] = 'Escolha uma predefinição para alterar amplamente a aparência do tema';                                                  
 // Raw SCSS setting.                                                                                                                
 $string['rawscss'] = 'Raw SCSS';                                                                                                    
 // Raw SCSS setting help text.                                                                                                      
-$string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will be injected at the end of the style sheet.';       
+$string['rawscss_desc'] = 'Use este campo para fornecer o código SCSS ou CSS que será injetado no final do style sheet';       
 // Raw initial SCSS setting.                                                                                                        
 $string['rawscsspre'] = 'Raw initial SCSS';                                                                                         
 // Raw initial SCSS setting help text.                                                                                              
-$string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS code, it will be injected before everything else. Most of the time you will use this setting to define variables.';
-$string['drawer_course_index'] = "Course index";
-$string['drawer_blocks'] = "Blocks";
+$string['rawscsspre_desc'] = 'Neste campo você pode fornecer o código SCSS de inicialização, ele será injetado antes de tudo. Na maioria das vezes você usará esta configuração para definir variáveis';
+$string['drawer_course_index'] = "Índice da disciplina";
+$string['drawer_blocks'] = "Gaveta de Blocos";
