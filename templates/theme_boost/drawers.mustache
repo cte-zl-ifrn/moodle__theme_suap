@@ -57,152 +57,146 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">   
-        <div class="header-theme">
-            <div class="container-counter">
-
-                <div class="counter">
-                    <div class="counter-header">
-                        <a href="{{config.wwwroot}}" class="ava-name counter-label">AVA Acadêmico</a>
-                        <button class="counter-toggler">
-                            
-                           {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
-                        </button>
-                    </div>
-                    <div class="counter-content">
-                        {{#usermenu}}
-                        <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
-                            {{> core/user_menu_metadata }}
-                            <div class="user-info counter-label">
-                                <p class="user-name">
-                                    {{userfullname}}
-                                </p>
-                                
-                                <span class="user-function">{{rolename}}</span>
+    {{#isloggedin}}
+        <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">
+            <div class="header-theme">
+                <div class="container-counter">
+                    <div class="counter">
+                        <div class="counter-header">
+                            <a href="{{config.wwwroot}}" class="ava-name counter-label">AVA Acadêmico</a>
+                            <button class="counter-toggler">    
+                                {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
+                            </button>
+                        </div>
+                        <div class="counter-content">
+                            {{#usermenu}}
+                            <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
+                                {{> core/user_menu_metadata }}
+                                <div class="user-info counter-label">
+                                    <p class="user-name">
+                                        {{userfullname}}
+                                    </p>
+                                    
+                                    <span class="user-function">{{rolename}}</span>
+                                </div>
                             </div>
+                            {{/usermenu}}
+
+                            {{# output.search_box }}
+                                {{{ output.search_box }}}
+                                <div class="divider border-left h-75 align-self-center mx-1"></div>
+                            {{/output.search_box}}
+
+                            <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
+                                <i class="fa-regular fa-bell"></i>
+                                <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
+                            </div>
+                            <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
+                                <i class="fa-regular fa-comment"></i>
+                                <span class="counter-label">{{#str}} messages,core_message {{/str}}</span>
+                            </div>
+                            <div class="bug-box counter-option">
+                                <i class="fa-solid fa-bug"></i>
+                                <span class="counter-label">Bug</span>
+                            </div>
+                            {{#courseindex}}
+                                <div class="drawer-toggler counter-option" data-drawer="drawer-index">
+                                    <i class="fa-solid fa-align-left"></i>
+                                    <span class="counter-label">{{#str}}  drawer_course_index, theme_suap {{/str}}</span>
+                                </div>
+                            {{/courseindex}}
+                            {{#hasblocks}}   
+                                <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
+                                    
+                                    <span class="counter-label"><i>{{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}</i>{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
+                                </div>
+                            {{/hasblocks}}
+                        </div>
+                    </div>
+                    <div class="drawers">
+                        {{#usermenu}}
+                        <div class="drawer-content" id="drawer-user">
+                            <div class="drawer-header">
+                                <div class="drawer-header-info">
+                                    <i class="fa-regular fa-user"></i>
+                                    <h2>Menu do usuário</h2>
+                                </div>
+                                <a href="#" class="drawer-close" data-drawer="drawer-user">
+                                    <i class="fa-solid fa-x"></i>
+                                </a>
+                            </div>
+                            <ul class="drawer-list">
+                                {{> core/user_action_menu_items }}
+                            </ul>
+                            {{#submenus}}
+                                <div id="carousel-item-{{id}}" role="menu" class="carousel-item submenu" tabindex="-1" aria-label="{{title}}">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="header">
+                                            <button type="button" class="btn btn-icon carousel-navigation-link text-decoration-none text-body" data-carousel-target-id="carousel-item-main" aria-label="{{#str}}usermenugoback{{/str}}">
+                                                <span class="dir-rtl-hide">{{#pix}}i/arrow-left{{/pix}}</span>
+                                                <span class="dir-ltr-hide">{{#pix}}i/arrow-right{{/pix}}</span>
+                                            </button>
+                                            <span class="pl-2" id="carousel-item-title-{{id}}">{{title}}</span>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="items h-100 overflow-auto" role="menu" aria-labelledby="carousel-item-title-{{id}}">
+                                            {{> core/user_action_menu_submenu_items }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/submenus}}             
                         </div>
                         {{/usermenu}}
 
-                        {{# output.search_box }}
-                            {{{ output.search_box }}}
-                            <div class="divider border-left h-75 align-self-center mx-1"></div>
-                        {{/output.search_box}}
-
-                        <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
-                            <i class="fa-regular fa-bell"></i>
-                            <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
+                        <div class="drawer-content" id="drawer-notifications">
+                            <h2>Notificações</h2>
+                            <ul>
+                                <li>Perfil</li>
+                                <li>Notas</li>
+                                <li>Calendário</li>
+                                <li>Mensagens</li>
+                                <li>Arquivos Privados</li>
+                                <li>Relatórios</li>
+                            </ul>                      
                         </div>
-                        <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
-                            <i class="fa-regular fa-comment"></i>
-                            <span class="counter-label">{{#str}} messages,core_message {{/str}}</span>
+                        <div class="drawer-content" id="drawer-messages">
+                        
+                            {{{ output.standard_after_main_region_html }}}
                         </div>
-                        <div class="bug-box counter-option">
-                            <i class="fa-solid fa-bug"></i>
-                            <span class="counter-label">Bug</span>
+                        <div class="drawer-content" id="drawer-index">
+                            <h2>Menu de index</h2>
+                            <ul>
+                                <li>Perfil</li>
+                                <li>Notas</li>
+                                <li>Calendário</li>
+                                <li>Mensagens</li>
+                                <li>Arquivos Privados</li>
+                                <li>Relatórios</li>
+                            </ul>                      
                         </div>
-                        {{#courseindex}}
-                            <div class="drawer-toggler counter-option" data-drawer="drawer-index">
-                                <i class="fa-solid fa-align-left"></i>
-                                <span class="counter-label">{{#str}}  drawer_course_index, theme_suap {{/str}}</span>
-                            </div>
-                        {{/courseindex}}
-                        {{#hasblocks}}   
-                            <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
-                                
-                                <span class="counter-label"><i>{{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}</i>{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
-                            </div>
-                        {{/hasblocks}}
+                        <div class="drawer-content" id="drawer-blocks">
+                            <h2>Blocks</h2>
+                            <ul>
+                                <li>Perfil</li>
+                                <li>Notas</li>
+                                <li>Calendário</li>
+                                <li>Mensagens</li>
+                                <li>Arquivos Privados</li>
+                                <li>Relatórios</li>
+                            </ul>                      
+                        </div>                    
                     </div>
                 </div>
-
-                <div class="drawers">
-                    {{#usermenu}}
-                    <div class="drawer-content" id="drawer-user">
-                        <div class="drawer-header">
-                            <div class="drawer-header-info">
-                                <i class="fa-regular fa-user"></i>
-                                <h2>Menu do usuário</h2>
-                            </div>
-                            <a href="#" class="drawer-close" data-drawer="drawer-user">
-                                <i class="fa-solid fa-x"></i>
-                            </a>
-                        </div>
-                        <ul class="drawer-list">
-                            {{> core/user_action_menu_items }}
-                        </ul>
-                        {{#submenus}}
-                            <div id="carousel-item-{{id}}" role="menu" class="carousel-item submenu" tabindex="-1" aria-label="{{title}}">
-                                <div class="d-flex flex-column h-100">
-                                    <div class="header">
-                                        <button type="button" class="btn btn-icon carousel-navigation-link text-decoration-none text-body" data-carousel-target-id="carousel-item-main" aria-label="{{#str}}usermenugoback{{/str}}">
-                                            <span class="dir-rtl-hide">{{#pix}}i/arrow-left{{/pix}}</span>
-                                            <span class="dir-ltr-hide">{{#pix}}i/arrow-right{{/pix}}</span>
-                                        </button>
-                                        <span class="pl-2" id="carousel-item-title-{{id}}">{{title}}</span>
-                                    </div>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="items h-100 overflow-auto" role="menu" aria-labelledby="carousel-item-title-{{id}}">
-                                        {{> core/user_action_menu_submenu_items }}
-                                    </div>
-                                </div>
-                            </div>
-                        {{/submenus}}             
-                    </div>
-                    {{/usermenu}}
-
-                    <div class="drawer-content" id="drawer-notifications">
-                        <h2>Notificações</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
-                    </div>
-                    <div class="drawer-content" id="drawer-messages">
-                       
-                        {{{ output.standard_after_main_region_html }}}
-                    </div>
-                    <div class="drawer-content" id="drawer-index">
-                        <h2>Menu de index</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
-                    </div>
-                    <div class="drawer-content" id="drawer-blocks">
-                        <h2>Blocks</h2>
-                        <ul>
-                            <li>Perfil</li>
-                            <li>Notas</li>
-                            <li>Calendário</li>
-                            <li>Mensagens</li>
-                            <li>Arquivos Privados</li>
-                            <li>Relatórios</li>
-                        </ul>                      
-                    </div>                    
-                </div>
-
             </div>
-        </div>
-
-        <div class="container-fluid">   
-            <ul id="breadcrumb">            
-                <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                 {{{navbar}}} 
-            </ul>     
-             {{{ output.edit_switch }}}
-        </div>
-    </nav>
-
-        {{!> theme_boost/navbar }}
-
+            <div class="container-fluid">   
+                <ul id="breadcrumb">            
+                    <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+                    {{{navbar}}} 
+                </ul>     
+                {{{ output.edit_switch }}}
+            </div>
+        </nav>
+    {{/isloggedin}}
     <div class="content-main">
     
 
@@ -249,13 +243,7 @@
 
 
 </div>
-<div class="container-fluid">        
-                <ul class="breadcrumb">            
-                    <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                    {{{navbar}}}
-                </ul>
-                {{{ output.edit_switch }}}
-            </div>
+
 
 </body>
 </html>

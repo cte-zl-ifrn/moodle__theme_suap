@@ -93,6 +93,7 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 $navbar = $OUTPUT->navbar();
+$isloggedin = isloggedin();
 
 
 $templatecontext = [
@@ -117,6 +118,7 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
     'rolename' => $rolename,
+    'isloggedin' => $isloggedin,
     
 ];
 
