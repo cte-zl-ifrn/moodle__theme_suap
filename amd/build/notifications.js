@@ -32,8 +32,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
     
     let notificationContainer = document.querySelector('#drawer-notifications');
     const markAllReadButton = notificationContainer.querySelector('[data-action="mark-all-read"]');
-    console.log(markAllReadButton);
-    
+
     //Api de notificações
     function getNotifications() {
 
@@ -64,6 +63,10 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         })   
     }
 
+    function setReadOne() {
+        NotificationRepository.markAsRead();
+    }
+
     function setReadAll() {
         NotificationRepository.markAllAsRead ({
             useridto: userid,
@@ -82,7 +85,41 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         Templates.renderForPromise('theme_suap/notification_card', data)
         .then(({html, js}) => {
             Templates.appendNodeContents(allMessages, html, js);
+
+            checkNotification(data);
+
         }).catch((error) => displayException(error));
+    }
+
+    function checkNotification(data) {
+        let notificationsItens = document.querySelectorAll('[data-region="notification-shortened"]');
+        let fullMessage = document.querySelector('[data-region="notification-full"]');
+        notificationsItens.forEach(notification => {
+            notification.addEventListener('click', () => {
+                fullMessage.classList.remove('hidden');
+                fullMessage.innerHTML = '';
+                notificationID = parseInt(notification.getAttribute("data-id"), 10);
+
+                data.notifications.find((notificationData) => {
+                    if (notificationData.id === notificationID) {
+                        let openData = {
+                            "contexturlname": notificationData.contexturlname
+                        }
+
+                        Templates.renderForPromise('theme_suap/notification_full', openData)
+                        .then(({html, js}) => {
+                            Templates.appendNodeContents(fullMessage, html, js);
+                        }).catch((error) => displayException(error));
+                        
+                        console.log(notificationData.contexturlname);
+                        let url = notificationData.contexturl.replace(/\\\//g, '/').replace(/&amp;/g, '&');
+                        console.log(url);
+                        //fullMessage.innerHTML += notificationData.text;
+                    }
+                })
+
+            })
+        })
     }
 
 
@@ -94,7 +131,6 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
             })
             markAllReadButton.addEventListener('click', (event) => {
                 event.preventDefault();
-                console.log('Botão ler marcado');
                 setReadAll();
             })
         }
