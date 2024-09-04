@@ -283,23 +283,24 @@
 
                     </div>                    
                 </div>
-                
+            </div>
         </div>
 
-        <div class="container-fluid">   
-            <ul id="breadcrumb">            
-                <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                 {{{navbar}}} 
-            </ul>     
-             {{{ output.edit_switch }}}
+        <div style="background: #0f6cbf;">
+            <div class="container-fluid">   
+                <ul id="breadcrumb">            
+                    <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+                    {{{navbar}}} 
+                </ul>     
+                {{{ output.edit_switch }}}
+            </div>
         </div>
+
     </nav>
-
+    {{/isloggedin}}
         {{!> theme_boost/navbar }}
 
-    <div class="content-main">
-    
-
+    <div class="content-main">    
         {{{ output.full_header }}}
         {{#secondarymoremenu}}
             <div class="secondary-navigation d-print-none">
@@ -339,35 +340,9 @@
         </div>
         {{> theme_boost/footer }}
     </div>
-
-
-
 </div>
 
-<div class="container-fluid">        
-    <ul class="breadcrumb">            
-        <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-        {{{navbar}}}
-    </ul>
-    {{{ output.edit_switch }}}
-</div>
 
-{{#courseindex}}
-    <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
-        <button
-            class="btn icon-no-margin"
-            data-toggler="drawers"
-            data-action="toggle"
-            data-target="theme_boost-drawers-courseindex"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="{{#str}}opendrawerindex, core{{/str}}"
-        >
-            <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
-            {{#pix}} t/index_drawer, moodle {{/pix}}
-        </button>
-    </div>
-{{/courseindex}}
 
 </body>
 </html>
