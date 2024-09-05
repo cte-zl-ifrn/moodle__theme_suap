@@ -128,36 +128,11 @@
                             <ul class="drawer-list">
                                 {{> core/user_action_menu_items }}
                             </ul>
-                            {{#submenus}}
-                                <div id="carousel-item-{{id}}" role="menu" class="carousel-item submenu" tabindex="-1" aria-label="{{title}}">
-                                    <div class="d-flex flex-column h-100">
-                                        <div class="header">
-                                            <button type="button" class="btn btn-icon carousel-navigation-link text-decoration-none text-body" data-carousel-target-id="carousel-item-main" aria-label="{{#str}}usermenugoback{{/str}}">
-                                                <span class="dir-rtl-hide">{{#pix}}i/arrow-left{{/pix}}</span>
-                                                <span class="dir-ltr-hide">{{#pix}}i/arrow-right{{/pix}}</span>
-                                            </button>
-                                            <span class="pl-2" id="carousel-item-title-{{id}}">{{title}}</span>
-                                        </div>
-                                        <div class="dropdown-divider"></div>
-                                        <div class="items h-100 overflow-auto" role="menu" aria-labelledby="carousel-item-title-{{id}}">
-                                            {{> core/user_action_menu_submenu_items }}
-                                        </div>
-                                    </div>
-                                </div>
-                            {{/submenus}}             
+                                   
                         </div>
                         {{/usermenu}}
 
                     <div class="drawer-content" id="drawer-notifications">                 
-                        {{! <div class="drawer-header">
-                            <div class="drawer-header-info">
-                                <i class="fa-regular fa-user"></i>
-                                <h2>Notificações</h2>
-                            </div>
-                            <a href="#" class="drawer-close" data-drawer="drawer-user">
-                                <i class="fa-solid fa-x"></i>
-                            </a>
-                        </div> }}
                         {{< core/popover_region }}
                             {{$classes}}popover-region-notifications{{/classes}}
                             {{$attributes}}id="nav-notification-popover-container" data-userid="{{userid}}"{{/attributes}}
