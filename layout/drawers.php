@@ -106,5 +106,4 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
 ];
-
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
