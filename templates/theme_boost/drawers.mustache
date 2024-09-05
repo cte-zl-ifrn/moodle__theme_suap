@@ -88,7 +88,7 @@
                         <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
                             <i class="fa-regular fa-bell"></i>
                             <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
-                            <span data-region="count-container"></span>
+                            <span class="count-notification" data-region="count-container"></span>
                         </div>
                         <div class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
                             <i class="fa-regular fa-comment"></i>
@@ -146,9 +146,12 @@
                     {{/usermenu}}
 
                     <div class="drawer-content" id="drawer-notifications" data-userid={{userid}}>                 
-                        <div class="drawer-header">
+                        <div class="drawer-header" data-region="drawer-header">
                             <div class="drawer-header-info">
-                                <i class="fa-regular fa-bell"></i>
+                                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                                <a href="#" class="return-notification" data-action="return-list" aria-label="Retornar para lista de notificações">
+                                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                                </a>
                                 <h2>{{#str}} notifications, message {{/str}}</h2>
                             </div>
                             <div class="drawer-header-tools">

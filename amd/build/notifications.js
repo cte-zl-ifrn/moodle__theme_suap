@@ -94,27 +94,33 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
     function checkNotification(data) {
         let notificationsItens = document.querySelectorAll('[data-region="notification-shortened"]');
         let fullMessage = document.querySelector('[data-region="notification-full"]');
+        drawerHeader = notificationContainer.querySelector('[data-region="drawer-header"]');
+
+        // Open full message
         notificationsItens.forEach(notification => {
             notification.addEventListener('click', () => {
                 fullMessage.classList.remove('hidden');
                 fullMessage.innerHTML = '';
                 notificationID = parseInt(notification.getAttribute("data-id"), 10);
-
+                
+                drawerHeader.classList.add('open-message');
+                returnToList(drawerHeader, fullMessage);
+                
                 data.notifications.find((notificationData) => {
                     if (notificationData.id === notificationID) {
                         let openData = {
-                            "contexturlname": notificationData.contexturlname
+                            "shortenedsubject": notificationData.shortenedsubject,
+                            "timecreatedpretty": notificationData.timecreatedpretty,
+                            "text": notificationData.text,
+                            "contexturlname": notificationData.contexturlname,
+                            "contexturl": notificationData.contexturl.replace(/\\\//g, '/').replace(/&amp;/g, '&'),
                         }
 
                         Templates.renderForPromise('theme_suap/notification_full', openData)
                         .then(({html, js}) => {
                             Templates.appendNodeContents(fullMessage, html, js);
-                        }).catch((error) => displayException(error));
-                        
-                        console.log(notificationData.contexturlname);
-                        let url = notificationData.contexturl.replace(/\\\//g, '/').replace(/&amp;/g, '&');
-                        console.log(url);
-                        //fullMessage.innerHTML += notificationData.text;
+                            
+                        }).catch((error) => displayException(error));     
                     }
                 })
 
@@ -122,6 +128,13 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         })
     }
 
+    function returnToList(drawerHeader, fullMessage) {
+        returnButton = drawerHeader.querySelector('[data-action="return-list"]');
+        returnButton.addEventListener('click', () => {
+            fullMessage.classList.add('hidden');
+            drawerHeader.classList.remove('open-message');
+        })
+    }
 
     return {
         init: function() {

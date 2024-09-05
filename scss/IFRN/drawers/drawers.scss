@@ -28,10 +28,28 @@
         padding-block: 1rem;
         margin-inline: 1rem;
 
+        &.open-message {
+            .drawer-header-tools {
+                display: none;
+            }
+            .drawer-header-info {
+                .return-notification {
+                    display: block;
+                }
+                .fa-regular.fa-bell {
+                    display: none;
+                }
+            }
+        }
+
         .drawer-header-info {
             display: flex;
             align-items: center;
             gap: .5rem;
+            .return-notification {
+                display: none;
+                color: var(--dark);
+            }
         }
         h2 {
             font: var(--font-heading2);
@@ -75,7 +93,7 @@
                 color: var(--dark);
                 border-radius: 2rem;
                 &:hover {
-                    background-color: var(--light      );
+                    background-color: var(--light);
                 }
             }
         } 

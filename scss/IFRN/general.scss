@@ -45,8 +45,18 @@ ul, ol {
         &.active-toggler, &:hover {
             background-color: var(--primary-dark);
         }
-        span {
-            font: var(--font-button2);
+        .count-notification {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1rem;
+            height: 1rem;
+            font-size: 10px;
+            font-weight: 700;
+            background-color: var(--danger-dark);
+            border-radius: 20px;
+
+                      
         }
     }
 

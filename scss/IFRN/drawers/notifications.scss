@@ -1,31 +1,42 @@
 .notifications-list {
     display: grid;
     gap: .5rem;
+    position: relative;
     .empty-message {
         text-align: center;
     }
-}
-
-.notification_card {
-    background-color: var(--general-white);
-    border-radius: .5rem;
-    padding: .5rem 1rem;
-    transition: all .1s ease-in;
-    border: 1px solid transparent;
-    cursor: pointer;
-    &.unread {
-        background-color: var(--light);
+    .notification-full {
+        position: absolute;
+        background-color: var(--light-lighter);
+        height: 100%;
+        .contexturl {
+            display: table;
+            margin: 0 auto;
+        }
     }
-    &:hover {
-        border: 1px solid var(--primary);
-        background-color: var(--primary-light);
-    }
-    .card-title {
-        font: var(--font-paragraph2);
-    }
-    .card-bottom {
-        display: flex;
-        justify-content: space-between;
+    
+    .notification_card {
+        background-color: var(--general-white);
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        transition: all .1s ease-in;
+        border: 1px solid transparent;
+        cursor: pointer;
+        &.unread {
+            background-color: var(--light);
+        }
+        &:hover {
+            border: 1px solid var(--primary);
+            background-color: var(--primary-light);
+        }
+        .card-title {
+            font: var(--font-paragraph2);
+            margin-bottom: .5rem;
+        }
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+        }
         .card-time {
             font: var(--font-heading6);
             color: var(--dark-light);
@@ -35,4 +46,29 @@
             color: var(--primary);
         }
     }
+
+    .notification-reminder {
+        margin-bottom: 1rem;
+        .reminder-title {
+            font: var(--font-paragraph2);
+            margin-bottom: .5rem;
+        }
+        .reminder-time {
+            font: var(--font-heading6);
+            color: var(--dark-light);
+            display: flex;
+        }
+    }
+
+    .button-light {
+        background-color: var(--primary-light);
+        border-radius: 30px;
+        padding: .4rem .5rem;
+        color: var(--primary);
+        font: var(--font-button3);
+        text-decoration: none;
+        
+    }
+
 }
+
