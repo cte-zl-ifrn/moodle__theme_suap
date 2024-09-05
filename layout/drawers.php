@@ -123,5 +123,4 @@ $templatecontext = [
     'isloggedin' => $isloggedin,
     
 ];
-
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
