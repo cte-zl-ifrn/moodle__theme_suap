@@ -32,14 +32,15 @@ $addblockbutton = $OUTPUT->addblockbutton();
 
 //var_dump($enrolplugin->enrol_user($instance, $user->id, $role->id));
 
-$context = context_course::instance($COURSE->id);
-$roles = get_user_roles($context, $USER->id, true);
-$role = key($roles);
-$rolename = $roles[$role]->shortname;
-
-
-
-
+if(isloggedin()) {
+    $context = context_course::instance($COURSE->id);
+    $roles = get_user_roles($context, $USER->id, true);
+    $role = key($roles);
+    $rolename = $roles[$role]->shortname;
+    
+}else{
+    $rolename = false;
+}
 
 if (isloggedin()) {
     $courseindexopen = (get_user_preferences('drawer-open-index', true) == true);
