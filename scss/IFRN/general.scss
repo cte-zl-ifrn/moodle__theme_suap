@@ -55,8 +55,9 @@ ul, ol {
             font-weight: 700;
             background-color: var(--danger-dark);
             border-radius: 20px;
-
-                      
+            &.hidden {
+                display: none;
+            }      
         }
     }
 

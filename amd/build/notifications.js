@@ -57,14 +57,21 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         }).done(function(data) {
             if (data) {
                 countContainer.innerHTML = data;
+                countContainer.classList.remove('hidden');
+            } else {
+                countContainer.classList.add('hidden');
             }
         }).fail(function(error) {
             console.log(error);
         })   
     }
 
-    function setReadOne() {
-        NotificationRepository.markAsRead();
+    function setReadOne(id) {
+        NotificationRepository.markAsRead(id)
+        .then(() => {
+            getUnreadCount();
+            console.log('leu')
+        });
     }
 
     function setReadAll() {
@@ -103,6 +110,8 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
                 fullMessage.innerHTML = '';
                 notificationID = parseInt(notification.getAttribute("data-id"), 10);
                 
+                setReadOne(notificationID);
+
                 drawerHeader.classList.add('open-message');
                 returnToList(drawerHeader, fullMessage);
                 
