@@ -71,15 +71,4 @@
             </a>
         </li>
     {{/link}}
-    {{#submenulink}}
-        <a href="#" class="carousel-navigation-link dropdown-item" role="menuitem" tabindex="-1" data-carousel-target-id="carousel-item-{{submenuid}}">
-            {{#pixicon}}
-                {{#pix}}{{pixicon}}{{/pix}}
-            {{/pixicon}}
-            {{^pixicon}}
-                {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
-            {{/pixicon}}
-            {{title}}
-        </a>
-    {{/submenulink}}
 {{/items}}
