@@ -30,6 +30,18 @@ require_once($CFG->dirroot . '/course/lib.php');
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
+//var_dump($enrolplugin->enrol_user($instance, $user->id, $role->id));
+
+if(isloggedin()) {
+    $context = context_course::instance($COURSE->id);
+    $roles = get_user_roles($context, $USER->id, true);
+    $role = key($roles);
+    $rolename = $roles[$role]->shortname;
+    
+}else{
+    $rolename = false;
+}
+
 if (isloggedin()) {
     $courseindexopen = (get_user_preferences('drawer-open-index', true) == true);
     $blockdraweropen = (get_user_preferences('drawer-open-block') == true);
@@ -82,7 +94,9 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 $navbar = $OUTPUT->navbar();
+$isloggedin = isloggedin();
 
+$userid = $USER->id;
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -105,5 +119,9 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
+    'userid' => $userid,
+    'rolename' => $rolename,
+    'isloggedin' => $isloggedin,
+    
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
