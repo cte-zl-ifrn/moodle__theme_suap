@@ -1,0 +1,94 @@
+.frontpage-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+
+    .frontpage-menu-logo {
+        background: #098e95;
+        width: 15%;
+        height: 100%;
+        margin-top: 20px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            margin: 0;
+            color: white;
+        }
+    }
+
+    .frontpage-navbar-container {
+        height: 100%;
+        width: 90%;
+        margin: 20px 25px 0 15px;
+        border: 1px solid #2b2b2b25;
+        border-radius: 12px;
+        padding: 5px 0;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    
+        .frontpage-navbar-content {
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 10px;
+    
+            h3 {
+                align-self: center;
+                margin-bottom: 0 !important;
+            }
+
+            .frontpage-navbar-start-buttons {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                // width: 50%;
+            }
+
+            .frontpage-navbar-end-buttons {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                // width: 50%;
+            }
+        }
+    }
+}
+
+.frontpage-header {
+    margin-bottom: 30px;
+}
+
+.frontpage-card {
+    .frontpage-card-content {
+        .frontpage-card-content-value {
+            margin: 0;
+            font: var(--font-heading7);
+        }
+    
+        .frontpage-card-content-title {
+            margin: 0;
+            font: var(--font-heading2);
+        }
+    
+        .frontpage-card-content-msg {
+            margin: 0;
+            font: var(--font-heading4);
+        }
+    }
+}
+
+.bg-green {
+    background: #098e95;
+}
+
+.text-green {
+    color: #098e95;
+}

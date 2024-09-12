@@ -1,0 +1,125 @@
+{{> theme_boost/head }}
+
+<body {{{ bodyattributes }}} style="background: #fafefd;">
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block">
+
+    {{{ output.standard_top_of_body_html }}}
+
+    {{! {{> theme_boost/navbar }}
+    {{#isloggedin}}
+        <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">
+            <div style="background: #0f6cbf;">
+                <div class="container-fluid">   
+                    <ul id="breadcrumb">            
+                        <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+                    </ul>     
+                    {{{navbar}}}
+                    {{{ output.edit_switch }}}
+                </div>
+            </div>
+        </nav>
+    {{/isloggedin}}
+
+    {{^isloggedin}}
+        <div class="frontpage-menu">
+            <div class="frontpage-menu-logo">
+                <h2 >{{{sitename}}}</h2 >
+            </div>
+            <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+                <div class="frontpage-navbar-content">
+                    <div class="frontpage-navbar-start-buttons">
+                        <button>Inicio</button>
+                        <button>Sobre</button>
+                    </div>
+                    <div class="frontpage-navbar-end-buttons">
+                        <select>
+                            <option value="pt-br">🇧🇷</option>
+                            <option value="es">🇪🇸</option>
+                        </select>
+                        <button>Acessar</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    {{/isloggedin}}
+
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-white">
+        {{! TODO: colocar a cor de background #fafefd em todos }}
+
+        <div class="container-fluid">   
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="frontpage-header">
+                        <div class="frontpage-header-content">
+                            <h1>O {{{sitename}}} em números</h1>
+                            <h5>Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="frontpage-card">
+                        <div class="frontpage-card-content">
+                            <p class="frontpage-card-content-value text-green">99%</p>
+                            <p class="frontpage-card-content-title">Success Rate</p>
+                            <p class="frontpage-card-content-msg">Business completion is achieved through a success rate that’s unmatched in the industry of business analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="frontpage-card">
+                        <div class="frontpage-card-content">
+                            <p class="frontpage-card-content-value text-green">49K</p>
+                            <p class="frontpage-card-content-title">Customer Reviews</p>
+                            <p class="frontpage-card-content-msg">With reviews of unmatched quality, our business achieves a satisfaction level unmatched in the industry.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="frontpage-card">
+                        <div class="frontpage-card-content">
+                            <p class="frontpage-card-content-value text-green">$3mil</p>
+                            <p class="frontpage-card-content-title">Monthly Income</p>
+                            <p class="frontpage-card-content-msg">With an active and enraptured user based our income is in excess of every monthly estimate, achieving yearly goals.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="frontpage-card">
+                        <div class="frontpage-card-content">
+                            <p class="frontpage-card-content-value text-green">8mil</p>
+                            <p class="frontpage-card-content-title">Total Users</p>
+                            <p class="frontpage-card-content-msg">Our user base is an exemplary showcase of our business functions and processes. Frameworks that support all users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="topofscroll" style="background: #fafefd;">
+            <div id="page-content" class="d-print-block main-inner">
+                <div id="region-main-box">
+                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
+                        {{{ output.main_content }}}
+                    </section>
+                </div>
+            </div>
+        </div>
+        
+        {{> theme_boost/footer }}
+    </div>
+    
+    {{{ output.standard_after_main_region_html }}}
+</div>
+
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
