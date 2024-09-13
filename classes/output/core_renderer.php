@@ -18,6 +18,8 @@ namespace theme_suap\output;
 
 defined('MOODLE_INTERNAL') || die;
 
+use theme_suap\api\api;
+
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
  *
@@ -55,5 +57,38 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return $this->render_from_template('core/navbar', $newnav);
     }
 
+
+    public function render_unread_conversations() {
+        global $USER;
+
+        // Chama classe api para obter as conversas não lidas
+        $unreadConversations = api::get_all_unread_conversations($USER->id);
+
+        if (!empty($unreadConversations['conversations'])) {
+            $conversations = [];
+            foreach ($unreadConversations['conversations'] as $conversation) {
+                $conversations[] = [
+                    'conversationid' => $conversation['conversationid'],
+                    'unreadcount'    => $conversation['unreadcount'],
+                ];
+            }
+
+            // Prepara os dados para passar para o template Mustache
+            $data = [
+                'conversations' => $conversations
+            ];
+        } else {
+            $data = [
+                'conversations' => []
+            ];
+        }
+
+        // Renderiza o template Mustache com os dados
+        var_dump($data);
+        abacaxi(); //testar retorno
+        return $unreadConversations;
+        return $this->render_from_template('theme_suap/unread_conversations', $data);
+
+    }
 
 }

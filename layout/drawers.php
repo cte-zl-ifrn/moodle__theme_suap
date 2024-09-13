@@ -98,6 +98,8 @@ $isloggedin = isloggedin();
 
 $userid = $USER->id;
 
+var_dump($OUTPUT->render_unread_conversations());
+
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
