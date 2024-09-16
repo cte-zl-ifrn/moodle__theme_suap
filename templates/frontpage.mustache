@@ -1,15 +1,15 @@
 {{> theme_boost/head }}
 
-<body {{{ bodyattributes }}} style="background: #fafefd;">
+<body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
-<div id="page-wrapper" class="d-print-block">
+<div id="page-wrapper" class="d-print-block bg-green">
 
     {{{ output.standard_top_of_body_html }}}
 
     {{! {{> theme_boost/navbar }}
     {{#isloggedin}}
         <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">
-            <div style="background: #0f6cbf;">
+            <div>
                 <div class="container-fluid">   
                     <ul id="breadcrumb">            
                         <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
@@ -22,14 +22,14 @@
     {{/isloggedin}}
 
     {{^isloggedin}}
-        <div class="frontpage-menu">
+        <div class="frontpage-menu bg-green">
             <div class="frontpage-menu-logo">
                 <h2 >{{{sitename}}}</h2 >
             </div>
             <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
                 <div class="frontpage-navbar-content">
                     <div class="frontpage-navbar-start-buttons">
-                        <button>Inicio</button>
+                        <button>Início</button>
                         <button>Sobre</button>
                     </div>
                     <div class="frontpage-navbar-end-buttons">
@@ -37,14 +37,15 @@
                             <option value="pt-br">🇧🇷</option>
                             <option value="es">🇪🇸</option>
                         </select>
-                        <button>Acessar</button>
+                        <span></span>
+                        <button class="primary-button">Acessar</button>
                     </div>
                 </div>
             </nav>
         </div>
     {{/isloggedin}}
 
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-white">
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-green">
         {{! TODO: colocar a cor de background #fafefd em todos }}
 
         <div class="container-fluid">   
@@ -58,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row main-container">
                 <div class="col-md-3">
                     <div class="frontpage-card">
                         <div class="frontpage-card-content">
@@ -98,14 +99,32 @@
             </div>
         </div>
 
-        <div id="topofscroll" style="background: #fafefd;">
-            <div id="page-content" class="d-print-block main-inner">
-                <div id="region-main-box">
-                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
-                        {{{ output.main_content }}}
-                    </section>
+        <div id="topofscroll" class="bg-green">
+            <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
+                <div class="container-fluid">
+                    <div class="main-header">
+                        <div class="main-header-about-button">
+                            <button class="primary-button">Sobre nós</button>
+                        </div>
+                        <div class="main-header-content">
+                            <p>Cursos abertos do IFRN</p>
+                            <div class=main-header-filter>
+                                <div>
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" placeholder="Pesquisar">
+                                </div>
+                                <button class="primary-button">Filtrar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{{ output.main_content }}}
                 </div>
-            </div>
+            </section>
+            {{! <div id="page-content" class="d-print-block main-inner bg-green">
+                <div id="region-main-box">
+                </div>
+            </div> }}
         </div>
         
         {{> theme_boost/footer }}
