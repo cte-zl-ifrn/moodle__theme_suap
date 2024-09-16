@@ -37,16 +37,20 @@ define(['jquery', 'core/ajax', 'core/templates', 'core/notification', 'message_p
         userid: 2,
     };
 
-    let request = Ajax.call([{
+    var promises = Ajax.call([{
         methodname: 'theme_suap_get_all_unread_conversations',
-        args: args
+        args: args,
     }]);
 
-    console.log(request);
+    promises[0].done(function(response) {
+        console.log(response);
+    }).fail(function(error) {
+        console.error(error);
+    });
 
     var promises = Ajax.call([{
-        methodname: 'core_message_get_conversations', // Nome da função registrada
-        args: args, // Argumentos passados para a função
+        methodname: 'core_message_get_conversations',
+        args: args,
     }]);
 
     promises[0].done(function(response) {

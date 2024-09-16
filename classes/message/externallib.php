@@ -23,6 +23,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace theme_suap\external;
+
+use theme_suap\api\api;
 use core_external\external_api;
 use core_external\external_format_value;
 use core_external\external_function_parameters;
@@ -31,6 +34,8 @@ use core_external\external_single_structure;
 use core_external\external_value;
 use core_external\external_warnings;
 use core_external\util;
+
+// use core_message\external\core_message_external;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -48,7 +53,7 @@ require_once($CFG->dirroot . "/message/externallib.php");
  */
 
 //  core_message_external
-class theme_suap_external extends core_message_external {
+class theme_suap_external extends \core_message_external {
 
     /**
      * Get conversations parameters.
@@ -91,19 +96,19 @@ class theme_suap_external extends core_message_external {
         );
         $params = self::validate_parameters(self::get_conversations_parameters(), $params);
 
-        $systemcontext = context_system::instance();
-        self::validate_context($systemcontext);
+        // $systemcontext = context_system::instance();
+        // self::validate_context($systemcontext);
 
         if (($USER->id != $params['userid']) && !has_capability('moodle/site:readallmessages', $systemcontext)) {
             throw new moodle_exception('You do not have permission to perform this action.');
         }
 
-        $conversations = \core_message\api::get_all_unread_conversations(
+        $conversations = api::get_all_unread_conversations(
             $params['userid'],
         );
 
 
-        return (object) ['conversations' => $conversations];
+        return ['conversations' => $conversations];
     }
 
     /**
@@ -116,10 +121,21 @@ class theme_suap_external extends core_message_external {
         return new external_single_structure(
             [
                 'conversations' => new external_multiple_structure(
-                    self::get_conversation_structure(true)
+                    new external_single_structure(
+                        [
+                            'conversationid' => new external_value(PARAM_INT, 'The conversation id'),
+                            'unreadcount' => new external_value(PARAM_INT, 'The number of unread messages in this conversation',
+                            VALUE_DEFAULT, null),
+                            'smallmessage' => new external_value(PARAM_RAW, 'A subtitle for the conversation name, if set', VALUE_DEFAULT, null),
+                            'fullmessage' => new external_value(PARAM_RAW, 'A subtitle for the conversation name, if set', VALUE_DEFAULT, null),
+                            'timecreated' => new external_value(PARAM_RAW, 'A subtitle for the conversation name, if set', VALUE_DEFAULT, null),
+                            'sendername' => new external_value(PARAM_RAW, 'A subtitle for the conversation name, if set', VALUE_DEFAULT, null),
+                        ]
+                    )
                 )
             ]
         );
+
     }
 
 

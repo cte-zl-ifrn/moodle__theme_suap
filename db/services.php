@@ -27,9 +27,9 @@ defined('MOODLE_INTERNAL') || die();
 
 $functions = [
     'theme_suap_get_all_unread_conversations' => array(
-        'classname'   => 'theme_moove\classes\theme_suap_external', // Classe onde a função está.
-        'methodname'  => 'get_all_unread_conversations', // Nome da função.
         'classpath'   => 'theme/suap/classes/message/externallib.php', // Caminho para a classe.
+        'classname'   => 'theme_suap\external\theme_suap_external', // Classe onde a função está.
+        'methodname'  => 'get_all_unread_conversations', // Nome da função.
         'description' => 'Retorna todas as conversas não lidas de um usuário',
         'type'        => 'read', // Define que é uma operação de leitura.
         'ajax'        => true, // Disponível para AJAX.

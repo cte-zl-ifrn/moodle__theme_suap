@@ -83,7 +83,6 @@ class api {
     public static function get_all_unread_conversations(int $userid): array {
         global $DB;
 
-        // SQL to get all unread conversations the user is in.
         $sql = 'SELECT conv.id as conversationid, conv.type, count(m.id) as unreadcount,
                     m.smallmessage, m.fullmessage, m.timecreated,
                     u.firstname, u.lastname
@@ -113,7 +112,6 @@ class api {
             $userid
         ]);
 
-        // Prepare the return array with the conversation id and unread count.
         $conversations = [];
         foreach ($unreadconversations as $unreadconv) {
             $conversations[] = [
@@ -126,7 +124,7 @@ class api {
             ];
         }
 
-        return ['conversations' => $conversations];
+        return $conversations;
     }
 
 }
