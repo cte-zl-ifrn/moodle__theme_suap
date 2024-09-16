@@ -69,49 +69,54 @@
                             </button>
                         </div>
                         <div class="counter-content">
-                            {{#usermenu}}
-                            <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
-                                {{> core/user_menu_metadata }}
-                                <div class="user-info counter-label">
-                                    <p class="user-name">
-                                        {{userfullname}}
-                                    </p>
-                                    
-                                    <span class="user-function">{{rolename}}</span>
+                            <div class="content-1">
+                                {{#usermenu}}
+                                <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
+                                    {{> core/user_menu_metadata }}
+                                    <div class="user-info counter-label">
+                                        <p class="user-name">
+                                            {{userfullname}}
+                                        </p>
+                                        
+                                        <span class="user-function">{{rolename}}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            {{/usermenu}}
+                                {{/usermenu}}
 
-                            {{# output.search_box }}
-                                {{{ output.search_box }}}
-                                <div class="divider border-left h-75 align-self-center mx-1"></div>
-                            {{/output.search_box}}
+                                {{# output.search_box }}
+                                    {{{ output.search_box }}}
+                                    <div class="divider border-left h-75 align-self-center mx-1"></div>
+                                {{/output.search_box}}
 
-                            <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
-                                <i class="fa-regular fa-bell"></i>
-                                <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
-                            </div>
-                            <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
-                                <i class="fa-regular fa-comment"></i>
-                                <span class="counter-label">{{#str}} messages,core_message {{/str}}</span>
-                            </div>
-                            <div class="bug-box counter-option">
-                                <i class="fa-solid fa-bug"></i>
-                                <span class="counter-label">Bug</span>
-                            </div>
-                            {{#courseindex}}
-                                <div class="drawer-toggler counter-option" data-drawer="drawer-index">
-                                    <i class="fa-solid fa-align-left"></i>
-                                    <span class="counter-label">{{#str}}  drawer_course_index, theme_suap {{/str}}</span>
+                                <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
+                                    <i class="fa-regular fa-bell"></i>
+                                    <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
                                 </div>
-                            {{/courseindex}}
-                            {{#hasblocks}}   
-                                <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
-                                    
-                                    <span class="counter-label"><i>{{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}</i>{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
+                                <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
+                                    <i class="fa-regular fa-comment"></i>
+                                    <span class="counter-label">{{#str}} messages,core_message {{/str}}</span>
                                 </div>
-                            {{/hasblocks}}
+                                <div class="bug-box counter-option">
+                                    <i class="fa-solid fa-bug"></i>
+                                    <span class="counter-label">Bug</span>
+                                </div>
+                            </div>
+                            <div class="content-footer">
+                                {{#courseindex}}
+                                    <div class="drawer-toggler counter-option" data-drawer="drawer-index">
+                                        <i class="fa-solid fa-align-left"></i>
+                                        <span class="counter-label">{{#str}}  drawer_course_index, theme_suap {{/str}}</span>
+                                    </div>
+                                {{/courseindex}}
+                                {{#hasblocks}}   
+                                    <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
+                                        
+                                        <span class="counter-label"><i>{{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}</i>{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
+                                    </div>
+                                {{/hasblocks}}
+                            </div>
                         </div>
+                       
                     </div>
                     <div class="drawers">
                         {{#usermenu}}
@@ -246,13 +251,12 @@
                                 {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
                             {{/ theme_boost/drawer}}
                         {{/hasblocks}}
-
                     </div>                    
                 </div>
             </div>
         </div>
 
-        <div style="background: #0f6cbf;">
+        <div>
             <div class="container-fluid">   
                 <ul id="breadcrumb">            
                     <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
