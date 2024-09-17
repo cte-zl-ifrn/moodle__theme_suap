@@ -57,6 +57,24 @@
         ]
     }
 }}
+<li class="drawer-item" id="settingsvisual">
+        Preferencias visuais:
+    <div>
+        <input type="radio" id="part-sup" name="drone" value="part-sup" checked />
+        <label for="part-sup">Parte superior</label>
+    </div>
+    <div>
+        <input type="radio" id="part-down" name="drone" value="part-down" />
+        <label for="part-down">Parte inferior</label>
+    </div>
+</li>
+<li class="drawer-item">
+    <a href="{{config.wwwroot}}/admin/search.php" class="dropdown-item" role="menuitem" tabindex="-1">Admin</a>
+</li>
+<li class="drawer-item" id="onlyadmin" >
+    <a href="{{config.wwwroot}}/my/courses.php" class="dropdown-item" role="menuitem" tabindex="-1">Courses</a>
+</li>
+
 {{#items}}
     {{#link}}
         <li class="drawer-item">
@@ -71,15 +89,4 @@
             </a>
         </li>
     {{/link}}
-    {{#submenulink}}
-        <a href="#" class="carousel-navigation-link dropdown-item" role="menuitem" tabindex="-1" data-carousel-target-id="carousel-item-{{submenuid}}">
-            {{#pixicon}}
-                {{#pix}}{{pixicon}}{{/pix}}
-            {{/pixicon}}
-            {{^pixicon}}
-                {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
-            {{/pixicon}}
-            {{title}}
-        </a>
-    {{/submenulink}}
 {{/items}}
