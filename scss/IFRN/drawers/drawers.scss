@@ -15,10 +15,13 @@
             display: grid;
             grid-template-rows: auto 1fr;
         }
+
+        
     }
     .drawer-content.active-drawer {
-    width: var(--drawer-open);
+        width: var(--drawer-open);
     }
+
 
     .drawer-header {
         display: flex;
@@ -130,3 +133,8 @@
         display: none;
     }
 }
+
+.counter-content #content-part1{
+            display: flex;
+            flex-direction: column-reverse;
+        }
