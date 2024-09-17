@@ -54,3 +54,11 @@ $THEME->haseditswitch = true;
 $THEME->scss = function($theme) {                                                                                                   
     return theme_suap_get_main_scss_content($theme);                                                                               
 };
+
+$THEME->layouts = [
+    'frontpage' => [
+        'file' => 'frontpage.php',
+        'regions' => ['side-pre'], // , 'side-post'
+        'defaultregion' => 'side-pre',
+    ],
+];
