@@ -60,7 +60,7 @@
     {{#isloggedin}}
         <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">
             <div class="header-theme">
-                <div class="container-counter">
+                <div class="container-counter" id="container-counter">
                     <div class="counter">
                         <div class="counter-header">
                             <a href="{{config.wwwroot}}" class="ava-name counter-label">AVA Acadêmico</a>
@@ -319,6 +319,7 @@
 
 {{#js}}
 require(['theme_suap/notifications'], (module) => module.init());
+require(['theme_suap/settings-menu'], (module) => module.init());
 
 const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
 const toggleNotification = document.querySelector('#nav-notification-popover-container .popover-region-toggle')
@@ -410,3 +411,4 @@ require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     M.util.js_complete('theme_boost/loader');
 });
 {{/js}}
+

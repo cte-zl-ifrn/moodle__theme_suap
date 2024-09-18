@@ -90,3 +90,23 @@
         </li>
     {{/link}}
 {{/items}}
+
+
+
+{{#js}}
+    require(['theme_suap/settings-menu'], (module) => module.init());
+    let testebutton = document.querySelector('#part-down');
+    console.log(testebutton);
+    let testebutton2 = document.querySelector('#content-part1')
+    console.log(testebutton2);
+
+    if (testebutton) {  // Verificar se o botão existe
+        testebutton.addEventListener('click', () => {
+            testebutton2.classList.add('content-teste1');
+        });
+    } else {
+        testebutton2.classList.remove('content-teste1');
+    }
+
+
+{{/js}}
