@@ -52,6 +52,51 @@
     }
 }
 
-// #search-contact-drawer{
-//         background-color: aqua;
-//     }
+
+.message-app .view-overview-body {
+    .options-messages {
+        display: flex;
+        gap: .5rem .25rem; //8px 4px
+        flex-wrap: wrap;
+        .section {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 1.5rem;
+            transition: .1s all ease-in;
+            &.expanded {
+                background-color: var(--primary);
+                color: var(--general-white);
+            }
+            &:hover {
+                background-color: var(--primary);
+                color: var(--general-white);
+            }
+            .overview-section-toggle {
+                font: var(--font-button3);
+                gap: .25rem;
+                padding: .375rem .625rem; // 6px 10px
+                .badge {
+                    background-color: var(--secondary-light);
+                    color: var(--secondary-dark);
+                    font: var(--font-heading6);
+                    padding: 1px 5px;
+                    top: 0px;
+                }
+            }
+        }
+    }
+
+    .message-divider {
+        border-top: 1px solid var(--light-dark);
+        margin-block: .625rem; //10px
+    }
+
+    
+    .section {
+        min-height: 0px !important;
+        background-color: transparent;
+        .list-group-item-action {
+            background-color: transparent;
+        }
+    }
+}
