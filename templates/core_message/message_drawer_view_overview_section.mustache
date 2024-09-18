@@ -40,7 +40,7 @@
     data-region="{{$region}}{{/region}}"
 >
     {{< core_message/message_drawer_lazy_load_list }}
-        {{$rootclasses}}collapse border-bottom {{#expanded}}show{{/expanded}}{{/rootclasses}}
+        {{$rootclasses}}collapse {{#expanded}}show{{/expanded}}{{/rootclasses}}
         {{$rootattributes}}
             id="{{$region}}{{/region}}-target-{{uniqid}}"
             aria-labelledby="{{$region}}{{/region}}-toggle"
