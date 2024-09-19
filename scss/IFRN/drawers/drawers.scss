@@ -51,6 +51,9 @@
                 color: var(--dark);
             }
         }
+        .drawer-header-tools {
+            display: flex;
+        }
         h2 {
             font: var(--font-heading2);
             margin-bottom: 0;
