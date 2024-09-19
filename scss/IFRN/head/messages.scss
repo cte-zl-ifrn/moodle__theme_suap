@@ -3,10 +3,7 @@
     position: static;
     width: auto;
     height: 100%;
-    [data-region="message-drawer"]{
-        background-color:var(--light-lighter);
 
-    }
     &.hidden {
         visibility: visible;
         opacity: 1;
@@ -68,10 +65,8 @@
     }
 
     .message-divider {
-        border-top: 1px solid var(--light-dark);
-        margin-block: .625rem; //10px
+        margin-inline: 1rem;
     }
-
     
     .section {
         min-height: 0px !important;
@@ -79,6 +74,7 @@
         .list-group-item-action {
             background-color: transparent;
             border: none;
+            border-radius: .5rem;
             &:hover {
                 background-color: var(--light);
                 color: var(--dark);
@@ -133,10 +129,19 @@
 }
 
 .message-app {
+    background-color: var(--light-lighter);
     .drawer-header-tools {
         gap: .5rem;
     }
+
     .header-container {
+        .name-contact {
+            font: var(--font-heading3);
+        }
+        .status-contact {
+            font: var(--font-heading5);
+            color: var(--dark-light);
+        }
         #conversation-actions-menu-button {
             transform: rotate(90deg);
         }
@@ -145,6 +150,7 @@
             left: auto;
         }
     }
+
     .simplesearchform {
         flex-direction: row-reverse;
         background-color: var(--light);
@@ -164,4 +170,61 @@
             color: var(--dark);
         }
     }
+
+    .header-content {
+        padding-bottom: .5rem;
+    }
+
+    .message-divider {
+        border-top: 1px solid var(--light-dark);
+        margin-block: .625rem; //10px
+    }
+
+    .day {
+        color: var(--dark);
+    }
+
+    .message {
+        margin-inline: 1rem;
+        border-radius: .5rem;
+        .user-img {
+            position: absolute;
+            top: 0;
+            left: -2rem;
+        }
+        .conversation-select {
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+        }
+    }
+    .message.send .time, .message.received .time {
+        color: var(--dark-light);
+        font: var(--font-heading6);
+        position: absolute;
+        bottom: 0;
+    }
+
+    .message.send {
+        margin-left: 2.5rem;
+        background-color: var(--primary);
+        color: var(--general-white);
+        .time {
+            left: -2rem;
+        }
+        .tail {
+            border-bottom-color: var(--primary);
+        }
+    }
+    .message.received {
+        margin-inline: 2.5rem;
+        border-top-left-radius: 0px;
+        .time {
+            right: -2rem;
+        }
+        .tail {
+            display: none;
+        }
+    }
+
 }
