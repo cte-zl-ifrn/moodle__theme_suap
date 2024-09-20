@@ -216,3 +216,11 @@ ul, ol {
     margin-left: calc(var(--drawer-open) * -1);
 }
 
+.custom-control-input:checked~.custom-control-label::before{
+    background-color: var(--primary);
+}
+
+.custom-control-label::before{
+    border: 2px solid var(--primary)
+}
+

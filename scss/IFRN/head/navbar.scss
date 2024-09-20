@@ -129,9 +129,6 @@
     background-color: var(--general-white);
 }
 
-.custom-control-input:checked~.custom-control-label::before{
-    background-color: var(--primary);
-}
 
 .custom-switch .custom-control-input:checked~.custom-control-label::after{
     transform: translateX(0.8rem);

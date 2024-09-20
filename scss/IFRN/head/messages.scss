@@ -227,4 +227,20 @@
         }
     }
 
+    //Settings
+    .view-settings-header {
+        margin-inline: .5rem;
+    }
+    .settings-title {
+        font: var(--font-heading3);
+    }
+    .settings-body {
+        p, label {
+            font: var(--font-heading5);
+            color: var(--dark-light);
+        }
+        .custom-radio .custom-control-label::before, .custom-radio .custom-control-label::after {
+            top: -.1rem;
+        }
+    }
 }
