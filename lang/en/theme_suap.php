@@ -38,3 +38,5 @@ $string['rawscsspre'] = 'Raw initial SCSS';
 $string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS code, it will be injected before everything else. Most of the time you will use this setting to define variables.';
 $string['drawer_course_index'] = "Course index";
 $string['drawer_blocks'] = "Blocks";
+$string['allconversations'] = "All";
+$string['unreadmessages'] = "Unread";
