@@ -243,4 +243,41 @@
             top: -.1rem;
         }
     }
+
+    //Contacts
+    .view-contacts-header {
+        margin-inline: .5rem;
+    }
+    .nav-pills {
+        background-color: transparent;
+        gap: 1rem;
+        .nav-link {
+            background-color: var(--light);
+            border-radius: 40px;
+            font: var(--font-button1);
+            width: 100%;
+            display: inline-block;
+            margin: 0 auto;
+            &.active {
+                background-color: var(--primary);
+            }
+        }
+    }
+
+    .alert-warning {
+        background-color: var(--warning-light);
+        color: var(--warning-dark);
+        font: var(--font-heading4);
+        padding:  .25rem .5rem; //4px 8px 
+        text-align: left;
+        margin-inline: .5rem;
+        i {
+            margin-right: .5rem;
+        }
+    }
+
+    // [data-region="empty-message-container"] {
+    //     background-color: var(--warning-light);
+    // }
+
 }

@@ -15,9 +15,10 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_header
+    @template core_message/message_drawer_view_contacts_body_section_requests
 
-    This template will render the header for the overview page of the message drawer.
+    This template will render the the requests section of the body of the contacts
+    page in the message drawer.
 
     Classes required for JS:
     * none
@@ -33,22 +34,20 @@
     {}
 
 }}
-<div class="px-3" aria-hidden="false" {{^isdrawer}}data-in-panel="true"{{/isdrawer}} data-region="view-overview">
-    <div class="input-group simplesearchform">
-        <input
-            id="search-contact-drawer"
-            type="text"
-            class="form-control"
-            placeholder="{{#str}} search, core_search {{/str}}"
-            aria-label="{{#str}} search, core_search {{/str}}"
-            data-region="view-overview-search-input"
-        >
-        <div class="input-group-append">
-            <span class="icon-no-margin btn btn-submit">
-                {{#pix}} a/search, core {{/pix}}
-            </span>
+{{< core_message/message_drawer_lazy_load_list }}
+    {{$emptymessage}}
+        <div class="alert alert-warning">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{#str}} nocontactrequests, core_message {{/str}}
         </div>
-    </div>
-      
-    
-</div>
+    {{/emptymessage}}
+    {{$placeholder}}
+        {{#contacts}}
+            {{#sectionrequests}}
+                {{#placeholders}}
+                    {{> core_message/message_drawer_contacts_list_item_placeholder }}
+                {{/placeholders}}
+            {{/sectionrequests}}
+        {{/contacts}}
+    {{/placeholder}}
+{{/ core_message/message_drawer_lazy_load_list }}
