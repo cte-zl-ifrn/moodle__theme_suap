@@ -280,4 +280,15 @@
     //     background-color: var(--warning-light);
     // }
 
+    // Conversation
+    .emoji-picker-container {
+        width: 100%;
+        .emoji-picker {
+            width: 100%;
+            .picker-row {
+                flex-wrap: wrap;
+            }
+        }
+    }
+
 }

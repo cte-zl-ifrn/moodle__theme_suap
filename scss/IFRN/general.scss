@@ -224,3 +224,13 @@ ul, ol {
     border: 2px solid var(--primary)
 }
 
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--general-white);
+    font: var(--font-heading5);
+    gap: .25rem;
+    &:hover {
+        background-color: var(--secondary-dark);
+        color: var(--general-white);
+    }
+}
