@@ -39,3 +39,5 @@ $string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS co
 $string['drawer_course_index'] = "Course index";
 $string['drawer_blocks'] = "Blocks";
 $string['drawer_user'] = "User menu";
+$string['allconversations'] = "All";
+$string['unreadmessages'] = "Unread";

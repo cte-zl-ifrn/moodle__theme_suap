@@ -137,7 +137,7 @@ ul, ol {
     padding: 0;
 }
 
-.simplesearchform {
+.counter .simplesearchform {
     margin-bottom: 1rem;
     .searchform-navbar {
         padding-inline: .5rem;
@@ -162,7 +162,7 @@ ul, ol {
         color: var(--general-white);
     }
 }
-.counter-close .simplesearchform {
+.counter-close .counter .simplesearchform {
     .searchform-navbar {
         justify-content: center;
     }
@@ -216,3 +216,21 @@ ul, ol {
     margin-left: calc(var(--drawer-open) * -1);
 }
 
+.custom-control-input:checked~.custom-control-label::before{
+    background-color: var(--primary);
+}
+
+.custom-control-label::before{
+    border: 2px solid var(--primary)
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--general-white);
+    font: var(--font-heading5);
+    gap: .25rem;
+    &:hover {
+        background-color: var(--secondary-dark);
+        color: var(--general-white);
+    }
+}

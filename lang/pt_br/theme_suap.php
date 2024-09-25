@@ -39,3 +39,5 @@ $string['rawscsspre_desc'] = 'Neste campo você pode fornecer o código SCSS de 
 $string['drawer_course_index'] = "Índice da disciplina";
 $string['drawer_blocks'] = "Gaveta de Blocos";
 $string['drawer_user'] = "Menu do usuário";
+$string['allconversations'] = "todas";
+$string['unreadmessages'] = "Não lidas";

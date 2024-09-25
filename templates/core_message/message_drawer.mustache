@@ -36,14 +36,15 @@
 {{< core/drawer}}
     {{$drawercontent}}
         <div id="message-drawer-{{uniqid}}" class="message-app" data-region="message-drawer" role="region">
-            <div id="drawer-header-message" class="drawer-header" id="yui_3_18_1_1_1723556857082_32">
+            
+            <div id="drawer-header-message" class="drawer-header">
                 <div class="drawer-header-info">
                     <i class="fa-regular fa-comment"></i>
                     <h2 >{{#str}} messagingcategory,admin {{/str}}</h2>
                 </div>
 
-                {{#caneditownmessageprofile}}
-                    <div class="ml-2">
+                <div class="drawer-header-tools">
+                    {{#caneditownmessageprofile}}
                         <a
                             href="#"
                             data-route="view-settings"
@@ -51,14 +52,11 @@
                             aria-label="{{#str}} settings, core_message {{/str}}"
                             role="button"
                         >
-                            {{#pix}} t/edit, core {{/pix}}
+                            <i class="fa-solid fa-gear"></i>
                         </a>
-                    </div>
-                {{/caneditownmessageprofile}}
-                <div class="text-right mt-sm-3">
+                    {{/caneditownmessageprofile}}
                     <a href="#" data-route="view-contacts" role="button">
-                        {{#pix}} i/user, core {{/pix}}
-                        {{#str}} contacts, core_message {{/str}}
+                        <i class="fa-solid fa-user-group"></i>
                         <span
                             class="badge bg-primary text-white ml-2 {{^contactrequestcount}}hidden{{/contactrequestcount}}"
                             data-region="contact-request-count"
@@ -101,7 +99,7 @@
 {{/core/drawer}}
 
 {{#js}}
-require(['jquery', 'core_message/message_drawer'], function($, MessageDrawer) {
+require(['jquery', 'core_message/message_drawer', 'theme_suap/messages'], function($, MessageDrawer) {
     var root = $('#message-drawer-{{uniqid}}');
     MessageDrawer.init(root, '{{uniqid}}', false);
 });

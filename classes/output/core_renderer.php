@@ -18,6 +18,8 @@ namespace theme_suap\output;
 
 defined('MOODLE_INTERNAL') || die;
 
+use theme_suap\api\api;
+
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
  *
@@ -226,7 +228,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
     //         $usermenuclasses
     //     );
     // }
-
 
 
 }
