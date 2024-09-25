@@ -22,8 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core/ajax', 'core/templates', 'core/notification', 'message_popup/notification_repository' ], 
-    function($, Ajax, Templates, Notification, NotificationRepository) {
+define(['jquery', 'core/templates', 'core/notification', 'message_popup/notification_repository' ], 
+    function($, Templates, Notification, NotificationRepository) {
     var displayException = Notification.exception;
 
     let notificationToggler = document.querySelector('[data-drawer="drawer-notifications"]');
@@ -33,31 +33,6 @@ define(['jquery', 'core/ajax', 'core/templates', 'core/notification', 'message_p
     let notificationContainer = document.querySelector('#drawer-notifications');
     const markAllReadButton = notificationContainer.querySelector('[data-action="mark-all-read"]');
 
-    var args = {
-        userid: 2,
-    };
-
-    var promises = Ajax.call([{
-        methodname: 'theme_suap_get_all_unread_conversations',
-        args: args,
-    }]);
-
-    promises[0].done(function(response) {
-        console.log(response);
-    }).fail(function(error) {
-        console.error(error);
-    });
-
-    var promises = Ajax.call([{
-        methodname: 'core_message_get_conversations',
-        args: args,
-    }]);
-
-    promises[0].done(function(response) {
-        console.log(response);
-    }).fail(function(error) {
-        console.error(error);
-    });
 
     //Api de notificações
     function getNotifications() {
