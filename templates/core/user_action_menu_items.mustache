@@ -59,15 +59,22 @@
 }}
 <li class="drawer-item" id="settingsvisual">
         Preferencias visuais:
-    <div>
-        <input type="radio" id="part-sup" name="drone" value="part-sup" checked />
-        <label for="part-sup">Parte superior</label>
+    <div class="custom-control custom-radio mb-2">
+        <input type="radio" class="custom-control-input" id="part-up" name="visual" value="part-up">
+        <label class="custom-control-label ms-2" for="part-up">
+            Parte superior
+        </label>
     </div>
-    <div>
-        <input type="radio" id="part-down" name="drone" value="part-down" />
-        <label for="part-down">Parte inferior</label>
+    <div class="custom-control custom-radio mb-2">
+        <input type="radio"  class="custom-control-input" id="part-down" name="visual" value="part-down">
+        <label class="custom-control-label ms-2" for="part-down">
+            Parte inferior
+        </label>
     </div>
+
 </li>
+
+
 <li class="drawer-item">
     <a href="{{config.wwwroot}}/admin/search.php" class="dropdown-item" role="menuitem" tabindex="-1">Admin</a>
 </li>
@@ -94,19 +101,77 @@
 
 
 {{#js}}
-    require(['theme_suap/settings-menu'], (module) => module.init());
-    let testebutton = document.querySelector('#part-down');
-    console.log(testebutton);
-    let testebutton2 = document.querySelector('#content-part1')
-    console.log(testebutton2);
-
-    if (testebutton) {  // Verificar se o botão existe
-        testebutton.addEventListener('click', () => {
-            testebutton2.classList.add('content-teste1');
-        });
-    } else {
-        testebutton2.classList.remove('content-teste1');
+    // Função para definir um cookie
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); //
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
     }
+
+    // Função para ler um cookie
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim();
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return null;
+    }
+
+    // Função para atualizar a interface com base na seleção de "part-up" ou "part-down"
+    function updateContent(isPartUp) {
+        radiopartup.checked = isPartUp;
+        radiopartdown.checked = !isPartUp;
+
+        if (isPartUp) {
+            contentpart1.classList.remove('content-teste1');
+            countcontent.classList.remove('teste');
+        } else {
+            contentpart1.classList.add('content-teste1');
+            countcontent.classList.add('teste');
+        }
+    }
+
+    // Função para guardar a preferência num cookie
+    function savePreference(value) {
+        setCookie('visualPreference', value, 180); // Guarda por 180 dias(6 meses)
+        console.log("Saved preference in cookie:", value);
+    }
+
+    // Elementos da página
+    const radiopartup = document.querySelector('#part-up');
+    const radiopartdown = document.querySelector('#part-down');
+    const contentpart1 = document.querySelector('#content-part1');
+    const countcontent = document.querySelector('#counter-content');
+
+    // Recuperar valor do cookie
+    const savedRadioValue = getCookie('visualPreference');
+    console.log("SavedRadioValue from cookie:", savedRadioValue);
+
+    // Atualizar interface com base no valor guardado no cookie
+    if (savedRadioValue === 'part-up') {
+        updateContent(true);
+    } else if (savedRadioValue === 'part-down') {
+        updateContent(false);
+    }
+
+    // Adicionar listeners para os radio buttons
+    radiopartdown.addEventListener('click', () => {
+        updateContent(false);
+        savePreference(radiopartdown.value);
+    });
+
+    radiopartup.addEventListener('click', () => {
+        updateContent(true);
+        savePreference(radiopartup.value);
+    });
+
+
+
 
 
 {{/js}}

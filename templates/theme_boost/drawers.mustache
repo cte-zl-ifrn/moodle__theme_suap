@@ -68,7 +68,7 @@
                                 {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
                             </button>
                         </div>
-                        <div class="counter-content">
+                        <div id="counter-content">
                             <div id="content-part1">
                                 {{#usermenu}}
                                 <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
@@ -319,7 +319,7 @@
 
 {{#js}}
 require(['theme_suap/notifications'], (module) => module.init());
-require(['theme_suap/settings-menu'], (module) => module.init());
+
 
 const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
 const toggleNotification = document.querySelector('#nav-notification-popover-container .popover-region-toggle')
