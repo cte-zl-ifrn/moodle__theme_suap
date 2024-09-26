@@ -98,6 +98,44 @@ $isloggedin = isloggedin();
 
 $userid = $USER->id;
 
+var_dump($USER->sesskey);
+
+// Define a lista de items no formato esperado
+$items_theme_suap = [
+    [
+        'link' => [
+            'title' => 'Admin',
+            'url' => $CFG->wwwroot . '/admin/search.php',
+            'pixicon' => 't/admin'
+        ]
+    ],
+    [
+        'link' => [
+            'title' => 'Courses',
+            'url' => $CFG->wwwroot . '/my/courses.php',
+            'pixicon' => 't/courses'
+        ]
+    ],
+    [
+        'link' => [
+            'title' => 'Settings',
+            'url' => $CFG->wwwroot . '/admin/settings.php',
+            'pixicon' => 't/settings'
+        ]
+    ],
+    [
+        'link' => [
+            'title' => 'Logout',
+            'url' => $CFG->wwwroot . '/login/logout.php?sesskey='. $USER->sesskey,
+            'pixicon' => 't/logout'
+        ]
+    ]
+];
+
+
+
+
+
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
@@ -122,6 +160,7 @@ $templatecontext = [
     'userid' => $userid,
     'rolename' => $rolename,
     'isloggedin' => $isloggedin,
+    'items_theme_suap' => $items_theme_suap, 
     
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

@@ -54,30 +54,13 @@
         display: flex;
         flex-direction: column;
         gap: .5rem;
-        .drawer-item {
-            &:last-child {
-                margin-top: auto;
-                a {
-                    background-color: var(--danger-light);
-                    color: var(--danger-dark);
-                    &:hover {
-                        background-color: var(--danger-dark);
-                        color: var(--danger-light);
-                    }
-                }
-            }
-            a {
-                padding: .5rem 1rem;
-                display: inline-block;
-                width: 100%;
-                font: var(--font-button2);
-                color: var(--dark);
-                border-radius: 2rem;
-                &:hover {
-                    background-color: var(--light      );
-                }
-            }
-        } 
+        .drawer-item:nth-last-child(-n+3) {
+            display: flex;
+            background-color: aqua;
+            flex-direction: row;
+            flex-wrap: wrap; // Faz com que os itens ocupem apenas a linha necessária
+            gap: 10px;
+        }
     }
 
     #settingsvisual{
