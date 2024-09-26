@@ -6,31 +6,16 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{! {{> theme_boost/navbar }}
-    {{#isloggedin}}
-        <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">
-            <div>
-                <div class="container-fluid">   
-                    <ul id="breadcrumb">            
-                        <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                    </ul>     
-                    {{{navbar}}}
-                    {{{ output.edit_switch }}}
-                </div>
-            </div>
-        </nav>
-    {{/isloggedin}}
-
     {{^isloggedin}}
         <div class="frontpage-menu bg-green">
             <div class="frontpage-menu-logo">
-                <h2 >{{{sitename}}}</h2 >
+                <h2>{{{frontpage_title}}}</h2 >
             </div>
             <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
                 <div class="frontpage-navbar-content">
                     <div class="frontpage-navbar-start-buttons">
-                        <button>Início</button>
-                        <button>Sobre</button>
+                        <a href="{{config.wwwroot}}">{{{frontpage_first_button}}}</a>
+                        <a href="{{config.wwwroot}}">{{{frontpage_second_button}}}</a>
                     </div>
                     <div class="frontpage-navbar-end-buttons">
                         <select>
@@ -38,7 +23,7 @@
                             <option value="es">🇪🇸</option>
                         </select>
                         <span></span>
-                        <button class="primary-button">Acessar</button>
+                        <a href="{{config.wwwroot}}/login/" class="primary-button">Acessar</a>
                     </div>
                 </div>
             </nav>
@@ -46,54 +31,44 @@
     {{/isloggedin}}
 
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-green">
-        {{! TODO: colocar a cor de background #fafefd em todos }}
-
         <div class="container-fluid">   
             <div class="row">
                 <div class="col-md-12">
-                    <div class="frontpage-header">
-                        <div class="frontpage-header-content">
-                            <h1>O {{{sitename}}} em números</h1>
-                            <h5>Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</h5>
+                    <div class="frontpage-hero-header">
+                        <div class="frontpage-hero-header-content">
+                            <h1>{{{hero_title}}}</h1>
+                            <h5>{{{hero_subtitle}}}</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row main-container">
+            <div class="row hero">
                 <div class="col-md-3">
-                    <div class="frontpage-card">
-                        <div class="frontpage-card-content">
-                            <p class="frontpage-card-content-value text-green">99%</p>
-                            <p class="frontpage-card-content-title">Success Rate</p>
-                            <p class="frontpage-card-content-msg">Business completion is achieved through a success rate that’s unmatched in the industry of business analysis.</p>
-                        </div>
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_first_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_first_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_first_column_text}}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="frontpage-card">
-                        <div class="frontpage-card-content">
-                            <p class="frontpage-card-content-value text-green">49K</p>
-                            <p class="frontpage-card-content-title">Customer Reviews</p>
-                            <p class="frontpage-card-content-msg">With reviews of unmatched quality, our business achieves a satisfaction level unmatched in the industry.</p>
-                        </div>
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_second_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_second_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_second_column_text}}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="frontpage-card">
-                        <div class="frontpage-card-content">
-                            <p class="frontpage-card-content-value text-green">$3mil</p>
-                            <p class="frontpage-card-content-title">Monthly Income</p>
-                            <p class="frontpage-card-content-msg">With an active and enraptured user based our income is in excess of every monthly estimate, achieving yearly goals.</p>
-                        </div>
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_third_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_third_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_third_column_text}}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="frontpage-card">
-                        <div class="frontpage-card-content">
-                            <p class="frontpage-card-content-value text-green">8mil</p>
-                            <p class="frontpage-card-content-title">Total Users</p>
-                            <p class="frontpage-card-content-msg">Our user base is an exemplary showcase of our business functions and processes. Frameworks that support all users.</p>
-                        </div>
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_fourth_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_fourth_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_fourth_column_text}}}</p>
                     </div>
                 </div>
             </div>
@@ -102,18 +77,26 @@
         <div id="topofscroll" class="bg-green">
             <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
                 <div class="container-fluid">
-                    <div class="main-header">
-                        <div class="main-header-about-button">
-                            <button class="primary-button">Sobre nós</button>
+                    <div class="frontpage-hero-main-header">
+                        <div class="frontpage-hero-main-header-about-button">
+                            <a class="primary-button">{{{hero_button_text}}}</a>
                         </div>
-                        <div class="main-header-content">
-                            <p>Cursos abertos do IFRN</p>
-                            <div class=main-header-filter>
+                        <div class="frontpage-hero-main-header-content">
+                            <div class="frontpage-hero-main-header-title">
+                                <p>Cursos abertos do IFRN</p>
+                            </div>
+
+                            {{! <p>Cursos abertos do IFRN</p> }}
+                            <div class=frontpage-hero-main-header-filter>
                                 <div>
                                     <i class="fa fa-search"></i>
                                     <input type="text" placeholder="Pesquisar">
                                 </div>
                                 <button class="primary-button">Filtrar</button>
+                            </div>
+
+                            <div class="frontpage-hero-main-header-title aux">
+                                <p>Cursos abertos do IFRN</p>
                             </div>
                         </div>
                     </div>
@@ -127,7 +110,7 @@
             </div> }}
         </div>
         
-        {{> theme_boost/footer }}
+        {{! {{> theme_boost/footer }}
     </div>
     
     {{{ output.standard_after_main_region_html }}}
