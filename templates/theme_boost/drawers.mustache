@@ -162,10 +162,14 @@
                             </div>
                         </div> 
                         
-                        <div class="drawer-body">
-                            <div class="notifications-list" data-region="notifications-list">
-                                {{> theme_suap/notification_card}}
+                        <div class="drawer-body" data-region="notification-scroll">
+                            <div class="notification_list" data-region="notification-list">
+                                {{> theme_suap/notification_list}}
                             </div>
+                            <span class="hidden" data-region="loading-icon-container">
+                                {{> core/loading }}
+                            </span>
+                            <div class="notification-full hidden" data-region="notification-full"></div>
                         </div> 
 
                     </div>

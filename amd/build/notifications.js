@@ -24,6 +24,8 @@
 
 define(['jquery', 'core/templates', 'core/notification', 'message_popup/notification_repository' ], 
     function($, Templates, Notification, NotificationRepository) {
+    const LIMIT_NOTIFICATION = 12;
+
     var displayException = Notification.exception;
 
     let notificationToggler = document.querySelector('[data-drawer="drawer-notifications"]');
@@ -35,16 +37,17 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
 
 
     //Api de notificações
-    function getNotifications() {
+    function getNotifications(offset, initial = true) {
+        const limit = LIMIT_NOTIFICATION;
 
         NotificationRepository.query({
-            useridto: userid, // ID real do usuário
+            useridto: userid,
             newestfirst: true,
-            limit: 12,
-            offset: 0
+            limit: limit,
+            offset: offset
         }).done(function(data) {
             if (data.notifications.length > 0) {
-                showNotifications(data);
+                showNotifications(data, initial);
             }
 
         }).fail(function(error) {
@@ -81,25 +84,27 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         }).then(function(response) {
             console.log('Todas as notificações foram marcadas como lidas: ', response)
         })
-        getNotifications();
+        getNotifications(0);
         getUnreadCount();
     }
 
-    function showNotifications(data) {
-        allMessages = notificationContainer.querySelector("[data-region='notifications-list']");
+    function showNotifications(data, initial = true) {
+        allMessages = notificationContainer.querySelector("[data-region='notification-list']");
 
-        allMessages.innerHTML = '';
+        if (initial) {
+            allMessages.innerHTML = '';
+        }
 
-        Templates.renderForPromise('theme_suap/notification_card', data)
+        Templates.renderForPromise('theme_suap/notification_list', data)
         .then(({html, js}) => {
             Templates.appendNodeContents(allMessages, html, js);
 
-            checkNotification(data);
+            checkNotification(data, allMessages);
 
         }).catch((error) => displayException(error));
     }
 
-    function checkNotification(data) {
+    function checkNotification(data, allMessages) {
         let notificationsItens = document.querySelectorAll('[data-region="notification-shortened"]');
         let fullMessage = document.querySelector('[data-region="notification-full"]');
         drawerHeader = notificationContainer.querySelector('[data-region="drawer-header"]');
@@ -114,7 +119,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
                 setReadOne(notificationID);
 
                 drawerHeader.classList.add('open-message');
-                returnToList(drawerHeader, fullMessage);
+                returnToList(drawerHeader, fullMessage, allMessages);
                 
                 data.notifications.find((notificationData) => {
                     if (notificationData.id === notificationID) {
@@ -129,6 +134,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
                         Templates.renderForPromise('theme_suap/notification_full', openData)
                         .then(({html, js}) => {
                             Templates.appendNodeContents(fullMessage, html, js);
+                            allMessages.classList.add('hidden');
                             
                         }).catch((error) => displayException(error));     
                     }
@@ -138,24 +144,53 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         })
     }
 
-    function returnToList(drawerHeader, fullMessage) {
+    function returnToList(drawerHeader, fullMessage, allMessages) {
         returnButton = drawerHeader.querySelector('[data-action="return-list"]');
         returnButton.addEventListener('click', () => {
             fullMessage.classList.add('hidden');
             drawerHeader.classList.remove('open-message');
+            allMessages.classList.remove('hidden');
+        })
+    }
+
+    function pagination(scrollNotifications) {
+        let offset = LIMIT_NOTIFICATION;
+
+        let scrollTop = scrollNotifications.scrollTop;
+        let scrollHeight = scrollNotifications.scrollHeight;
+        let clientHeight = scrollNotifications.clientHeight;
+
+        scrollNotifications.addEventListener('scroll', () => {  
+            if (scrollTop + clientHeight >= scrollHeight - 5) {
+                getNotifications(offset, false);
+                offset += LIMIT_NOTIFICATION;
+            }
         })
     }
 
     return {
         init: function() {
+            allMessages = notificationContainer.querySelector("[data-region='notification-list']");
+            let scrollNotifications = notificationContainer.querySelector('[data-region="notification-scroll"]');
+            let fullMessage = document.querySelector('[data-region="notification-full"]');
+
             getUnreadCount();
             notificationToggler.addEventListener('click', () => {
-                getNotifications();
+                if (notificationToggler.classList.contains('active-toggler')) {
+                    getNotifications(0)
+                    getUnreadCount();
+                    allMessages.classList.remove('hidden');
+                    fullMessage.classList.add('hidden');
+
+                    pagination(scrollNotifications);
+                }
             })
+
             markAllReadButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 setReadAll();
             })
+
         }
     };
 

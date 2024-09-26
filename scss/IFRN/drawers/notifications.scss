@@ -2,28 +2,54 @@
     .drawer-body {
         height: calc(100vh - 189px);
         overflow-y: auto;
+        position: relative;
     }
-}
 
-.notifications-list {
-    display: grid;
-    gap: .5rem;
-    position: relative;
-    .empty-message {
-        text-align: center;
-    }
     .notification-full {
-        position: absolute;
         background-color: var(--light-lighter);
-        height: 100%;
-        width: 100%;
         .contexturl {
             display: table;
             margin: 0 auto;
         }
     }
+
+    .notification-reminder {
+        margin-bottom: 1rem;
+        .reminder-title {
+            font: var(--font-paragraph2);
+            margin-bottom: .5rem;
+        }
+        .reminder-time {
+            font: var(--font-heading6);
+            color: var(--dark-light);
+            display: flex;
+        }
+    }
+
+    .button-light {
+        background-color: var(--primary-light);
+        border-radius: 30px;
+        padding: .4rem .5rem;
+        color: var(--primary);
+        font: var(--font-button3);
+        text-decoration: none;
+        
+    }
+}
+
+.notification_list {
+    display: grid;
+    gap: .5rem;
+    position: relative;
+    &.hidden {
+        display: none;
+    }
+    .empty-message {
+        text-align: center;
+    }
+
     
-    .notification_card {
+    .notification-card {
         background-color: var(--general-white);
         border-radius: .5rem;
         padding: .5rem 1rem;
@@ -53,29 +79,6 @@
             font: var(--font-heading5);
             color: var(--primary);
         }
-    }
-
-    .notification-reminder {
-        margin-bottom: 1rem;
-        .reminder-title {
-            font: var(--font-paragraph2);
-            margin-bottom: .5rem;
-        }
-        .reminder-time {
-            font: var(--font-heading6);
-            color: var(--dark-light);
-            display: flex;
-        }
-    }
-
-    .button-light {
-        background-color: var(--primary-light);
-        border-radius: 30px;
-        padding: .4rem .5rem;
-        color: var(--primary);
-        font: var(--font-button3);
-        text-decoration: none;
-        
     }
 
 }
