@@ -39,11 +39,11 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
 
         NotificationRepository.query({
             useridto: userid, // ID real do usuário
-            limit: 10,
+            newestfirst: true,
+            limit: 12,
             offset: 0
         }).done(function(data) {
             if (data.notifications.length > 0) {
-                console.log(data);
                 showNotifications(data);
             }
 
