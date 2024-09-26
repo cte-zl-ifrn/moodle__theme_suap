@@ -15,9 +15,10 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_header
+    @template core_message/message_drawer_view_conversation_body_day
 
-    This template will render the header for the overview page of the message drawer.
+    This template will render a day's worth of messages in the body of the
+    conversation page in the message drawer.
 
     Classes required for JS:
     * none
@@ -26,29 +27,25 @@
     * All data attributes are required
 
     Context variables required for this template:
-    * userid The logged in user id
-    * urls The URLs for the popover
+    * timestamp
+    * currentyear
+    * messages
 
     Example context (json):
-    {}
-
+    {
+        "timestamp": 946684800,
+        "currentyear": false,
+        "messages": []
+    }
 }}
-<div class="px-3" aria-hidden="false" {{^isdrawer}}data-in-panel="true"{{/isdrawer}} data-region="view-overview">
-    <div class="input-group simplesearchform">
-        <input
-            id="search-contact-drawer"
-            type="text"
-            class="form-control"
-            placeholder="{{#str}} search, core_search {{/str}}"
-            aria-label="{{#str}} search, core_search {{/str}}"
-            data-region="view-overview-search-input"
-        >
-        <div class="input-group-append">
-            <span class="icon-no-margin btn btn-submit">
-                {{#pix}} a/search, core {{/pix}}
-            </span>
-        </div>
-    </div>
-      
-    
+<div class="mt-3" data-region="day-container" data-day-id="{{timestamp}}">
+    <h6 class="text-center mb-1 day">
+        {{#currentyear}}
+            {{#userdate}} {{timestamp}}, {{#str}} strftimedateshort, core_langconfig {{/str}} {{/userdate}}
+        {{/currentyear}}
+        {{^currentyear}}
+            {{#userdate}} {{timestamp}}, {{#str}} strftimedate, core_langconfig {{/str}} {{/userdate}}
+        {{/currentyear}}
+    </h6>
+    {{> core_message/message_drawer_view_conversation_body_messages }}
 </div>

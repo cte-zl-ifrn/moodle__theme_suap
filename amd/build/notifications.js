@@ -33,6 +33,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
     let notificationContainer = document.querySelector('#drawer-notifications');
     const markAllReadButton = notificationContainer.querySelector('[data-action="mark-all-read"]');
 
+
     //Api de notificações
     function getNotifications() {
 

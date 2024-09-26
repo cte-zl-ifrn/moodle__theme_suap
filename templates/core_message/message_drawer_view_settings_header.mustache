@@ -15,9 +15,9 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_header
+    @template core_message/message_drawer_view_settings_header
 
-    This template will render the header for the overview page of the message drawer.
+    This template will render the header for the settings in the message drawer.
 
     Classes required for JS:
     * none
@@ -33,22 +33,18 @@
     {}
 
 }}
-<div class="px-3" aria-hidden="false" {{^isdrawer}}data-in-panel="true"{{/isdrawer}} data-region="view-overview">
-    <div class="input-group simplesearchform">
-        <input
-            id="search-contact-drawer"
-            type="text"
-            class="form-control"
-            placeholder="{{#str}} search, core_search {{/str}}"
-            aria-label="{{#str}} search, core_search {{/str}}"
-            data-region="view-overview-search-input"
-        >
-        <div class="input-group-append">
-            <span class="icon-no-margin btn btn-submit">
-                {{#pix}} a/search, core {{/pix}}
-            </span>
+
+<div class="view-settings-header hidden border-bottom p-1 px-sm-2 pb-sm-3" aria-hidden="true" data-region="view-settings">
+    <div class="d-flex align-items-center">
+        {{#isdrawer}}
+        <div class="align-self-stretch" >
+            <a class="h-100 d-flex me-2 align-items-center" href="#" data-route-back role="button">
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+        </div>
+        {{/isdrawer}}
+        <div class = "settings-title">
+            {{#str}} settings, core {{/str}}
         </div>
     </div>
-      
-    
 </div>

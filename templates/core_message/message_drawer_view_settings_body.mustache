@@ -15,10 +15,9 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_section_favourites
+    @template core_message/message_drawer_view_settings_body
 
-    This template will render the favourites section of the overview page
-    in the message drawer.
+    This template will render the body of the settings page in the message drawer.
 
     Classes required for JS:
     * none
@@ -35,13 +34,11 @@
 
 }}
 
-{{< core_message/message_drawer_view_overview_section }}
-    {{$region}}view-overview-favourites{{/region}}
-    {{$title}}{{#str}} favourites {{/str}}{{/title}}
-    {{$placeholder}}
-        <div class="text-center py-2">{{> core/loading }}</div>
-    {{/placeholder}}
-    {{$emptymessage}}
-        <p class="text-muted mt-2">{{#str}} nofavourites, core_message {{/str}}</p>
-    {{/emptymessage}}
-{{/ core_message/message_drawer_view_overview_section }}
+<div class="settings-body h-100 hidden" aria-hidden="true" data-region="view-settings">
+    <div class="hidden" data-region="content-container">
+        {{> core_message/message_drawer_view_settings_body_content }}
+    </div>
+    <div data-region="placeholder-container">
+        {{> core_message/message_drawer_view_settings_body_placeholder }}
+    </div>
+</div>

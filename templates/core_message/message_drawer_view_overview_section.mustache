@@ -39,41 +39,8 @@
     class="section border-0 card rounded-0"
     data-region="{{$region}}{{/region}}"
 >
-    <div id="{{$region}}{{/region}}-toggle" class="card-header rounded-0" data-region="toggle">
-        <button
-            class="btn btn-link w-100 text-start p-1 p-sm-2 d-flex rounded-0 align-items-center overview-section-toggle {{^expanded}}collapsed{{/expanded}}"
-            data-toggle="collapse"
-            data-target="#{{$region}}{{/region}}-target-{{uniqid}}"
-            aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
-            aria-controls="{{$region}}{{/region}}-target-{{uniqid}}"
-        >
-           
-            <span class="font-weight-bold">{{$title}}{{/title}}</span>
-            <small
-                class="hidden ms-1"
-                data-region="section-total-count-container" aria-labelledby="{{$region}}{{/region}}-total-count-label"
-            >
-                (<span aria-hidden="true" data-region="section-total-count">{{count.total}}</span>)
-                <span class="sr-only" id="{{$region}}{{/region}}-total-count-label">
-                    {{#str}} totalconversations, core_message, {{count.total}} {{/str}}
-                </span>
-            </small>
-            <span class="hidden ms-2" data-region="loading-icon-container">
-                {{> core/loading }}
-            </span>
-            <span
-                class="{{^count.unread}}hidden{{/count.unread}} badge rounded-pill bg-primary text-white ms-auto"
-                data-region="section-unread-count-container" aria-labelledby="{{$region}}{{/region}}-unread-count-label"
-            >
-                <span aria-hidden="true" data-region="section-unread-count">{{count.unread}}</span>
-                <span class="sr-only" id="{{$region}}{{/region}}-unread-count-label">
-                    {{#str}} unreadconversations, core_message, {{count.unread}} {{/str}}
-                </span>
-            </span>
-        </button>
-    </div>
     {{< core_message/message_drawer_lazy_load_list }}
-        {{$rootclasses}}collapse border-bottom {{#expanded}}show{{/expanded}}{{/rootclasses}}
+        {{$rootclasses}}collapse {{#expanded}}show{{/expanded}}{{/rootclasses}}
         {{$rootattributes}}
             id="{{$region}}{{/region}}-target-{{uniqid}}"
             aria-labelledby="{{$region}}{{/region}}-toggle"

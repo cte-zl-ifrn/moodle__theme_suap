@@ -38,3 +38,6 @@ $string['rawscsspre'] = 'Raw initial SCSS';
 $string['rawscsspre_desc'] = 'Neste campo você pode fornecer o código SCSS de inicialização, ele será injetado antes de tudo. Na maioria das vezes você usará esta configuração para definir variáveis';
 $string['drawer_course_index'] = "Índice da disciplina";
 $string['drawer_blocks'] = "Gaveta de Blocos";
+$string['drawer_user'] = "Menu do usuário";
+$string['allconversations'] = "todas";
+$string['unreadmessages'] = "Não lidas";

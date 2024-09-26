@@ -15,10 +15,10 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_section_messages
+    @template core_message/message_drawer_view_contacts_body_section_requests
 
-    This template will render the messages section of the overview page
-    in the message drawer.
+    This template will render the the requests section of the body of the contacts
+    page in the message drawer.
 
     Classes required for JS:
     * none
@@ -34,21 +34,20 @@
     {}
 
 }}
-
-{{< core_message/message_drawer_view_overview_section }}
-    {{$region}}view-overview-messages{{/region}}
-    {{$title}}{{#str}} individualconversations, core_message {{/str}}{{/title}}
-    {{$placeholder}}
-        <div class="text-center py-2">{{> core/loading }}</div>
-    {{/placeholder}}
-    {{$notification}}
-        {{#overview.notification}}
-            <div class="text-center p-2">
-                <p class="text-center text-muted mt-2">{{.}}</p>
-            </div>
-        {{/overview.notification}}
-    {{/notification}}
+{{< core_message/message_drawer_lazy_load_list }}
     {{$emptymessage}}
-        <p class="text-muted mt-2">{{#str}} noindividualconversations, core_message {{/str}}</p>
+        <div class="alert alert-warning">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{#str}} nocontactrequests, core_message {{/str}}
+        </div>
     {{/emptymessage}}
-{{/ core_message/message_drawer_view_overview_section }}
+    {{$placeholder}}
+        {{#contacts}}
+            {{#sectionrequests}}
+                {{#placeholders}}
+                    {{> core_message/message_drawer_contacts_list_item_placeholder }}
+                {{/placeholders}}
+            {{/sectionrequests}}
+        {{/contacts}}
+    {{/placeholder}}
+{{/ core_message/message_drawer_lazy_load_list }}

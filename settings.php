@@ -16,7 +16,7 @@ if ($hassiteconfig) {
                                                                                                                                     
 //     // Boost provides a nice setting page which splits settings onto separate tabs. We want to use it here.                         
 //     $settings = new theme_boost_admin_settingspage_tabs('themesettingsuap', get_string('configtitle', 'theme_suap'));             
-                                                                                                                                    
+                                                                                                           
 //     // Each page is a tab - the first is the "General" tab.                                                                         
 //     $page = new admin_settingpage('theme_suap_general', get_string('generalsettings', 'theme_suap'));                             
                                                                                                                                     

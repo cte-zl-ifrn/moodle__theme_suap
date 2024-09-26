@@ -36,10 +36,11 @@ if(isloggedin()) {
     $context = context_course::instance($COURSE->id);
     $roles = get_user_roles($context, $USER->id, true);
     $role = key($roles);
-    $rolename = $roles[$role]->shortname;
+    # TODO: A decidir... como decidir se qual papel é mais importante, caso exista mais de 1?
+    $rolename = !empty($role) ? $roles[$role]->shortname : "";
     
 }else{
-    $rolename = false;
+    $rolename = "";
 }
 
 if (isloggedin()) {
