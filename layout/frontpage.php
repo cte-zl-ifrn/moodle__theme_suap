@@ -71,6 +71,7 @@ $headercontent = $header->export_for_template($renderer);
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 
+$conf = get_config('theme_suap');
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -91,7 +92,25 @@ $templatecontext = [
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'overflow' => $overflow,
     'headercontent' => $headercontent,
-    'addblockbutton' => $addblockbutton
+    'addblockbutton' => $addblockbutton,
+    'frontpage_title' => $conf->frontpage_title,
+    'frontpage_first_button' => $conf->frontpage_first_button,
+    'frontpage_second_button' => $conf->frontpage_second_button,
+    'hero_title' => $conf->hero_title,
+    'hero_subtitle' => $conf->hero_subtitle,
+    'hero_first_column_number' => $conf->hero_first_column_number,
+    'hero_first_column_description' => $conf->hero_first_column_description,
+    'hero_first_column_text' => $conf->hero_first_column_text,
+    'hero_second_column_number' => $conf->hero_second_column_number,
+    'hero_second_column_description' => $conf->hero_second_column_description,
+    'hero_second_column_text' => $conf->hero_second_column_text,
+    'hero_third_column_number' => $conf->hero_third_column_number,
+    'hero_third_column_description' => $conf->hero_third_column_description,
+    'hero_third_column_text' => $conf->hero_third_column_text,
+    'hero_fourth_column_number' => $conf->hero_fourth_column_number,
+    'hero_fourth_column_description' => $conf->hero_fourth_column_description,
+    'hero_fourth_column_text' => $conf->hero_fourth_column_text,
+    'hero_button_text' => $conf->hero_button_text,
 ];
 
 

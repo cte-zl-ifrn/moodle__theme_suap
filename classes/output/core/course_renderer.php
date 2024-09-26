@@ -43,17 +43,18 @@ class course_renderer extends \core_course_renderer {
                     break;
 
                 case FRONTPAGEALLCOURSELIST:
-                    $courses = array_slice(get_courses(), 0, 9);
-                    $courses = array_slice($courses, 1, 8);
-                    $output .= $this->render_courses($courses);
-                    // $firstCourse = true;
-                    // foreach ($courses as $course) {
-                    //     // if ($firstCourse) {
-                    //     //     $firstCourse = false;
-                    //     //     continue;
-                    //     // }
-                    //     $output .= $this->render_courses($course);
-                    // }
+                    $courses = [];
+                    
+                    $firstCourse = true;
+                    foreach (get_courses() as $course) {
+                        if ($firstCourse) {
+                            $firstCourse = false;
+                            continue;
+                        }
+                        $courses[] = $course;
+                    }
+                    
+                    $output .= $this->render_courses($courses, 8);
                     break;
 
                 case FRONTPAGECATEGORYNAMES:
@@ -83,111 +84,46 @@ class course_renderer extends \core_course_renderer {
         return $DB->get_record('course_categories', ['id' => $categoryid]);
     }
 
-    protected function render_courses($courses) {
+
+    protected function render_courses($courses, $limit) {
         global $OUTPUT, $CFG;
 
-        $output = '';
+        // Limite o número de cursos exibidos
+        if (count($courses) > $limit) {
+            // Se houver mais cursos do que o limite, pegue apenas os primeiros
+            $courses = array_slice($courses, 0, $limit);
+        }
 
-        $firstRow = array_slice($courses, 0, 4);
-        $secondRow = array_slice($courses, 4, 4);
-
-        $output .= $this->display_row($firstRow);
-        $output .= $this->display_row($secondRow);
-
-        return $output;
-    }
-
-    protected function display_row($courses) {
-        $output = html_writer::start_div('row course-row');
+        $output = html_writer::start_div('course-area');
 
         foreach ($courses as $course) {
-            $output .= $this->render_course($course);
+            $courseimageurl = \core_course\external\course_summary_exporter::get_course_image($course);
+
+            $output .= html_writer::start_div('course-card');
+            $output .= html_writer::start_div('course-image-container');
+            
+            // Adiciona a imagem do curso
+            if ($courseimageurl) {
+                $output .= html_writer::tag('img', '', ['src' => htmlspecialchars($courseimageurl), 'alt' => htmlspecialchars($course->fullname), 'class' => 'course-image']);
+            } else {
+                // Imagem padrão se não houver imagem do curso
+                $defaultimageurl = "{$CFG->wwwroot}/theme/suap/pix/default.jpeg";
+                $output .= html_writer::tag('img', '', ['src' => htmlspecialchars($defaultimageurl), 'alt' => 'Imagem padrão de curso', 'class' => 'course-image']);
+            }
+
+            $output .= html_writer::end_div();
+        
+            // Adiciona a categoria do curso se existir
+            if ($category = $this->get_course_category($course->category)) {
+                $output .= html_writer::tag('span', htmlspecialchars($category->name), ['class' => 'course-category']);
+            }
+        
+            // Adiciona o nome do curso
+            $output .= html_writer::tag('p', htmlspecialchars($course->fullname), ['class' => 'course-name']);
+            $output .= html_writer::end_div();
         }
 
         $output .= html_writer::end_div();
-
         return $output;
     }
-    
-    protected function render_course($course) {
-        global $OUTPUT, $CFG;
-
-        $courseimageurl = \core_course\external\course_summary_exporter::get_course_image($course);
-
-        $output = html_writer::start_div('course-card');
-        // $output = html_writer::start_div('col-md-3 course-card');
-        $output .= html_writer::start_div('course-image-container');
-
-        if ($courseimageurl) {
-            $output .= html_writer::tag('img', '', ['src' => $courseimageurl, 'alt' => $course->fullname, 'class' => 'course-image']);
-        } else {
-            $defaultimageurl = $CFG->wwwroot . '/theme/suap/pix/default.jpeg';
-            $output .= html_writer::tag('img', '', ['src' => $defaultimageurl, 'alt' => 'Imagem padrão de curso', 'class' => 'course-image']);
-        }
-        $output .= html_writer::end_div();
-
-        if ($category = $this->get_course_category($course->category)) {
-            $output .= html_writer::tag('span', $category->name, ['class' => 'course-category']);
-        }
-
-        $output .= html_writer::tag('p', $course->fullname, ['class' => 'course-name']);
-        $output .= html_writer::end_div();
-
-        return $output;
-    }
-    
-    // protected function render_courses($course) {
-    //     global $OUTPUT, $CFG;
-
-    //     // $coursecontext = context_course::instance($course->id);
-
-    //     $courseimageurl = \core_course\external\course_summary_exporter::get_course_image($course);
-
-    //     // $output = html_writer::start_div('course-card');
-
-    //     // if ($courseimageurl) {
-    //     //     $output .= html_writer::tag('img', '', ['src' => $courseimageurl, 'alt' => $course->fullname, 'class' => 'course-image']);
-    //     // } else {
-    //     //     $defaultimageurl = $CFG->wwwroot . '/theme/suap/pix/default.jpeg';
-    //     //     $output .= html_writer::tag('img', '', ['src' => $defaultimageurl, 'alt' => 'Imagem padrão de curso', 'class' => 'course-image']);
-    //     // }
-
-    //     // if ($category = $this->get_course_category($course->category)) {
-    //     //     $output .= html_writer::tag('p', $category->name, ['class' => 'course-category']);
-    //     // }
-        
-    //     // $output .= html_writer::tag('h3', $course->fullname);
-    //     // $output .= html_writer::end_div();
-
-    //     // Iniciar o HTML do card do curso
-    //     // $output = html_writer::start_div('row');
-
-    //     $output = html_writer::start_div('course-card');
-
-    //     // Div para a imagem do curso
-    //     $output .= html_writer::start_div('course-image-container');
-        
-    //     if ($courseimageurl) {
-    //         // Exibir a imagem do curso se existir
-    //         $output .= html_writer::tag('img', '', ['src' => $courseimageurl, 'alt' => $course->fullname, 'class' => 'course-image']);
-    //     } else {
-    //         // Usar imagem padrão se não houver imagem do curso
-    //         $defaultimageurl = $CFG->wwwroot . '/theme/suap/pix/default.jpeg';
-    //         $output .= html_writer::tag('img', '', ['src' => $defaultimageurl, 'alt' => 'Imagem padrão de curso', 'class' => 'course-image']);
-    //     }
-
-    //     $output .= html_writer::end_div(); // Fechar div da imagem
-
-    //     // Obter e exibir a categoria do curso
-    //     if ($category = $this->get_course_category($course->category)) {
-    //         $output .= html_writer::tag('span', $category->name, ['class' => 'course-category']);
-    //     }
-
-    //     // Exibir o nome do curso
-    //     $output .= html_writer::tag('p', $course->fullname, ['class' => 'course-name']);
-    //     $output .= html_writer::end_div();
-    //     // $output .= html_writer::end_div();
-
-    //     return $output;
-    // }
 }
