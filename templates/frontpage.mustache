@@ -14,8 +14,9 @@
             <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
                 <div class="frontpage-navbar-content">
                     <div class="frontpage-navbar-start-buttons">
-                        <a href="{{config.wwwroot}}">{{{frontpage_first_button}}}</a>
-                        <a href="{{config.wwwroot}}">{{{frontpage_second_button}}}</a>
+                        {{! se a tag "a" não tiver classe o links tem um efeito no top e no bottom quando clicado }}
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_first_button}}}</a>
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_second_button}}}</a>
                     </div>
                     <div class="frontpage-navbar-end-buttons">
                         <select>
@@ -23,7 +24,7 @@
                             <option value="es">🇪🇸</option>
                         </select>
                         <span></span>
-                        <a href="{{config.wwwroot}}/login/" class="primary-button">Acessar</a>
+                        <a href="{{config.wwwroot}}/auth/suap/" class="primary-button">Acessar</a>
                     </div>
                 </div>
             </nav>
