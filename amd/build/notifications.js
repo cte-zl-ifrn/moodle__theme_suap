@@ -24,7 +24,7 @@
 
 define(['jquery', 'core/templates', 'core/notification', 'message_popup/notification_repository' ], 
     function($, Templates, Notification, NotificationRepository) {
-    const LIMIT_NOTIFICATION = 12;
+    const LIMIT_NOTIFICATION = 18;
 
     var displayException = Notification.exception;
 
@@ -74,7 +74,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         NotificationRepository.markAsRead(id)
         .then(() => {
             getUnreadCount();
-            console.log('leu')
+            getNotifications(0);
         });
     }
 
@@ -83,9 +83,9 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
             useridto: userid,
         }).then(function(response) {
             console.log('Todas as notificações foram marcadas como lidas: ', response)
+            getNotifications(0);
+            getUnreadCount();
         })
-        getNotifications(0);
-        getUnreadCount();
     }
 
     function showNotifications(data, initial = true) {
@@ -112,11 +112,17 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         // Open full message
         notificationsItens.forEach(notification => {
             notification.addEventListener('click', () => {
+
                 fullMessage.classList.remove('hidden');
                 fullMessage.innerHTML = '';
                 notificationID = parseInt(notification.getAttribute("data-id"), 10);
                 
                 setReadOne(notificationID);
+
+                // if (notification.classList.contains('unread')) {
+                //     getNotifications(0);
+                //     console.log('foi')
+                // }
 
                 drawerHeader.classList.add('open-message');
                 returnToList(drawerHeader, fullMessage, allMessages);
