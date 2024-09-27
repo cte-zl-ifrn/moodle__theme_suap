@@ -53,18 +53,39 @@
         }
         .drawer-header-tools {
             display: flex;
+            gap: .5rem;
+            // a:hover {
+                
+            // }
+            a {
+                color: var(--dark);
+                background-color: var(--light);
+                border-radius: 1rem;
+                padding-inline: 6px;
+                &:hover {
+                    color: var(--primary);
+                    background-color: var(--primary-light);
+
+                }
+            }
+
+            .drawer-close {
+                color: var(--danger-dark );
+                background-color: var(--danger-light);
+                border-radius: 1rem;
+                padding-inline: 6px;
+                &:hover {
+                    color: var(--danger-light);
+                    background-color: var(--danger-dark);
+                }
+            }
         }
         h2 {
             font: var(--font-heading2);
             margin-bottom: 0;
             white-space: nowrap;
         }
-        .drawer-close {
-            color: var(--danger-dark );
-            background-color: var(--danger-light);
-            border-radius: 1rem;
-            padding-inline: 6px;
-        }
+
     }
 
     .drawer-body {
