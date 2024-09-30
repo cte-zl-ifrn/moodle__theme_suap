@@ -10,18 +10,15 @@
         border-top-right-radius: 1rem;
         border-bottom-right-radius: 1rem;
         box-shadow: var(--shadow-primary);
-        transition: width .2s ease-in;
+        transition: width 0.2s ease-in;
         &#drawer-user {
             display: grid;
             grid-template-rows: auto 1fr;
         }
-
-        
     }
     .drawer-content.active-drawer {
         width: var(--drawer-open);
     }
-
 
     .drawer-header {
         display: flex;
@@ -34,7 +31,7 @@
         .drawer-header-info {
             display: flex;
             align-items: center;
-            gap: .5rem;
+            gap: 0.5rem;
         }
         h2 {
             font: var(--font-heading2);
@@ -42,7 +39,7 @@
             white-space: nowrap;
         }
         .drawer-close {
-            color: var(--danger-dark );
+            color: var(--danger-dark);
             background-color: var(--danger-light);
             border-radius: 1rem;
             padding-inline: 6px;
@@ -50,31 +47,28 @@
     }
 
     .drawer-list {
-        padding: 1rem; 
+        padding: 1rem;
         display: flex;
         flex-direction: column;
-        gap: .5rem;
-        .drawer-item:nth-last-child(-n+3) {
-            display: flex;
+        gap: 0.5rem;
+        .drawer-item:last-child {
+            margin-top: auto;
             background-color: aqua;
-            flex-direction: row;
-            flex-wrap: wrap; // Faz com que os itens ocupem apenas a linha necessária
+
             gap: 10px;
         }
     }
 
-    #settingsvisual{
-
-
+    #settingsvisual {
         border-bottom: 1px solid var(--light-dark);
     }
-    #onlyadmin{
+    #onlyadmin {
         border-bottom: 1px solid var(--light-dark);
     }
 }
 
-
-#drawer-index, #drawer-blocks {
+#drawer-index,
+#drawer-blocks {
     .drawer {
         position: static;
         &.not-initialized {
@@ -108,7 +102,7 @@
                 right: 0px;
             }
             .content-item-body {
-                margin-bottom: .5rem;
+                margin-bottom: 0.5rem;
             }
         }
     }
@@ -116,15 +110,18 @@
         display: none;
     }
 }
-.teste{
-    
+.teste {
     display: flex;
     flex-direction: column-reverse;
     height: 95%;
     justify-content: space-between;
 }
 
-.content-teste1{
+.content-teste1 {
     display: flex;
     flex-direction: column-reverse;
+}
+
+.the-last {
+    background-color: aquamarine;
 }

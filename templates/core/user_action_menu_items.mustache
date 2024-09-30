@@ -74,41 +74,17 @@
 
 </li>
 
-
-
-
-{{#items}}
-    {{#link}}
-        <li class="drawer-item">
-            <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
-                {{#pixicon}}
-                    {{#pix}}{{pixicon}}{{/pix}}
-                {{/pixicon}}
-                {{^pixicon}}
-                    {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
-                {{/pixicon}}
-                {{title}}
-            </a>
-        </li>
-    {{/link}}
-{{/items}}
-
-
 {{#items_theme_suap}}
     {{#link}}
-        <li class="drawer-item">
+        <li class="drawer-item {{{class}}}" {{{id}}}>
             <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
-                {{#pixicon}}
-                    {{#pix}}{{pixicon}}{{/pix}}
-                {{/pixicon}}
-                {{^pixicon}}
-                    {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
-                {{/pixicon}}
+
                 {{title}}
             </a>
         </li>
     {{/link}}
 {{/items_theme_suap}}
+
 
 
 

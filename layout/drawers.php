@@ -39,7 +39,7 @@ if(isloggedin()) {
     $rolename = $roles[$role]->shortname;
     
 }else{
-    $rolename = false;
+    $rolename = "";
 }
 
 if (isloggedin()) {
@@ -94,43 +94,68 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 $navbar = $OUTPUT->navbar();
+
 $isloggedin = isloggedin();
+$is_admin = is_siteadmin($USER->id);
 
 $userid = $USER->id;
 
-var_dump($USER->sesskey);
+var_dump($items);
+
 
 // Define a lista de items no formato esperado
 $items_theme_suap = [
     [
         'link' => [
-            'title' => 'Admin',
-            'url' => $CFG->wwwroot . '/admin/search.php',
+            'title' => 'Preferences',
+            'url' => $CFG->wwwroot . '/user/preferences.php',
             'pixicon' => 't/admin'
         ]
     ],
     [
         'link' => [
+            'title' => 'Switch role to...',
+            'url' => $CFG->wwwroot . '/course/switchrole.php?id=1&switchrole=-1&returnurl=%2Fadmin%2Fsearch.php%3Fquery',
+            'pixicon' => 't/admin'
+        ]
+    ]
+];
+
+
+// Adicionar condicionalmente os itens de administrador
+if ($is_admin) {
+    $items_theme_suap[] = [
+        'id' => 'admin_item_1',
+        'class' => 'the-last',
+        'link' => [
+            'title' => 'Admin',
+            'url' => $CFG->wwwroot . '/admin/search.php',
+            'pixicon' => 't/admin'
+        ]
+    ];
+
+    $items_theme_suap[] = [
+        'id' => 'admin_item_2',
+        'class' => 'the-last',
+        'link' => [
             'title' => 'Courses',
             'url' => $CFG->wwwroot . '/my/courses.php',
             'pixicon' => 't/courses'
         ]
-    ],
-    [
-        'link' => [
-            'title' => 'Settings',
-            'url' => $CFG->wwwroot . '/admin/settings.php',
-            'pixicon' => 't/settings'
-        ]
-    ],
-    [
-        'link' => [
-            'title' => 'Logout',
-            'url' => $CFG->wwwroot . '/login/logout.php?sesskey='. $USER->sesskey,
-            'pixicon' => 't/logout'
-        ]
+    ];
+}
+
+// Adicionar o item "Log out" após a verificação do administrador
+$items_theme_suap[] = [
+    'id' => 'logout',
+    'class' => 'the-last',
+    'link' => [
+        'title' => 'Log out',
+        'url' => $CFG->wwwroot . '/login/logout.php?sesskey='. $USER->sesskey,
+        'pixicon' => 't/logout'
     ]
 ];
+
 
 
 
@@ -160,6 +185,7 @@ $templatecontext = [
     'userid' => $userid,
     'rolename' => $rolename,
     'isloggedin' => $isloggedin,
+    'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
     
 ];
