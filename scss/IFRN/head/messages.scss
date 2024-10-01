@@ -1,7 +1,7 @@
 [data-region="right-hand-drawer"].drawer  {
 
     position: static;
-    width: auto;
+    width: var(--drawer-open);
     height: 100%;
 
     &.hidden {
