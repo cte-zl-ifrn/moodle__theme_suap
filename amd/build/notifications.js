@@ -24,7 +24,7 @@
 
 define(['jquery', 'core/templates', 'core/notification', 'message_popup/notification_repository' ], 
     function($, Templates, Notification, NotificationRepository) {
-    const LIMIT_NOTIFICATION = 18;
+    const LIMIT_NOTIFICATION = 20;
 
     var displayException = Notification.exception;
 
@@ -34,25 +34,30 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
     
     let notificationContainer = document.querySelector('#drawer-notifications');
     const markAllReadButton = notificationContainer.querySelector('[data-action="mark-all-read"]');
-
+    let loadingIcon = document.querySelector('[data-region="loading-icon-container"]');
 
     //Api de notificações
-    function getNotifications(offset, initial = true) {
+    function getNotifications(offset, initial = true, isFetching = false) {
         const limit = LIMIT_NOTIFICATION;
 
-        NotificationRepository.query({
-            useridto: userid,
-            newestfirst: true,
-            limit: limit,
-            offset: offset
-        }).done(function(data) {
-            if (data.notifications.length > 0) {
-                showNotifications(data, initial);
-            }
-
-        }).fail(function(error) {
-            console.error(error);
-        });
+        return new Promise((resolve, reject) => {
+            NotificationRepository.query({
+                useridto: userid,
+                newestfirst: true,
+                limit: limit,
+                offset: offset
+            }).done(function(data) {
+                if (data.notifications.length > 0) {
+                    showNotifications(data, initial);
+                    if (data.notifications.length < limit) {
+                        resolve(true);
+                    }
+                }
+            }).fail(function(error) {
+                console.error(error);
+                reject(error);
+            });
+        })
     }
 
     function getUnreadCount() {
@@ -109,7 +114,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         let fullMessage = document.querySelector('[data-region="notification-full"]');
         drawerHeader = notificationContainer.querySelector('[data-region="drawer-header"]');
 
-        // Open full message
+        // Open full notification message
         notificationsItens.forEach(notification => {
             notification.addEventListener('click', () => {
 
@@ -118,11 +123,6 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
                 notificationID = parseInt(notification.getAttribute("data-id"), 10);
                 
                 setReadOne(notificationID);
-
-                // if (notification.classList.contains('unread')) {
-                //     getNotifications(0);
-                //     console.log('foi')
-                // }
 
                 drawerHeader.classList.add('open-message');
                 returnToList(drawerHeader, fullMessage, allMessages);
@@ -159,21 +159,6 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         })
     }
 
-    function pagination(scrollNotifications) {
-        let offset = LIMIT_NOTIFICATION;
-
-        let scrollTop = scrollNotifications.scrollTop;
-        let scrollHeight = scrollNotifications.scrollHeight;
-        let clientHeight = scrollNotifications.clientHeight;
-
-        scrollNotifications.addEventListener('scroll', () => {  
-            if (scrollTop + clientHeight >= scrollHeight - 5) {
-                getNotifications(offset, false);
-                offset += LIMIT_NOTIFICATION;
-            }
-        })
-    }
-
     return {
         init: function() {
             allMessages = notificationContainer.querySelector("[data-region='notification-list']");
@@ -188,7 +173,35 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
                     allMessages.classList.remove('hidden');
                     fullMessage.classList.add('hidden');
 
-                    pagination(scrollNotifications);
+                    let offset = LIMIT_NOTIFICATION; 
+
+                    let lastItems = false;
+                    let throttleTimeout = null;
+                    
+                    scrollNotifications.addEventListener('scroll', () => {  
+
+                        if (throttleTimeout) {
+                            clearTimeout(throttleTimeout);
+                        }
+
+                        throttleTimeout = setTimeout(() => {                            
+                            let scrollTop = scrollNotifications.scrollTop;
+                            let scrollHeight = scrollNotifications.scrollHeight;
+                            let clientHeight = scrollNotifications.clientHeight;
+
+                            if (!lastItems && (scrollTop + clientHeight >= scrollHeight - 50)) {
+
+                                loadingIcon.classList.remove('hidden');
+
+                                getNotifications(offset, false).then(result => {
+                                    lastItems = result;
+                                    loadingIcon.classList.add('hidden');
+                                });
+                                offset += LIMIT_NOTIFICATION;
+                            }   
+                        }, 200)
+                    })
+
                 }
             })
 
