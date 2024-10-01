@@ -111,6 +111,7 @@ $templatecontext = [
     'hero_fourth_column_description' => $conf->hero_fourth_column_description,
     'hero_fourth_column_text' => $conf->hero_fourth_column_text,
     'hero_button_text' => $conf->hero_button_text,
+    'about_title' => $conf->about_title,
 ];
 
 

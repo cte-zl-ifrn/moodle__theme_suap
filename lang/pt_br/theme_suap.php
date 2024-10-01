@@ -17,7 +17,7 @@ $string['brandcolor'] = 'Cor da marca';
 // The brand colour setting description.                                                                                            
 $string['brandcolor_desc'] = 'Cor de destaque';     
 // A description shown in the admin theme selector.                                                                                                                                                                                    
-$string['configtitle'] = 'Configurações do SUAP';                                                                                          
+$string['configtitle'] = 'Configurações do tema SUAP';                                                                                          
 // Name of the first settings tab.                                                                                                  
 $string['generalsettings'] = 'Configurações gerais';                                                                                                                                                                                    
 // Preset files setting.                                                                                                            
@@ -29,11 +29,11 @@ $string['preset'] = 'Tema predefinido';
 // Preset help text.                                                                                                                
 $string['preset_desc'] = 'Escolha uma predefinição para alterar amplamente a aparência do tema';                                                  
 // Raw SCSS setting.                                                                                                                
-$string['rawscss'] = 'Raw SCSS';                                                                                                    
+$string['rawscss'] = 'SCSS bruto';                                                                                                    
 // Raw SCSS setting help text.                                                                                                      
 $string['rawscss_desc'] = 'Use este campo para fornecer o código SCSS ou CSS que será injetado no final do style sheet';       
 // Raw initial SCSS setting.                                                                                                        
-$string['rawscsspre'] = 'Raw initial SCSS';                                                                                         
+$string['rawscsspre'] = 'SCSS inicial bruto';                                                                                         
 // Raw initial SCSS setting help text.                                                                                              
 $string['rawscsspre_desc'] = 'Neste campo você pode fornecer o código SCSS de inicialização, ele será injetado antes de tudo. Na maioria das vezes você usará esta configuração para definir variáveis';
 $string['drawer_course_index'] = "Índice da disciplina";
@@ -41,3 +41,41 @@ $string['drawer_blocks'] = "Gaveta de Blocos";
 $string['drawer_user'] = "Menu do usuário";
 $string['allconversations'] = "todas";
 $string['unreadmessages'] = "Não lidas";
+
+// frontpage-settings.php
+$string['frontpagesettings'] = 'Configurações da página inicial';
+$string['frontpage_title'] = 'Título da página inicial';
+$string['frontpage_title_desc'] = '';
+$string['frontpage_first_button'] = 'Botão de menu da página inicial';
+$string['frontpage_first_button_desc'] = '';
+$string['frontpage_second_button'] = 'Botão de menu da página inicial';
+$string['frontpage_second_button_desc'] = '';
+$string['hero_title'] = 'Título da seção de destaque';
+$string['hero_title_desc'] = '';
+$string['hero_subtitle'] = 'Subtítulo da seção de destaque';
+$string['hero_subtitle_desc'] = '';
+$string['hero_first_column_number'] = 'Número da primeira coluna da seção de destaque';
+$string['hero_first_column_number_desc'] = '';
+$string['hero_first_column_description'] = 'Descrição da primeira coluna da seção de destaque';
+$string['hero_first_column_text'] = 'Texto da primeira coluna da seção de destaque';
+$string['hero_first_column_text_desc'] = '';
+$string['hero_second_column_number'] = 'Número da segunda coluna da seção de destaque';
+$string['hero_second_column_number_desc'] = '';
+$string['hero_second_column_description'] = 'Descrição da segunda coluna da seção de destaque';
+$string['hero_second_column_description_desc'] = '';
+$string['hero_second_column_text'] = 'Texto da segunda coluna da seção de destaque';
+$string['hero_second_column_text_desc'] = '';
+$string['hero_third_column_number'] = 'Número da terceira coluna da seção de destaque';
+$string['hero_third_column_number_desc'] = '';
+$string['hero_third_column_description'] = 'Descrição da terceira coluna da seção de destaque';
+$string['hero_third_column_description_desc'] = '';
+$string['hero_third_column_text'] = 'Texto da terceira coluna da seção de destaque';
+$string['hero_third_column_text_desc'] = '';
+$string['hero_fourth_column_number'] = 'Número da quarta coluna da seção de destaque';
+$string['hero_fourth_column_number_desc'] = '';
+$string['hero_fourth_column_description'] = 'Descrição da quarta coluna da seção de destaque';
+$string['hero_fourth_column_description_desc'] = '';
+$string['hero_fourth_column_text'] = 'Texto da quarta coluna da seção de destaque';
+$string['hero_fourth_column_text_desc'] = '';
+$string['hero_button_text'] = 'Texto do botão da seção de destaque';
+$string['hero_button_text_desc'] = '';
