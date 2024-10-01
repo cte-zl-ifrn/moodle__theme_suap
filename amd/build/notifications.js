@@ -48,7 +48,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
                 offset: offset
             }).done(function(data) {
                 if (data.notifications.length > 0) {
-                    showNotifications(data, initial);
+                    renderNotifications(data, initial);
                     if (data.notifications.length < limit) {
                         resolve(true);
                     }
@@ -93,7 +93,7 @@ define(['jquery', 'core/templates', 'core/notification', 'message_popup/notifica
         })
     }
 
-    function showNotifications(data, initial = true) {
+    function renderNotifications(data, initial = true) {
         allMessages = notificationContainer.querySelector("[data-region='notification-list']");
 
         if (initial) {
