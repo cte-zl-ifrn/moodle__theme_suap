@@ -57,22 +57,7 @@
         ]
     }
 }}
-<li class="drawer-item" id="settingsvisual">
-        Preferencias visuais:
-    <div class="custom-control custom-radio mb-2">
-        <input type="radio" class="custom-control-input" id="part-up" name="visual" value="part-up">
-        <label class="custom-control-label ms-2" for="part-up">
-            Parte superior
-        </label>
-    </div>
-    <div class="custom-control custom-radio mb-2">
-        <input type="radio"  class="custom-control-input" id="part-down" name="visual" value="part-down">
-        <label class="custom-control-label ms-2" for="part-down">
-            Parte inferior
-        </label>
-    </div>
 
-</li>
 
 <li class="drawer-item" id="settingsvisual">
         Preferencias visuais:
@@ -88,17 +73,21 @@
             Parte inferior
         </label>
     </div>
+</li>
 
-</li>
-<li class="drawer-item ">
-    <a href="http://moodle/course/switchrole.php?id=1&amp;switchrole=-1&amp;returnurl=%2Fmy%2Findex.php" class="dropdown-item" role="menuitem" tabindex="-1">
-        Switch role to...
-    </a>
-</li>
+{{#items_theme_suap}}
+    {{#link}}
+        <li class="drawer-item {{{class}}}" id="{{{id}}}">
+            <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
+                {{title}}
+            </a>
+        </li>
+    {{/link}}
+{{/items_theme_suap}}
 
 {{#items}}
     {{#link}}
-        <li class="drawer-item {{{class}}}" {{{id}}}>
+        <li class="drawer-item {{{class}}}" >
             <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
                 {{title}}
             </a>

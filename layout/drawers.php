@@ -120,7 +120,7 @@ if ($is_admin) {
     ];
 
     $items_theme_suap[] = [
-        'id' => 'admin_item_2',
+        'id' => 'admin',
         'class' => 'the-last',
         'link' => [
             'title' => 'Courses',
@@ -130,16 +130,6 @@ if ($is_admin) {
     ];
 }
 
-// Adicionar o item "Log out" após a verificação do administrador
-$items_theme_suap[] = [
-    'id' => 'logout',
-    'class' => 'the-last',
-    'link' => [
-        'title' => 'Log out',
-        'url' => $CFG->wwwroot . '/login/logout.php?sesskey='. $USER->sesskey,
-        'pixicon' => 't/logout'
-    ]
-];
 
 
 
