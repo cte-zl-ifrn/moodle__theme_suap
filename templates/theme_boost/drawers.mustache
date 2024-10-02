@@ -139,7 +139,8 @@
                         </div>
                         {{/usermenu}}
 
-                    <div class="drawer-content" id="drawer-notifications" data-userid={{userid}}>                 
+                    <div class="drawer-content" id="drawer-notifications" data-userid={{userid}}> 
+
                         <div class="drawer-header" data-region="drawer-header">
                             <div class="drawer-header-info">
                                 <i class="fa-regular fa-bell" aria-hidden="true"></i>
@@ -150,22 +151,27 @@
                             </div>
                             <div class="drawer-header-tools">
                                 <a class="mark-all-read" href="#" data-action="mark-all-read">
-                                    <i class="icon fa fa-check fa-fw" aria-hidden="true"></i>
+                                    <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
                                 </a>
                                 <a href="{{config.wwwroot}}/message/notificationpreferences.php">
-                                    <i class="icon fa fa-cog fa-fw" aria-hidden="true"></i>
+                                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                                 </a>                                
                                 <a href="#" class="drawer-close" data-drawer="drawer-notifications">
                                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div> 
-                          
-                        <div class="drawer-body">
-                            <div class="notifications-list" data-region="notifications-list">
-                                {{> theme_suap/notification_card}}
+                        
+                        <div class="drawer-body" data-region="notification-scroll">
+                            <div class="notification_list" data-region="notification-list">
+                                {{> theme_suap/notification_list}}
                             </div>
-                        </div>        
+                            <span class="hidden" data-region="loading-icon-container">
+                                {{> core/loading }}
+                            </span>
+                            <div class="notification-full hidden" data-region="notification-full"></div>
+                        </div> 
+
                     </div>
 
                     <div class="drawer-content" id="drawer-messages">
