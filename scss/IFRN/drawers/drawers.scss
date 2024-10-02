@@ -16,6 +16,9 @@
             grid-template-rows: auto 1fr;
         }
     }
+    .drawer {
+        width: var(--drawer-open);
+    }
     .drawer-content.active-drawer {
     width: var(--drawer-open);
     }
@@ -154,6 +157,7 @@
     }
     .drawercontent {
         z-index: 0;
+        height: calc(100vh - 189px);
     }
 }
 
