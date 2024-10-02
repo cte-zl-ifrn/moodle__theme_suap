@@ -237,3 +237,15 @@ ul, ol {
         color: var(--general-white);
     }
 }
+
+.block-add {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-color: var(--primary);
+    &:hover, &:focus {
+        background-color: var(--primary-dark);
+        color: white;
+        border-color: var(--primary-light);
+        box-shadow: none;
+    }
+}
