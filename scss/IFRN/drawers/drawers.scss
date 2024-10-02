@@ -72,10 +72,13 @@
             }
 
             .drawer-close {
+                display: flex;
+                align-items: center;
+                height: 1.5rem; //24px
+                // padding-inline: 8px;
                 color: var(--danger-dark );
                 background-color: var(--danger-light);
                 border-radius: 1rem;
-                padding-inline: 8px;
                 &:hover {
                     color: var(--danger-light);
                     background-color: var(--danger-dark);

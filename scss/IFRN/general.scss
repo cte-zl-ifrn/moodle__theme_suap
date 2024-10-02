@@ -19,6 +19,9 @@ ul, ol {
     display: flex;
     align-items: flex-start;
     pointer-events: none;
+    .icon {
+        margin-right: 0px;
+    }
 }
 
 .counter {
