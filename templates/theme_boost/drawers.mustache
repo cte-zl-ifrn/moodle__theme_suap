@@ -150,13 +150,13 @@
                                 <h2>{{#str}} notifications, message {{/str}}</h2>
                             </div>
                             <div class="drawer-header-tools">
-                                <a class="mark-all-read" href="#" data-action="mark-all-read">
+                                <a class="tool-item" class="mark-all-read" href="#" data-action="mark-all-read">
                                     <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
                                 </a>
-                                <a href="{{config.wwwroot}}/message/notificationpreferences.php">
+                                <a class="tool-item" href="{{config.wwwroot}}/message/notificationpreferences.php">
                                     <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                                 </a>                                
-                                <a href="#" class="drawer-close" data-drawer="drawer-notifications">
+                                <a class="tool-item" href="#" class="drawer-close" data-drawer="drawer-notifications">
                                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -177,15 +177,19 @@
                     <div class="drawer-content" id="drawer-messages">
                         {{{ output.standard_after_main_region_html }}}
                     </div>
+
                     <div class="drawer-content" id="drawer-index">
                         <div class="drawer-header">
                             <div class="drawer-header-info">
                                 <i class="fa-solid fa-align-left"></i>
                                 <h2>Índice da Disciplina</h2>
                             </div>
-                            <a href="#" class="drawer-close" data-drawer="drawer-user">
-                                <i class="fa-solid fa-xmark"></i>
-                            </a>
+                            <div class="drawer-header-tools">
+                                {{> theme_boost/courseindexdrawercontrols}}
+                                <a href="#" class="drawer-close tool-item" data-drawer="drawer-user">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </a>
+                            </div>
                         </div>
                         {{#courseindex}}
                             {{< theme_boost/drawer }}

@@ -57,15 +57,17 @@
             // a:hover {
                 
             // }
-            a {
+            .tool-item {
                 color: var(--dark);
                 background-color: var(--light);
                 border-radius: 1rem;
-                padding-inline: 6px;
-                &:hover {
+                padding: 6px;
+                border: none;
+                display: flex;
+                align-items: center;
+                &:hover, &:focus {
                     color: var(--primary);
                     background-color: var(--primary-light);
-
                 }
             }
 
@@ -73,11 +75,15 @@
                 color: var(--danger-dark );
                 background-color: var(--danger-light);
                 border-radius: 1rem;
-                padding-inline: 6px;
+                padding-inline: 8px;
                 &:hover {
                     color: var(--danger-light);
                     background-color: var(--danger-dark);
                 }
+            }
+
+            #courseindexdrawercontrols button {
+                padding-inline: 4px;
             }
         }
         h2 {

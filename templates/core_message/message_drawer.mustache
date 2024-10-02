@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="drawer-header-tools">
-                    <a href="#" data-route="view-contacts" role="button">
+                    <a class="tool-item" href="#" data-route="view-contacts" role="button">
                         <i class="fa-solid fa-user-group"></i>
                         <span
                             class="badge bg-primary text-white ml-2 {{^contactrequestcount}}hidden{{/contactrequestcount}}"
@@ -56,6 +56,7 @@
                     </a>
                     {{#caneditownmessageprofile}}
                         <a
+                            class="tool-item"
                             href="#"
                             data-route="view-settings"
                             data-route-param="{{loggedinuser.id}}"
@@ -65,7 +66,7 @@
                             <i class="fa-solid fa-gear"></i>
                         </a>
                     {{/caneditownmessageprofile}}
-                    <a href="#" class="drawer-close" data-drawer="drawer-notifications">
+                    <a href="#" class="tool-item drawer-close" data-drawer="drawer-notifications">
                         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                     </a>
                 </div>
