@@ -53,9 +53,14 @@
         gap: 0.5rem;
         .drawer-item:last-child {
             margin-top: auto;
-            background-color: aqua;
 
+            background-color: var(--danger-light);
+            border-radius: 40px;
             gap: 10px;
+            a {
+                color: var(--danger-dark);
+                font-weight: 600;
+            }
         }
     }
 
@@ -120,8 +125,4 @@
 .content-teste1 {
     display: flex;
     flex-direction: column-reverse;
-}
-
-.the-last {
-    background-color: aquamarine;
 }

@@ -100,26 +100,11 @@ $is_admin = is_siteadmin($USER->id);
 
 $userid = $USER->id;
 
-var_dump($items);
+
 
 
 // Define a lista de items no formato esperado
-$items_theme_suap = [
-    [
-        'link' => [
-            'title' => 'Preferences',
-            'url' => $CFG->wwwroot . '/user/preferences.php',
-            'pixicon' => 't/admin'
-        ]
-    ],
-    [
-        'link' => [
-            'title' => 'Switch role to...',
-            'url' => $CFG->wwwroot . '/course/switchrole.php?id=1&switchrole=-1&returnurl=%2Fadmin%2Fsearch.php%3Fquery',
-            'pixicon' => 't/admin'
-        ]
-    ]
-];
+$items_theme_suap = [];
 
 
 // Adicionar condicionalmente os itens de administrador
