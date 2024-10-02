@@ -37,6 +37,7 @@ ul, ol {
     transition: all .2s ease-in;
 
     .counter-option {
+        position: relative;
         color: var(--general-white);
         display: flex;
         align-items: center;
@@ -94,6 +95,14 @@ ul, ol {
 .counter-close {
     .counter {
         width: var(--counter-close);
+        .counter-option {
+            justify-content: center;
+            .count-notification {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+            }
+        }
     }
     .counter-header {
         justify-content: center;
