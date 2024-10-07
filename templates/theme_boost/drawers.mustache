@@ -107,13 +107,13 @@
                                 {{#courseindex}}
                                     <div class="drawer-toggler counter-option" data-drawer="drawer-index">
                                         <i class="fa-solid fa-align-left"></i>
-                                        <span class="counter-label">{{#str}}  drawer_course_index, theme_suap {{/str}}</span>
+                                        <span class="counter-label">{{#str}} drawer_course_index, theme_suap {{/str}}</span>
                                     </div>
                                 {{/courseindex}}
                                 {{#hasblocks}}   
                                     <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
-                                        
-                                        <span class="counter-label"><i>{{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}</i>{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
+                                        {{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}
+                                        <span class="counter-label">{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
                                     </div>
                                 {{/hasblocks}}
                             </div>
@@ -150,13 +150,13 @@
                                 <h2>{{#str}} notifications, message {{/str}}</h2>
                             </div>
                             <div class="drawer-header-tools">
-                                <a class="mark-all-read" href="#" data-action="mark-all-read">
+                                <a class="tool-item" class="mark-all-read" href="#" data-action="mark-all-read">
                                     <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
                                 </a>
-                                <a href="{{config.wwwroot}}/message/notificationpreferences.php">
+                                <a class="tool-item" href="{{config.wwwroot}}/message/notificationpreferences.php">
                                     <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
                                 </a>                                
-                                <a href="#" class="drawer-close" data-drawer="drawer-notifications">
+                                <a class="tool-item drawer-close" href="#" data-drawer="drawer-notifications">
                                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -177,15 +177,19 @@
                     <div class="drawer-content" id="drawer-messages">
                         {{{ output.standard_after_main_region_html }}}
                     </div>
+
                     <div class="drawer-content" id="drawer-index">
                         <div class="drawer-header">
                             <div class="drawer-header-info">
                                 <i class="fa-solid fa-align-left"></i>
-                                <h2>Índice da Disciplina</h2>
+                                <h2>{{#str}} drawer_course_index, theme_suap {{/str}}</h2>
                             </div>
-                            <a href="#" class="drawer-close" data-drawer="drawer-user">
-                                <i class="fa-solid fa-xmark"></i>
-                            </a>
+                            <div class="drawer-header-tools">
+                                {{> theme_boost/courseindexdrawercontrols}}
+                                <a href="#" class="drawer-close tool-item" data-drawer="drawer-user">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </a>
+                            </div>
                         </div>
                         {{#courseindex}}
                             {{< theme_boost/drawer }}
@@ -204,17 +208,18 @@
                             {{/ theme_boost/drawer}}
                         {{/courseindex}}                      
                     </div>
+
                     <div class="drawer-content" id="drawer-blocks">
                         <div class="drawer-header">
                             <div class="drawer-header-info">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12.314" viewBox="0 0 16 12.314">
-                                    <path id="União_26" data-name="União 26" d="M11038.57-10430.343a2.14,2.14,0,0,1-.568-1.579v-9.013a1.22,1.22,0,0,1,1.221-1.221h13.558a1.219,1.219,0,0,1,1.221,1.221v9.016a2.127,2.127,0,0,1-.569,1.576,2.052,2.052,0,0,1-1.5.5l-11.968,0A1.893,1.893,0,0,1,11038.57-10430.343Zm1-9.807v8.259a.578.578,0,0,0,0,.071.427.427,0,0,0,.44.405h12a.431.431,0,0,0,.414-.41v-8.325a.435.435,0,0,0-.433-.436h-11.99A.436.436,0,0,0,11039.572-10440.149Zm3.792,2.921a.785.785,0,0,1-.785-.785.786.786,0,0,1,.785-.785h5a.786.786,0,0,1,.785.785.785.785,0,0,1-.785.785Z" transform="translate(-11038.001 10442.155)" fill="#2B2B2B"/>
-                                </svg>
-                                <h2>Gaveta de blocos</h2>
+                                {{#pix}}i/icon-fa-solid-drawer-black, theme_suap{{/pix}}
+                                <h2>{{#str}} drawer_blocks, theme_suap, {{/str}}</h2>
                             </div>
-                            <a href="#" class="drawer-close" data-drawer="drawer-user">
-                                <i class="fa-solid fa-xmark"></i>
-                            </a>
+                            <div class="drawer-header-tools">
+                                <a href="#" class="drawer-close tool-item" data-drawer="drawer-user">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </a>
+                            </div>
                         </div>
                         {{#hasblocks}}
                             {{< theme_boost/drawer }}

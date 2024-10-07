@@ -16,6 +16,9 @@
             grid-template-rows: auto 1fr;
         }
     }
+    .drawer {
+        width: var(--drawer-open);
+    }
     .drawer-content.active-drawer {
     width: var(--drawer-open);
     }
@@ -57,27 +60,36 @@
             // a:hover {
                 
             // }
-            a {
+            .tool-item {
                 color: var(--dark);
                 background-color: var(--light);
                 border-radius: 1rem;
-                padding-inline: 6px;
-                &:hover {
+                padding: 6px;
+                border: none;
+                display: flex;
+                align-items: center;
+                &:hover, &:focus {
                     color: var(--primary);
                     background-color: var(--primary-light);
-
                 }
             }
 
             .drawer-close {
+                display: flex;
+                align-items: center;
+                height: 1.5rem; //24px
+                // padding-inline: 8px;
                 color: var(--danger-dark );
                 background-color: var(--danger-light);
                 border-radius: 1rem;
-                padding-inline: 6px;
                 &:hover {
                     color: var(--danger-light);
                     background-color: var(--danger-dark);
                 }
+            }
+
+            #courseindexdrawercontrols button {
+                padding-inline: 4px;
             }
         }
         h2 {
@@ -145,6 +157,7 @@
     }
     .drawercontent {
         z-index: 0;
+        height: calc(100vh - 189px);
     }
 }
 

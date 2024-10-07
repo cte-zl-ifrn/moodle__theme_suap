@@ -19,6 +19,9 @@ ul, ol {
     display: flex;
     align-items: flex-start;
     pointer-events: none;
+    .icon {
+        margin-right: 0px;
+    }
 }
 
 .counter {
@@ -34,6 +37,7 @@ ul, ol {
     transition: all .2s ease-in;
 
     .counter-option {
+        position: relative;
         color: var(--general-white);
         display: flex;
         align-items: center;
@@ -91,6 +95,14 @@ ul, ol {
 .counter-close {
     .counter {
         width: var(--counter-close);
+        .counter-option {
+            justify-content: center;
+            .count-notification {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+            }
+        }
     }
     .counter-header {
         justify-content: center;
@@ -232,5 +244,17 @@ ul, ol {
     &:hover {
         background-color: var(--secondary-dark);
         color: var(--general-white);
+    }
+}
+
+.block-add {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-color: var(--primary);
+    &:hover, &:focus {
+        background-color: var(--primary-dark);
+        color: white;
+        border-color: var(--primary-light);
+        box-shadow: none;
     }
 }
