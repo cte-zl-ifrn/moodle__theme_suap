@@ -223,6 +223,13 @@ ul, ol {
     }
 }
 
+.secondary-navigation .navigation {
+    padding: 0px;
+    .nav-tabs {
+        max-width: none;
+    }
+}
+
 
 .drawer-open .breadcrumb {
     margin-left: calc(var(--drawer-open) * -1);
