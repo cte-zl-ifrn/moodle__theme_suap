@@ -30,17 +30,19 @@ require_once($CFG->dirroot . '/course/lib.php');
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
-//var_dump($enrolplugin->enrol_user($instance, $user->id, $role->id));
-
+// User role for course context
 if(isloggedin()) {
+    $rolename = "";
     $context = context_course::instance($COURSE->id);
     $roles = get_user_roles($context, $USER->id, true);
     $role = key($roles);
-    # TODO: A decidir... como decidir se qual papel é mais importante, caso exista mais de 1?
-    $rolename = !empty($role) ? $roles[$role]->shortname : "";
-    
-}else{
-    $rolename = "";
+    $shortnamerole = $roles[$role]->shortname;
+    if ($shortnamerole == "student") {
+        $rolename = get_string('defaultcoursestudent');
+    }
+    if($shortnamerole == "editingteacher") {
+        $rolename = get_string('defaultcourseteacher');
+    } 
 }
 
 if (isloggedin()) {
