@@ -32,17 +32,19 @@ $addblockbutton = $OUTPUT->addblockbutton();
 
 // User role for course context
 if(isloggedin()) {
-    $rolename = "";
+    $rolestr;
     $context = context_course::instance($COURSE->id);
     $roles = get_user_roles($context, $USER->id, true);
-    $role = key($roles);
-    $shortnamerole = $roles[$role]->shortname;
-    if ($shortnamerole == "student") {
-        $rolename = get_string('defaultcoursestudent');
+
+    if (empty($roles)) {
+        $rolestr = "";
+    } else {
+        foreach ($roles as $role) {
+            $rolestr[] = role_get_name($role, $context);
+        }
+        $rolestr = implode(', ', $rolestr);
     }
-    if($shortnamerole == "editingteacher") {
-        $rolename = get_string('defaultcourseteacher');
-    } 
+
 }
 
 if (isloggedin()) {
@@ -123,7 +125,7 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
     'userid' => $userid,
-    'rolename' => $rolename,
+    'rolename' => $rolestr,
     'isloggedin' => $isloggedin,
     
 ];
