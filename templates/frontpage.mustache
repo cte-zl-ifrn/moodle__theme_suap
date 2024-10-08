@@ -1,0 +1,128 @@
+{{> theme_boost/head }}
+
+<body {{{ bodyattributes }}}>
+{{> core/local/toast/wrapper}}
+<div id="page-wrapper" class="d-print-block bg-green">
+
+    {{{ output.standard_top_of_body_html }}}
+
+    {{^isloggedin}}
+        <div class="frontpage-menu bg-green">
+            <div class="frontpage-menu-logo">
+                <h2>{{{frontpage_title}}}</h2 >
+            </div>
+            <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+                <div class="frontpage-navbar-content">
+                    <div class="frontpage-navbar-start-buttons">
+                        {{! se a tag "a" não tiver classe o links tem um efeito no top e no bottom quando clicado }}
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_first_button}}}</a>
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_second_button}}}</a>
+                    </div>
+                    <div class="frontpage-navbar-end-buttons">
+                        <select>
+                            <option value="pt-br">🇧🇷</option>
+                            <option value="es">🇪🇸</option>
+                        </select>
+                        <span></span>
+                        <a href="{{config.wwwroot}}/auth/suap/" class="primary-button">Acessar</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    {{/isloggedin}}
+
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-green">
+        <div class="container-fluid">   
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="frontpage-hero-header">
+                        <div class="frontpage-hero-header-content">
+                            <h1>{{{hero_title}}}</h1>
+                            <h5>{{{hero_subtitle}}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hero">
+                <div class="col-md-3">
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_first_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_first_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_first_column_text}}}</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_second_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_second_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_second_column_text}}}</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_third_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_third_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_third_column_text}}}</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="frontpage-hero-header-column">
+                        <p class="frontpage-hero-header-column-number text-green">{{{hero_fourth_column_number}}}</p>
+                        <p class="frontpage-hero-header-column-title">{{{hero_fourth_column_description}}}</p>
+                        <p class="frontpage-hero-header-column-text">{{{hero_fourth_column_text}}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="topofscroll" class="bg-green">
+            <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
+                <div class="container-fluid">
+                    <div class="frontpage-hero-main-header">
+                        <div class="frontpage-hero-main-header-about-button">
+                            <a class="primary-button">{{{hero_button_text}}}</a>
+                        </div>
+                        <div class="frontpage-hero-main-header-content">
+                            <div class="frontpage-hero-main-header-title">
+                                <p>Cursos abertos do IFRN</p>
+                            </div>
+
+                            {{! <p>Cursos abertos do IFRN</p> }}
+                            <div class=frontpage-hero-main-header-filter>
+                                <div>
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" placeholder="Pesquisar">
+                                </div>
+                                <button class="primary-button">Filtrar</button>
+                            </div>
+
+                            <div class="frontpage-hero-main-header-title aux">
+                                <p>Cursos abertos do IFRN</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{{ output.main_content }}}
+                </div>
+            </section>
+            {{! <div id="page-content" class="d-print-block main-inner bg-green">
+                <div id="region-main-box">
+                </div>
+            </div> }}
+        </div>
+        
+        {{! {{> theme_boost/footer }}
+    </div>
+    
+    {{{ output.standard_after_main_region_html }}}
+</div>
+
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

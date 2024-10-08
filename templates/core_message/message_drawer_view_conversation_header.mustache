@@ -15,9 +15,9 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_header
+    @template core_message/message_drawer_view_conversation_header
 
-    This template will render the header for the overview page of the message drawer.
+    This template will render the header for the conversation page of the message drawer.
 
     Classes required for JS:
     * none
@@ -33,22 +33,23 @@
     {}
 
 }}
-<div class="px-3" aria-hidden="false" {{^isdrawer}}data-in-panel="true"{{/isdrawer}} data-region="view-overview">
-    <div class="input-group simplesearchform">
-        <input
-            id="search-contact-drawer"
-            type="text"
-            class="form-control"
-            placeholder="{{#str}} search, core_search {{/str}}"
-            aria-label="{{#str}} search, core_search {{/str}}"
-            data-region="view-overview-search-input"
-        >
-        <div class="input-group-append">
-            <span class="icon-no-margin btn btn-submit">
-                {{#pix}} a/search, core {{/pix}}
-            </span>
-        </div>
+
+<div
+    class="hidden position-relative p-1 px-sm-2 mx-3"
+    aria-hidden="true"
+    data-region="view-conversation"
+>
+    <div class="header-content hidden" data-region="header-content"></div>
+    <div class="hidden" data-region="header-edit-mode">
+        {{> core_message/message_drawer_view_conversation_header_edit_mode }}
     </div>
-      
-    
+    <div data-region="header-placeholder">
+        {{> core_message/message_drawer_view_conversation_header_placeholder }}
+    </div>
+    <div class="message-divider"></div>
+    <div
+        class="hidden position-absolute z-index-1"
+        data-region="confirm-dialogue-container"
+        style="top: 0; bottom: -1px; right: 0; left: 0; background: rgba(0,0,0,0.3);"
+    ></div>
 </div>

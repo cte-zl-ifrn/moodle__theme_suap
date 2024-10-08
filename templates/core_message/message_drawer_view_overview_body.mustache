@@ -35,8 +35,139 @@
 }}
 <div class="h-100 view-overview-body" aria-hidden="false" data-region="view-overview" {{^isdrawer}}data-in-panel="true"{{/isdrawer}} data-user-id="{{loggedinuser.id}}">
     <div id="message-drawer-view-overview-container-{{uniqid}}" class="d-flex flex-column h-100" style="overflow-y: auto">
-             {{> core_message/message_drawer_view_overview_section_favourites }}
-            {{!{{> core_message/message_drawer_view_overview_section_group_messages }} 
-            {{> core_message/message_drawer_view_overview_section_messages }}
+        <div class="options-messages">
+
+            <div class="section border-0 card rounded-4"
+                data-region="view-overview-all-messages">
+                <div id="view-overview-all-messages-toggle" class="rounded-4" data-region="toggle">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex rounded-4 align-items-center overview-section-toggle {{^expanded}}collapsed{{/expanded}}"
+                        data-toggle="collapse"
+                        data-target="#view-overview-all-messages-target-{{uniqid}}"
+                        aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
+                        aria-controls="view-overview-all-messages-target-{{uniqid}}"
+                    >
+                        <span>{{#str}} allconversations, theme_suap {{/str}}</span>
+                        <span
+                            class="{{^count.unread}}hidden{{/count.unread}} badge rounded-pill ms-auto"
+                            data-region="section-unread-count-container" aria-labelledby="view-overview-all-messages-unread-count-label"
+                        >
+                            <span aria-hidden="true" data-region="section-unread-count">{{count.unread}}</span>
+                            <span class="sr-only" id="view-overview-all-messages-unread-count-label">
+                                {{#str}} unreadconversations, core_message, {{count.unread}} {{/str}}
+                            </span>
+                        </span>
+
+                    </button>
+                </div>
+            </div>
+
+            <div class="section border-0 card rounded-4"
+                data-region="view-overview-unreadmessages">
+                <div id="view-overview-unreadmessages-toggle" class="rounded-4" data-region="toggle">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex rounded-4 align-items-center overview-section-toggle {{^expanded}}collapsed{{/expanded}}"
+                        data-toggle="collapse"
+                        data-target="#view-overview-unreadmessages-target-{{uniqid}}"
+                        aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
+                        aria-controls="view-overview-unreadmessages-target-{{uniqid}}"
+                    >
+                        <span>{{#str}} unreadmessages, theme_suap {{/str}}</span>
+                        <span
+                            class="{{^count.unread}}hidden{{/count.unread}} badge rounded-pill ms-auto"
+                            data-region="section-unread-count-container" aria-labelledby="view-overview-unreadmessages-unread-count-label"
+                        >
+                            <span aria-hidden="true" data-region="section-unread-count">{{count.unread}}</span>
+                            <span class="sr-only" id="view-overview-unreadmessages-unread-count-label">
+                                {{#str}} unreadconversations, core_message, {{count.unread}} {{/str}}
+                            </span>
+                        </span>
+
+                    </button>
+                </div>
+            </div>
+        
+            <div class="section border-0 card rounded-4"
+                data-region="view-overview-favourites">
+                <div id="view-overview-favourites-toggle" class="rounded-4" data-region="toggle">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex rounded-4 align-items-center overview-section-toggle {{^expanded}}collapsed{{/expanded}}"
+                        data-toggle="collapse"
+                        data-target="#view-overview-favourites-target-{{uniqid}}"
+                        aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
+                        aria-controls="view-overview-favourites-target-{{uniqid}}"
+                    >
+
+                        <span>{{#str}} favourites {{/str}}</span>
+                        <span
+                            class="{{^count.unread}}hidden{{/count.unread}} badge rounded-pill ms-auto"
+                            data-region="section-unread-count-container" aria-labelledby="view-overview-favourites-unread-count-label"
+                        >
+                            <span aria-hidden="true" data-region="section-unread-count">{{count.unread}}</span>
+                            <span class="sr-only" id="view-overview-favourites-unread-count-label">
+                                {{#str}} unreadconversations, core_message, {{count.unread}} {{/str}}
+                            </span>
+                        </span>
+
+                    </button>
+                </div>
+            </div>
+
+            <div class="section border-0 card rounded-4"
+                data-region="view-overview-group-messages">
+                <div id="view-overview-group-messages-toggle" class="rounded-0" data-region="toggle">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex rounded-0 align-items-center overview-section-toggle {{^expanded}}collapsed{{/expanded}}"
+                        data-toggle="collapse"
+                        data-target="#view-overview-group-messages-target-{{uniqid}}"
+                        aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
+                        aria-controls="view-overview-group-messages-target-{{uniqid}}"
+                    >
+                        <span>{{#str}} groupconversations, core_message {{/str}}</span>
+                        <span
+                            class="{{^count.unread}}hidden{{/count.unread}} badge rounded-pill ms-auto"
+                            data-region="section-unread-count-container" aria-labelledby="view-overview-group-messages-unread-count-label"
+                        >
+                            <span aria-hidden="true" data-region="section-unread-count">{{count.unread}}</span>
+                            <span class="sr-only" id="view-overview-group-messages-unread-count-label">
+                                {{#str}} unreadconversations, core_message, {{count.unread}} {{/str}}
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="section border-0 card rounded-4"
+                data-region="view-overview-messages">
+                <div id="view-overview-messages-toggle" class="rounded-0" data-region="toggle">
+                    <button
+                        class="btn btn-link w-100 text-start d-flex rounded-0 align-items-center overview-section-toggle {{^expanded}}collapsed{{/expanded}}"
+                        data-toggle="collapse"
+                        data-target="#view-overview-messages-target-{{uniqid}}"
+                        aria-expanded="{{#expanded}}true{{/expanded}}{{^expanded}}false{{/expanded}}"
+                        aria-controls="view-overview-messages-target-{{uniqid}}"
+                    >
+                        <span>{{#str}} individualconversations, core_message {{/str}}</span>
+                        <span
+                            class="{{^count.unread}}hidden{{/count.unread}} badge rounded-pill ms-auto"
+                            data-region="section-unread-count-container" aria-labelledby="view-overview-messages-unread-count-label"
+                        >
+                            <span aria-hidden="true" data-region="section-unread-count">{{count.unread}}</span>
+                            <span class="sr-only" id="view-overview-messages-unread-count-label">
+                                {{#str}} unreadconversations, core_message, {{count.unread}} {{/str}}
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="message-divider"></div>
+        
+        {{> theme_suap/message_drawer_view_overview_section_all }}
+        {{> core_message/message_drawer_view_overview_section_favourites }}
+        {{> core_message/message_drawer_view_overview_section_group_messages }} 
+        {{> core_message/message_drawer_view_overview_section_messages }}
     </div>
 </div>

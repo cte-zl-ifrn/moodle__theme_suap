@@ -15,9 +15,9 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template core_message/message_drawer_view_overview_section_group_messages
+    @template core_message/message_drawer_view_overview_section_favourites
 
-    This template will render the group messages section of the overview page
+    This template will render the favourites section of the overview page
     in the message drawer.
 
     Classes required for JS:
@@ -36,12 +36,12 @@
 }}
 
 {{< core_message/message_drawer_view_overview_section }}
-    {{$region}}view-overview-group-messages{{/region}}
-    {{$title}}{{#str}} groupconversations, core_message {{/str}}{{/title}}
+    {{$region}}view-overview-all-messages{{/region}}
+    {{$title}}{{#str}} allconversations, theme_suap {{/str}}{{/title}}
     {{$placeholder}}
         <div class="text-center py-2">{{> core/loading }}</div>
     {{/placeholder}}
     {{$emptymessage}}
-        <p class="text-muted mt-2">{{#str}} nogroupconversations, core_message {{/str}}</p>
+        <p class="text-muted mt-2">{{#str}} nofavourites, core_message {{/str}}</p>
     {{/emptymessage}}
 {{/ core_message/message_drawer_view_overview_section }}

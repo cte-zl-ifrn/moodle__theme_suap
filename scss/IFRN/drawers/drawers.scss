@@ -16,6 +16,9 @@
             grid-template-rows: auto 1fr;
         }
     }
+    .drawer {
+        width: var(--drawer-open);
+    }
     .drawer-content.active-drawer {
         width: var(--drawer-open);
     }
@@ -25,13 +28,69 @@
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid var(--light-dark);
-        padding-block: 1rem;
-        margin-inline: 1rem;
+        padding: 1rem;
+        min-width: var(--drawer-open);
+
+        &.open-message {
+            .drawer-header-tools {
+                display: none;
+            }
+            .drawer-header-info {
+                .return-notification {
+                    display: block;
+                }
+                .fa-regular.fa-bell {
+                    display: none;
+                }
+            }
+        }
 
         .drawer-header-info {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
+            .return-notification {
+                display: none;
+                color: var(--dark);
+            }
+        }
+        .drawer-header-tools {
+            display: flex;
+            gap: .5rem;
+            // a:hover {
+                
+            // }
+            .tool-item {
+                color: var(--dark);
+                background-color: var(--light);
+                border-radius: 1rem;
+                padding: 6px;
+                border: none;
+                display: flex;
+                align-items: center;
+                &:hover, &:focus {
+                    color: var(--primary);
+                    background-color: var(--primary-light);
+                }
+            }
+
+            .drawer-close {
+                display: flex;
+                align-items: center;
+                height: 1.5rem; //24px
+                // padding-inline: 8px;
+                color: var(--danger-dark );
+                background-color: var(--danger-light);
+                border-radius: 1rem;
+                &:hover {
+                    color: var(--danger-light);
+                    background-color: var(--danger-dark);
+                }
+            }
+
+            #courseindexdrawercontrols button {
+                padding-inline: 4px;
+            }
         }
         h2 {
             font: var(--font-heading2);
@@ -99,6 +158,7 @@
     }
     .drawercontent {
         z-index: 0;
+        height: calc(100vh - 189px);
     }
 }
 

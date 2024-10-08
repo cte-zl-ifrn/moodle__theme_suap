@@ -17,7 +17,7 @@ $string['brandcolor'] = 'Brand colour';
 // The brand colour setting description.                                                                                            
 $string['brandcolor_desc'] = 'The accent colour.';     
 // A description shown in the admin theme selector.                                                                                                                                                                                    
-$string['configtitle'] = 'SUAP settings';                                                                                          
+$string['configtitle'] = 'SUAP theme settings';                                                                                          
 // Name of the first settings tab.                                                                                                  
 $string['generalsettings'] = 'General settings';                                                                                                                                                                                    
 // Preset files setting.                                                                                                            
@@ -39,3 +39,44 @@ $string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS co
 $string['drawer_course_index'] = "Course index";
 $string['drawer_blocks'] = "Blocks";
 $string['drawer_user'] = "User menu";
+$string['allconversations'] = "All";
+$string['unreadmessages'] = "Unread";
+
+// frontpage-settings.php
+$string['frontpagesettings'] = 'Frontpage settings';
+$string['frontpage_title'] = 'Frontpage title';
+$string['frontpage_title_desc'] = '';
+$string['frontpage_first_button'] = 'Frontpage Menu First button';
+$string['frontpage_first_button_desc'] = '';
+$string['frontpage_second_button'] = 'Frontpage Menu Second button';
+$string['frontpage_second_button_desc'] = '';
+$string['hero_title'] = 'Hero title';
+$string['hero_title_desc'] = '';
+$string['hero_subtitle'] = 'Hero subtitle';
+$string['hero_subtitle_desc'] = '';
+$string['hero_first_column_number'] = 'Hero first column number';
+$string['hero_first_column_number_desc'] = '';
+$string['hero_first_column_description'] = 'Hero first column description';
+$string['hero_first_column_description_desc'] = '';
+$string['hero_first_column_text'] = 'Hero first column text';
+$string['hero_first_column_text_desc'] = '';
+$string['hero_second_column_number'] = 'Hero second column number';
+$string['hero_second_column_number_desc'] = '';
+$string['hero_second_column_description'] = 'Hero second column description';
+$string['hero_second_column_description_desc'] = '';
+$string['hero_second_column_text'] = 'Hero second column text';
+$string['hero_second_column_text_desc'] = '';
+$string['hero_third_column_number'] = 'Hero third column number';
+$string['hero_third_column_number_desc'] = '';
+$string['hero_third_column_description'] = 'Hero third column description';
+$string['hero_third_column_description_desc'] = '';
+$string['hero_third_column_text'] = 'Hero third column text';
+$string['hero_third_column_text_desc'] = '';
+$string['hero_fourth_column_number'] = 'Hero fourth column number';
+$string['hero_fourth_column_number_desc'] = '';
+$string['hero_fourth_column_description'] = 'Hero fourth column description';
+$string['hero_fourth_column_description_desc'] = '';
+$string['hero_fourth_column_text'] = 'Hero fourth column text';
+$string['hero_fourth_column_text_desc'] = '';
+$string['hero_button_text'] = 'Hero button text';
+$string['hero_button_text_desc'] = '';

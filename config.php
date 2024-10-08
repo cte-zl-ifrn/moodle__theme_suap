@@ -56,8 +56,8 @@ $THEME->scss = function($theme) {
 };
 
 $THEME->layouts = [
-    'menu_user' => [
-        'file' => 'menu_user.php',
+    'frontpage' => [
+        'file' => 'frontpage.php',
         'regions' => ['side-pre'], // , 'side-post'
         'defaultregion' => 'side-pre',
     ],
