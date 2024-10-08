@@ -258,45 +258,48 @@
     {{/isloggedin}}
         {{!> theme_boost/navbar }}
 
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="content-main drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">   
-        {{{ output.full_header }}}
-        {{#secondarymoremenu}}
-            <div class="secondary-navigation d-print-none">
-                {{> core/moremenu}}
-            </div>
-        {{/secondarymoremenu}}
-
-        <div id="page-content" class="pb-3 d-print-block">
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">   
+        <div class="max-width-suap">
         
-            <div id="region-main-box">
-                {{#hasregionmainsettingsmenu}}
-                <div id="region-main-settings-menu" class="d-print-none">
-                    <div> {{{ regionmainsettingsmenu }}} </div>
+            {{{ output.full_header }}}
+            {{#secondarymoremenu}}
+                <div class="secondary-navigation d-print-none">
+                    {{> core/moremenu}}
                 </div>
-                {{/hasregionmainsettingsmenu}}
-                <section id="region-main" aria-label="{{#str}}content{{/str}}">
+            {{/secondarymoremenu}}
 
+            <div id="page-content" class="pb-3 d-print-block">
+            
+                <div id="region-main-box">
                     {{#hasregionmainsettingsmenu}}
-                        <div class="region_main_settings_menu_proxy"></div>
+                    <div id="region-main-settings-menu" class="d-print-none">
+                        <div> {{{ regionmainsettingsmenu }}} </div>
+                    </div>
                     {{/hasregionmainsettingsmenu}}
-                    {{{ output.course_content_header }}}
-                    {{#headercontent}}
-                        {{> core/activity_header }}
-                    {{/headercontent}}
-                    {{#overflow}}
-                        <div class="container-fluid tertiary-navigation">
-                            <div class="navitem">
-                                {{> core/url_select}}
+                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
+
+                        {{#hasregionmainsettingsmenu}}
+                            <div class="region_main_settings_menu_proxy"></div>
+                        {{/hasregionmainsettingsmenu}}
+                        {{{ output.course_content_header }}}
+                        {{#headercontent}}
+                            {{> core/activity_header }}
+                        {{/headercontent}}
+                        {{#overflow}}
+                            <div class="container-fluid tertiary-navigation">
+                                <div class="navitem">
+                                    {{> core/url_select}}
+                                </div>
                             </div>
-                        </div>
-                    {{/overflow}}
-                    {{{ output.main_content }}}
-                    {{{ output.activity_navigation }}}
-                    {{{ output.course_content_footer }}}
-                </section>
+                        {{/overflow}}
+                        {{{ output.main_content }}}
+                        {{{ output.activity_navigation }}}
+                        {{{ output.course_content_footer }}}
+                    </section>
+                </div>
             </div>
+            {{> theme_boost/footer }}
         </div>
-        {{> theme_boost/footer }}
     </div>
 </div>
 
