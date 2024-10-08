@@ -95,9 +95,47 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 $navbar = $OUTPUT->navbar();
+
 $isloggedin = isloggedin();
+$is_admin = is_siteadmin($USER->id);
 
 $userid = $USER->id;
+
+
+
+
+// Define a lista de items no formato esperado
+$items_theme_suap = [];
+
+
+// Adicionar condicionalmente os itens de administrador
+if ($is_admin) {
+    $items_theme_suap[] = [
+        'id' => 'admin_item_1',
+        'class' => 'the-last',
+        'link' => [
+            'title' => 'Admin',
+            'url' => $CFG->wwwroot . '/admin/search.php',
+            'pixicon' => 't/admin'
+        ]
+    ];
+
+    $items_theme_suap[] = [
+        'id' => 'admin',
+        'class' => 'the-last',
+        'link' => [
+            'title' => 'Courses',
+            'url' => $CFG->wwwroot . '/my/courses.php',
+            'pixicon' => 't/courses'
+        ]
+    ];
+}
+
+
+
+
+
+
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -123,6 +161,8 @@ $templatecontext = [
     'userid' => $userid,
     'rolename' => $rolename,
     'isloggedin' => $isloggedin,
+    'is_admin' => $is_admin,
+    'items_theme_suap' => $items_theme_suap, 
     
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

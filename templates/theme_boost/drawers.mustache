@@ -60,7 +60,7 @@
     {{#isloggedin}}
         <nav class="navbar fixed-top " aria-label="{{#str}}sitemenubar, admin{{/str}}">
             <div class="header-theme">
-                <div class="container-counter">
+                <div class="container-counter" id="container-counter">
                     <div class="counter">
                         <div class="counter-header">
                             <a href="{{config.wwwroot}}" class="ava-name counter-label">AVA Acadêmico</a>
@@ -68,8 +68,8 @@
                                 {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
                             </button>
                         </div>
-                        <div class="counter-content">
-                            <div class="content-1">
+                        <div id="counter-content">
+                            <div id="content-part1">
                                 {{#usermenu}}
                                 <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
                                     {{> core/user_menu_metadata }}
@@ -103,7 +103,7 @@
                                     <span class="counter-label">Bug</span>
                                 </div>
                             </div>
-                            <div class="content-footer">
+                            <div id="content-part2">
                                 {{#courseindex}}
                                     <div class="drawer-toggler counter-option" data-drawer="drawer-index">
                                         <i class="fa-solid fa-align-left"></i>
@@ -324,6 +324,7 @@ function($, Popover) {
 
 require(['theme_suap/notifications'], (module) => module.init());
 
+
 const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
 
 require(['jquery', 'message_popup/notification_popover_controller'], function($, Controller) {
@@ -409,3 +410,4 @@ require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     M.util.js_complete('theme_boost/loader');
 });
 {{/js}}
+
