@@ -60,18 +60,13 @@
 
 
 <li class="drawer-item" id="settingsvisual">
-        Preferencias visuais:
-    <div class="custom-control custom-radio mb-2">
-        <input type="radio" class="custom-control-input" id="part-up" name="visual" value="part-up">
-        <label class="custom-control-label ms-2" for="part-up">
-            Parte superior
-        </label>
-    </div>
-    <div class="custom-control custom-radio mb-2">
-        <input type="radio"  class="custom-control-input" id="part-down" name="visual" value="part-down">
-        <label class="custom-control-label ms-2" for="part-down">
-            Parte inferior
-        </label>
+    <div >
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="preferVisual" checked="">
+            <label class="custom-control-label" for="preferVisual">
+                Preferência visual: parte inferior
+            </label>
+        </div>
     </div>
 </li>
 
@@ -99,75 +94,60 @@
 
 
 {{#js}}
-    // Função para definir um cookie
-    function setCookie(name, value, days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); //
-        const expires = "expires=" + date.toUTCString();
-        document.cookie = name + "=" + value + ";" + expires + ";path=/";
-    }
 
-    // Função para ler um cookie
-    function getCookie(name) {
-        const nameEQ = name + "=";
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i].trim();
-            if (c.indexOf(nameEQ) === 0) {
-                return c.substring(nameEQ.length, c.length);
-            }
-        }
-        return null;
-    }
+// Funções para manipular cookies
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
 
-    // Função para atualizar a interface com base na seleção de "part-up" ou "part-down"
-    function updateContent(isPartUp) {
-        radiopartup.checked = isPartUp;
-        radiopartdown.checked = !isPartUp;
-
-        if (isPartUp) {
-            contentpart1.classList.remove('content-teste1');
-            countcontent.classList.remove('teste');
-        } else {
-            contentpart1.classList.add('content-teste1');
-            countcontent.classList.add('teste');
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookiesArray = decodedCookie.split(';');
+    for (let i = 0; i < cookiesArray.length; i++) {
+        let cookie = cookiesArray[i].trim();
+        if (cookie.indexOf(nameEQ) === 0) {
+            return cookie.substring(nameEQ.length, cookie.length);
         }
     }
+    return null;
+}
 
-    // Função para guardar a preferência num cookie
-    function savePreference(value) {
-        setCookie('visualPreference', value, 180); // Guarda por 180 dias(6 meses)
-        console.log("Saved preference in cookie:", value);
+// Seleciona os elementos do DOM
+const contentpart1 = document.querySelector('#content-part1');
+const countcontent = document.querySelector('#counter-content');
+
+// Evento 'change' para o checkbox
+document.getElementById('preferVisual').addEventListener('change', function() {
+    if (this.checked) {
+        contentpart1.classList.add('content-original');
+        countcontent.classList.add('content-reverse');
+        setCookie('visualPreference', 'checked', 7); // Salva o estado no cookie
+    } else {
+        contentpart1.classList.remove('content-original');
+        countcontent.classList.remove('content-reverse');
+        setCookie('visualPreference', 'unchecked', 7); // Salva o estado no cookie
     }
+});
 
-    // Elementos da página
-    const radiopartup = document.querySelector('#part-up');
-    const radiopartdown = document.querySelector('#part-down');
-    const contentpart1 = document.querySelector('#content-part1');
-    const countcontent = document.querySelector('#counter-content');
+// Restaurar o estado com base no cookie quando a página é carregada
+window.onload = function() {
+    const cookieValue = getCookie('visualPreference');
+    const checkbox = document.getElementById('preferVisual');
 
-    // Recuperar valor do cookie
-    const savedRadioValue = getCookie('visualPreference');
-    console.log("SavedRadioValue from cookie:", savedRadioValue);
-
-    // Atualizar interface com base no valor guardado no cookie
-    if (savedRadioValue === 'part-up') {
-        updateContent(true);
-    } else if (savedRadioValue === 'part-down') {
-        updateContent(false);
+    if (cookieValue === 'checked') {
+        checkbox.checked = true;
+        contentpart1.classList.add('content-original');
+        countcontent.classList.add('content-reverse');
+    } else {
+        checkbox.checked = false;
+        contentpart1.classList.remove('content-original');
+        countcontent.classList.remove('content-reverse');
     }
-
-    // Adicionar listeners para os radio buttons
-    radiopartdown.addEventListener('click', () => {
-        updateContent(false);
-        savePreference(radiopartdown.value);
-    });
-
-    radiopartup.addEventListener('click', () => {
-        updateContent(true);
-        savePreference(radiopartup.value);
-    });
-
+};
 
 
 

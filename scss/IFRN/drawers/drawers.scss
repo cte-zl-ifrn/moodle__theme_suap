@@ -58,13 +58,29 @@
             border-radius: 40px;
             gap: 10px;
             a {
+                background-color: var(--danger-light);
                 color: var(--danger-dark);
-                font-weight: 600;
+                &:hover {
+                    background-color: var(--danger-dark);
+                    color: var(--danger-light);
+                }
+            }
+        }
+        a {
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            width: 100%;
+            font: var(--font-button2);
+            color: var(--dark);
+            border-radius: 2rem;
+            &:hover {
+                background-color: var(--light);
             }
         }
     }
 
     #settingsvisual {
+        padding-bottom: 1rem;
         border-bottom: 1px solid var(--light-dark);
     }
     #onlyadmin {
@@ -115,17 +131,14 @@
         display: none;
     }
 }
-.teste {
+.content-reverse {
     display: flex;
     flex-direction: column-reverse;
     height: 95%;
     justify-content: space-between;
 }
 
-.content-teste1 {
+.content-original {
     display: flex;
     flex-direction: column-reverse;
-}
-#admin {
-    border-bottom: 1px solid var(--light-dark);
 }
