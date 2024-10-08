@@ -133,14 +133,20 @@ ul, ol {
     }
     .user-info {
         line-height: 0px;
+        width: 85%;
     }
     .user-name {
         font: var(--font-heading4);
         margin-bottom: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
-    .user-function {
+    .user-role {
         font: var(--font-heading6);
         color: var(--dark-light);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
     }
 }
 .counter-close #user-toggler {
