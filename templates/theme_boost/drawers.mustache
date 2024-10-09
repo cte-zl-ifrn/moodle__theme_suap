@@ -320,10 +320,13 @@ function($, Popover) {
 });
 {{/js}}
 
+
 {{#js}}
+require(['theme_suap/drawersControl'], (module) => module.init());
+
+require(['theme_suap/messages'], (module) => module.renderUnreadCount());
 
 require(['theme_suap/notifications'], (module) => module.init());
-
 
 const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
 
@@ -335,75 +338,8 @@ require(['jquery', 'message_popup/notification_popover_controller'], function($,
 });
 {{/js}}
 
+
 {{#js}}
-const body = document.body;
-let drawers = document.querySelectorAll('.drawer-content');
-let drawersToggler = document.querySelectorAll('.drawer-toggler');
-let closeButtons = document.querySelectorAll('.drawer-close');
-
-const counterToggler = document.querySelector('.counter-toggler');
-
-const searchForm = document.querySelector('.searchform-js');
-
-
-if(searchForm) {
-    const searchSubmit = searchForm.querySelector('.search-js');
-    const searchInput = searchForm.querySelector('.input-js');
-    searchSubmit.addEventListener('click', () => {
-        body.classList.remove('counter-close');
-        searchInput.focus();
-    })
-}
-
-counterToggler.addEventListener('click', () => {
-   
-
-    body.classList.toggle('counter-close');
-    if(searchForm) {
-         const searchInput = searchForm.querySelector('.input-js');
-        searchInput.value = "";
-    };
-});
-
-
-
-function closeAllDrawers(drawers) {
-    body.classList.remove('drawer-open');
-    drawers.forEach((drawer) => {
-        drawer.classList.remove('active-drawer');
-    })
-    drawersToggler.forEach((toggler) => {
-        toggler.classList.remove('active-toggler');
-    })
-}
-
-
-drawersToggler.forEach((toggler) => {
-    toggler.addEventListener('click', () => {
-        let drawerId = toggler.getAttribute('data-drawer');
-        let drawer = document.getElementById(drawerId);
-
-        if (drawer.classList.contains('active-drawer')) {
-            drawer.classList.remove('active-drawer');
-            toggler.classList.remove('active-toggler');
-            body.classList.remove('drawer-open');
-        } else {
-            closeAllDrawers(drawers, drawersToggler);
-            drawer.classList.add('active-drawer');
-            toggler.classList.add('active-toggler');
-            body.classList.add('drawer-open');
-        }
-    })
-})
-
-closeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        closeAllDrawers(drawers, drawersToggler);
-    })
-})
-
-
-
 M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     Drawer.init();

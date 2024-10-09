@@ -26,38 +26,18 @@ define(['jquery', 'core/ajax', 'core/notification', 'core/templates', 'core_mess
     'core_message/message_drawer_view_overview', 'core_message/message_drawer_view_overview_section',
     'core/pending'
 ],
-    function($, Ajax, Notification, Templates, Repository, Constants, ViewOverview, ViewOverviewSection, Pending) {
-
+function($, Ajax, Notification, Templates, Repository, Constants, ViewOverview, ViewOverviewSection, Pending) {
     
     const viewOverview = document.querySelector('[data-region="body-container"] [data-region="view-overview"]');
+    
     const userid = viewOverview.getAttribute('data-user-id');
+    const toggleMessages = document.querySelector('[data-drawer="drawer-messages"]');
+    
     const viewAll = viewOverview.querySelectorAll('[data-region="view-overview-all-messages"]')
     
     const listItens = viewAll[1].querySelector('[data-region="content-container"]');
     const listPlaceholder = viewAll[1].querySelector('[data-region="placeholder-container"]');
-    console.log(listItens)
     
-    //EventListener botões grupos de conversas
-    viewAll[0].addEventListener('click', () => {
-
-        Repository.getConversations(2, null, null, null, null, true)
-        .then(function(conversations) {
-            
-            render(conversations.conversations, userid)
-            .then(function(html) {
-                // listItens.append(html);
-                listItens.innerHTML = html;
-                return html;
-            })
-            .catch(Notification.exception);
-
-        });
-
-        listItens.classList.remove('hidden');
-        listPlaceholder.classList.add('hidden');
-    })
-
-
     var CONVERSATION_TYPES = Constants.CONVERSATION_TYPES;
 
     var TEMPLATES = {
@@ -65,7 +45,19 @@ define(['jquery', 'core/ajax', 'core/notification', 'core/templates', 'core_mess
         CONVERSATIONS_LIST_ITEMS_PLACEHOLDER: 'core_message/message_drawer_conversations_list_items_placeholder'
     };
 
-    var LOAD_LIMIT = 50;
+    var renderUnreadCount = function() {
+        id = parseInt(userid, 10);
+        const count = toggleMessages.querySelector('[data-region="count-container"]');
+        var args = {
+            useridto: id,
+        };
+        Repository.countUnreadConversations(args).then((result) => {
+            count.innerText = result;
+            if (result > 0) {
+                count.classList.remove('hidden');
+            }
+        })
+    }
 
 
     /**
@@ -197,9 +189,35 @@ define(['jquery', 'core/ajax', 'core/notification', 'core/templates', 'core_mess
             }).catch(function(error) {
                 pending.resolve();
                 Notification.exception(error);
-            });
+            });       
     };
 
+    var init = function() {
+        //EventListener botões grupos de conversas
+        viewAll[0].addEventListener('click', () => {
 
+            Repository.getConversations(2, null, null, null, null, true)
+            .then(function(conversations) {
+                
+                render(conversations.conversations, userid)
+                .then(function(html) {
+                    // listItens.append(html);
+                    listItens.innerHTML = html;
+                    return html;
+                })
+                .catch(Notification.exception);
+
+            });
+
+            listItens.classList.remove('hidden');
+            listPlaceholder.classList.add('hidden');
+        })
+
+        var LOAD_LIMIT = 50;
     }
-)
+
+    return {
+        init: init,
+        renderUnreadCount: renderUnreadCount,
+    }
+});
