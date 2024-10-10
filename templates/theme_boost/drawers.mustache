@@ -244,15 +244,15 @@
             </div>
         </div>
 
-        <div>
-            <div class="container-fluid">   
-                <ul id="breadcrumb">            
-                    <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-                    {{{navbar}}} 
-                </ul>     
-                {{{ output.edit_switch }}}
-            </div>
+        
+        <div class="navbar-suap">   
+            <ul id="breadcrumb">            
+                <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
+                {{{navbar}}} 
+            </ul>     
+            {{{ output.edit_switch }}}
         </div>
+        
 
     </nav>
     {{/isloggedin}}
