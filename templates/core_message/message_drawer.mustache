@@ -100,8 +100,9 @@
 {{/core/drawer}}
 
 {{#js}}
-require(['jquery', 'core_message/message_drawer', 'theme_suap/messages'], function($, MessageDrawer) {
+require(['jquery', 'core_message/message_drawer', 'theme_suap/messages'], function($, MessageDrawer, MessagesSuap) {
     var root = $('#message-drawer-{{uniqid}}');
     MessageDrawer.init(root, '{{uniqid}}', false);
+    MessagesSuap.init();
 });
 {{/js}}
