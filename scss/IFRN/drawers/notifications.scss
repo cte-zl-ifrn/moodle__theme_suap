@@ -1,8 +1,10 @@
 #drawer-notifications {
     .drawer-body {
         height: calc(100vh - 189px);
+        width: var(--drawer-open);
         overflow-y: auto;
         position: relative;
+        padding: 1rem;
     }
 
     .notification-full {

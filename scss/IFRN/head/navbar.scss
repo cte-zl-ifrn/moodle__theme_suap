@@ -4,9 +4,9 @@
     background: #FFFFFF;
 }
 
-.counter-close{
-    .navbar{
-        .container-fluid{        
+.counter-close {
+    .navbar {
+        .navbar-suap {        
             width: calc(100% - var(--counter-close) - 32px);
             transition: all .2s ease-in;
 
@@ -21,7 +21,8 @@
 
 .navbar{
     padding-left: 0;
-    .container-fluid{        
+    .navbar-suap { 
+        display: flex;       
         justify-content: space-between;
         gap: 10px;
         border-radius: 16px;
