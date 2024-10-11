@@ -18,5 +18,8 @@ class advanced_settings_tab extends settings_page_tab {
 
         $name = 'rawscss';
         $this->add_setting_configtextarea($name, $updatecallback);
+
+        // $secret = 'Bs9hp9GS34p56MqjZ1tcc7';
+        // $this->add_setting_configtext('pagination_secret', $secret, $updatecallback);
     }
 }

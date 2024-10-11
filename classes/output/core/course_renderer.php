@@ -54,7 +54,7 @@ class course_renderer extends \core_course_renderer {
                         $courses[] = $course;
                     }
                     
-                    $output .= $this->render_courses($courses, 8);
+                    $output .= $this->render_courses($courses, 4);
                     break;
 
                 case FRONTPAGECATEGORYNAMES:
@@ -78,19 +78,16 @@ class course_renderer extends \core_course_renderer {
         return $output;
     }
 
-    function get_course_category($categoryid) {
+    protected function get_course_category($categoryid) {
         global $DB;
 
         return $DB->get_record('course_categories', ['id' => $categoryid]);
     }
 
-
     protected function render_courses($courses, $limit) {
         global $OUTPUT, $CFG;
 
-        // Limite o número de cursos exibidos
         if (count($courses) > $limit) {
-            // Se houver mais cursos do que o limite, pegue apenas os primeiros
             $courses = array_slice($courses, 0, $limit);
         }
 
@@ -124,6 +121,20 @@ class course_renderer extends \core_course_renderer {
         }
 
         $output .= html_writer::end_div();
+        // return $output;
+
+        // $output = '';
         return $output;
     }
+
+    // public function search_courses($searchcriteria) {
+    //     // global $CFG;
+    //     // $content = 'aqui vai o conteúdo da busca';
+    //     // return $content;
+
+    //     global $DB;
+
+    //     $courses = $DB->get_records('course', ['visible' => 1]);
+    //     return $courses;
+    // }
 }

@@ -14,9 +14,9 @@
             <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
                 <div class="frontpage-navbar-content">
                     <div class="frontpage-navbar-start-buttons">
-                        {{! se a tag "a" não tiver classe o links tem um efeito no top e no bottom quando clicado }}
-                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_first_button}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_second_button}}}</a>
+                        {{! se a tag "a" não tiver classe, os links tem um efeito no top e no bottom quando clicado }}
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_buttons_configtextarea.0.label}}}</a>
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_buttons_configtextarea.1.label}}}</a>
                     </div>
                     <div class="frontpage-navbar-end-buttons">
                         <select>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="frontpage-hero-main-header-content">
                             <div class="frontpage-hero-main-header-title">
-                                <p>Cursos abertos do IFRN</p>
+                                <p>Cursos abertos do IFRN {{{pagination_secret}}}</p>
                             </div>
 
                             {{! <p>Cursos abertos do IFRN</p> }}
@@ -103,6 +103,16 @@
                     </div>
 
                     {{{ output.main_content }}}
+
+                    {{! <div id="course-area"> }}
+                        {{! {{{ output.main_content }}
+                    {{! </div> }}
+
+                    <div class="pagination">
+                        <button id="prev-page" class="pagination-button" page="0">Anterior</button>
+                        <span id="page-info"></span>
+                        <button id="next-page" class="pagination-button" page="0">Próximo</button>
+                    </div>
                 </div>
             </section>
             {{! <div id="page-content" class="d-print-block main-inner bg-green">
@@ -117,8 +127,69 @@
     {{{ output.standard_after_main_region_html }}}
 </div>
 
+<script>
+let currentPage = 0;
+const limit = 4;
+
+async function loadCourses(page, limit = 4, search = '') {
+    try {
+        const response = await fetch(`{{{ baseurl }}}/theme/suap/ajax_get_courses.php?page=${page}&limit=${limit}&search=${search}`);
+        const courses = await response.json();
+        console.log(courses);
+
+        const courseArea = document.querySelector('.course-area');
+        courseArea.innerHTML = '';
+
+        courses.forEach(course => {
+            courseArea.innerHTML += `
+                <div class="course-card">
+                    <div class="course-image-container">
+                        <img src="${course.image_url}" alt="${course.fullname}" class="course-image">
+                    </div>
+                    <span class="course-category">${course.category_name}</span>
+                    <p class="course-name">${course.fullname}</p>
+                </div>
+            `;
+        });
+
+        updatePaginationButtons();
+    } catch (error) {
+        console.error('Error fetching courses:', error);
+    }
+}
+
+function updatePaginationButtons() {
+    const prev = document.querySelector('#prev-page');
+    const next = document.querySelector('#next-page');
+    
+    prev.disabled = currentPage === 0;
+    next.setAttribute('page', currentPage + 1);
+    prev.setAttribute('page', currentPage - 1);
+}
+
+document.querySelector('#prev-page').addEventListener('click', () => {
+    if (currentPage > 0) {
+        currentPage--;
+        loadCourses(currentPage, limit);
+    }
+});
+
+document.querySelector('#next-page').addEventListener('click', () => {
+    currentPage++;
+    loadCourses(currentPage, limit);
+});
+
+loadCourses(currentPage, limit);
+
+</script>
+
 </body>
 </html>
+
+{{#js}}
+require(['theme_suap/helloworld'], (module) => module.init());
+{{/js}}
+
 {{#js}}
 M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
@@ -126,3 +197,4 @@ require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     M.util.js_complete('theme_boost/loader');
 });
 {{/js}}
+
