@@ -1,0 +1,106 @@
+.login-container {
+    // max-width: 450px;
+    padding: 2rem;
+    padding-top: 1rem;
+    border-radius: .5rem;
+}
+
+.loginform {
+    .login-languagemenu {
+        justify-content: flex-end;
+        .dropdown-toggle {
+            color: var(--primary);
+            &:hover {
+                color: var(--primary-dark);
+            }
+        }
+    }
+
+    h1.login-heading {
+        font: var(--font-heading1);
+        font-size: 1.5rem;
+    }
+    h2.login-heading {
+        font: var(--font-heading3);
+        font-size: 1rem;
+    }
+
+    .login-identityprovides-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .5rem;
+        .login-identityprovider-btn {
+            margin: 0px;
+            border-radius: 32px;
+            padding-block: .5rem;
+            &:hover {
+                background-color: var(--light-lighter);
+            }
+        }
+    }
+
+    .login-divider {
+        position: relative;
+        border-color: var(--light-dark);
+        .login-or {
+            font: var(--font-heading4);
+            position: absolute;
+            background-color: var(--general-white);
+            padding-inline: 1rem;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    .login-form-username label, .login-form-password label {
+        font: var(--font-heading5);
+        color: var(--dark-light);
+        margin-bottom: .25rem; //4px
+    }
+    .form-control {
+        border: 1px solid var(--light-dark);
+    }
+    .toggle-sensitive-wrapper {
+        border: 1px solid var(--light-dark);
+        border-radius: .6rem;
+        .form-control {
+            border: none;
+        }
+        .input-group-append {
+            margin-left: 0;
+        }
+        .toggle-sensitive-btn {
+            background-color: transparent;
+            color: var(--dark-light);
+            border: none;
+            border-top-right-radius: .6rem;
+            border-bottom-right-radius: .6rem;
+            &:hover {
+                background-color: var(--light-lighter);
+            }
+        }
+    }
+
+    .login-form-submit {
+        text-align: center;
+        .btn-primary {
+            min-width: 160px;
+        }
+    }
+
+    .login-options {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .login-links {
+        display: flex;
+        justify-content: space-around;
+        .btn-link {
+            font: var(--font-heading5);
+        }
+    }
+
+}

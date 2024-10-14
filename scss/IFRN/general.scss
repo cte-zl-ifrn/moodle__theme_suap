@@ -267,13 +267,23 @@ ul, ol {
 }
 
 .btn-secondary {
-    background-color: var(--secondary);
-    color: var(--general-white);
+    background-color: var(--light);
+    // color: var(--general-white);
     font: var(--font-heading5);
+    border-radius: 40px;
+    border: none;
     gap: .25rem;
     &:hover {
-        background-color: var(--secondary-dark);
-        color: var(--general-white);
+        background-color: var(--light-dark);
+        // color: var(--general-white);
+    }
+}
+
+.btn-link {
+    font: var(--font-heading4);
+    color: var(--primary);
+    &:hover {
+        color: var(--primary-dark);
     }
 }
 
