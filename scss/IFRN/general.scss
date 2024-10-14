@@ -256,6 +256,16 @@ ul, ol {
     border: 2px solid var(--primary)
 }
 
+.btn-primary {
+    background-color: var(--primary);
+    border-radius: 40px;
+    font: var(--font-button1);
+    border: none;
+    &:hover {
+        background-color: var(--primary-dark);
+    }
+}
+
 .btn-secondary {
     background-color: var(--secondary);
     color: var(--general-white);
