@@ -22,74 +22,71 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core_message/message_repository'],
-function($, Repository) {
-
+define(["jquery", "core/ajax", "core_message/message_repository"], function (
+    $,
+    Ajax,
+    Repository
+) {
     const body = document.body;
-    let drawers = document.querySelectorAll('.drawer-content');
-    let drawersToggler = document.querySelectorAll('.drawer-toggler');
-    let closeButtons = document.querySelectorAll('.drawer-close');
+    let drawers = document.querySelectorAll(".drawer-content");
+    let drawersToggler = document.querySelectorAll(".drawer-toggler");
+    let closeButtons = document.querySelectorAll(".drawer-close");
 
-    const counterToggler = document.querySelector('.counter-toggler');
+    const counterToggler = document.querySelector(".counter-toggler");
 
-    const searchForm = document.querySelector('.searchform-js');
+    const searchForm = document.querySelector(".searchform-js");
 
-    var closeAllDrawers  = function(drawers) {
-        body.classList.remove('drawer-open');
+    var closeAllDrawers = function (drawers) {
+        body.classList.remove("drawer-open");
         drawers.forEach((drawer) => {
-            drawer.classList.remove('active-drawer');
-        })
+            drawer.classList.remove("active-drawer");
+        });
         drawersToggler.forEach((toggler) => {
-            toggler.classList.remove('active-toggler');
-        })
-    }
+            toggler.classList.remove("active-toggler");
+        });
+    };
 
-
-    var init = function() {
-
-        if(searchForm) {
-            const searchSubmit = searchForm.querySelector('.search-js');
-            const searchInput = searchForm.querySelector('.input-js');
-            searchSubmit.addEventListener('click', () => {
-                body.classList.remove('counter-close');
+    var init = function () {
+        if (searchForm) {
+            const searchSubmit = searchForm.querySelector(".search-js");
+            const searchInput = searchForm.querySelector(".input-js");
+            searchSubmit.addEventListener("click", () => {
+                body.classList.remove("counter-close");
                 searchInput.focus();
-            })
+            });
         }
 
-        counterToggler.addEventListener('click', () => {
-            body.classList.toggle('counter-close');
-            if(searchForm) {
-                const searchInput = searchForm.querySelector('.input-js');
+        counterToggler.addEventListener("click", () => {
+            body.classList.toggle("counter-close");
+            if (searchForm) {
+                const searchInput = searchForm.querySelector(".input-js");
                 searchInput.value = "";
-            };
+            }
         });
 
-
         drawersToggler.forEach((toggler) => {
-            toggler.addEventListener('click', () => {
-                let drawerId = toggler.getAttribute('data-drawer');
+            toggler.addEventListener("click", () => {
+                let drawerId = toggler.getAttribute("data-drawer");
                 let drawer = document.getElementById(drawerId);
 
-                if (drawer.classList.contains('active-drawer')) {
-                    drawer.classList.remove('active-drawer');
-                    toggler.classList.remove('active-toggler');
-                    body.classList.remove('drawer-open');
+                if (drawer.classList.contains("active-drawer")) {
+                    drawer.classList.remove("active-drawer");
+                    toggler.classList.remove("active-toggler");
+                    body.classList.remove("drawer-open");
                 } else {
                     closeAllDrawers(drawers, drawersToggler);
-                    drawer.classList.add('active-drawer');
-                    toggler.classList.add('active-toggler');
-                    body.classList.add('drawer-open');
+                    drawer.classList.add("active-drawer");
+                    toggler.classList.add("active-toggler");
+                    body.classList.add("drawer-open");
                 }
-            })
-        })
+            });
+        });
 
         closeButtons.forEach((button) => {
-            button.addEventListener('click', () => {
+            button.addEventListener("click", () => {
                 closeAllDrawers(drawers, drawersToggler);
-            })
-        })
-
-
+            });
+        });
     };
 
     return {
