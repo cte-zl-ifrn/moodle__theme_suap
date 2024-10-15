@@ -1,13 +1,14 @@
 .login-container {
-    // max-width: 450px;
+    max-width: 460px;
     padding: 2rem;
-    padding-top: 1rem;
+    // padding-top: 1rem;
     border-radius: .5rem;
 }
 
 .loginform {
     .login-languagemenu {
         justify-content: flex-end;
+        margin-top: -1rem;
         .dropdown-toggle {
             color: var(--primary);
             &:hover {
@@ -102,5 +103,52 @@
             font: var(--font-heading5);
         }
     }
+}
 
+.signupform {
+    .mform {
+        display: flex;
+        flex-direction: column;
+        .col-form-label {
+            align-items: center;
+            padding-top: 0px;
+            .text-danger {
+                font-size: 13px;
+                color: var(--danger-dark) !important;
+            }
+        }
+        label {
+            font: var(--font-heading5);
+            color: var(--dark);
+            margin-bottom: .25rem; //4px
+        }
+        #fitem_id_passwordpolicyinfo {
+            order: 2;
+            font: var(--font-heading5);
+            margin-top: -1rem;
+        }
+        #fitem_id_password {
+            order: 1;
+        }
+        > div:nth-child(n+5) {
+            order: 3;
+        }
+
+        #fgroup_id_buttonar {
+            .fitem {
+                flex: 1;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                
+            }
+            .btn-secondary {
+                font: var(--font-button1);
+            }
+        }
+
+        .fdescription .text-danger{
+            color: var(--danger-dark) !important;
+        }
+    }
 }
