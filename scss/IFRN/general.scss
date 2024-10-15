@@ -261,9 +261,10 @@ ul, ol {
     border-radius: 40px;
     font: var(--font-button1);
     border: none;
-    &:hover {
+    &:hover, &:focus {
         background-color: var(--primary-dark);
     }
+
 }
 
 .btn-secondary {
