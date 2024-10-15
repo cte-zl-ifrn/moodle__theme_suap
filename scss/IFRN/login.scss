@@ -3,7 +3,8 @@
     padding: 2rem;
     // padding-top: 1rem;
     border-radius: .5rem;
-}
+    width: 100%;    
+}   
 
 .loginform {
     .login-languagemenu {
@@ -109,6 +110,8 @@
     .mform {
         display: flex;
         flex-direction: column;
+        padding-right: 0px;
+        padding-left: 0px;
         .col-form-label {
             align-items: center;
             padding-top: 0px;
@@ -137,6 +140,9 @@
         #fgroup_id_buttonar {
             .fitem {
                 flex: 1;
+                &:nth-child(1) {
+                    margin-right: 1rem !important; 
+                }
             }
             .btn-primary, .btn-secondary {
                 width: 100%;
