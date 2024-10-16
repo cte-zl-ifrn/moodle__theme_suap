@@ -35,5 +35,31 @@ class frontpage_settings_tab extends settings_page_tab {
         $this->add_setting_configtext('hero_fourth_column_text', 'Our user base is an exemplary showcase of our business functions and processes. Frameworks that support all users.');
 
         $this->add_setting_configtext('hero_button_text', 'Sobre nós');
+
+        // $this->add_setting_configtext('footer_title', 'Moodle');
+        // $this->add_setting_configtext('footer_support_button', 'Botão para o suporte');
+        // $this->add_setting_configtext('footer_social_media_text', 'Texto sobre as redes sociais do IFRN ZL');
+
+        // $this->add_setting_configtext('footer_map_first_column_title', 'Sobre');
+        // $this->add_setting_configtext('footer_map_first_column_first_line', 'Item One');
+        // $this->add_setting_configtext('footer_map_first_column_second_line', 'Item Two');
+        // $this->add_setting_configtext('footer_map_first_column_third_line', 'Item Three');
+        // $this->add_setting_configtext('footer_map_first_column_fourth_line', 'Item Four');
+
+        // $this->add_setting_configtext('footer_map_second_column_title', 'Suporte');
+        // $this->add_setting_configtext('footer_map_second_column_first_line', 'Item One');
+        // $this->add_setting_configtext('footer_map_second_column_second_line', 'Item Two');
+        // $this->add_setting_configtext('footer_map_second_column_third_line', 'Item Three');
+        // $this->add_setting_configtext('footer_map_second_column_fourth_line', 'Item Four');
+
+        // $this->add_setting_configtext('footer_map_third_column_title', 'Redes Sociais');
+        // $this->add_setting_configtext('footer_map_third_column_first_line', 'Item One');
+        // $this->add_setting_configtext('footer_map_third_column_second_line', 'Item Two');
+        // $this->add_setting_configtext('footer_map_third_column_third_line', 'Item Three');
+        // $this->add_setting_configtext('footer_map_third_column_fourth_line', 'Item Four');
+
+        // $this->add_setting_configtext('footer_credits_text', 'Tema: © 2024 IFRN/ZL - DEAD. All Rights Reserved.');
+        // $this->add_setting_configtext('footer_credits_first_link', 'Moodle');
+        // $this->add_setting_configtext('footer_credits_second_link', 'Ajuda');
     }
 }
