@@ -152,9 +152,9 @@
 #drawer-blocks {
     .drawer {
         position: static;
+        background-color: transparent;
         &.not-initialized {
             display: block;
-            background-color: transparent;
         }
     }
     .drawercontent {
