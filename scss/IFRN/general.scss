@@ -216,6 +216,25 @@ ul, ol {
     margin-left: calc(var(--counter-default) + var(--drawer-open));
 }
 
+
+@include media-breakpoint-down(md) {
+    .drawer-open .page-suap {
+        margin-left: calc(var(--counter-default));
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .page-suap {
+        margin-left: calc(var(--counter-close));
+    }
+    .counter-close.drawer-open .page-suap {
+        margin-left: calc(var(--counter-close));
+    }
+    .drawer-open .page-suap {
+        margin-left: calc(var(--counter-close));
+    }
+}
+
 .max-width-suap {
     width: 100%;
     max-width: var(--max-width-layout);

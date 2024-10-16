@@ -52,12 +52,20 @@ function($, Repository) {
             const searchInput = searchForm.querySelector('.input-js');
             searchSubmit.addEventListener('click', () => {
                 body.classList.remove('counter-close');
+                if (window.innerWidth <= 767.98 && 
+                    !body.classList.contains('counter-close')) {
+                    closeAllDrawers(drawers);
+                }
                 searchInput.focus();
             })
         }
 
         counterToggler.addEventListener('click', () => {
             body.classList.toggle('counter-close');
+            if (window.innerWidth <= 767.98 && 
+                !body.classList.contains('counter-close')) {
+                closeAllDrawers(drawers);
+            }
             if(searchForm) {
                 const searchInput = searchForm.querySelector('.input-js');
                 searchInput.value = "";
@@ -70,15 +78,18 @@ function($, Repository) {
                 let drawerId = toggler.getAttribute('data-drawer');
                 let drawer = document.getElementById(drawerId);
 
-                if (drawer.classList.contains('active-drawer')) {
+                if (drawer.classList.contains('active-drawer')) { //close drawer
                     drawer.classList.remove('active-drawer');
                     toggler.classList.remove('active-toggler');
                     body.classList.remove('drawer-open');
-                } else {
+                } else { //open drawer
                     closeAllDrawers(drawers, drawersToggler);
                     drawer.classList.add('active-drawer');
                     toggler.classList.add('active-toggler');
                     body.classList.add('drawer-open');
+                    if (window.innerWidth <= 767.98) {
+                        body.classList.add('counter-close');
+                    }
                 }
             })
         })
