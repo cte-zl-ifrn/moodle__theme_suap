@@ -26,6 +26,9 @@ define(['jquery', 'core_message/message_repository'],
 function($, Repository) {
 
     const body = document.body;
+    const breakpointSM = 767.98;
+    let backdrop = document.querySelector('[data-region="suap-backdrop"]');
+
     let drawers = document.querySelectorAll('.drawer-content');
     let drawersToggler = document.querySelectorAll('.drawer-toggler');
     let closeButtons = document.querySelectorAll('.drawer-close');
@@ -52,7 +55,7 @@ function($, Repository) {
             const searchInput = searchForm.querySelector('.input-js');
             searchSubmit.addEventListener('click', () => {
                 body.classList.remove('counter-close');
-                if (window.innerWidth <= 767.98 && 
+                if (window.innerWidth <= breakpointSM && 
                     !body.classList.contains('counter-close')) {
                     closeAllDrawers(drawers);
                 }
@@ -60,9 +63,28 @@ function($, Repository) {
             })
         }
 
+        // Caso o usuário diminua largura e esteja com counter e drawer abertas
+        window.addEventListener('resize', function() {
+            if(window.innerWidth <= breakpointSM && 
+            !body.classList.contains('counter-close') && 
+            body.classList.contains('drawer-open')) {
+                body.classList.add('counter-close')
+            }
+        });
+
+        // ao clicar no backdrop fecha counter ou drawers
+        backdrop.addEventListener('click', function(e) {
+            if(e.target === e.currentTarget) {
+                body.classList.add('counter-close');
+                if (body.classList.contains('drawer-open')) {
+                    closeAllDrawers(drawers);
+                }
+            }
+        })
+
         counterToggler.addEventListener('click', () => {
             body.classList.toggle('counter-close');
-            if (window.innerWidth <= 767.98 && 
+            if (window.innerWidth <= breakpointSM && 
                 !body.classList.contains('counter-close')) {
                 closeAllDrawers(drawers);
             }
@@ -87,7 +109,7 @@ function($, Repository) {
                     drawer.classList.add('active-drawer');
                     toggler.classList.add('active-toggler');
                     body.classList.add('drawer-open');
-                    if (window.innerWidth <= 767.98) {
+                    if (window.innerWidth <= breakpointSM) {
                         body.classList.add('counter-close');
                     }
                 }

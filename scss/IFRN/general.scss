@@ -12,6 +12,11 @@ ul, ol {
     padding: 0px;
 }
 
+.suap-backdrop {
+    z-index: 1031;
+    position: absolute;
+}
+
 .container-counter {
     position: fixed;
     top: 0;
@@ -224,6 +229,15 @@ ul, ol {
 }
 
 @include media-breakpoint-down(sm) {
+
+    .counter-close.drawer-open, body:not(.counter-close) {
+        overflow: hidden;
+        & .suap-backdrop {
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, .4);
+        }
+    }
     .page-suap {
         margin-left: calc(var(--counter-close));
     }
