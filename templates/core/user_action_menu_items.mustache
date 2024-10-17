@@ -62,7 +62,7 @@
 <li class="drawer-item" id="settingsvisual">
     <div >
         <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="preferVisual" checked="">
+            <input type="checkbox" class="custom-control-input" id="preferVisual" >
             <label class="custom-control-label" for="preferVisual">
                 Preferência visual: parte inferior
             </label>
@@ -91,5 +91,5 @@
 {{/items}}
 
 {{#js}}
-    require(['theme_suap/userPreference'], (module) => module.init());
+    {{! require(['theme_suap/userPreference'], (module) => module.init()); }}
 {{/js}}

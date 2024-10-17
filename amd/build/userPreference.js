@@ -40,38 +40,59 @@ define(["jquery", "core/ajax", "core_user/repository"], function (
                 if (this.checked) {
                     contentpart1.classList.add("content-original");
                     countcontent.classList.add("content-reverse");
-                    //console.log(Repository.getUserPreference().then();
-                    //salvar o negocio
+
+                    // Salvar a preferência
                     Repository.setUserPreference(preferenceName, true);
                 } else {
                     contentpart1.classList.remove("content-original");
                     countcontent.classList.remove("content-reverse");
+                    console.log("normal");
 
-                    //salvar o negocio
+                    // Salvar a preferência
                     Repository.setUserPreference(preferenceName, false);
                 }
-                Repository.getUserPreference(preferenceName).then(
-                    (response) => {
-                        console.log("mudou:" + response);
-                    }
-                );
             });
 
-        // Restaurar o estado com base no cookie quando a página é carregada
-        window.onload = function () {
-            const cookieValue = getCookie("visualPreference");
-            const checkbox = document.getElementById("preferVisual");
+        // console.log("teste 1");
 
-            if (cookieValue === "checked") {
-                checkbox.checked = true;
-                contentpart1.classList.add("content-original");
-                countcontent.classList.add("content-reverse");
+        let getUserPreference;
+        contentpart1.classList.add("content-original");
+        countcontent.classList.add("content-reverse");
+
+        Repository.getUserPreference(preferenceName).then(function (result) {
+            let getUserPreference = result;
+            console.log(getUserPreference);
+            if (getUserPreference) {
+                console.log("mudou");
+                document.getElementById("preferVisual").checked = true;
+                // contentpart1.classList.add("content-original");
+                // countcontent.classList.add("content-reverse");
             } else {
-                checkbox.checked = false;
-                contentpart1.classList.remove("content-original");
-                countcontent.classList.remove("content-reverse");
+                document.getElementById("preferVisual").checked = false;
+                // contentpart1.classList.remove("content-original");
+                // countcontent.classList.remove("content-reverse");
             }
-        };
+        });
+
+        // Função para restaurar o estado ao carregar a página
+        // document.addEventListener("DOMContentLoaded", async () => {
+        //     console.log("teste 2 ");
+        //     try {
+        //         const getUserPreference = await Repository.getUserPreference(
+        //             preferenceName
+        //         );
+        //         // Agora você tem o valor de getUserPreference e pode atualizar o DOM com segurança
+        //         if (getUserPreference === true || getUserPreference === 1) {
+        //             contentpart1.classList.add("content-original");
+        //             countcontent.classList.add("content-reverse");
+        //         } else {
+        //             contentpart1.classList.remove("content-original");
+        //             countcontent.classList.remove("content-reverse");
+        //         }
+        //     } catch (error) {
+        //         console.error("Erro ao obter a preferência:", error);
+        //     }
+        // });
     };
 
     return {

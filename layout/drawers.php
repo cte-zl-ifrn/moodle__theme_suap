@@ -106,6 +106,7 @@ $is_admin = is_siteadmin($USER->id);
 $userid = $USER->id;
 
 
+$getUserPreference = get_user_preferences($USER->id->name);
 
 
 // Define a lista de items no formato esperado
@@ -167,6 +168,7 @@ $templatecontext = [
     'isloggedin' => $isloggedin,
     'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
+    'getUserPreference' => $getUserPreference
     
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

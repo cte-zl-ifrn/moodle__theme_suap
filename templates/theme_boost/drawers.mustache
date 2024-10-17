@@ -68,8 +68,9 @@
                                 {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
                             </button>
                         </div>
-                        <div id="counter-content">
-                            <div id="content-part1">
+                        
+                        <div id="counter-content" class="{{#getUserPreference}} content-reverse {{/getUserPreference}}">
+                            <div id="content-part1" class="{{#getUserPreference}} content-original {{/getUserPreference}}">
                                 {{#usermenu}}
                                 <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
                                     {{> core/user_menu_metadata }}
@@ -103,6 +104,7 @@
                                     <span class="counter-label">Bug</span>
                                 </div>
                             </div>
+                        
                             <div id="content-part2">
                                 {{#courseindex}}
                                     <div class="drawer-toggler counter-option" data-drawer="drawer-index">
@@ -323,6 +325,8 @@ function($, Popover) {
 
 {{#js}}
 require(['theme_suap/drawersControl'], (module) => module.init());
+
+require(['theme_suap/userPreference'], (module) => module.init());
 
 require(['theme_suap/messages'], (module) => module.renderUnreadCount());
 
