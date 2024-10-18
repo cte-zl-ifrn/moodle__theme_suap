@@ -28,9 +28,12 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
     Repository
 ) {
     const body = document.body;
-    let drawers = document.querySelectorAll(".drawer-content");
-    let drawersToggler = document.querySelectorAll(".drawer-toggler");
-    let closeButtons = document.querySelectorAll(".drawer-close");
+    const breakpointSM = 767.98;
+    let backdrop = document.querySelector('[data-region="suap-backdrop"]');
+
+    let drawers = document.querySelectorAll('.drawer-content');
+    let drawersToggler = document.querySelectorAll('.drawer-toggler');
+    let closeButtons = document.querySelectorAll('.drawer-close');
 
     const counterToggler = document.querySelector(".counter-toggler");
 
@@ -46,20 +49,49 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
         });
     };
 
-    var init = function () {
-        if (searchForm) {
-            const searchSubmit = searchForm.querySelector(".search-js");
-            const searchInput = searchForm.querySelector(".input-js");
-            searchSubmit.addEventListener("click", () => {
-                body.classList.remove("counter-close");
+
+    var init = function() {
+
+        if(searchForm) {
+            const searchSubmit = searchForm.querySelector('.search-js');
+            const searchInput = searchForm.querySelector('.input-js');
+            searchSubmit.addEventListener('click', () => {
+                body.classList.remove('counter-close');
+                if (window.innerWidth <= breakpointSM && 
+                    !body.classList.contains('counter-close')) {
+                    closeAllDrawers(drawers);
+                }
                 searchInput.focus();
             });
         }
 
-        counterToggler.addEventListener("click", () => {
-            body.classList.toggle("counter-close");
-            if (searchForm) {
-                const searchInput = searchForm.querySelector(".input-js");
+        // Caso o usuário diminua largura e esteja com counter e drawer abertas
+        window.addEventListener('resize', function() {
+            if(window.innerWidth <= breakpointSM && 
+            !body.classList.contains('counter-close') && 
+            body.classList.contains('drawer-open')) {
+                body.classList.add('counter-close')
+            }
+        });
+
+        // ao clicar no backdrop fecha counter ou drawers
+        backdrop.addEventListener('click', function(e) {
+            if(e.target === e.currentTarget) {
+                body.classList.add('counter-close');
+                if (body.classList.contains('drawer-open')) {
+                    closeAllDrawers(drawers);
+                }
+            }
+        })
+
+        counterToggler.addEventListener('click', () => {
+            body.classList.toggle('counter-close');
+            if (window.innerWidth <= breakpointSM && 
+                !body.classList.contains('counter-close')) {
+                closeAllDrawers(drawers);
+            }
+            if(searchForm) {
+                const searchInput = searchForm.querySelector('.input-js');
                 searchInput.value = "";
             }
         });
@@ -69,15 +101,18 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
                 let drawerId = toggler.getAttribute("data-drawer");
                 let drawer = document.getElementById(drawerId);
 
-                if (drawer.classList.contains("active-drawer")) {
-                    drawer.classList.remove("active-drawer");
-                    toggler.classList.remove("active-toggler");
-                    body.classList.remove("drawer-open");
-                } else {
+                if (drawer.classList.contains('active-drawer')) { //close drawer
+                    drawer.classList.remove('active-drawer');
+                    toggler.classList.remove('active-toggler');
+                    body.classList.remove('drawer-open');
+                } else { //open drawer
                     closeAllDrawers(drawers, drawersToggler);
-                    drawer.classList.add("active-drawer");
-                    toggler.classList.add("active-toggler");
-                    body.classList.add("drawer-open");
+                    drawer.classList.add('active-drawer');
+                    toggler.classList.add('active-toggler');
+                    body.classList.add('drawer-open');
+                    if (window.innerWidth <= breakpointSM) {
+                        body.classList.add('counter-close');
+                    }
                 }
             });
         });

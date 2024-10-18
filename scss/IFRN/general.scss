@@ -12,6 +12,11 @@ ul, ol {
     padding: 0px;
 }
 
+.suap-backdrop {
+    z-index: 1031;
+    position: absolute;
+}
+
 .container-counter {
     position: fixed;
     top: 0;
@@ -156,13 +161,14 @@ ul, ol {
 }
 
 .counter .simplesearchform {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     .searchform-navbar {
         padding-inline: .5rem;
     }
     .input-group {
         border-bottom: 1px solid var(--general-white);
         flex-direction: row-reverse;
+        flex-wrap: nowrap;
     }
     .form-control {
         background-color: transparent;
@@ -185,11 +191,13 @@ ul, ol {
         justify-content: center;
     }
     .input-group {
-        border-bottom: none;
+        border-bottom: 1px solid transparent;
         width: auto;
     }
     .form-control {
-        display: none;
+        // display: none;
+        position: absolute;
+        opacity: 0;
     }
 }
 
@@ -211,6 +219,34 @@ ul, ol {
 }
 .drawer-open .page-suap {
     margin-left: calc(var(--counter-default) + var(--drawer-open));
+}
+
+
+@include media-breakpoint-down(md) {
+    .drawer-open .page-suap {
+        margin-left: calc(var(--counter-default));
+    }
+}
+
+@include media-breakpoint-down(sm) {
+
+    .counter-close.drawer-open, body:not(.counter-close) {
+        overflow: hidden;
+        & .suap-backdrop {
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, .4);
+        }
+    }
+    .page-suap {
+        margin-left: calc(var(--counter-close));
+    }
+    .counter-close.drawer-open .page-suap {
+        margin-left: calc(var(--counter-close));
+    }
+    .drawer-open .page-suap {
+        margin-left: calc(var(--counter-close));
+    }
 }
 
 .max-width-suap {
@@ -261,9 +297,10 @@ ul, ol {
     border-radius: 40px;
     font: var(--font-button1);
     border: none;
-    &:hover {
+    &:hover, &:focus {
         background-color: var(--primary-dark);
     }
+
 }
 
 .btn-secondary {
