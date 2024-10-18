@@ -1,20 +1,4 @@
 #drawer-index {
-    .dropdown-menu {
-        border: none;
-        box-shadow: var(--shadow-primary);
-        .dropdown-item {
-            width: auto;
-            margin-inline: .5rem;
-            border-radius: 1.5rem; //24px
-            padding-block: .5rem;
-            font: var(--font-button2);
-            &:hover {
-                background-color: var(--light);
-                color: var(--dark);
-            }
-        }
-    }
-
     div.courseindex-item {
         .courseindex-link {
             color: var(--secondary);
