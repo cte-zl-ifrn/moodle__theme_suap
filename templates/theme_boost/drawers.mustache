@@ -68,8 +68,8 @@
                             {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
                         </button>
                     </div>
-                    <div id="counter-content">
-                        <div id="content-part1">
+                    <div id="counter-content" {{#getUserPreference}}class="content-reverse"{{/getUserPreference}}>
+                        <div id="content-part1" {{#getUserPreference}}class="content-original"{{/getUserPreference}}>
                             {{#usermenu}}
                             <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
                                 {{> core/user_menu_metadata }}
