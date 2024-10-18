@@ -57,6 +57,28 @@ function($, Ajax, Notification, Templates, Repository, Constants, ViewOverview, 
                 count.classList.remove('hidden');
             }
         })
+
+        // Retirar desta função
+        let viewFavourites = document.querySelectorAll('[data-region="view-overview-favourites"]');
+        let viewGroup = document.querySelectorAll('[data-region="view-overview-group-messages"]');
+        let viewMessages = document.querySelectorAll('[data-region="view-overview-messages"]');
+
+        keepOpenView(viewFavourites);
+        keepOpenView(viewGroup);
+        keepOpenView(viewMessages);
+    }
+
+    var keepOpenView = function(viewOverview) {
+        let lazyView = viewOverview[1].querySelector('[data-region="lazy-load-list"]');
+        let clickCount = 0;
+        
+        viewOverview[0].addEventListener('click', () => {
+            if (clickCount > 0) {
+                viewOverview[1].classList.remove('expanded')
+                lazyView.classList.remove('show')
+            }
+            clickCount++;
+        })
     }
 
 
