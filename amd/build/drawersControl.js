@@ -22,9 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['jquery', 'core_message/message_repository'],
-function($, Repository) {
-
+define(["jquery", "core/ajax", "core_message/message_repository"], function (
+    $,
+    Ajax,
+    Repository
+) {
     const body = document.body;
     const breakpointSM = 767.98;
     let backdrop = document.querySelector('[data-region="suap-backdrop"]');
@@ -33,19 +35,19 @@ function($, Repository) {
     let drawersToggler = document.querySelectorAll('.drawer-toggler');
     let closeButtons = document.querySelectorAll('.drawer-close');
 
-    const counterToggler = document.querySelector('.counter-toggler');
+    const counterToggler = document.querySelector(".counter-toggler");
 
-    const searchForm = document.querySelector('.searchform-js');
+    const searchForm = document.querySelector(".searchform-js");
 
-    var closeAllDrawers  = function(drawers) {
-        body.classList.remove('drawer-open');
+    var closeAllDrawers = function (drawers) {
+        body.classList.remove("drawer-open");
         drawers.forEach((drawer) => {
-            drawer.classList.remove('active-drawer');
-        })
+            drawer.classList.remove("active-drawer");
+        });
         drawersToggler.forEach((toggler) => {
-            toggler.classList.remove('active-toggler');
-        })
-    }
+            toggler.classList.remove("active-toggler");
+        });
+    };
 
 
     var init = function() {
@@ -60,7 +62,7 @@ function($, Repository) {
                     closeAllDrawers(drawers);
                 }
                 searchInput.focus();
-            })
+            });
         }
 
         // Caso o usuário diminua largura e esteja com counter e drawer abertas
@@ -91,13 +93,12 @@ function($, Repository) {
             if(searchForm) {
                 const searchInput = searchForm.querySelector('.input-js');
                 searchInput.value = "";
-            };
+            }
         });
 
-
         drawersToggler.forEach((toggler) => {
-            toggler.addEventListener('click', () => {
-                let drawerId = toggler.getAttribute('data-drawer');
+            toggler.addEventListener("click", () => {
+                let drawerId = toggler.getAttribute("data-drawer");
                 let drawer = document.getElementById(drawerId);
 
                 if (drawer.classList.contains('active-drawer')) { //close drawer
@@ -113,16 +114,14 @@ function($, Repository) {
                         body.classList.add('counter-close');
                     }
                 }
-            })
-        })
+            });
+        });
 
         closeButtons.forEach((button) => {
-            button.addEventListener('click', () => {
+            button.addEventListener("click", () => {
                 closeAllDrawers(drawers, drawersToggler);
-            })
-        })
-
-
+            });
+        });
     };
 
     return {

@@ -105,12 +105,11 @@ $is_admin = is_siteadmin($USER->id);
 
 $userid = $USER->id;
 
-
-
+//pega a preferencia no banco
+$getUserPreference = get_user_preferences('visual_preference', $USER->id);
 
 // Define a lista de items no formato esperado
 $items_theme_suap = [];
-
 
 // Adicionar condicionalmente os itens de administrador
 if ($is_admin) {
@@ -134,12 +133,6 @@ if ($is_admin) {
         ]
     ];
 }
-
-
-
-
-
-
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -167,6 +160,7 @@ $templatecontext = [
     'isloggedin' => $isloggedin,
     'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
+    'getUserPreference' => $getUserPreference
     
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

@@ -38,3 +38,20 @@ function theme_suap_get_main_scss_content($theme) {
     // Combine them together.                                                                                                       
     return $pre . "\n" . $scss . "\n" . $post;                                                                                                                     
 }
+
+/**
+ * Get the current user preferences that are available
+ *
+ * @return array[]
+ */
+function theme_suap_user_preferences(): array {
+    return [
+        'visual_preference' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+      
+    ];
+}

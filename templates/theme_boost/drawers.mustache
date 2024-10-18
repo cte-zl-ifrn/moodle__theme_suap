@@ -324,6 +324,8 @@ function($, Popover) {
 {{#js}}
 require(['theme_suap/drawersControl'], (module) => module.init());
 
+require(['theme_suap/userPreference'], (module) => module.init());
+
 require(['theme_suap/messages'], (module) => module.renderUnreadCount());
 
 require(['theme_suap/notifications'], (module) => module.init());
