@@ -22,22 +22,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(["jquery", "core/ajax", "core_user/repository"], function (
-    $,
-    Ajax,
-    Repository
-) {
+define(["jquery", "core_user/repository"], function ($, Repository) {
     var init = function () {
         // Seleciona os elementos do DOM
         const contentpart1 = document.querySelector("#content-part1");
         const countcontent = document.querySelector("#counter-content");
         const preferenceName = "visual_preference";
 
-        // Evento 'change' para o checkbox
         document
             .getElementById("preferVisual")
             .addEventListener("change", function () {
                 if (this.checked) {
+                    //se estiver selecionado, adiciona as classes e salva no banco de dados
                     contentpart1.classList.add("content-original");
                     countcontent.classList.add("content-reverse");
 
@@ -46,53 +42,22 @@ define(["jquery", "core/ajax", "core_user/repository"], function (
                 } else {
                     contentpart1.classList.remove("content-original");
                     countcontent.classList.remove("content-reverse");
-                    console.log("normal");
 
                     // Salvar a preferência
                     Repository.setUserPreference(preferenceName, false);
                 }
             });
 
-        // console.log("teste 1");
-
-        let getUserPreference;
-        contentpart1.classList.add("content-original");
-        countcontent.classList.add("content-reverse");
-
         Repository.getUserPreference(preferenceName).then(function (result) {
+            //recupera o valor de user preference salva no banco
             let getUserPreference = result;
-            console.log(getUserPreference);
-            if (getUserPreference) {
-                console.log("mudou");
+
+            if (getUserPreference === "1") {
                 document.getElementById("preferVisual").checked = true;
-                // contentpart1.classList.add("content-original");
-                // countcontent.classList.add("content-reverse");
             } else {
                 document.getElementById("preferVisual").checked = false;
-                // contentpart1.classList.remove("content-original");
-                // countcontent.classList.remove("content-reverse");
             }
         });
-
-        // Função para restaurar o estado ao carregar a página
-        // document.addEventListener("DOMContentLoaded", async () => {
-        //     console.log("teste 2 ");
-        //     try {
-        //         const getUserPreference = await Repository.getUserPreference(
-        //             preferenceName
-        //         );
-        //         // Agora você tem o valor de getUserPreference e pode atualizar o DOM com segurança
-        //         if (getUserPreference === true || getUserPreference === 1) {
-        //             contentpart1.classList.add("content-original");
-        //             countcontent.classList.add("content-reverse");
-        //         } else {
-        //             contentpart1.classList.remove("content-original");
-        //             countcontent.classList.remove("content-reverse");
-        //         }
-        //     } catch (error) {
-        //         console.error("Erro ao obter a preferência:", error);
-        //     }
-        // });
     };
 
     return {

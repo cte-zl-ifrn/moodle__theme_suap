@@ -105,13 +105,11 @@ $is_admin = is_siteadmin($USER->id);
 
 $userid = $USER->id;
 
-
-$getUserPreference = get_user_preferences($USER->id->name);
-
+//pega a preferencia no banco
+$getUserPreference = get_user_preferences('visual_preference', $USER->id);
 
 // Define a lista de items no formato esperado
 $items_theme_suap = [];
-
 
 // Adicionar condicionalmente os itens de administrador
 if ($is_admin) {
@@ -135,12 +133,6 @@ if ($is_admin) {
         ]
     ];
 }
-
-
-
-
-
-
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
