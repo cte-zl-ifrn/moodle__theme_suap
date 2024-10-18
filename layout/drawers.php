@@ -106,7 +106,7 @@ $is_admin = is_siteadmin($USER->id);
 $userid = $USER->id;
 
 //pega a preferencia no banco
-$getUserPreference = get_user_preferences('visual_preference', $USER->id);
+$getUserPreference = get_user_preferences('visual_preference');
 
 // Define a lista de items no formato esperado
 $items_theme_suap = [];
