@@ -22,11 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(["jquery", "core/ajax", "core_message/message_repository"], function (
-    $,
-    Ajax,
-    Repository
-) {
+define(["core_user/repository"], function (RepositoryUser) {
     const body = document.body;
     const breakpointSM = 767.98;
     let backdrop = document.querySelector('[data-region="suap-backdrop"]');
@@ -49,8 +45,14 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
         });
     };
 
+    const preferenceCounter = 'theme_suap_counter_close';
 
     var init = function() {
+
+        if (window.innerWidth <= breakpointSM) {
+            body.classList.add('counter-close');
+        }
+        backdrop.classList.remove('hidden');
 
         if(searchForm) {
             const searchSubmit = searchForm.querySelector('.search-js');
@@ -86,6 +88,11 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
 
         counterToggler.addEventListener('click', () => {
             body.classList.toggle('counter-close');
+            if(body.classList.contains('counter-close')) {
+                RepositoryUser.setUserPreference(preferenceCounter, true);
+            } else {
+                RepositoryUser.setUserPreference(preferenceCounter, false);
+            }
             if (window.innerWidth <= breakpointSM && 
                 !body.classList.contains('counter-close')) {
                 closeAllDrawers(drawers);

@@ -52,6 +52,12 @@ function theme_suap_user_preferences(): array {
             'default' => false,
             'permissioncallback' => [core_user::class, 'is_current_user'],
         ],
+        'theme_suap_counter_close' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ]
       
     ];
 }
