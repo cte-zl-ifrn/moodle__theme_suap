@@ -22,11 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(["jquery", "core/ajax", "core_message/message_repository"], function (
-    $,
-    Ajax,
-    Repository
-) {
+define(["core_user/repository"], function (RepositoryUser) {
     const body = document.body;
     const breakpointSM = 767.98;
     let backdrop = document.querySelector('[data-region="suap-backdrop"]');
@@ -49,6 +45,7 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
         });
     };
 
+    const preferenceCounter = 'theme_suap_counter_close';
 
     var init = function() {
 
@@ -56,11 +53,17 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
             const searchSubmit = searchForm.querySelector('.search-js');
             const searchInput = searchForm.querySelector('.input-js');
             searchSubmit.addEventListener('click', () => {
-                body.classList.remove('counter-close');
                 if (window.innerWidth <= breakpointSM && 
-                    !body.classList.contains('counter-close')) {
+                    !body.classList.contains('counter-open-mobile')) {
                     closeAllDrawers(drawers);
                 }
+
+                if (window.innerWidth <= breakpointSM) {
+                    body.classList.add('counter-open-mobile');
+                } else {
+                    body.classList.remove('counter-close');
+                }
+
                 searchInput.focus();
             });
         }
@@ -77,7 +80,7 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
         // ao clicar no backdrop fecha counter ou drawers
         backdrop.addEventListener('click', function(e) {
             if(e.target === e.currentTarget) {
-                body.classList.add('counter-close');
+                body.classList.remove('counter-open-mobile');
                 if (body.classList.contains('drawer-open')) {
                     closeAllDrawers(drawers);
                 }
@@ -85,11 +88,22 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
         })
 
         counterToggler.addEventListener('click', () => {
-            body.classList.toggle('counter-close');
-            if (window.innerWidth <= breakpointSM && 
-                !body.classList.contains('counter-close')) {
-                closeAllDrawers(drawers);
+            if (window.innerWidth <= breakpointSM) {
+                body.classList.toggle('counter-open-mobile');
+                if (body.classList.contains('counter-open-mobile')) {
+                    closeAllDrawers(drawers);
+                }
+            } else {
+                body.classList.toggle('counter-close');
             }
+
+            // salva a preferência no desktop
+            if(body.classList.contains('counter-close')) {
+                RepositoryUser.setUserPreference(preferenceCounter, true);
+            } else {
+                RepositoryUser.setUserPreference(preferenceCounter, false);
+            }
+
             if(searchForm) {
                 const searchInput = searchForm.querySelector('.input-js');
                 searchInput.value = "";
@@ -110,9 +124,11 @@ define(["jquery", "core/ajax", "core_message/message_repository"], function (
                     drawer.classList.add('active-drawer');
                     toggler.classList.add('active-toggler');
                     body.classList.add('drawer-open');
+
                     if (window.innerWidth <= breakpointSM) {
-                        body.classList.add('counter-close');
+                        body.classList.remove('counter-open-mobile');
                     }
+
                 }
             });
         });

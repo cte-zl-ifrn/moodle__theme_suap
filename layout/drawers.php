@@ -64,6 +64,11 @@ if ($courseindexopen) {
     $extraclasses[] = 'drawer-open-index';
 }
 
+$counterClose = get_user_preferences('theme_suap_counter_close');
+if ($counterClose) {
+    $extraclasses[] = 'counter-close';
+}
+
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 if (!$hasblocks) {

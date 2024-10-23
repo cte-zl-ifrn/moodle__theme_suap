@@ -26,7 +26,7 @@
     transition: all .2s ease-out;
 
     @include media-breakpoint-down(sm) {
-        width: calc(100% - 32px);
+        width: calc(100% - var(--counter-close) - 32px);
     }
 
     #breadcrumb {
