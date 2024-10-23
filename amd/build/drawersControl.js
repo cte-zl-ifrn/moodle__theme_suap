@@ -49,20 +49,21 @@ define(["core_user/repository"], function (RepositoryUser) {
 
     var init = function() {
 
-        if (window.innerWidth <= breakpointSM) {
-            body.classList.add('counter-close');
-        }
-        backdrop.classList.remove('hidden');
-
         if(searchForm) {
             const searchSubmit = searchForm.querySelector('.search-js');
             const searchInput = searchForm.querySelector('.input-js');
             searchSubmit.addEventListener('click', () => {
-                body.classList.remove('counter-close');
                 if (window.innerWidth <= breakpointSM && 
-                    !body.classList.contains('counter-close')) {
+                    !body.classList.contains('counter-open-mobile')) {
                     closeAllDrawers(drawers);
                 }
+
+                if (window.innerWidth <= breakpointSM) {
+                    body.classList.add('counter-open-mobile');
+                } else {
+                    body.classList.remove('counter-close');
+                }
+
                 searchInput.focus();
             });
         }
@@ -79,7 +80,7 @@ define(["core_user/repository"], function (RepositoryUser) {
         // ao clicar no backdrop fecha counter ou drawers
         backdrop.addEventListener('click', function(e) {
             if(e.target === e.currentTarget) {
-                body.classList.add('counter-close');
+                body.classList.remove('counter-open-mobile');
                 if (body.classList.contains('drawer-open')) {
                     closeAllDrawers(drawers);
                 }
@@ -87,16 +88,22 @@ define(["core_user/repository"], function (RepositoryUser) {
         })
 
         counterToggler.addEventListener('click', () => {
-            body.classList.toggle('counter-close');
+            if (window.innerWidth <= breakpointSM) {
+                body.classList.toggle('counter-open-mobile');
+                if (body.classList.contains('counter-open-mobile')) {
+                    closeAllDrawers(drawers);
+                }
+            } else {
+                body.classList.toggle('counter-close');
+            }
+
+            // salva a preferência no desktop
             if(body.classList.contains('counter-close')) {
                 RepositoryUser.setUserPreference(preferenceCounter, true);
             } else {
                 RepositoryUser.setUserPreference(preferenceCounter, false);
             }
-            if (window.innerWidth <= breakpointSM && 
-                !body.classList.contains('counter-close')) {
-                closeAllDrawers(drawers);
-            }
+
             if(searchForm) {
                 const searchInput = searchForm.querySelector('.input-js');
                 searchInput.value = "";
@@ -117,9 +124,11 @@ define(["core_user/repository"], function (RepositoryUser) {
                     drawer.classList.add('active-drawer');
                     toggler.classList.add('active-toggler');
                     body.classList.add('drawer-open');
+
                     if (window.innerWidth <= breakpointSM) {
-                        body.classList.add('counter-close');
+                        body.classList.remove('counter-open-mobile');
                     }
+
                 }
             });
         });
