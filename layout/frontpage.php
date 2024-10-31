@@ -2,8 +2,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use core_course\course;
+
 require_once($CFG->libdir . '/behat/lib.php');
 require_once($CFG->dirroot . '/course/lib.php');
+
+require_once($CFG->dirroot . '/theme/suap/lib.php');
+
+// require_once(__DIR__ . '/../../config.php');
 
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
@@ -72,6 +78,18 @@ $headercontent = $header->export_for_template($renderer);
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 
 $conf = get_config('theme_suap');
+$frontpage_buttons_configtextarea = parse_configtextarea_string($conf->frontpage_buttons_configtextarea);
+
+$courses_request_url = $CFG->wwwroot . '/theme/suap/api/get_courses.php';
+$PAGE->requires->js_call_amd('theme_suap/frontpage_courses', 'init', [$courses_request_url]);
+
+// $courses_request_url = $CFG->wwwroot . '/webservice/rest/server.php';
+// $PAGE->requires->js_call_amd(
+//     'theme_suap/helloworld',
+//     'init',
+//     [$courses_request_url, $conf->pagination_secret]
+// );
+
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -94,8 +112,6 @@ $templatecontext = [
     'headercontent' => $headercontent,
     'addblockbutton' => $addblockbutton,
     'frontpage_title' => $conf->frontpage_title,
-    'frontpage_first_button' => $conf->frontpage_first_button,
-    'frontpage_second_button' => $conf->frontpage_second_button,
     'hero_title' => $conf->hero_title,
     'hero_subtitle' => $conf->hero_subtitle,
     'hero_first_column_number' => $conf->hero_first_column_number,
@@ -112,12 +128,8 @@ $templatecontext = [
     'hero_fourth_column_text' => $conf->hero_fourth_column_text,
     'hero_button_text' => $conf->hero_button_text,
     'about_title' => $conf->about_title,
+    'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
+    'frontpage_main_courses_title' => $conf->frontpage_main_courses_title,
 ];
 
-
-// echo $OUTPUT->header();
-// echo $OUTPUT->main_content();
-
 echo $OUTPUT->render_from_template('theme_suap/frontpage', $templatecontext);
-
-// echo $OUTPUT->footer();

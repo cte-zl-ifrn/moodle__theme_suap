@@ -46,10 +46,10 @@ $string['unreadmessages'] = "Unread";
 $string['frontpagesettings'] = 'Frontpage settings';
 $string['frontpage_title'] = 'Frontpage title';
 $string['frontpage_title_desc'] = '';
-$string['frontpage_first_button'] = 'Frontpage Menu First button';
-$string['frontpage_first_button_desc'] = '';
-$string['frontpage_second_button'] = 'Frontpage Menu Second button';
-$string['frontpage_second_button_desc'] = '';
+$string['frontpage_buttons_configtextarea'] = 'Frontpage buttons configuration';
+$string['frontpage_buttons_configtextarea_desc'] = '';
+$string['frontpage_button_home'] = 'Home';
+$string['frontpage_button_about'] = 'About';
 $string['hero_title'] = 'Hero title';
 $string['hero_title_desc'] = '';
 $string['hero_subtitle'] = 'Hero subtitle';
@@ -80,3 +80,12 @@ $string['hero_fourth_column_text'] = 'Hero fourth column text';
 $string['hero_fourth_column_text_desc'] = '';
 $string['hero_button_text'] = 'Hero button text';
 $string['hero_button_text_desc'] = '';
+
+$string['hero_configtextarea_test'] = 'Hero configtextarea test';
+$string['hero_configtextarea_test_desc'] = '';
+
+$string['pagination_secret'] = 'Pagination secret';
+$string['pagination_secret_desc'] = 'It is necessary to create a token in the web services section of Moodle for mobile devices';
+
+$string['frontpage_main_courses_title'] = 'Frontpage main courses title';
+$string['frontpage_main_courses_title_desc'] = '';

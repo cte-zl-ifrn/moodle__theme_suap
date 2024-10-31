@@ -39,6 +39,39 @@ function theme_suap_get_main_scss_content($theme) {
     return $pre . "\n" . $scss . "\n" . $post;                                                                                                                     
 }
 
+// Essa função é responsável por transformar uma configtextarea(label, link, icon, target e capabilities) em um objeto.
+function parse_configtextarea_string($config_string) {
+    $default_value = 'N/A';
+    $lines = explode("\n", trim($config_string));
+    $result = [];
+
+    foreach ($lines as $line) {
+        $parts = preg_split('/\|/', $line);
+
+        foreach ($parts as &$part) {
+            $part = trim($part);
+            if (empty($part)) {
+                $part = $default_value;
+            }
+        }
+
+        if (strpos($parts[0], ',') !== false) {
+            $array_label = explode(',', $parts[0]);
+            $parts[0] = get_string($array_label[0], $array_label[1]);
+        }
+
+        $result[] = [
+            'label' => $parts[0],
+            'link' => $parts[1],
+            'icon' => $parts[2],
+            'target' => $parts[3],
+            'capabilities' => $parts[4]
+        ];
+    }
+
+    return $result;
+}
+
 /**
  * Get the current user preferences that are available
  *
