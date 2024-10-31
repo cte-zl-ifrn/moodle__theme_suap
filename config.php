@@ -61,4 +61,8 @@ $THEME->layouts = [
         'regions' => ['side-pre'], // , 'side-post'
         'defaultregion' => 'side-pre',
     ],
+    'mypublic' => [
+        'file' => 'mypublic.php',
+        'regions' => [], // , 'side-post'
+    ],
 ];

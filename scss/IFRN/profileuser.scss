@@ -1,0 +1,70 @@
+.profile-view-suap {
+    .user-title {
+        font: var(--font-heading2);
+        margin-bottom: 1rem;
+    }
+    p {
+        font: var(--font-paragraph2);
+    }
+    .user-group-suap {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid var(--light-dark);
+        border-radius: 1rem;
+        &.contact-container {
+            display: flex;
+            gap: 1rem;
+            img {
+                border-radius: 50%;
+                height: 80px;
+                width: 80px;
+            }
+            .user-title {
+                margin-bottom: .25rem; //4px
+            }
+            .user-role {
+                font: var(--font-heading4);
+                color: var(--dark-light);
+                margin-bottom: .5rem; //8px
+            }
+            .user-mail {
+                font: var(--font-heading4);
+            }
+        }
+
+        &.aboutme-container {
+            padding-bottom: .25rem; //4px
+        }
+        .aboutme-title {
+            font: var(--font-heading5);
+            color: var(--dark-light);
+            margin-bottom: .25rem; //4px
+        }
+
+
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .badge-item {
+            width: 182px;
+            background-color: var(--light-lighter);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            &:hover {
+                text-decoration: none;
+            }
+            .badge-title {
+                font: var(--font-button3);
+                text-align: left;
+                color: var(--dark);
+                text-decoration: none;
+                margin-top: 1rem;
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
