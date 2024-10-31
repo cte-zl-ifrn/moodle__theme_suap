@@ -30,17 +30,21 @@ require_once($CFG->dirroot . '/course/lib.php');
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
-//var_dump($enrolplugin->enrol_user($instance, $user->id, $role->id));
-
+// User role for course context
 if(isloggedin()) {
+    $rolestr;
     $context = context_course::instance($COURSE->id);
     $roles = get_user_roles($context, $USER->id, true);
-    $role = key($roles);
-    # TODO: A decidir... como decidir se qual papel é mais importante, caso exista mais de 1?
-    $rolename = !empty($role) ? $roles[$role]->shortname : "";
-    
-}else{
-    $rolename = "";
+
+    if (empty($roles)) {
+        $rolestr = "";
+    } else {
+        foreach ($roles as $role) {
+            $rolestr[] = role_get_name($role, $context);
+        }
+        $rolestr = implode(', ', $rolestr);
+    }
+
 }
 
 if (isloggedin()) {
@@ -58,6 +62,11 @@ if (defined('BEHAT_SITE_RUNNING') && get_user_preferences('behat_keep_drawer_clo
 $extraclasses = ['uses-drawers'];
 if ($courseindexopen) {
     $extraclasses[] = 'drawer-open-index';
+}
+
+$counterClose = get_user_preferences('theme_suap_counter_close');
+if ($counterClose) {
+    $extraclasses[] = 'counter-close';
 }
 
 $blockshtml = $OUTPUT->blocks('side-pre');
@@ -95,9 +104,40 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 $navbar = $OUTPUT->navbar();
+
 $isloggedin = isloggedin();
+$is_admin = is_siteadmin($USER->id);
 
 $userid = $USER->id;
+
+//pega a preferencia no banco
+$getUserPreference = get_user_preferences('visual_preference');
+
+// Define a lista de items no formato esperado
+$items_theme_suap = [];
+
+// Adicionar condicionalmente os itens de administrador
+if ($is_admin) {
+    $items_theme_suap[] = [
+        'id' => 'admin_item_1',
+        'class' => 'the-last',
+        'link' => [
+            'title' => 'Admin',
+            'url' => $CFG->wwwroot . '/admin/search.php',
+            'pixicon' => 't/admin'
+        ]
+    ];
+
+    $items_theme_suap[] = [
+        'id' => 'admin',
+        'class' => 'the-last',
+        'link' => [
+            'title' => 'Courses',
+            'url' => $CFG->wwwroot . '/my/courses.php',
+            'pixicon' => 't/courses'
+        ]
+    ];
+}
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -121,8 +161,11 @@ $templatecontext = [
     'addblockbutton' => $addblockbutton,
     'navbar' => $navbar,
     'userid' => $userid,
-    'rolename' => $rolename,
+    'rolename' => $rolestr,
     'isloggedin' => $isloggedin,
+    'is_admin' => $is_admin,
+    'items_theme_suap' => $items_theme_suap, 
+    'getUserPreference' => $getUserPreference
     
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

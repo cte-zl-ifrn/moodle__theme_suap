@@ -44,8 +44,19 @@
                 </div>
 
                 <div class="drawer-header-tools">
+                    <a class="tool-item" href="#" data-route="view-contacts" role="button">
+                        <i class="fa-solid fa-user-group"></i>
+                        <span
+                            class="badge text-white ml-2 {{^contactrequestcount}}hidden{{/contactrequestcount}}"
+                            data-region="contact-request-count"
+                        >
+                            <span aria-hidden="true">{{contactrequestcount}}</span>
+                            <span class="sr-only">{{#str}} pendingcontactrequests, core_message, {{contactrequestcount}} {{/str}}</span>
+                        </span>
+                    </a>
                     {{#caneditownmessageprofile}}
                         <a
+                            class="tool-item"
                             href="#"
                             data-route="view-settings"
                             data-route-param="{{loggedinuser.id}}"
@@ -55,20 +66,10 @@
                             <i class="fa-solid fa-gear"></i>
                         </a>
                     {{/caneditownmessageprofile}}
-                    <a href="#" data-route="view-contacts" role="button">
-                        <i class="fa-solid fa-user-group"></i>
-                        <span
-                            class="badge bg-primary text-white ml-2 {{^contactrequestcount}}hidden{{/contactrequestcount}}"
-                            data-region="contact-request-count"
-                        >
-                            <span aria-hidden="true">{{contactrequestcount}}</span>
-                            <span class="sr-only">{{#str}} pendingcontactrequests, core_message, {{contactrequestcount}} {{/str}}</span>
-                        </span>
+                    <a href="#" class="tool-item drawer-close" data-drawer="drawer-notifications">
+                        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                     </a>
                 </div>
-                <a href="#" class="drawer-close" data-drawer="drawer-message">
-                    <i class="fa-solid fa-xmark"></i>
-                </a>
             </div>
             
             
@@ -92,15 +93,16 @@
             </div>
             <div class="footer-container position-relative" data-region="footer-container">
                 {{> core_message/message_drawer_view_conversation_footer }}
-                {{> core_message/message_drawer_view_overview_footer }}
+                {{!> core_message/message_drawer_view_overview_footer }}
             </div>
         </div>
     {{/drawercontent}}
 {{/core/drawer}}
 
 {{#js}}
-require(['jquery', 'core_message/message_drawer', 'theme_suap/messages'], function($, MessageDrawer) {
+require(['jquery', 'core_message/message_drawer', 'theme_suap/messages'], function($, MessageDrawer, MessagesSuap) {
     var root = $('#message-drawer-{{uniqid}}');
     MessageDrawer.init(root, '{{uniqid}}', false);
+    MessagesSuap.init();
 });
 {{/js}}

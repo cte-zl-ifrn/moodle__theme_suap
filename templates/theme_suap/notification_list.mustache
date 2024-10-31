@@ -15,7 +15,7 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
-    @template theme_suap/notification_card
+    @template theme_suap/notification_list
 
     Template purpose and description.
 
@@ -43,7 +43,7 @@
 }}
 
 {{#notifications}}
-    <div class="notification_card {{^read}}unread{{/read}}" data-region="notification-shortened" data-id="{{id}}">
+    <div class="notification-card {{^read}}unread{{/read}}" data-region="notification-shortened" data-id="{{id}}">
         <h3 class="card-title">{{shortenedsubject}}</h3>
         <div class="card-bottom">
             <span class="card-time">{{timecreatedpretty}}</span>
@@ -51,8 +51,6 @@
         </div>
     </div>
 {{/notifications}}
-
-<div class="notification-full hidden" data-region="notification-full"></div>
 
 {{^notifications}}
     <div class="empty-message" data-region="empty-message">

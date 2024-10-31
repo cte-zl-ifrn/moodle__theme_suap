@@ -25,26 +25,26 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$functions = [
-    'theme_suap_get_all_unread_conversations' => array(
-        'classpath'   => 'theme/suap/classes/message/externallib.php', // Caminho para a classe.
-        'classname'   => 'theme_suap\external\theme_suap_external', // Classe onde a função está.
-        'methodname'  => 'get_all_unread_conversations', // Nome da função.
-        'description' => 'Retorna todas as conversas não lidas de um usuário',
-        'type'        => 'read', // Define que é uma operação de leitura.
-        'ajax'        => true, // Disponível para AJAX.
-        'capabilities' => '', // Permissões especiais (opcional).
-        'services'    => array(MOODLE_OFFICIAL_MOBILE_SERVICE) // Disponível para o serviço mobile.
-    ),
-];
+// $functions = [
+//     'theme_suap_get_all_unread_conversations' => array(
+//         'classpath'   => 'theme/suap/classes/message/externallib.php', // Caminho para a classe.
+//         'classname'   => 'theme_suap\external\theme_suap_external', // Classe onde a função está.
+//         'methodname'  => 'get_all_unread_conversations', // Nome da função.
+//         'description' => 'Retorna todas as conversas não lidas de um usuário',
+//         'type'        => 'read', // Define que é uma operação de leitura.
+//         'ajax'        => true, // Disponível para AJAX.
+//         'capabilities' => '', // Permissões especiais (opcional).
+//         'services'    => array(MOODLE_OFFICIAL_MOBILE_SERVICE) // Disponível para o serviço mobile.
+//     ),
+// ];
 
-$services = array(
-   'Moodle mobile web service'  => array(
-        'functions' => array(), // Unused as we add the service in each function definition, third party services would use this.
-        'enabled' => 0,
-        'restrictedusers' => 0,
-        'shortname' => MOODLE_OFFICIAL_MOBILE_SERVICE,
-        'downloadfiles' => 1,
-        'uploadfiles' => 1
-    ),
-);
+// $services = array(
+//    'Moodle mobile web service'  => array(
+//         'functions' => array(), // Unused as we add the service in each function definition, third party services would use this.
+//         'enabled' => 0,
+//         'restrictedusers' => 0,
+//         'shortname' => MOODLE_OFFICIAL_MOBILE_SERVICE,
+//         'downloadfiles' => 1,
+//         'uploadfiles' => 1
+//     ),
+// );

@@ -57,36 +57,39 @@
         ]
     }
 }}
+
+
 <li class="drawer-item" id="settingsvisual">
-        Preferencias visuais:
-    <div>
-        <input type="radio" id="part-sup" name="drone" value="part-sup" checked />
-        <label for="part-sup">Parte superior</label>
+    <div >
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="preferVisual" >
+            <label class="custom-control-label" for="preferVisual">
+                Preferência visual: parte inferior
+            </label>
+        </div>
     </div>
-    <div>
-        <input type="radio" id="part-down" name="drone" value="part-down" />
-        <label for="part-down">Parte inferior</label>
-    </div>
 </li>
-<li class="drawer-item">
-    <a href="{{config.wwwroot}}/admin/search.php" class="dropdown-item" role="menuitem" tabindex="-1">Admin</a>
-</li>
-<li class="drawer-item" id="onlyadmin" >
-    <a href="{{config.wwwroot}}/my/courses.php" class="dropdown-item" role="menuitem" tabindex="-1">Courses</a>
-</li>
+
+{{#items_theme_suap}}
+    {{#link}}
+        <li class="drawer-item {{{class}}}" id="{{{id}}}">
+            <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
+                {{title}}
+            </a>
+        </li>
+    {{/link}}
+{{/items_theme_suap}}
 
 {{#items}}
     {{#link}}
-        <li class="drawer-item">
+        <li class="drawer-item {{{class}}}" >
             <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
-                {{#pixicon}}
-                    {{#pix}}{{pixicon}}{{/pix}}
-                {{/pixicon}}
-                {{^pixicon}}
-                    {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
-                {{/pixicon}}
                 {{title}}
             </a>
         </li>
     {{/link}}
 {{/items}}
+
+{{#js}}
+    {{! require(['theme_suap/userPreference'], (module) => module.init()); }}
+{{/js}}

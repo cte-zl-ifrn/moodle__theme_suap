@@ -39,7 +39,6 @@ function theme_suap_get_main_scss_content($theme) {
     return $pre . "\n" . $scss . "\n" . $post;                                                                                                                     
 }
 
-
 // Essa função é responsável por transformar uma configtextarea(label, link, icon, target e capabilities) em um objeto.
 function parse_configtextarea_string($config_string) {
     $default_value = 'N/A';
@@ -71,4 +70,27 @@ function parse_configtextarea_string($config_string) {
     }
 
     return $result;
+}
+
+/**
+ * Get the current user preferences that are available
+ *
+ * @return array[]
+ */
+function theme_suap_user_preferences(): array {
+    return [
+        'visual_preference' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+        'theme_suap_counter_close' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ]
+      
+    ];
 }
