@@ -80,8 +80,16 @@ $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $conf = get_config('theme_suap');
 $frontpage_buttons_configtextarea = parse_configtextarea_string($conf->frontpage_buttons_configtextarea);
 
-// $advancedsettings = get_config('theme_suap_advanced');
-// $pagination_secret = $advancedsettings->pagination_secret;
+$courses_request_url = $CFG->wwwroot . '/theme/suap/api/get_courses.php';
+$PAGE->requires->js_call_amd('theme_suap/frontpage_courses', 'init', [$courses_request_url]);
+
+// $courses_request_url = $CFG->wwwroot . '/webservice/rest/server.php';
+// $PAGE->requires->js_call_amd(
+//     'theme_suap/helloworld',
+//     'init',
+//     [$courses_request_url, $conf->pagination_secret]
+// );
+
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -121,13 +129,7 @@ $templatecontext = [
     'hero_button_text' => $conf->hero_button_text,
     'about_title' => $conf->about_title,
     'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
-    // 'pagination_secret' => $pagination_secret,
+    'frontpage_main_courses_title' => $conf->frontpage_main_courses_title,
 ];
 
-
-// echo $OUTPUT->header();
-// echo $OUTPUT->main_content();
-
 echo $OUTPUT->render_from_template('theme_suap/frontpage', $templatecontext);
-
-// echo $OUTPUT->footer();

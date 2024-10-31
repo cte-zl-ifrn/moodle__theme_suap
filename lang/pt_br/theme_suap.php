@@ -83,5 +83,8 @@ $string['hero_button_text_desc'] = '';
 $string['hero_configtextarea_test'] = 'Texto do botão da seção de destaque';
 $string['hero_configtextarea_test_desc'] = '';
 
-// $string['pagination_secret'] = 'Segredo de paginação';
-// $string['pagination_secret_desc'] = 'Segredo para a paginação de cursos';
+$string['pagination_secret'] = 'Segredo de paginação';
+$string['pagination_secret_desc'] = 'É necessário criar um token na seção de web services do Moodle para dispositivos móveis';
+
+$string['frontpage_main_courses_title'] = 'Título da seção de cursos da página inicial';
+$string['frontpage_main_courses_title_desc'] = '';

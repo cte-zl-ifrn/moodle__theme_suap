@@ -35,6 +35,7 @@ class frontpage_settings_tab extends settings_page_tab {
         $this->add_setting_configtext('hero_fourth_column_text', 'Our user base is an exemplary showcase of our business functions and processes. Frameworks that support all users.');
 
         $this->add_setting_configtext('hero_button_text', 'Sobre nós');
+        $this->add_setting_configtext('frontpage_main_courses_title', 'Cursos abertos do IFRN');
 
         // $this->add_setting_configtext('footer_title', 'Moodle');
         // $this->add_setting_configtext('footer_support_button', 'Botão para o suporte');

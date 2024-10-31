@@ -84,5 +84,8 @@ $string['hero_button_text_desc'] = '';
 $string['hero_configtextarea_test'] = 'Hero configtextarea test';
 $string['hero_configtextarea_test_desc'] = '';
 
-// $string['pagination_secret'] = 'Pagination secret';
-// $string['pagination_secret_desc'] = 'Secret for course pagination';
+$string['pagination_secret'] = 'Pagination secret';
+$string['pagination_secret_desc'] = 'It is necessary to create a token in the web services section of Moodle for mobile devices';
+
+$string['frontpage_main_courses_title'] = 'Frontpage main courses title';
+$string['frontpage_main_courses_title_desc'] = '';
