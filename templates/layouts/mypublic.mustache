@@ -319,8 +319,12 @@
                             <h2>Certificados</h2>
                             {{#certificates}}
                                 <div class="cert-item">
-                                    
-                                    <a href="{{{link}}}">Baixar</a>
+                                    <img height="50" width="auto" src="{{config.wwwroot}}/theme/suap/pix/cert-preview.png">
+                                    <div class="cert-item-info">
+                                        <h3>{{name}}</h3>
+                                        <p>Emitido em: {{datereceived}}</p>
+                                        <a href="{{{link}}}">Baixar</a>
+                                    </div>
                                 
                                 </div>
                             {{/certificates}}

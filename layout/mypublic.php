@@ -166,17 +166,20 @@ $profile_picture->size = 50;
 $profile_picture_url = $profile_picture->get_url($PAGE)->out();
 $profile_picture_alt = $user->imagealt;
 
-// Get user certificates (plugin custom certificates)
-$certificates = $DB->get_records('customcert_issues', array('userid' => $id));
-$certificates_formated = array();
+// Get user certificates (plugin custom Certificates)
+$tool_certificates = $DB->get_records('tool_certificate_issues', array('userid' => $id));
 
-if (!empty($certificates)) {
-    foreach ($certificates as $cert) {
+// Get user certificates (plugin custom certificates)
+$custom_certificates = $DB->get_records('customcert_issues', array('userid' => $id));
+$custom_certificates_formated = array();
+
+if (!empty($custom_certificates)) {
+    foreach ($custom_certificates as $cert) {
         $certificate_name = $DB->get_field('customcert', 'name', array('id' => $cert->customcertid));
 
-        $certificates_formated[] = array(
+        $custom_certificates_formated[] = array(
             'certificateid' => $cert->customcertid,
-            'timeissued' => date('d/m/Y', $cert->timecreated),
+            'datereceived' => date('d/m/Y', $cert->timecreated),
             'name' => $certificate_name,
             'link' => new moodle_url('/mod/customcert/my_certificates.php', array(
                 'userid' => $id,
@@ -215,8 +218,8 @@ $templatecontext = [
     'userdescription' => $user->description,
     'userpictureurl' => $profile_picture_url,
     'userpicturealt' => $profile_picture_alt,
-    'hascertificates' => !empty($certificates),
-    'certificates' => $certificates_formated,
+    'hascertificates' => !empty($custom_certificates),
+    'certificates' => $custom_certificates_formated,
     'hasbadges' => !empty($badges),
     'badges' => $badges_formated,
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
