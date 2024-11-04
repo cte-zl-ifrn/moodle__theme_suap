@@ -80,3 +80,7 @@ $string['hero_fourth_column_text'] = 'Hero fourth column text';
 $string['hero_fourth_column_text_desc'] = '';
 $string['hero_button_text'] = 'Hero button text';
 $string['hero_button_text_desc'] = '';
+
+//Profile view
+$string['aboutme'] = 'About me';
+$string['certificates'] = 'Certificates';
