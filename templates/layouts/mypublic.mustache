@@ -317,17 +317,18 @@
                         {{#hascertificates}}
                         <div class="user-group-suap">
                             <h2>{{#str}} certificates, theme_suap {{/str}}</h2>
+                            <div class="cert-container">
                             {{#certificates}}
                                 <div class="cert-item">
-                                    <img height="50" width="auto" src="{{config.wwwroot}}/theme/suap/pix/cert-preview.png">
+                                    <img src="{{config.wwwroot}}/theme/suap/pix/cert-preview.png">
                                     <div class="cert-item-info">
                                         <h3>{{name}}</h3>
-                                        <p>{{#str}} dateawarded, badges {{/str}}: {{datereceived}}</p>
-                                        <a href="{{{link}}}">Baixar</a>
+                                        <p class="issued-date">{{#str}} dateawarded, badges {{/str}}: {{datereceived}}</p>
+                                        <a class="btn btn-tertiary" href="{{{link}}}">Abrir</a>
                                     </div>
-                                
                                 </div>
                             {{/certificates}}
+                            </div>
                         </div>
                         {{/hascertificates}}
 
