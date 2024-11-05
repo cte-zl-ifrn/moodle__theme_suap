@@ -170,18 +170,35 @@ $profile_picture->size = 50;
 $profile_picture_url = $profile_picture->get_url($PAGE)->out();
 $profile_picture_alt = $user->imagealt;
 
+$all_certificates = array();
+
 // Get user certificates (plugin custom Certificates)
 $tool_certificates = $DB->get_records('tool_certificate_issues', array('userid' => $id));
 
 // Get user certificates (plugin custom certificates)
 $custom_certificates = $DB->get_records('customcert_issues', array('userid' => $id));
-$custom_certificates_formated = array();
+
+if (!empty($tool_certificates)) {
+    foreach ($tool_certificates as $cert) {
+        $certificate_name = $DB->get_field('tool_certificate_templates', 'name', array('id' => $cert->id));
+        
+        $contextid = context_system::instance()->id;  // Obtém o contexto do sistema
+        $fileurl = moodle_url::make_pluginfile_url($contextid, 'tool_certificate', 'issues', $cert->id, '/', $cert->code . '.pdf', false);
+
+        $all_certificates[] = array(
+            'certificateid' => $cert->id,
+            'datereceived' => date('d/m/Y', $cert->timecreated),
+            'name' => $certificate_name,
+            'link' => $fileurl
+        );
+    }
+}
 
 if (!empty($custom_certificates)) {
     foreach ($custom_certificates as $cert) {
         $certificate_name = $DB->get_field('customcert', 'name', array('id' => $cert->customcertid));
 
-        $custom_certificates_formated[] = array(
+        $all_certificates[] = array(
             'certificateid' => $cert->customcertid,
             'datereceived' => date('d/m/Y', $cert->timecreated),
             'name' => $certificate_name,
@@ -193,6 +210,12 @@ if (!empty($custom_certificates)) {
         );
     }
 }
+
+// Ordena o array $all_certificates em ordem decrescente de 'datereceived'
+usort($all_certificates, function ($a, $b) {
+    return strtotime($b['datereceived']) - strtotime($a['datereceived']);
+});
+
 
 // Get user badges
 $badges = badges_get_user_badges($id);
@@ -223,7 +246,7 @@ $templatecontext = [
     'userpictureurl' => $profile_picture_url,
     'userpicturealt' => $profile_picture_alt,
     'hascertificates' => !empty($custom_certificates),
-    'certificates' => $custom_certificates_formated,
+    'certificates' => $all_certificates,
     'hasbadges' => !empty($badges),
     'badges' => $badges_formated,
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
