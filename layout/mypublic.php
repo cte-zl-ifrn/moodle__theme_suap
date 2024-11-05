@@ -164,6 +164,12 @@ if ($is_admin || $USER->id == $id) {
     $useremail = $user->email;
 }
 
+$edit_url = new moodle_url('/user/editadvanced.php', array(
+    'id' => $id,
+    'course' => $courseid,
+    'returnto' => 'profile'
+));
+
 // Get profile image and alternative text
 $profile_picture = new user_picture($user);
 $profile_picture->size = 50;
@@ -200,6 +206,7 @@ if (!empty($custom_certificates)) {
 
         $all_certificates[] = array(
             'certificateid' => $cert->customcertid,
+            'dateraw' => $cert->timecreated,
             'datereceived' => date('d/m/Y', $cert->timecreated),
             'name' => $certificate_name,
             'link' => new moodle_url('/mod/customcert/my_certificates.php', array(
@@ -211,9 +218,9 @@ if (!empty($custom_certificates)) {
     }
 }
 
-// Ordena o array $all_certificates em ordem decrescente de 'datereceived'
+// Ordena o array $all_certificates em ordem decrescente
 usort($all_certificates, function ($a, $b) {
-    return strtotime($b['datereceived']) - strtotime($a['datereceived']);
+    return $b['dateraw'] - $a['dateraw'];
 });
 
 
@@ -242,6 +249,7 @@ if (!empty($badges)) {
 $templatecontext = [
     'userfullname' => fullname($user),
     'useremail' => $useremail,
+    'editprofile' => $edit_url,
     'userdescription' => $user->description,
     'userpictureurl' => $profile_picture_url,
     'userpicturealt' => $profile_picture_alt,

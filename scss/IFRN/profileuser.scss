@@ -1,3 +1,6 @@
+.userprofile {
+    display: none;
+}
 .profile-view-suap {
     .user-title {
         font: var(--font-heading2);
@@ -5,6 +8,14 @@
     }
     p {
         font: var(--font-paragraph2);
+    }
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        .user-title {
+            margin-bottom: 0;
+        }
     }
     .user-group-suap {
         padding: 1rem;
@@ -45,7 +56,7 @@
         .cert-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1rem;
             .cert-item {
                 display: flex;
                 gap: 1rem;

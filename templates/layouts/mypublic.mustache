@@ -298,7 +298,13 @@
 
                     {{! New profile view }}
                     <div class="profile-view-suap">
-                        <h1 class="user-title">{{#str}}profile{{/str}}</h1>
+                        <div class="profile-header">
+                            <h1 class="user-title">{{#str}}profile{{/str}}</h1>
+                            <a class="btn btn-secondary" href="{{{editprofile}}}">
+                                <i class="fa-solid fa-pencil"></i>
+                                {{#str}}editmyprofile{{/str}}
+                            </a>
+                        </div>
                         <div class="user-group-suap contact-container">
                             <img src="{{ userpictureurl }}" alt="{{userpicturealt}}">
                             <div class="user-contacts">
