@@ -5,9 +5,10 @@ define([],
         const limit = 8;
         let totalCourses = 0;
 
-        async function loadCourses(page, limit, search = '') {
+        async function loadCourses(page, limit, search = '', workload = '', certificate = '', lang = '', learningpath = '') {
             try {
-                const response = await fetch(`${url}?page=${page}&limit=${limit}&search=${search}`)
+                const queryParams = `page=${page}&limit=${limit}&search=${search}&workload=${workload}&certificate=${certificate}&lang=${lang}&learningpath=${learningpath}`;
+                const response = await fetch(`${url}?${queryParams}`)
                     .catch(error => console.error('Error fetching courses:', error));
                 const {total, courses, baseurl} = await response.json();
                 totalCourses = total;
@@ -15,11 +16,26 @@ define([],
                 const courseArea = document.querySelector('.course-area');
                 courseArea.innerHTML = '';
 
+                console.log(courses);
+                
+
                 courses.forEach(course => {
                     const certificateArea = course.has_certificate !== "Sim" ? '' : `
                         <div class="course-certificate">
                             <p class="course-certificate-text">Certificado</p>
                             <span class="course-certificate-value"><img src="${baseurl}/theme/suap/pix/checkmark-circle-outline.svg" alt=""></span>
+                        </div>
+                    `;
+                    const langArea = !course.lang ? '' : `
+                        <div class="course-lang">
+                            <p class="course-lang-text">Idioma</p>
+                            <span class="course-lang-value">${selectLangFlag(course.lang)}</span> 
+                        </div>
+                    `;
+                    const workloadArea = !course.workload ? '' : `
+                        <div class="course-workload">
+                            <p class="course-workload-text">Carga Horária</p>
+                            <span class="course-workload-value">${course.workload + " horas"}</span>
                         </div>
                     `;
                     courseArea.innerHTML += `
@@ -30,15 +46,9 @@ define([],
                             <a class="course-category" href="${course.category_url}">${course.category_name}</a>
                             <a class="course-name" href="${baseurl}/course/view.php?id=${course.id}">${course.fullname}</a>
                             <div class="course-detail">
-                                <div class="course-workload">
-                                    <p class="course-workload-text">Carga Horária</p>
-                                    <span class="course-workload-value">${course.workload ? course.workload + " horas" : "Não definida"}</span>
-                                </div>
+                                ${workloadArea}
                                 ${certificateArea}
-                                <div class="course-lang">
-                                    <p class="course-lang-text">Idioma</p>
-                                    <span class="course-lang-value">${selectLangFlag(course.lang)}</span> 
-                                </div>
+                                ${langArea}
                             </div>
                         </div>
                     `;
@@ -139,6 +149,64 @@ define([],
             }
         }
 
+        function getFilter() {
+            const filters = {
+                workload: [],
+                certificate: [],
+                lang: [],
+                learningpath: []
+            };
+
+            const workloadCheckboxes = document.querySelectorAll('.filter-content-workload-column input[type="checkbox"]:checked');
+            workloadCheckboxes.forEach(checkbox => {
+                filters.workload.push(checkbox.value);
+            });
+            filters.workload = filters.workload.join(',');
+
+            const certificateCheckboxes = document.querySelectorAll('.filter-content-certificate-column input[type="checkbox"]:checked');
+            certificateCheckboxes.forEach(checkbox => {
+                filters.certificate.push(checkbox.value);
+            });
+            filters.certificate = filters.certificate.join(',');
+
+            const langCheckboxes = document.querySelectorAll('.filter-content-lang-column input[type="checkbox"]:checked');
+            langCheckboxes.forEach(checkbox => {
+                filters.lang.push(checkbox.value);
+            });
+            filters.lang = filters.lang.join(',');
+
+            const learningpathCheckboxes = document.querySelectorAll('.filter-content-learningpath-column input[type="checkbox"]:checked');
+            learningpathCheckboxes.forEach(checkbox => {
+                filters.learningpath.push(checkbox.value);
+            });
+            filters.learningpath = filters.learningpath.join(',');
+
+            return filters;
+        }
+
+        function updateFilterBadge() {
+            const filters = getFilter();
+            const totalFilters = [
+                ...filters.workload.split(','),
+                ...filters.certificate.split(','),
+                ...filters.lang.split(','),
+                ...filters.learningpath.split(',')
+            ].filter(Boolean).length;
+
+            const badge = document.querySelector('#filter-badge');
+            if (totalFilters > 0) {
+                badge.style.display = 'inline-block';
+                badge.textContent = totalFilters;
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function closeFilter() {
+            document.querySelector('#filter-area').style.display = 'none';
+            document.querySelector('#modal-overlay').style.display = 'none';
+        }
+
         document.querySelector('#prev-page').addEventListener('click', () => {
             if (currentPage > 0) {
                 currentPage--;
@@ -155,9 +223,31 @@ define([],
             }
         });
 
+        // TODO: Implementar paginação com os filtros aplicados
+        // document.querySelector('#prev-page').addEventListener('click', () => {
+        //     if (currentPage > 0) {
+        //         currentPage--;
+        //         const search = document.querySelector('#search').value;
+        //         const filters = getFilter();
+        //         loadCourses(currentPage, limit, search, filters.workload, filters.certificate, filters.lang, filters.learningpath);
+        //     }
+        // });
+
+        // document.querySelector('#next-page').addEventListener('click', () => {
+        //     if ((currentPage + 1) * limit < totalCourses) {
+        //         currentPage++;
+        //         const search = document.querySelector('#search').value;
+        //         const filters = getFilter();
+        //         loadCourses(currentPage, limit, search, filters.workload, filters.certificate, filters.lang, filters.learningpath);loadCourses(currentPage, limit);
+        //     } else {
+        //         console.log('No more courses to load');
+        //     }
+        // });
+
         document.querySelector('#search').addEventListener('input', () => {
             const search = document.querySelector('#search').value;
-            loadCourses(currentPage, limit, search);
+            const filters = getFilter();
+            loadCourses(currentPage, limit, search, filters.workload, filters.certificate, filters.lang, filters.learningpath);
         });
 
         document.querySelector('#filter-courses').addEventListener('click', () => {
@@ -166,13 +256,11 @@ define([],
         });
 
         document.querySelector('#close-filter').addEventListener('click', () => {
-            document.querySelector('#filter-area').style.display = 'none';
-            document.querySelector('#modal-overlay').style.display = 'none';
+            closeFilter();
         });
 
         document.querySelector('#modal-overlay').addEventListener('click', () => {
-            document.querySelector('#filter-area').style.display = 'none';
-            document.querySelector('#modal-overlay').style.display = 'none';
+            closeFilter();
         });
 
         document.querySelector('#clear-filter').addEventListener('click', () => {
@@ -184,34 +272,10 @@ define([],
         });
 
         document.querySelector('#apply-filter').addEventListener('click', () => {
-            const filters = {
-                workload: [],
-                certificate: {},
-                lang: {},
-                learningpath: []
-            };
-
-            const workloadCheckboxes = document.querySelectorAll('.filter-content-workload-column input[type="checkbox"]:checked');
-            workloadCheckboxes.forEach(checkbox => {
-                filters.workload.push(parseInt(checkbox.value));
-            });
-
-            const certificateCheckboxes = document.querySelectorAll('.filter-content-certificate-column input[type="checkbox"]:checked');
-            certificateCheckboxes.forEach(checkbox => {
-                filters.certificate[checkbox.value] = true;
-            });
-
-            const langCheckboxes = document.querySelectorAll('.filter-content-lang-column input[type="checkbox"]:checked');
-            langCheckboxes.forEach(checkbox => {
-                filters.lang[checkbox.value] = true;
-            });
-
-            const learningpathCheckboxes = document.querySelectorAll('.filter-content-learningpath-column input[type="checkbox"]:checked');
-            learningpathCheckboxes.forEach(checkbox => {
-                filters.learningpath.push(checkbox.value);
-            });
-
-            console.log('Filtros aplicados:', filters);
+            const filters = getFilter();
+            loadCourses(currentPage, limit, '', filters.workload, filters.certificate, filters.lang, filters.learningpath);
+            closeFilter()
+            //updateFilterBadge();
         });
 
         window.addEventListener('load', () => {
