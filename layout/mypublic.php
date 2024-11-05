@@ -160,6 +160,10 @@ if (empty($id)) {
 $user = core_user::get_user($id);
 // $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 
+if ($is_admin || $USER->id == $id) {
+    $useremail = $user->email;
+}
+
 // Get profile image and alternative text
 $profile_picture = new user_picture($user);
 $profile_picture->size = 50;
@@ -214,7 +218,7 @@ if (!empty($badges)) {
 
 $templatecontext = [
     'userfullname' => fullname($user),
-    'useremail' => $user->email,
+    'useremail' => $useremail,
     'userdescription' => $user->description,
     'userpictureurl' => $profile_picture_url,
     'userpicturealt' => $profile_picture_alt,
