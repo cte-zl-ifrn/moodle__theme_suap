@@ -159,9 +159,11 @@ if (empty($id)) {
 
 $user = core_user::get_user($id);
 // $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+$has_edit_button = false;
 
 if ($is_admin || $USER->id == $id) {
     $useremail = $user->email;
+    $has_edit_button = true;
 }
 
 $edit_url = new moodle_url('/user/editadvanced.php', array(
@@ -249,6 +251,7 @@ if (!empty($badges)) {
 $templatecontext = [
     'userfullname' => fullname($user),
     'useremail' => $useremail,
+    'haseditbutton' => $has_edit_button,
     'editprofile' => $edit_url,
     'userdescription' => $user->description,
     'userpictureurl' => $profile_picture_url,
