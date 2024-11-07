@@ -1,4 +1,4 @@
-define([], function () {
+define([["core_user/repository"]], function (RepositoryUser) {
     let url = '';
     let currentPage = 0;
     const limit = 8;
@@ -197,6 +197,22 @@ define([], function () {
         loadCourses();
         closeFilter();
         updateFilterBadge();
+    });
+
+    document.querySelector('.counter-toggler').addEventListener('click', () => {
+        const div = document.querySelector('#sidebar-area');
+        if (div.classList.contains('sidebar-opened')) {
+            div.className = 'sidebar-closed';
+        } else {
+            div.className = 'sidebar-opened';
+        }
+
+        // TODO: Salvar preferência do usuário corretamente
+        // if(body.classList.contains('counter-close')) {
+        //     RepositoryUser.setUserPreference('theme_suap_counter_close', true);
+        // } else {
+        //     RepositoryUser.setUserPreference('theme_suap_counter_close', false);
+        // }
     });
 
     window.addEventListener('load', correctMainPadding);

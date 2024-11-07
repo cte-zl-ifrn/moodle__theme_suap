@@ -2,6 +2,18 @@ div[role="main"] {
     padding: 0;
 }
 
+.sidebar-opened {
+    margin-left: calc(var(--counter-default) - 4px) !important;
+}
+
+.sidebar-closed {
+    margin-left: calc(var(--counter-close) - 4px) !important;
+}
+
+.show-drawer-right {
+    margin-right: 0 !important;
+}
+
 .frontpage-menu {
     display: flex;
     justify-content: center;
