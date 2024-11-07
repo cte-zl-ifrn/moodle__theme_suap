@@ -14,9 +14,9 @@
             <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
                 <div class="frontpage-navbar-content">
                     <div class="frontpage-navbar-start-buttons">
-                        {{! se a tag "a" não tiver classe o links tem um efeito no top e no bottom quando clicado }}
-                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_first_button}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_second_button}}}</a>
+                        {{! se a tag "a" não tiver classe, os links tem um efeito no top e no bottom quando clicado }}
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_buttons_configtextarea.0.label}}}</a>
+                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_buttons_configtextarea.1.label}}}</a>
                     </div>
                     <div class="frontpage-navbar-end-buttons">
                         <select>
@@ -84,25 +84,37 @@
                         </div>
                         <div class="frontpage-hero-main-header-content">
                             <div class="frontpage-hero-main-header-title">
-                                <p>Cursos abertos do IFRN</p>
+                                <p>{{{frontpage_main_courses_title}}}</p>
                             </div>
 
-                            {{! <p>Cursos abertos do IFRN</p> }}
                             <div class=frontpage-hero-main-header-filter>
                                 <div>
                                     <i class="fa fa-search"></i>
-                                    <input type="text" placeholder="Pesquisar">
+                                    <input type="text" placeholder="Pesquisar" id="search">
                                 </div>
-                                <button class="primary-button">Filtrar</button>
+                                <button id="filter-courses" class="primary-button">Filtrar</button>
                             </div>
 
                             <div class="frontpage-hero-main-header-title aux">
-                                <p>Cursos abertos do IFRN</p>
+                                <p>{{{frontpage_main_courses_title}}}</p>
                             </div>
                         </div>
                     </div>
 
                     {{{ output.main_content }}}
+
+                    <div class="pagination">
+                        <button id="prev-page" class="pagination-button" page="0">
+                            <img src="{{config.wwwroot}}/theme/suap/pix/arrow-back-outline.svg" alt="Anterior">
+                            Anterior
+                        </button>
+                        {{! <span id="page-info"></span> }}
+                        <span id="pagination-numbers"></span>
+                        <button id="next-page" class="pagination-button" page="0">
+                            Próximo
+                            <img src="{{config.wwwroot}}/theme/suap/pix/arrow-forward-outline.svg" alt="Próximo">
+                        </button>
+                    </div>
                 </div>
             </section>
             {{! <div id="page-content" class="d-print-block main-inner bg-green">
@@ -111,18 +123,101 @@
             </div> }}
         </div>
         
-        {{! {{> theme_boost/footer }}
+        {{> theme_boost/footer }}
     </div>
     
-    {{{ output.standard_after_main_region_html }}}
+    <div class="frontpage-footer"> 
+        <div class="frontpage-footer-content">
+            <div class="frontpage-footer-content-first-section">
+                <p class="frontpage-footer-title">{{{sitename}}}</p>
+                <a class="frontpage-footer-suport-button" href="{{config.wwwroot}}">Botão para o suporte</a>
+                <p>Texto sobre as redes sociais do IFRN ZL</p>
+                <div class="frontpage-footer-socialmedia">
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="{{config.wwwroot}}/theme/suap/pix/logo-facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <img src="{{config.wwwroot}}/theme/suap/pix/logo-instagram.svg" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+            <div class="frontpage-footer-content-second-section">
+                <div class="frontpage-footer-content-second-section-column">
+                    <p>Sobre</p>
+                    <p>Item One</p>
+                    <p>Item Two</p>
+                    <p>Item Three</p>
+                    <p>Item Four</p>
+                </div>
+                <div class="frontpage-footer-content-second-section-column">
+                    <p>Ambientes</p>
+                    <p>Item One</p>
+                    <p>Item Two</p>
+                    <p>Item Three</p>
+                    <p>Item Four</p>
+                </div>
+                <div class="frontpage-footer-content-second-section-column">
+                    <p>Contato</p>
+                    <p>Item One</p>
+                    <p>Item Two</p>
+                    <p>Item Three</p>
+                    <p>Item Four</p>
+                </div>
+            </div>
+        </div>
+        <div class="frontpage-footer-credits">
+            <p>Tema: © 2024 IFRN/ZL - DEAD. All Rights Reserved.</p>
+            <div class="frontpage-footer-credits-links">
+                <a href="{{config.wwwroot}}">Moodle</a>
+                <a href="{{config.wwwroot}}">Ajuda</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="filter-area" id="filter-area">
+        <div class="filter-header">
+            <span class="filter-header-title">Filtros</span>
+            <button id="close-filter" class="filter-header-close-button">
+                <img src="{{config.wwwroot}}/theme/suap/pix/close.svg" alt="Fechar">
+            </button>
+        </div>
+        <div class="filter-content">
+            <div class="filter-content-workload-column">
+                <h5 class="filter-content-column-title">Carga Horária</h5>
+                <label><input type="checkbox" value="10"> até 10 horas</label>
+                <label><input type="checkbox" value="20"> até 20 horas</label>
+                <label><input type="checkbox" value="30"> até 30 horas</label>
+                <label><input type="checkbox" value="40"> até 40 horas</label>
+                <label><input type="checkbox" value="50"> até 50 horas</label>
+                <label><input type="checkbox" value="60"> até 60 horas</label>
+                <label><input type="checkbox" value="70"> até 70 horas</label>
+                <label><input type="checkbox" value="80"> até 80 horas</label>
+            </div>
+            <div class="filter-content-certificate-column">
+                <h5 class="filter-content-column-title">Certificado</h5>
+                <label><input type="checkbox" value="Sim"> Sim</label>
+                <label><input type="checkbox" value="Não"> Não</label>
+            </div>
+            <div class="filter-content-lang-column">
+                <h5 class="filter-content-column-title">Idioma</h5>
+                <label><input type="checkbox" value="pt_br"> Português</label>
+                <label><input type="checkbox" value="es"> Espanhol</label>
+                <label><input type="checkbox" value="en"> Inglês</label>
+            </div>
+            <div class="filter-content-learningpath-column">
+                <h5 class="filter-content-column-title">Trilha</h5>
+                <label><input type="checkbox" value="basico"> Básico</label>
+                <label><input type="checkbox" value="intermediario"> Intermediário</label>
+                <label><input type="checkbox" value="avancado"> Avançado</label>
+            </div>
+        </div>
+        <div class="filter-footer">
+            <button id="clear-filter" class="filter-footer-clear-button">Limpar Seleção</button>
+            <button id="apply-filter" class="filter-footer-apply-button">Aplicar Filtros</button>
+    </div>
 </div>
 
 </body>
 </html>
-{{#js}}
-M.util.js_pending('theme_boost/loader');
-require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
-    Drawer.init();
-    M.util.js_complete('theme_boost/loader');
-});
-{{/js}}
