@@ -401,6 +401,19 @@ ul, ol {
     }
 }
 
+.btn-tertiary {
+    color: var(--secondary-dark);
+    background-color: var(--secondary-light);
+    font: var(--font-heading5);
+    border-radius: .5rem;
+    border: none;
+    &:hover {
+        background-color: var(--secondary-dark);
+        color: var(--secondary-light);
+    }
+
+}
+
 .btn-link {
     font: var(--font-heading4);
     color: var(--primary);

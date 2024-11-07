@@ -88,3 +88,7 @@ $string['pagination_secret_desc'] = 'É necessário criar um token na seção de
 
 $string['frontpage_main_courses_title'] = 'Título da seção de cursos da página inicial';
 $string['frontpage_main_courses_title_desc'] = '';
+
+//Profile view
+$string['aboutme'] = 'Sobre mim';
+$string['certificates'] = 'Certificados';

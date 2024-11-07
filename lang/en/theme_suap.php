@@ -89,3 +89,7 @@ $string['pagination_secret_desc'] = 'It is necessary to create a token in the we
 
 $string['frontpage_main_courses_title'] = 'Frontpage main courses title';
 $string['frontpage_main_courses_title_desc'] = '';
+
+//Profile view
+$string['aboutme'] = 'About me';
+$string['certificates'] = 'Certificates';
