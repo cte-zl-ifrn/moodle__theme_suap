@@ -7,6 +7,8 @@ use html_writer;
 use stdClass;
 use core_course\external\course_summary_exporter;
 
+use core_course\customfield\course_handler;
+
 class course_renderer extends \core_course_renderer {
     public function frontpage() {
         global $CFG, $SITE;
@@ -77,6 +79,20 @@ class course_renderer extends \core_course_renderer {
     public function course_info_box(stdClass $course) {
         global $OUTPUT, $DB;
 
+        // Pega os custom fields que tiver no curso
+        $handler = course_handler::create();
+        $datas = $handler->get_instance_data($course->id, true);
+
+        foreach ($datas as $data) {
+            if (empty($data->get_value())) {
+                continue;
+            }
+            // $cat = $data->get_field()->get_category()->get('name');
+            $metadata[$data->get_field()->get('shortname')] = $data->get_value();
+        }
+        // var_dump($metadata);
+        // exit;
+
         $categoryid = $course->category;
         $category = $DB->get_record('course_categories', ['id' => $categoryid]);
 
@@ -109,6 +125,7 @@ class course_renderer extends \core_course_renderer {
             'category' => $category->name,
             'imageurl' => $imageurl,
             'self_enrolment' => $self_enrolment,
+            'workload' => $metadata['carga_horaria']
         ];
         echo $OUTPUT->render_from_template('theme_suap/enroll_course', $templatecontext);
     }
