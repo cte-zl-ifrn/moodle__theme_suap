@@ -158,12 +158,22 @@ define([["core_user/repository"]], function (RepositoryUser) {
     function closeFilter() {
         document.querySelector('#filter-area').style.display = 'none';
         document.querySelector('#modal-overlay').style.display = 'none';
+        toggleScroll();
     }
 
     function correctMainPadding() {
         const main = document.querySelector('[role="main"]');
         main.style.paddingLeft = '0';
         main.style.paddingRight = '0';
+    }
+
+    function toggleScroll() {
+        const body = document.querySelector('body');
+        if (body.style.overflow === 'hidden') {
+            body.style.overflow = 'auto';
+        } else {
+            body.style.overflow = 'hidden';
+        }
     }
 
     searchInput.addEventListener('input', loadCourses);
@@ -185,6 +195,7 @@ define([["core_user/repository"]], function (RepositoryUser) {
     document.querySelector('#filter-courses').addEventListener('click', () => {
         document.querySelector('#filter-area').style.display = 'block';
         document.querySelector('#modal-overlay').style.display = 'block';
+        toggleScroll();
     });
 
     document.querySelector('#clear-filter').addEventListener('click', () => {
@@ -199,12 +210,26 @@ define([["core_user/repository"]], function (RepositoryUser) {
         updateFilterBadge();
     });
 
-    document.querySelector('.counter-toggler').addEventListener('click', () => {
+    document.querySelector('#close-filter').addEventListener('click', closeFilter);
+
+    document.querySelector('#modal-overlay').addEventListener('click', closeFilter);
+
+    document.querySelector('.counter-toggler')?.addEventListener('click', () => {
         const div = document.querySelector('#sidebar-area');
-        if (div.classList.contains('sidebar-opened')) {
-            div.className = 'sidebar-closed';
+        const footer = document.querySelector('.frontpage-footer');
+        const navbar = document.querySelector('#navbar');
+        if (div.classList.contains('content-when-sidebar-opened')) {
+            div.className = 'content-when-sidebar-closed';
+            footer.classList.remove('footer-when-sidebar-opened');
+            footer.classList.add('footer-when-sidebar-closed');
+            navbar.classList.remove('navbar-when-sidebar-opened');
+            navbar.classList.add('navbar-when-sidebar-closed');
         } else {
-            div.className = 'sidebar-opened';
+            div.className = 'content-when-sidebar-opened';
+            footer.classList.remove('footer-when-sidebar-closed');
+            footer.classList.add('footer-when-sidebar-opened');
+            navbar.classList.remove('navbar-when-sidebar-closed');
+            navbar.classList.add('navbar-when-sidebar-opened');
         }
 
         // TODO: Salvar preferência do usuário corretamente

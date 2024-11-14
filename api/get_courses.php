@@ -12,14 +12,13 @@ $certificate = optional_param('certificate', '', PARAM_TEXT);
 $lang = optional_param('lang', '', PARAM_TEXT);
 $learningpath = optional_param('learningpath', '', PARAM_TEXT);
 
-
 // Nega requisições que não sejam internas
-// $host = $_SERVER['HTTP_HOST'];
-// $referer = isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER']) : null;
-// if (!$referer || $referer['host'] !== $host) {
-//     echo json_encode(['error' => 'Access denied.']);
-//     die;
-// }
+$host = $_SERVER['HTTP_HOST'];
+$referer = isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER']) : null;
+if (!$referer || $referer['host'] !== $host) {
+    echo json_encode(['error' => 'Access denied.']);
+    die;
+}
 
 $categories_records = $DB->get_records('course_categories', null, '', 'id, name');
 $categories = [];
@@ -31,27 +30,37 @@ foreach ($categories_records as $category) {
 }
 
 $sql_conditions = [];
+$params = [];
 
 if (!empty($query)) {
-    $sql_conditions[] = "fullname LIKE '%$query%'";
+    $sql_conditions[] = "fullname LIKE :query";
+    $params['query'] = '%' . $query . '%';
 }
 
+// TODO: Validar se lang é um valor válido entre os idiomas disponíveis
 if (!empty($lang)) {
     $lang_values = explode(',', $lang);
-    $lang_query = "lang IN (";
-    foreach ($lang_values as $index => $value) {
-        if ($index > 0) {
-            $lang_query .= ",";
-        }
-        $lang_query .= "'$value'";
-    }
-    $lang_query .= ") ";
-    $sql_conditions[] = $lang_query;
+    list($lang_query, $lang_params) = $DB->get_in_or_equal($lang_values, SQL_PARAMS_NAMED, 'lang');
+    $sql_conditions[] = "lang $lang_query";
+    $params = array_merge($params, $lang_params);
 }
+
+// TODO: Validar workloads
 
 if (!empty($learningpath)) {
     $learningpath_values = explode(',', $learningpath);
-    // TODO: Implementar a lógica para filtrar por trilha de aprendizagem
+
+    foreach ($learningpath_values as $value) {
+        if (empty($value) || !is_numeric($value) || $value <= 0) {
+            header("HTTP/1.1 400 Bad Request");
+            echo json_encode(["error" => "Parâmetro 'learningpath' inválido. Certifique-se de que os valores são numéricos e estão bem formatados."]);
+            exit;
+        }
+    }
+
+    list($learningpath_query, $learningpath_params) = $DB->get_in_or_equal($learningpath_values, SQL_PARAMS_NAMED, 'learningpath');
+    $sql_conditions[] = "id IN (SELECT courseid FROM {suap_learning_path_course} WHERE learningpathid $learningpath_query)";
+    $params = array_merge($params, $learningpath_params);
 }
 
 $sql = "
@@ -60,8 +69,8 @@ FROM {course}
 WHERE visible = 1 AND id != 1" . (!empty($sql_conditions) ? ' AND ' . implode(' AND ', $sql_conditions) : '') . "
 ORDER BY id";
 
-
-$courses = $DB->get_records_sql($sql);
+// Executa a consulta de forma segura
+$courses = $DB->get_records_sql($sql, $params);
 
 $courses_response = [];
 foreach ($courses as $course) {
