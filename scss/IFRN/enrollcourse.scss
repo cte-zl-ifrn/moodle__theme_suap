@@ -1,0 +1,73 @@
+.path-enrol {
+    #page-header {
+        display: none;
+    }
+    
+    #region-main [role="main"] {
+
+        > h2:not([class]) {
+            display: none;
+        }
+        > .generalbox > form {
+            display: none;
+        }
+
+    }
+}
+
+.enroll-header-bg {
+    // background-color: var(--primary-light);
+    width: 100%;
+    left: 0;
+}
+
+.enroll-header {
+    max-width: var(--max-width-layout);
+    padding-block: 2rem;
+    margin: 0 auto;
+    // padding-inline: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    .header-info {
+        max-width: 677px;
+        .enroll-tag {
+            display: inline-block;
+            font: var(--font-heading5);
+            padding: .25rem .4rem; //4px 8px
+            border-radius: 32px;
+            background-color: var(--success-light);
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font: var(--font-heading1);
+            margin-bottom: 1.5rem;
+        }
+        .header-topics {
+            display: flex;
+            gap: 2rem;
+            i {
+                color: var(--secondary);
+            }
+        }
+    }
+    .header-cta {
+        max-width: 265px;
+        background-color: var(--general-white);
+        border-radius: 1rem;
+        overflow: hidden;
+        // background-color: #CEFDEF66;
+        background-color: var(--general-white);
+        img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .header-cta-button {
+            padding: 1.5rem 1rem;
+        }
+        .btn-tertiary {
+            width: 100%;  
+        }
+    }
+}

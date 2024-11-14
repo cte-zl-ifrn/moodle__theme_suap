@@ -1,0 +1,58 @@
+<div class="enroll-header-bg">
+
+        <div class="enroll-header">
+            <div class="header-info">
+                <span class="enroll-tag">{{category}}</span>
+                <h1>{{fullcoursename}}</h1>
+                <div class="header-topics">
+                    <div class="topic-item">
+                        <i class="fa-regular fa-clock"></i>
+                        35 horas
+                    </div>
+                    <div class="topic-item">
+                        <i class="fa-regular fa-circle-check"></i>
+                        Emite certificado
+                    </div>
+                    <div class="topic-item">
+                        <i class="fa-regular fa-clock"></i>
+                        Idioma português
+                    </div>
+                </div>
+            </div>
+            <div class="header-cta">
+                <img src="{{imageurl}}">
+                <div class="header-cta-button">
+                {{#self_enrolment}}
+                    <form autocomplete="off" action="{{{wwwroot}}}/enrol/index.php" method="post" accept-charset="utf-8" class="mform">
+                        <input type="hidden" name="id" value="{{self_enrolment.id}}" />
+                        <input type="hidden" name="instance" value="{{self_enrolment.instance}}" />
+                        <input type="hidden" name="sesskey" value="{{self_enrolment.sesskey}}" />
+                        <input type="hidden" name="_qf__7_enrol_self_enrol_form" value="1" />
+                        <input type="hidden" name="mform_isexpanded_id_selfheader" value="1" />
+
+                        
+                        {{^require_password}}
+                            <div>{{#str}}nopassword, enrol_self{{/str}}</div>
+                        {{/require_password}}
+                        {{#require_password}}
+                            <label for="enrolpassword" class="d-inline word-break">Enrolment key</label>
+                            <input type="password" class="form-control" name="enrolpassword" id="enrolpassword" value="" autocomplete="new-password">
+                        {{/require_password}}
+                        
+
+                        <div class="mt-3">
+                            <input type="submit" class="btn btn-tertiary" name="submitbutton" value="{{#str}} enrolme, enrol_self {{/str}}">
+                        </div>
+                    </form>
+                {{/self_enrolment}}
+                </div>              
+            </div>
+        </div>      
+</div>
+
+{{#summary}}
+<h2 class="enroll-title">Visão Geral</h2>
+<p>
+    {{summary}}
+</p>
+{{/summary}}

@@ -133,7 +133,7 @@
                             </a>
                         </div>
                         <ul class="drawer-list">
-                            {{> core/user_menu }}
+                            {{> core/user_action_menu_items }}
                         </ul>
                                 
                     </div>
@@ -261,7 +261,7 @@
     <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">   
         <div class="max-width-suap">
         
-            {{{ output.full_header }}}
+            {{{! output.full_header }}}
             {{#secondarymoremenu}}
                 <div class="secondary-navigation d-print-none">
                     {{> core/moremenu}}
@@ -270,33 +270,103 @@
 
             <div id="page-content" class="pb-3 d-print-block">
             
-                <div id="region-main-box">
-                    {{#hasregionmainsettingsmenu}}
-                    <div id="region-main-settings-menu" class="d-print-none">
-                        <div> {{{ regionmainsettingsmenu }}} </div>
-                    </div>
-                    {{/hasregionmainsettingsmenu}}
-                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
+                {{! <div id="region-main-box"> }}
 
-                        {{#hasregionmainsettingsmenu}}
-                            <div class="region_main_settings_menu_proxy"></div>
-                        {{/hasregionmainsettingsmenu}}
-                        {{{ output.course_content_header }}}
-                        {{#headercontent}}
-                            {{> core/activity_header }}
-                        {{/headercontent}}
-                        {{#overflow}}
-                            <div class="container-fluid tertiary-navigation">
-                                <div class="navitem">
-                                    {{> core/url_select}}
-                                </div>
-                            </div>
-                        {{/overflow}}
-                        {{{ output.main_content }}}
-                        {{{ output.activity_navigation }}}
-                        {{{ output.course_content_footer }}}
-                    </section>
+                {{#hasregionmainsettingsmenu}}
+                <div id="region-main-settings-menu" class="d-print-none">
+                    <div> {{{ regionmainsettingsmenu }}} </div>
                 </div>
+                {{/hasregionmainsettingsmenu}}
+
+                <section id="region-main" aria-label="{{#str}}content{{/str}}">
+
+                    {{#hasregionmainsettingsmenu}}
+                        <div class="region_main_settings_menu_proxy"></div>
+                    {{/hasregionmainsettingsmenu}}
+                    {{{ output.course_content_header }}}
+                    {{#headercontent}}
+                        {{> core/activity_header }}
+                    {{/headercontent}}
+                    {{#overflow}}
+                        <div class="container-fluid tertiary-navigation">
+                            <div class="navitem">
+                                {{> core/url_select}}
+                            </div>
+                        </div>
+                    {{/overflow}}
+
+
+                    {{! New profile view }}
+                    <div class="profile-view-suap">
+                        <div class="profile-header">
+                            <h1 class="user-title">{{#str}}profile{{/str}}</h1>
+                            {{#haseditbutton}}
+                            <a class="btn btn-secondary" href="{{{editprofile}}}">
+                                <i class="fa-solid fa-pencil"></i>
+                                {{#str}}editmyprofile{{/str}}
+                            </a>
+                            {{/haseditbutton}}
+                        </div>
+                        <div class="user-group-suap contact-container">
+                            <img src="{{ userpictureurl }}" alt="{{userpicturealt}}">
+                            <div class="user-contacts">
+                                <h2 class="user-title">{{userfullname}}</h2>
+                                <p class="user-role">{{ rolename }}</p>
+                                <span class="user-mail">{{ useremail }}</span>
+                            </div>
+                        </div>
+                        {{#userdescription}}
+                        <div class="user-group-suap aboutme-container">
+                            <h2 class="aboutme-title">{{#str}} aboutme, theme_suap {{/str}}</h2>                                                        
+                            <p>{{{ userdescription }}}</p>
+                        </div>
+                        {{/userdescription}}   
+
+                        {{#hascertificates}}
+                        <div class="user-group-suap">
+                            <h2>{{#str}} certificates, theme_suap {{/str}}</h2>
+                            <div class="cert-container">
+                            {{#certificates}}
+                                <div class="cert-item">
+                                    <img src="{{config.wwwroot}}/theme/suap/pix/cert-preview.png">
+                                    <div class="cert-item-info">
+                                        <h3>{{name}}</h3>
+                                        <p class="issued-date">{{#str}} dateawarded, badges {{/str}}: {{datereceived}}</p>
+                                        <a class="btn btn-tertiary" href="{{{link}}}">Abrir</a>
+                                    </div>
+                                </div>
+                            {{/certificates}}
+                            </div>
+                        </div>
+                        {{/hascertificates}}
+
+                        {{#hasbadges}}
+                        <div class="user-group-suap">
+                            <h2 class="user-title">{{#str}} badges, badges {{/str}}</h2>
+                            <div class="badges-container">
+                            {{#badges}}
+                                <a title="{{name}}" href="{{link}}" class="badge-item">
+                                    <img src="{{imageurl}}">                                    
+                                    <h3 class="badge-title">{{name}}</h3>
+                                </a>
+                            {{/badges}}
+                            </div>
+                        </div>
+                        {{/hasbadges}}
+
+                    </div>
+
+
+
+
+
+                    {{{ output.main_content }}}
+
+                    {{{ output.activity_navigation }}}
+                    {{{ output.course_content_footer }}}
+                </section>
+
+                {{! </div> }}
             </div>
             {{> theme_boost/footer }}
         </div>

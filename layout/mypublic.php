@@ -119,21 +119,147 @@ $items_theme_suap = [];
 // Adicionar condicionalmente os itens de administrador
 if ($is_admin) {
     $items_theme_suap[] = [
+        'id' => 'admin_item_1',
+        'class' => 'the-last',
         'link' => [
             'title' => 'Admin',
             'url' => $CFG->wwwroot . '/admin/search.php',
+            'pixicon' => 't/admin'
         ]
     ];
 
     $items_theme_suap[] = [
+        'id' => 'admin',
+        'class' => 'the-last',
         'link' => [
             'title' => 'Courses',
             'url' => $CFG->wwwroot . '/my/courses.php',
+            'pixicon' => 't/courses'
         ]
     ];
 }
 
+// require_once("../config.php");
+// require_once($CFG->dirroot.'/user/profile/lib.php');
+// require_once($CFG->dirroot.'/user/lib.php');
+// require_once($CFG->libdir . '/filelib.php');
+require_once($CFG->libdir . '/badgeslib.php');
+
+global $DB;
+
+$id             = optional_param('id', 0, PARAM_INT); // User id.
+$courseid       = optional_param('course', SITEID, PARAM_INT); // course id (defaults to Site).
+// $showallcourses = optional_param('showallcourses', 0, PARAM_INT);
+
+// See your own profile by default.
+if (empty($id)) {
+    require_login();
+    $id = $USER->id;
+}
+
+$user = core_user::get_user($id);
+// $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+$has_edit_button = false;
+
+if ($is_admin || $USER->id == $id) {
+    $useremail = $user->email;
+    $has_edit_button = true;
+}
+
+$edit_url = new moodle_url('/user/editadvanced.php', array(
+    'id' => $id,
+    'course' => $courseid,
+    'returnto' => 'profile'
+));
+
+// Get profile image and alternative text
+$profile_picture = new user_picture($user);
+$profile_picture->size = 50;
+$profile_picture_url = $profile_picture->get_url($PAGE)->out();
+$profile_picture_alt = $user->imagealt;
+
+$all_certificates = array();
+
+// Get user certificates (plugin custom Certificates)
+$tool_certificates = $DB->get_records('tool_certificate_issues', array('userid' => $id));
+
+// Get user certificates (plugin custom certificates)
+$custom_certificates = $DB->get_records('customcert_issues', array('userid' => $id));
+
+if (!empty($tool_certificates)) {
+    foreach ($tool_certificates as $cert) {
+        $certificate_name = $DB->get_field('tool_certificate_templates', 'name', array('id' => $cert->id));
+        
+        $contextid = context_system::instance()->id;  // Obtém o contexto do sistema
+        $fileurl = moodle_url::make_pluginfile_url($contextid, 'tool_certificate', 'issues', $cert->id, '/', $cert->code . '.pdf', false);
+
+        $all_certificates[] = array(
+            'certificateid' => $cert->id,
+            'datereceived' => date('d/m/Y', $cert->timecreated),
+            'name' => $certificate_name,
+            'link' => $fileurl
+        );
+    }
+}
+
+if (!empty($custom_certificates)) {
+    foreach ($custom_certificates as $cert) {
+        $certificate_name = $DB->get_field('customcert', 'name', array('id' => $cert->customcertid));
+
+        $all_certificates[] = array(
+            'certificateid' => $cert->customcertid,
+            'dateraw' => $cert->timecreated,
+            'datereceived' => date('d/m/Y', $cert->timecreated),
+            'name' => $certificate_name,
+            'link' => new moodle_url('/mod/customcert/my_certificates.php', array(
+                'userid' => $id,
+                'certificateid' => $cert->customcertid,
+                'downloadcert' => 1
+            ))
+        );
+    }
+}
+
+// Ordena o array $all_certificates em ordem decrescente
+usort($all_certificates, function ($a, $b) {
+    return $b['dateraw'] - $a['dateraw'];
+});
+
+
+// Get user badges
+$badges = badges_get_user_badges($id);
+$badges_formated = array();
+
+if (!empty($badges)) {
+    foreach ($badges as $badge) {        
+        $badgeObj = new badge($badge->id);
+        $badge_context = $badgeObj->get_context();
+        $imageurl = moodle_url::make_pluginfile_url($badge_context->id, 'badges', 'badgeimage', $badge->id, '/', 'f1', FALSE); 
+        
+        $badge_link = new moodle_url('/badges/badge.php', ['hash' => $badge->uniquehash]);
+
+        $badges_formated[] = array(
+            'name' => $badge->name,
+            'description' => $badge->description,
+            'datereceived' => date('d/m/Y', $badge_issued->dateissued),
+            'imageurl' => $imageurl,
+            'link' => $badge_link
+        );
+    }
+}
+
 $templatecontext = [
+    'userfullname' => fullname($user),
+    'useremail' => $useremail,
+    'haseditbutton' => $has_edit_button,
+    'editprofile' => $edit_url,
+    'userdescription' => $user->description,
+    'userpictureurl' => $profile_picture_url,
+    'userpicturealt' => $profile_picture_alt,
+    'hascertificates' => !empty($custom_certificates),
+    'certificates' => $all_certificates,
+    'hasbadges' => !empty($badges),
+    'badges' => $badges_formated,
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
     'sidepreblocks' => $blockshtml,
@@ -162,4 +288,4 @@ $templatecontext = [
     'getUserPreference' => $getUserPreference
     
 ];
-echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
+echo $OUTPUT->render_from_template('theme_suap/layouts/mypublic', $templatecontext);

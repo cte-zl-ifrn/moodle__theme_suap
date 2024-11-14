@@ -88,10 +88,12 @@ $string['pagination_secret_desc'] = 'É necessário criar um token na seção de
 
 $string['frontpage_main_courses_title'] = 'Título da seção de cursos da página inicial';
 $string['frontpage_main_courses_title_desc'] = '';
-
 $string['frontpage_buttons_configtextarea_when_user_logged'] = 'Configuração dos botões da página inicial quando o usuário está logado';
 $string['frontpage_buttons_configtextarea_when_user_logged_desc'] = 'Apague o trecho (/n) e pressione "Enter" para aplicar a quebra de linha';
 $string['frontpage_button_courses'] = 'Cursos';
 $string['frontpage_button_courses_desc'] = '';
 $string['frontpage_button_learningpaths'] = 'Trilhas';
 $string['frontpage_button_learningpaths_desc'] = '';
+
+$string['aboutme'] = 'Sobre mim';
+$string['certificates'] = 'Certificados';

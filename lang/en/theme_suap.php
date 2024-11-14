@@ -89,10 +89,13 @@ $string['pagination_secret_desc'] = 'It is necessary to create a token in the we
 
 $string['frontpage_main_courses_title'] = 'Frontpage main courses title';
 $string['frontpage_main_courses_title_desc'] = '';
-
 $string['frontpage_buttons_configtextarea_when_user_logged'] = 'Frontpage buttons configuration when user is logged';
 $string['frontpage_buttons_configtextarea_when_user_logged_desc'] = 'Delete the (/n) snippet and press "Enter" to apply the line break';
 $string['frontpage_button_courses'] = 'Courses';
 $string['frontpage_button_courses_desc'] = '';
 $string['frontpage_button_learningpaths'] = 'Learning paths';
 $string['frontpage_button_learningpaths_desc'] = '';
+
+$string['aboutme'] = 'About me';
+$string['certificates'] = 'Certificates';
+
