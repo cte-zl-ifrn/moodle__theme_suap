@@ -9,6 +9,8 @@ require_once($CFG->dirroot . '/course/lib.php');
 
 require_once($CFG->dirroot . '/theme/suap/lib.php');
 
+global $DB;
+
 // require_once(__DIR__ . '/../../config.php');
 
 // Add block button in editing mode.
@@ -79,22 +81,26 @@ $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 
 $conf = get_config('theme_suap');
 $frontpage_buttons_configtextarea = parse_configtextarea_string($conf->frontpage_buttons_configtextarea);
+$frontpage_buttons_configtextarea_when_user_logged = parse_configtextarea_string($conf->frontpage_buttons_configtextarea_when_user_logged);
 
 $courses_request_url = $CFG->wwwroot . '/theme/suap/api/get_courses.php';
 $PAGE->requires->js_call_amd('theme_suap/frontpage_courses', 'init', [$courses_request_url]);
 
-// $courses_request_url = $CFG->wwwroot . '/webservice/rest/server.php';
-// $PAGE->requires->js_call_amd(
-//     'theme_suap/helloworld',
-//     'init',
-//     [$courses_request_url, $conf->pagination_secret]
-// );
-
+$learningpaths_records = $DB->get_records('suap_learning_path', null, '', 'id, name');
+$learningpaths = [];
+foreach ($learningpaths_records as $learningpath) {
+    $learningpath_obj = new stdClass();
+    $learningpath_obj->id = $learningpath->id;
+    $learningpath_obj->name = $learningpath->name;
+    $learningpaths[] = $learningpath_obj;
+}
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
     'sidepreblocks' => $blockshtml,
+    'isloggedin' => isloggedin(),
+    'userid' => $USER->id,
     'hasblocks' => $hasblocks,
     'bodyattributes' => $bodyattributes,
     'courseindexopen' => $courseindexopen,
@@ -129,7 +135,9 @@ $templatecontext = [
     'hero_button_text' => $conf->hero_button_text,
     'about_title' => $conf->about_title,
     'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
+    'frontpage_buttons_configtextarea_when_user_logged' => $frontpage_buttons_configtextarea_when_user_logged,
     'frontpage_main_courses_title' => $conf->frontpage_main_courses_title,
+    'learningpaths' => $learningpaths
 ];
 
 echo $OUTPUT->render_from_template('theme_suap/frontpage', $templatecontext);

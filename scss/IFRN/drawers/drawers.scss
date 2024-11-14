@@ -1,4 +1,7 @@
 .drawers {
+    &.show-drawer-right {
+        margin-right: 0 !important;
+    }
     pointer-events: all;
     .drawer-content {
         position: absolute;

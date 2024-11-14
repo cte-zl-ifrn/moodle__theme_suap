@@ -2,6 +2,36 @@ div[role="main"] {
     padding: 0;
 }
 
+.content-when-sidebar-opened {
+    margin-left: calc(var(--counter-default) - 4px) !important;
+}
+
+.content-when-sidebar-closed {
+    margin-left: calc(var(--counter-close) - 4px) !important;
+}
+
+// TODO: fazer o mesmo para o navbar
+.navbar-when-sidebar-opened {
+    padding-left: calc(var(--counter-default) + 15px) !important;
+    // padding-right: ;
+}
+
+.navbar-when-sidebar-closed {
+    padding-left: calc(var(--counter-close) + 5px) !important;
+}
+
+.footer-when-sidebar-opened {
+    padding: 100px 100px 20px calc(var(--counter-default) + 64px) !important;
+}
+
+.footer-when-sidebar-closed {
+    padding: 100px 160px 20px calc(var(--counter-default)) !important;
+}
+
+.show-drawer-right {
+    margin-right: 0 !important;
+}
+
 .frontpage-menu {
     display: flex;
     justify-content: center;
@@ -30,7 +60,7 @@ div[role="main"] {
 
     .frontpage-navbar-container {
         height: 100%;
-        width: 90%;
+        width: 100%;
         margin: 20px 25px 0 15px;
         border: 1px solid #2b2b2b25;
         border-radius: 12px;
@@ -74,7 +104,7 @@ div[role="main"] {
                 display: flex;
                 align-items: center;
                 justify-content: end;
-                width: 100%;
+                width: fit-content;
 
                 span {
                     width: 1px;
@@ -246,6 +276,25 @@ div[role="main"] {
                     }
                 }
             }
+
+            #filter-courses {
+                position: relative;
+
+                .filter-badge {
+                    width: 20px;
+                    height: 20px;
+                    background-color: white;
+                    box-shadow: 0px 0px 4px 1px #2B2B2B40;
+                    color: var(--primary) !important;
+                    border-radius: 100%;
+                    padding: 1px;
+                    font-size: .8em;
+                    position: absolute;
+                    top: -10px;
+                    right: -3;
+                    text-align: center;
+                }
+            }
         }
     }
 
@@ -258,7 +307,7 @@ div[role="main"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .course-card {
@@ -372,7 +421,7 @@ div[role="main"] {
 }
 
 .course-card.skeleton {
-    background-color: #f0f0f0;
+    // background-color: #f0f0f0;
     border-radius: 4px;
     margin-right: 1%;
     padding: 20px;
@@ -384,48 +433,34 @@ div[role="main"] {
 }
 
 .skeleton-image-placeholder {
-    background-color: #ccc;
+    // background-color: #ccc;
     height: 100%;
 }
 
 .skeleton-category {
-    background-color: #e0e0e0;
+    // background-color: #e0e0e0;
     height: 20px;
     margin: 25px 0 0 15px;
     width: 90px;
 }
 
 .skeleton-name {
-    background-color: #e0e0e0;
+    // background-color: #e0e0e0;
     height: 20px;
     margin: 25px 0 0 15px;
     width: 300px;
 }
 
 .skeleton {
-    position: relative;
-    overflow: hidden;
-    background-color: #e0e0e0;
+    animation: skeleton-loading 1s linear infinite alternate;
 }
 
-.skeleton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.2) 100%);
-    animation: shimmer .8s infinite;
-    animation-delay: 2s;
-}
-
-@keyframes shimmer {
+@keyframes skeleton-loading {
     0% {
-        left: -100%;
+        background-color: hsl(200, 20%, 80%);
     }
     100% {
-        left: 100%;
+        background-color: hsl(200, 20%, 95%);
     }
 }
 
@@ -484,7 +519,7 @@ div[role="main"] {
     justify-content: center;
     align-items: center;
     color: var(--general-white);
-    padding: 100px 160px 20px;
+    // padding: 100px 160px 20px;
 
     .frontpage-footer-content {
         width: 100%;
@@ -640,7 +675,7 @@ div[role="main"] {
     border-radius: 16px;
     box-shadow: 0px 0px 4px 1px #2B2B2B40;
     padding: 16px 24px;
-    z-index: 1000;
+    z-index: 2000;
     width: 648px;
     height: 430px;
 
@@ -784,5 +819,5 @@ div[role="main"] {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1999;
 }

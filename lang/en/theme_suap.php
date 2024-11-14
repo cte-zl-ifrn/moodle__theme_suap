@@ -47,7 +47,7 @@ $string['frontpagesettings'] = 'Frontpage settings';
 $string['frontpage_title'] = 'Frontpage title';
 $string['frontpage_title_desc'] = '';
 $string['frontpage_buttons_configtextarea'] = 'Frontpage buttons configuration';
-$string['frontpage_buttons_configtextarea_desc'] = '';
+$string['frontpage_buttons_configtextarea_desc'] = 'Delete the (/n) snippet and press "Enter" to apply the line break';
 $string['frontpage_button_home'] = 'Home';
 $string['frontpage_button_about'] = 'About';
 $string['hero_title'] = 'Hero title';
@@ -89,7 +89,13 @@ $string['pagination_secret_desc'] = 'It is necessary to create a token in the we
 
 $string['frontpage_main_courses_title'] = 'Frontpage main courses title';
 $string['frontpage_main_courses_title_desc'] = '';
+$string['frontpage_buttons_configtextarea_when_user_logged'] = 'Frontpage buttons configuration when user is logged';
+$string['frontpage_buttons_configtextarea_when_user_logged_desc'] = 'Delete the (/n) snippet and press "Enter" to apply the line break';
+$string['frontpage_button_courses'] = 'Courses';
+$string['frontpage_button_courses_desc'] = '';
+$string['frontpage_button_learningpaths'] = 'Learning paths';
+$string['frontpage_button_learningpaths_desc'] = '';
 
-//Profile view
 $string['aboutme'] = 'About me';
 $string['certificates'] = 'Certificates';
+
