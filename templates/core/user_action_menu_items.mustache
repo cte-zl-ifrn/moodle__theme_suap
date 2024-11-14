@@ -58,38 +58,47 @@
     }
 }}
 
-
-<li class="drawer-item" id="settingsvisual">
-    <div >
-        <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="preferVisual" >
-            <label class="custom-control-label" for="preferVisual">
-                Preferência visual: parte inferior
-            </label>
-        </div>
+<div class="drawer-item" id="settingsvisual">
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="preferVisual" >
+        <label class="custom-control-label" for="preferVisual">
+            Preferência visual: parte inferior
+        </label>
     </div>
-</li>
+</div>
+<div class="dropdown-divider"></div>
+
 
 {{#items_theme_suap}}
-    {{#link}}
-        <li class="drawer-item {{{class}}}" id="{{{id}}}">
-            <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
-                {{title}}
-            </a>
-        </li>
+    {{#link}}  
+        <a href="{{{url}}}" class="drawer-item dropdown-item" role="menuitem" tabindex="-1">
+            {{title}}
+        </a>
     {{/link}}
 {{/items_theme_suap}}
 
 {{#items}}
     {{#link}}
-        <li class="drawer-item {{{class}}}" >
-            <a href="{{{url}}}" class="dropdown-item" role="menuitem" tabindex="-1">
-                {{title}}
-            </a>
-        </li>
+        <a href="{{{url}}}" class="drawer-item dropdown-item" role="menuitem" tabindex="-1">
+            {{#pixicon}}
+                {{#pix}}{{pixicon}}{{/pix}}
+            {{/pixicon}}
+            {{^pixicon}}
+                {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
+            {{/pixicon}}
+            {{title}}
+        </a>
     {{/link}}
+    {{#submenulink}}
+        <a href="#" class="carousel-navigation-link dropdown-item" role="menuitem" tabindex="-1" data-carousel-target-id="carousel-item-{{submenuid}}">
+            {{#pixicon}}
+                {{#pix}}{{pixicon}}{{/pix}}
+            {{/pixicon}}
+            {{^pixicon}}
+                {{#imgsrc}}<img aria-hidden="true" src="{{imgsrc}}" alt="{{title}}"/>{{/imgsrc}}
+            {{/pixicon}}
+            {{title}}
+        </a>
+    {{/submenulink}}
+    {{#divider}}<div class="dropdown-divider"></div>{{/divider}}
 {{/items}}
-
-{{#js}}
-    {{! require(['theme_suap/userPreference'], (module) => module.init()); }}
-{{/js}}

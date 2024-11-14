@@ -119,22 +119,16 @@ $items_theme_suap = [];
 // Adicionar condicionalmente os itens de administrador
 if ($is_admin) {
     $items_theme_suap[] = [
-        'id' => 'admin_item_1',
-        'class' => 'the-last',
         'link' => [
             'title' => 'Admin',
             'url' => $CFG->wwwroot . '/admin/search.php',
-            'pixicon' => 't/admin'
         ]
     ];
 
     $items_theme_suap[] = [
-        'id' => 'admin',
-        'class' => 'the-last',
         'link' => [
             'title' => 'Courses',
             'url' => $CFG->wwwroot . '/my/courses.php',
-            'pixicon' => 't/courses'
         ]
     ];
 }
