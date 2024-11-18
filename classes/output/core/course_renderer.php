@@ -88,17 +88,15 @@ class course_renderer extends \core_course_renderer {
                 continue;
             }
             // $cat = $data->get_field()->get_category()->get('name');
-            $metadata[$data->get_field()->get('shortname')] = $data->get_value();
+            $custom_fields[$data->get_field()->get('shortname')] = $data->get_value();
         }
-        // var_dump($metadata);
-        // exit;
 
         $categoryid = $course->category;
         $category = $DB->get_record('course_categories', ['id' => $categoryid]);
 
         $imageurl = course_summary_exporter::get_course_image($course);
         if (!$imageurl) {
-            $imageurl = $CFG->wwwroot . '/theme/suap/pix/default.jpeg';
+            $imageurl = $CFG->wwwroot . '/theme/suap/pix/default-course-image.webp';
         }
 
         $enrolment_methods = enrol_get_instances($course->id, true);
@@ -125,7 +123,8 @@ class course_renderer extends \core_course_renderer {
             'category' => $category->name,
             'imageurl' => $imageurl,
             'self_enrolment' => $self_enrolment,
-            'workload' => $metadata['carga_horaria']
+            'workload' => $custom_fields['carga_horaria'],
+            'has_certificate' => $custom_fields['tem_certificado']
         ];
         echo $OUTPUT->render_from_template('theme_suap/enroll_course', $templatecontext);
     }
