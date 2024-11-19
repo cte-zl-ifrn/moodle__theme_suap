@@ -7,6 +7,8 @@ use html_writer;
 use stdClass;
 use core_course\external\course_summary_exporter;
 
+use core_course\customfield\course_handler;
+
 class course_renderer extends \core_course_renderer {
     public function frontpage() {
         global $CFG, $SITE;
@@ -77,12 +79,24 @@ class course_renderer extends \core_course_renderer {
     public function course_info_box(stdClass $course) {
         global $OUTPUT, $DB;
 
+        // Pega os custom fields que tiver no curso
+        $handler = course_handler::create();
+        $datas = $handler->get_instance_data($course->id, true);
+
+        foreach ($datas as $data) {
+            if (empty($data->get_value())) {
+                continue;
+            }
+            // $cat = $data->get_field()->get_category()->get('name');
+            $custom_fields[$data->get_field()->get('shortname')] = $data->get_value();
+        }
+
         $categoryid = $course->category;
         $category = $DB->get_record('course_categories', ['id' => $categoryid]);
 
         $imageurl = course_summary_exporter::get_course_image($course);
         if (!$imageurl) {
-            $imageurl = $CFG->wwwroot . '/theme/suap/pix/default.jpeg';
+            $imageurl = $CFG->wwwroot . '/theme/suap/pix/default-course-image.webp';
         }
 
         $enrolment_methods = enrol_get_instances($course->id, true);
@@ -109,6 +123,9 @@ class course_renderer extends \core_course_renderer {
             'category' => $category->name,
             'imageurl' => $imageurl,
             'self_enrolment' => $self_enrolment,
+            'workload' => $custom_fields['carga_horaria'],
+            'has_certificate' => $custom_fields['tem_certificado'],
+            'teacher_image' => $CFG->wwwroot . '/theme/suap/pix/default-course-image.webp',
         ];
         echo $OUTPUT->render_from_template('theme_suap/enroll_course', $templatecontext);
     }

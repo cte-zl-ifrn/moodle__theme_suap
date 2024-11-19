@@ -11,6 +11,9 @@
         > .generalbox > form {
             display: none;
         }
+        #notice, .continuebutton {
+            display: none;
+        }
 
     }
 }
@@ -68,6 +71,38 @@
         }
         .btn-tertiary {
             width: 100%;  
+        }
+    }
+}
+
+.course-tabs {
+    .nav {
+        border-bottom: 1px solid var(--light-dark);
+        margin-bottom: 1rem;
+    }
+    .nav-link {
+        font: var(--font-button2);
+        border-bottom: var(--primary);
+        color: var(--primary);
+        &:hover {
+            color: var(--primary-dark);
+        }
+        &.active {
+            border-bottom: 2px solid var(--primary);
+            color: var(--dark);
+        }
+    }
+    .teacher-item {
+        display: flex;
+        gap: 1.5rem;
+        img {
+            object-fit: cover;
+            width: 90px;
+            height: 90px;
+            border-radius: 92px;
+        }
+        .teacher-name {
+            font: var(--font-heading2);
         }
     }
 }

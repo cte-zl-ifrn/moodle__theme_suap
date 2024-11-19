@@ -5,14 +5,18 @@
                 <span class="enroll-tag">{{category}}</span>
                 <h1>{{fullcoursename}}</h1>
                 <div class="header-topics">
+                    {{#workload}}
                     <div class="topic-item">
                         <i class="fa-regular fa-clock"></i>
-                        35 horas
+                        {{workload}} horas
                     </div>
+                    {{/workload}}
+                    {{#has_certificate}}
                     <div class="topic-item">
                         <i class="fa-regular fa-circle-check"></i>
                         Emite certificado
                     </div>
+                    {{/has_certificate}}
                     <div class="topic-item">
                         <i class="fa-regular fa-clock"></i>
                         Idioma português
@@ -30,10 +34,6 @@
                         <input type="hidden" name="_qf__7_enrol_self_enrol_form" value="1" />
                         <input type="hidden" name="mform_isexpanded_id_selfheader" value="1" />
 
-                        
-                        {{^require_password}}
-                            <div>{{#str}}nopassword, enrol_self{{/str}}</div>
-                        {{/require_password}}
                         {{#require_password}}
                             <label for="enrolpassword" class="d-inline word-break">Enrolment key</label>
                             <input type="password" class="form-control" name="enrolpassword" id="enrolpassword" value="" autocomplete="new-password">
@@ -45,14 +45,39 @@
                         </div>
                     </form>
                 {{/self_enrolment}}
+                {{^self_enrolment}}
+                    {{#str}} notenrollable, enrol {{/str}}
+                    <a href="{{{config.wwwroot}}}?redirect=0" class="btn btn-tertiary">Voltar</a>
+                {{/self_enrolment}}
                 </div>              
             </div>
         </div>      
 </div>
 
 {{#summary}}
-<h2 class="enroll-title">Visão Geral</h2>
-<p>
-    {{summary}}
-</p>
+<div class="course-tabs">
+  <ul class="nav">
+    <li><a class="nav-link active" data-toggle="pill" href="#course-general">Visão Geral</a></li>
+    <li><a class="nav-link" data-toggle="pill" href="#course-teacher">Docente</a></li>
+    <li><a class="nav-link" data-toggle="pill" href="#course-reviews">Comentários</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="course-general" class="tab-pane fade in active">
+        {{summary}}
+    </div>
+    <div id="course-teacher" class="tab-pane fade">
+        <div class="teacher-item">
+            <img src="{{teacher_image}}">
+            <div class="">
+                <h2 class="teacher-name">Melissa Cavalcanti</h2>
+                <p>LearnPress is a comprehensive WordPress LMS Plugin for WordPress. This is one of the best WordPress LMS Plugins which can be used to easily create & sell courses online.</p>
+            </div>
+        </div>
+    </div>
+    <div id="course-reviews" class="tab-pane fade">
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>
 {{/summary}}
