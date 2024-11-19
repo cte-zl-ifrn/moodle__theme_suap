@@ -124,7 +124,8 @@ class course_renderer extends \core_course_renderer {
             'imageurl' => $imageurl,
             'self_enrolment' => $self_enrolment,
             'workload' => $custom_fields['carga_horaria'],
-            'has_certificate' => $custom_fields['tem_certificado']
+            'has_certificate' => $custom_fields['tem_certificado'],
+            'teacher_image' => $CFG->wwwroot . '/theme/suap/pix/default-course-image.webp',
         ];
         echo $OUTPUT->render_from_template('theme_suap/enroll_course', $templatecontext);
     }

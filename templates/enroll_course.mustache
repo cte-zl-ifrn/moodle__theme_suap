@@ -55,8 +55,29 @@
 </div>
 
 {{#summary}}
-<h2 class="enroll-title">Visão Geral</h2>
-<p>
-    {{summary}}
-</p>
+<div class="course-tabs">
+  <ul class="nav">
+    <li><a class="nav-link active" data-toggle="pill" href="#course-general">Visão Geral</a></li>
+    <li><a class="nav-link" data-toggle="pill" href="#course-teacher">Docente</a></li>
+    <li><a class="nav-link" data-toggle="pill" href="#course-reviews">Comentários</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="course-general" class="tab-pane fade in active">
+        {{summary}}
+    </div>
+    <div id="course-teacher" class="tab-pane fade">
+        <div class="teacher-item">
+            <img src="{{teacher_image}}">
+            <div class="">
+                <h2 class="teacher-name">Melissa Cavalcanti</h2>
+                <p>LearnPress is a comprehensive WordPress LMS Plugin for WordPress. This is one of the best WordPress LMS Plugins which can be used to easily create & sell courses online.</p>
+            </div>
+        </div>
+    </div>
+    <div id="course-reviews" class="tab-pane fade">
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+    </div>
+  </div>
+</div>
 {{/summary}}
