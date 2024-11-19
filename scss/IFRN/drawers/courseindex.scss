@@ -1,5 +1,11 @@
 #drawer-index {
     div.courseindex-item {
+        &.pageitem {
+            background-color: var(--light);
+            a {
+                color: var(--dark);
+            }
+        }
         .courseindex-link {
             color: var(--secondary);
         }
