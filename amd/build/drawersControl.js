@@ -134,7 +134,8 @@ define(["core_user/repository"], function (RepositoryUser) {
         });
 
         closeButtons.forEach((button) => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
                 closeAllDrawers(drawers, drawersToggler);
             });
         });

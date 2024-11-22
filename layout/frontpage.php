@@ -67,6 +67,9 @@ if ($PAGE->has_secondary_navigation()) {
     }
 }
 
+// A frontpage utiliza a largura maior
+$extraclasses[] = 'layout-width-expanded';
+
 $primary = new core\navigation\output\primary($PAGE);
 $renderer = $PAGE->get_renderer('core');
 $primarymenu = $primary->export_for_template($renderer);

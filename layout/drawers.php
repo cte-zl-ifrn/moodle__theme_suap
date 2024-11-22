@@ -79,6 +79,12 @@ if (!$courseindex) {
     $courseindexopen = false;
 }
 
+// Checar se está na página de enrol de curso
+if ($PAGE->pagetype === 'enrol-index') {
+    $is_enrol_course_page = true;
+    $extraclasses[] = 'layout-width-expanded';
+}
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 
@@ -159,7 +165,7 @@ $templatecontext = [
     'isloggedin' => $isloggedin,
     'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
-    'getUserPreference' => $getUserPreference
-    
+    'getUserPreference' => $getUserPreference,
+    'isenrolpage' => $is_enrol_course_page
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);
