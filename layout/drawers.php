@@ -83,6 +83,7 @@ if (!$courseindex) {
 if ($PAGE->pagetype === 'enrol-index') {
     $is_enrol_course_page = true;
     $extraclasses[] = 'layout-width-expanded';
+    $extraclasses[] = 'enrol-page';
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
