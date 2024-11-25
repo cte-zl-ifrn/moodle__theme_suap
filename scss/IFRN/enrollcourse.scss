@@ -71,6 +71,9 @@
             border-bottom: 1px solid var(--light-dark);
             margin-bottom: 1rem;
         }
+        .tab-content {
+            max-width: 894px;
+        }
         .nav-link {
             font: var(--font-button2);
             border-bottom: var(--primary);
