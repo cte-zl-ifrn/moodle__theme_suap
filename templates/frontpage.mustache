@@ -244,9 +244,8 @@
     {{/isloggedin}}
 
 
-    <div {{#isloggedin}}class="content-when-sidebar-opened"{{/isloggedin}} id="sidebar-area" >
-        <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-green">
-        <div class="container-fluid">   
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap drag-container">
+        <div class="max-width-suap">
             <div class="row">
                 <div class="col-md-12">
                     <div class="frontpage-hero-header">
@@ -287,11 +286,10 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="topofscroll" class="bg-green">
-            <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
-                <div class="container-fluid">
+
+            <div id="topofscroll" class="bg-green">
+                <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
                     <div class="frontpage-hero-main-header">
                         <div class="frontpage-hero-main-header-about-button">
                             <a class="primary-button">{{{hero_button_text}}}</a>
@@ -332,19 +330,18 @@
                             <img src="{{config.wwwroot}}/theme/suap/pix/arrow-forward-outline.svg" alt="Próximo">
                         </button>
                     </div>
-                </div>
-            </section>
-            {{! <div id="page-content" class="d-print-block main-inner bg-green">
-                <div id="region-main-box">
-                </div>
-            </div> }}
+                </section>
+                {{! <div id="page-content" class="d-print-block main-inner bg-green">
+                    <div id="region-main-box">
+                    </div>
+                </div> }}
+            </div>
         </div>
         
         {{> theme_boost/footer }}
-        </div>
-        
-        
     </div>
+        
+           
     
     {{> theme_suap/footer}}
 
