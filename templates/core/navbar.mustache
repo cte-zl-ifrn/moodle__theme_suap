@@ -15,44 +15,26 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
+    @template core/navbar
 
-    @template theme_boost/navbar
+    Navbar template.
 
-    This template renders the top navbar.
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * get_items - array of items
+      * has_action - boolean
+      * action - string
+      * get_title - string
+      * get_content - string
+      * is_hidden - boolean
 
     Example context (json):
     {
-        "output": {
-            "should_display_navbar_logo": true,
-            "get_compact_logo_url": "http://placekitten.com/50/50",
-            "custom_menu": "<li>..</li>",
-            "page_heading_menu": "<li>..</li>",
-            "search_box": "<div><input type='text'></div>",
-            "navbar_plugin_output": "<div class='dropdown'>Messaging</div>",
-            "user_menu": "<div class='dropdown'>John Doe</div>"
-        },
-        "config": {
-            "wwwroot": "#",
-            "homeurl": "/my/"
-        },
-        "sitename": "Moodle Site",
-        "mobileprimarynav": [
-            {
-                "text": "Dashboard",
-                "url": "/my",
-                "isactive": true
-            },
-            {
-                "text": "Site home",
-                "url": "/",
-                "isactive": false
-            },
-            {
-                "text": "My courses",
-                "url": "/course",
-                "isactive": false
-            }
-        ],
         "get_items": [
             {
                 "has_action": true,
@@ -79,17 +61,34 @@
                 "is_hidden": true
             }
         ]
-
     }
 }}
-<nav class="navbar fixed-top navbar-light bg-white navbar-expand" aria-label="{{#str}}sitemenubar, admin{{/str}}">   
-    <div class="container-fluid">        
-        <ul class="breadcrumb">            
-            <a  id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-        </ul>
-        {{{navbar}}}
-        {{{ output.edit_switch }}}
-    </div>
+<nav aria-label="{{#str}}breadcrumb, access{{/str}}">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{config.wwwroot}}">
+                <i  class="icon fa fa-home"></i>
+            </a>
+        </li>
+        {{#get_items}}
+            {{#has_action}}
+                <li class="breadcrumb-item{{#is_hidden}} dimmed_text{{/is_hidden}}">
+                    <a href="{{{action}}}"
+                        {{#is_last}}aria-current="page"{{/is_last}}
+                        {{#get_title}}title="{{get_title}}"{{/get_title}}
+                        {{#attributes}}{{name}}="{{value}}" {{/attributes}}
+                    >
+                        {{{get_content}}}
+                    </a>
+                </li>
+            {{/has_action}}
+            {{^has_action}}
+                <li class="breadcrumb-item{{#is_hidden}} dimmed_text{{/is_hidden}}">
+                    <span {{#attributes}}{{name}}="{{value}}" {{/attributes}}>
+                        {{{text}}}
+                    </span>
+                </li>
+            {{/has_action}}
+        {{/get_items}}
+    </ol>
 </nav>
-
-{{> theme_boost/primary-drawer-mobile }}

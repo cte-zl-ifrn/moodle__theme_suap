@@ -33,14 +33,14 @@ div[role="main"] {
 }
 
 .frontpage-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 50px;
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // height: 50px;
 
     .frontpage-menu-logo {
-        background: #098e95;
+        background-color: var(--primary);
         width: 250px;
         padding: 0;
         height: 100%;
@@ -58,76 +58,64 @@ div[role="main"] {
         }
     }
 
-    .frontpage-navbar-container {
-        height: 100%;
+    .frontpage-navbar-content {
         width: 100%;
-        margin: 20px 25px 0 15px;
-        border: 1px solid #2b2b2b25;
-        border-radius: 12px;
-        padding: 5px 0;
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-        background: var(--general-white);
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        // padding-left: 20px;
+        padding-right: 10px;
 
-        .frontpage-navbar-content {
-            width: 100%;
+        h3 {
+            align-self: center;
+            margin-bottom: 0 !important;
+        }
+
+        .frontpage-navbar-start-buttons {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding-left: 20px;
-            padding-right: 10px;
-    
-            h3 {
-                align-self: center;
-                margin-bottom: 0 !important;
-            }
+            justify-content: start;
+            width: 100%;
 
-            .frontpage-navbar-start-buttons {
-                display: flex;
-                align-items: center;
-                justify-content: start;
-                width: 100%;
-
-                a {
-                    background: none;
-                    border: none;
-                    font: var(--font-button4);
-                    color: var(--dark);
-                    text-decoration: none;
-                    margin-right: 20px;
-                }
-            }
-
-            .frontpage-navbar-end-buttons {
-                display: flex;
-                align-items: center;
-                justify-content: end;
-                width: fit-content;
-
-                span {
-                    width: 1px;
-                    height: 32px;
-                    background: var(--light-dark);
-                    margin: 0 20px;
-                }
-
-                select {
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    font: var(--font-button4);
-                    color: var(--dark);
-                }
-
-                a {
-                    color: var(--general-white);
-                    text-decoration: none;
-                }
+            a {
+                background: none;
+                border: none;
+                font: var(--font-button2);
+                color: var(--dark);
+                text-decoration: none;
+                margin-right: .5rem;
+                padding: .5rem 1rem; //8px 16px
             }
         }
+
+        .frontpage-navbar-end-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            width: fit-content;
+
+            span {
+                width: 1px;
+                height: 32px;
+                background: var(--light-dark);
+                margin: 0 20px;
+            }
+
+            select {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font: var(--font-button1);
+                color: var(--dark);
+            }
+
+            // a {
+            //     color: var(--general-white);
+            //     text-decoration: none;
+            // }
+        }
     }
+    
 }
 
 .frontpage-hero-header {
@@ -265,7 +253,7 @@ div[role="main"] {
                 
                 input {
                     border: none;
-                    font: var(--font-button4);
+                    font: var(--font-button1);
                     margin-left: 10px;
                     width: 100%;
 
@@ -340,7 +328,7 @@ div[role="main"] {
     .course-category {
         background: var(--success-light);
         color: var(--success-dark);
-        font: var(--font-button4);
+        font: var(--font-button1);
         padding: 4px 8px 4px 8px;
         border-radius: 32px;
         width: fit-content;
@@ -530,7 +518,7 @@ div[role="main"] {
 .primary-button {
     background: var(--primary);
     color: var(--general-white);
-    font: var(--font-button4);
+    font: var(--font-button1);
     border: none;
     border-radius: 12px;
     padding: 8px 10px;
@@ -641,7 +629,7 @@ div[role="main"] {
         .filter-footer-apply-button {
             background: var(--primary);
             color: var(--general-white);
-            font: var(--font-button4);
+            font: var(--font-button1);
             border: none;
             border-radius: 12px;
             padding: 8px 10px;

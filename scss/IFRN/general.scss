@@ -197,6 +197,9 @@ ul, ol {
     }
 }
 
+.topmenuon #page.page-suap {
+    margin-top: 80px;
+}
 #page.page-suap {
     margin-top: 54px;
 }
@@ -384,12 +387,14 @@ ul, ol {
 }
 
 .btn-primary {
+    padding: .5rem 1rem;
     background-color: var(--primary);
     border-radius: 40px;
     font: var(--font-button1);
     border: none;
     &:hover, &:focus {
         background-color: var(--primary-dark);
+        text-decoration: none;
     }
 
 }

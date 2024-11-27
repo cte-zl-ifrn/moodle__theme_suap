@@ -1,0 +1,24 @@
+<div class="navbar-suap">
+    {{^isloggedin}}
+    <div class="frontpage-menu-logo">
+        <h2>{{{frontpage_title}}}AVA Aberto</h2>
+    </div>
+    {{/isloggedin}}
+
+    <div class="navbar-suap-container">  
+        {{^topmenuon}}
+            {{{navbar}}} 
+        {{/topmenuon}}
+        {{#topmenuon}}
+            {{> theme_suap/topmenu}}
+        {{/topmenuon}}
+        {{{ output.edit_switch }}}
+    </div>
+    {{#topmenuon}}
+    {{#navbar}}
+        <div class="navbar-suap-pos">
+            {{{navbar}}}
+        </div>
+    {{/navbar}}
+    {{/topmenuon}}
+</div>

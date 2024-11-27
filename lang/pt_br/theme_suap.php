@@ -36,6 +36,8 @@ $string['rawscss_desc'] = 'Use este campo para fornecer o código SCSS ou CSS qu
 $string['rawscsspre'] = 'SCSS inicial bruto';                                                                                         
 // Raw initial SCSS setting help text.                                                                                              
 $string['rawscsspre_desc'] = 'Neste campo você pode fornecer o código SCSS de inicialização, ele será injetado antes de tudo. Na maioria das vezes você usará esta configuração para definir variáveis';
+
+// Drawers aditional strings 
 $string['drawer_course_index'] = "Índice da disciplina";
 $string['drawer_blocks'] = "Gaveta de Blocos";
 $string['drawer_user'] = "Menu do usuário";
@@ -95,5 +97,10 @@ $string['frontpage_button_courses_desc'] = '';
 $string['frontpage_button_learningpaths'] = 'Trilhas';
 $string['frontpage_button_learningpaths_desc'] = '';
 
+// Profile aditional strings
 $string['aboutme'] = 'Sobre mim';
 $string['certificates'] = 'Certificados';
+
+// Setting layout navigation menu
+$string['layouttype'] = 'Sempre mostrar o menu superior';
+$string['layouttype_desc'] = 'O menu superior é usado nos Moodles que não estão integrados ao Painel AVA';

@@ -140,7 +140,8 @@ $templatecontext = [
     'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
     'frontpage_buttons_configtextarea_when_user_logged' => $frontpage_buttons_configtextarea_when_user_logged,
     'frontpage_main_courses_title' => $conf->frontpage_main_courses_title,
-    'learningpaths' => $learningpaths
+    'learningpaths' => $learningpaths,
+    'topmenuon' => true, // Menu superior é sempre ativo na frontpage
 ];
 
 echo $OUTPUT->render_from_template('theme_suap/frontpage', $templatecontext);

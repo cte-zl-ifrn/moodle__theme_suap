@@ -1,0 +1,28 @@
+<div id="navbar" class="frontpage-menu">
+
+    
+    <nav class="frontpage-navbar-content" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+        <div class="frontpage-navbar-start-buttons">
+            {{! se a tag "a" não tiver classe, os links tem um efeito no top e no bottom quando clicado }}
+            <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea.0.link}}}">{{{frontpage_buttons_configtextarea.0.label}}}</a>
+            <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea.1.link}}}">{{{frontpage_buttons_configtextarea.1.label}}}</a>
+            {{#isloggedin}}
+            <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea_when_user_logged.0.link}}}">{{{frontpage_buttons_configtextarea_when_user_logged.0.label}}}</a>
+            <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea_when_user_logged.1.link}}}">{{{frontpage_buttons_configtextarea_when_user_logged.1.label}}}</a>
+            {{/isloggedin}}
+        </div>
+        {{^isloggedin}}
+        <div class="frontpage-navbar-end-buttons">
+            <select>
+                <option value="pt-br">🇧🇷</option>
+                <option value="es">🇪🇸</option>
+                <option value="en">🇺🇸</option>
+            </select>
+            <span></span>
+            
+            <a href="{{config.wwwroot}}/login/" class="bnt btn-primary">Acessar</a>
+        </div>
+        {{/isloggedin}}
+    </nav>
+    
+</div>

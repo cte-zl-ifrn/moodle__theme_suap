@@ -10,57 +10,9 @@
         {{> theme_suap/counter}}
     {{/isloggedin}}
 
-    {{#isloggedin}}
-        <div id="navbar" class="frontpage-menu bg-green {{#isloggedin}} navbar-when-sidebar-opened {{/isloggedin}}">
-            <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
-                <div class="frontpage-navbar-content">
-                    <div class="frontpage-navbar-start-buttons">
-                        {{! se a tag "a" não tiver classe, os links tem um efeito no top e no bottom quando clicado }}
-                        <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea.0.link}}}">{{{frontpage_buttons_configtextarea.0.label}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea.1.link}}}">{{{frontpage_buttons_configtextarea.1.label}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea_when_user_logged.0.link}}}">{{{frontpage_buttons_configtextarea_when_user_logged.0.label}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea_when_user_logged.1.link}}}">{{{frontpage_buttons_configtextarea_when_user_logged.1.label}}}</a>
-                    </div>
-                    <div class="frontpage-navbar-end-buttons">
-                        <select>
-                            <option value="pt-br">🇧🇷</option>
-                            <option value="es">🇪🇸</option>
-                            <option value="en">🇺🇸</option>
-                        </select>
-                        <span></span>
-                        <a href="{{config.wwwroot}}/auth/suap/" class="primary-button">Acessar</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    {{/isloggedin}}
-    {{^isloggedin}}
-        <div class="frontpage-menu bg-green">
-            <div class="frontpage-menu-logo">
-                <h2>{{{frontpage_title}}}</h2 >
-            </div>
-            <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
-                <div class="frontpage-navbar-content">
-                    <div class="frontpage-navbar-start-buttons">
-                        {{! se a tag "a" não tiver classe, os links tem um efeito no top e no bottom quando clicado }}
-                        <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea.0.link}}}">{{{frontpage_buttons_configtextarea.0.label}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}{{{frontpage_buttons_configtextarea.1.link}}}">{{{frontpage_buttons_configtextarea.1.label}}}</a>
-                    </div>
-                    <div class="frontpage-navbar-end-buttons">
-                        <select>
-                            <option value="pt-br">🇧🇷</option>
-                            <option value="es">🇪🇸</option>
-                            <option value="en">🇺🇸</option>
-                        </select>
-                        <span></span>
-                        <a href="{{config.wwwroot}}/auth/suap/" class="primary-button">Acessar</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    {{/isloggedin}}
-
-
+    
+    {{> theme_suap/navbar}}
+    
     <div id="page" data-region="mainpage" data-usertour="scroller" class="{{#isloggedin}}page-suap{{/isloggedin}} drag-container">
         <div class="max-width-suap">
             <div class="row">
