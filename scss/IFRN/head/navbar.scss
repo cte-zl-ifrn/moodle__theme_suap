@@ -19,7 +19,7 @@
 
     &-ava-name {
         background-color: var(--primary);
-        min-width: 250px;
+        min-width: var(--counter-default);
         margin-top: .5rem; //8px
         padding-inline: 1rem;
         border-top-right-radius: 16px;
@@ -36,9 +36,13 @@
     }
 }
 
-//Quando não logado e na frontpage não existe breadcrumb, então menu fica sozinho
-.notloggedin.pagelayout-frontpage .navbar-suap .navbar-suap-container{
+//Quando não logado e na frontpage não existe breadcrumb, então menu fica sozinho à direita
+.notloggedin.pagelayout-frontpage .navbar-suap .navbar-suap-container,
+.editswitchon.pagelayout-frontpage .navbar-suap .navbar-suap-container {
     justify-content: end;
+    .editmode-switch-form{
+        border-left: transparent
+    }
 }
 
 .navbar-suap { 
@@ -117,8 +121,8 @@
     
     
     .editmode-switch-form{
-        border-left: 1px solid #dee2e6 !important;
-        padding-left: 15px;
+        border-left: 1px solid var(--light-dark);
+        padding-left: 1rem;
     }
     
     .divider{

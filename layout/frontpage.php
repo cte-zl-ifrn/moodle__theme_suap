@@ -37,6 +37,11 @@ if ($courseindexopen) {
     $extraclasses[] = 'drawer-open-index';
 }
 
+$counterClose = get_user_preferences('theme_suap_counter_close');
+if ($counterClose) {
+    $extraclasses[] = 'counter-close';
+}
+
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 if (!$hasblocks) {
@@ -79,6 +84,11 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
+
+//Usuário possui capacidade de editar página
+if (has_capability('moodle/course:manageactivities', $PAGE->context)) {
+    $extraclasses[] = 'editswitchon';
+}
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 
