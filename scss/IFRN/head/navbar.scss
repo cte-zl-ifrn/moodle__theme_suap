@@ -17,10 +17,11 @@
         position: static;
     }
 
-    .frontpage-menu-logo {
+    &-ava-name {
         background-color: var(--primary);
-        width: 250px;
+        min-width: 250px;
         margin-top: .5rem; //8px
+        padding-inline: 1rem;
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
         display: flex;
@@ -30,7 +31,7 @@
         h2 {
             font: var(--font-heading1);
             margin: 0;
-            color: white;
+            color: var(--general-white);
         }
     }
 }
