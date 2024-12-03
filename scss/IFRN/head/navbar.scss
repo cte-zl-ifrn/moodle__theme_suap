@@ -35,6 +35,11 @@
     }
 }
 
+//Quando não logado e na frontpage não existe breadcrumb, então menu fica sozinho
+.notloggedin.pagelayout-frontpage .navbar-suap .navbar-suap-container{
+    justify-content: end;
+}
+
 .navbar-suap { 
     width: calc(100% - var(--counter-default) - 32px);
     position: absolute;
