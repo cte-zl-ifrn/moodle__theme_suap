@@ -178,6 +178,7 @@ $templatecontext = [
     'userid' => $userid,
     'rolename' => $rolestr,
     'isloggedin' => $isloggedin,
+    'isguestuser' => isguestuser(),
     'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
     'getUserPreference' => $getUserPreference,
