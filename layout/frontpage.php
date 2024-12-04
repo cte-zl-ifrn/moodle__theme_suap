@@ -85,9 +85,15 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
+if(!isloggedin() || isguestuser()) {
+    $extraclasses[] = 'counteroff';
+}
+
 //Usuário possui capacidade de editar página
-if (has_capability('moodle/course:manageactivities', $PAGE->context)) {
+if (has_capability('moodle/course:manageactivities', $PAGE->context) || 
+    (!isloggedin() || isguestuser()) ) {
     $extraclasses[] = 'editswitchon';
+    $viewNavbar = true;
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
@@ -152,6 +158,8 @@ $templatecontext = [
     'frontpage_main_courses_title' => $conf->frontpage_main_courses_title,
     'learningpaths' => $learningpaths,
     'topmenuon' => true, // Menu superior é sempre ativo na frontpage
+    'viewnavbar' => $viewNavbar,
+    'loggedin_and_notguestuser' => isloggedin() && !isguestuser(),
 ];
 
 echo $OUTPUT->render_from_template('theme_suap/frontpage', $templatecontext);

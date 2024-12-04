@@ -6,14 +6,15 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{#isloggedin}}
+    {{#loggedin_and_notguestuser}}
         {{> theme_suap/counter}}
-    {{/isloggedin}}
+    {{/loggedin_and_notguestuser}}
 
+    {{#viewnavbar}}
+        {{> theme_suap/navbar}}
+    {{/viewnavbar}}
     
-    {{> theme_suap/navbar}}
-    
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="{{#isloggedin}}page-suap{{/isloggedin}} drag-container">
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap drag-container">
         <div class="max-width-suap">
             <div class="row">
                 <div class="col-md-12">

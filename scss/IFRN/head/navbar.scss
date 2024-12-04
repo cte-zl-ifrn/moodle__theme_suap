@@ -8,7 +8,7 @@
     position: fixed;
 }
 
-.notloggedin .navbar-suap {
+.counteroff .navbar-suap {
     width: 100%;
     display: flex;
     gap: 1rem;
@@ -50,9 +50,12 @@
     position: absolute;
     top: 0;
     right: 0;
-    // height: 48px;
-
+    z-index: 1030;
     transition: all .2s ease-out;
+
+    &-ava-name {
+        display: none;
+    }
     
     .navbar-suap-container {
         position: fixed;

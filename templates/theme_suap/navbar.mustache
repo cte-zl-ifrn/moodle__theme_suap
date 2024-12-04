@@ -1,11 +1,9 @@
-{{#output.edit_switch}}
 <div class="navbar-suap">
-    {{^isloggedin}}
+    
     <div class="navbar-suap-ava-name">
-        <h2>{{{frontpage_title}}}{{sitename}}</h2>
+        <h2>{{sitename}}</h2>
     </div>
-    {{/isloggedin}}
-
+    
     <div class="navbar-suap-container">  
         {{{navbar}}} 
         {{> theme_suap/notloggedinmenu}}
@@ -19,4 +17,3 @@
     {{/navbar}}
     {{/topmenuon}}
 </div>
-{{/output.edit_switch}}
