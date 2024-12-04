@@ -59,7 +59,9 @@
 
     {{#isloggedin}}
 
-    {{> theme_suap/counter}}
+    {{^enrolpage_and_guestuser}}
+        {{> theme_suap/counter}}
+    {{/enrolpage_and_guestuser}}
 
     {{! </nav> }}
     {{/isloggedin}}

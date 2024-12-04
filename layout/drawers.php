@@ -84,6 +84,10 @@ if ($PAGE->pagetype === 'enrol-index') {
     $is_enrol_course_page = true;
     $extraclasses[] = 'layout-width-expanded';
     $extraclasses[] = 'enrol-page';
+    if (isguestuser()) {
+        $enrolpage_and_guestuser = true;
+        $extraclasses[] = 'counteroff';
+    }
 }
 
 $conf = get_config('theme_suap');
@@ -178,6 +182,7 @@ $templatecontext = [
     'items_theme_suap' => $items_theme_suap, 
     'getUserPreference' => $getUserPreference,
     'isenrolpage' => $is_enrol_course_page,
+    'enrolpage_and_guestuser' => $enrolpage_and_guestuser,
     'topmenuon' => $topmenuon,
     'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
     'frontpage_buttons_configtextarea_when_user_logged' => $frontpage_buttons_configtextarea_when_user_logged,
