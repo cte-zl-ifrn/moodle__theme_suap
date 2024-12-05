@@ -65,18 +65,15 @@
     {{/isloggedin}}
         {{!> theme_boost/navbar }}
 
-    <div class="navbar-suap">   
-        <ul id="breadcrumb">            
-            <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-            {{{navbar}}} 
-        </ul>     
-        {{{ output.edit_switch }}}
-    </div>
+    {{> theme_suap/navbar}}
 
     <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">   
         <div class="max-width-suap">
-        
-            {{{! output.full_header }}}
+            
+            {{#not_course_context_profile}}
+                {{{ output.full_header }}}
+            {{/not_course_context_profile}}
+
             {{#secondarymoremenu}}
                 <div class="secondary-navigation d-print-none">
                     {{> core/moremenu}}
