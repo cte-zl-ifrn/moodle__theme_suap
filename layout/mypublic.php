@@ -157,6 +157,10 @@ if (empty($id)) {
     $id = $USER->id;
 }
 
+if($courseid != 1) {
+    $notCourseContextProfile = true;    
+}
+
 $user = core_user::get_user($id);
 // $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 $has_edit_button = false;
@@ -285,7 +289,7 @@ $templatecontext = [
     'isloggedin' => $isloggedin,
     'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
-    'getUserPreference' => $getUserPreference
-    
+    'getUserPreference' => $getUserPreference,
+    'not_course_context_profile' => $notCourseContextProfile
 ];
 echo $OUTPUT->render_from_template('theme_suap/layouts/mypublic', $templatecontext);

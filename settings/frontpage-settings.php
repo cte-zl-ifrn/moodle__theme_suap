@@ -13,7 +13,8 @@ class frontpage_settings_tab extends settings_page_tab {
 
     protected function create_page_settings() {
         $this->add_setting_configtext('frontpage_title', 'Teste');
-        $this->add_setting_configtextarea('frontpage_buttons_configtextarea', true, 'frontpage_button_home,theme_suap|/|||\nfrontpage_button_about,theme_suap|/about.php|||');
+        $this->add_setting_configtextarea('frontpage_buttons_configtextarea', true, 'frontpage_button_home,theme_suap|/?redirect=0||| (/n) frontpage_button_about,theme_suap|theme/suap/about.php|||');
+        $this->add_setting_configtextarea('frontpage_buttons_configtextarea_when_user_logged', true, 'frontpage_button_courses,theme_suap|my/courses.php||| (/n) frontpage_button_learningpaths,theme_suap|theme/suap/learningpaths.php|||0');
 
         $this->add_setting_configtext('hero_title', 'O Moodle em números');
         $this->add_setting_configtext('hero_subtitle', 'Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.');

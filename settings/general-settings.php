@@ -37,5 +37,8 @@ class general_settings_tab extends settings_page_tab {
 
         $name = 'brandcolor';
         $this->add_setting_configcolourpicker($name, true);
+
+        $name = 'layouttype';
+        $this->add_setting_configcheckbox($name, 0);
     }
 }

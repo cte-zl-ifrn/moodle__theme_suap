@@ -6,33 +6,16 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{^isloggedin}}
-        <div class="frontpage-menu bg-green">
-            <div class="frontpage-menu-logo">
-                <h2>{{{frontpage_title}}}</h2 >
-            </div>
-            <nav class="frontpage-navbar-container" aria-label="{{#str}}sitemenubar, admin{{/str}}">
-                <div class="frontpage-navbar-content">
-                    <div class="frontpage-navbar-start-buttons">
-                        {{! se a tag "a" não tiver classe, os links tem um efeito no top e no bottom quando clicado }}
-                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_buttons_configtextarea.0.label}}}</a>
-                        <a class="aaa" href="{{config.wwwroot}}">{{{frontpage_buttons_configtextarea.1.label}}}</a>
-                    </div>
-                    <div class="frontpage-navbar-end-buttons">
-                        <select>
-                            <option value="pt-br">🇧🇷</option>
-                            <option value="es">🇪🇸</option>
-                        </select>
-                        <span></span>
-                        <a href="{{config.wwwroot}}/auth/suap/" class="primary-button">Acessar</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    {{/isloggedin}}
+    {{#loggedin_and_notguestuser}}
+        {{> theme_suap/counter}}
+    {{/loggedin_and_notguestuser}}
 
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-green">
-        <div class="container-fluid">   
+    {{#viewnavbar}}
+        {{> theme_suap/navbar}}
+    {{/viewnavbar}}
+    
+    <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap drag-container">
+        <div class="max-width-suap">
             <div class="row">
                 <div class="col-md-12">
                     <div class="frontpage-hero-header">
@@ -73,11 +56,10 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="topofscroll" class="bg-green">
-            <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
-                <div class="container-fluid">
+
+            <div id="topofscroll" class="bg-green">
+                <section id="region-main" aria-label="{{#str}}content{{/str}}" class="bg-green">
                     <div class="frontpage-hero-main-header">
                         <div class="frontpage-hero-main-header-about-button">
                             <a class="primary-button">{{{hero_button_text}}}</a>
@@ -92,7 +74,10 @@
                                     <i class="fa fa-search"></i>
                                     <input type="text" placeholder="Pesquisar" id="search">
                                 </div>
-                                <button id="filter-courses" class="primary-button">Filtrar</button>
+                                <button id="filter-courses" class="primary-button">
+                                    Filtrar
+                                    <span id="filter-badge" class="filter-badge" style="display: none;">0</span>
+                                </button>
                             </div>
 
                             <div class="frontpage-hero-main-header-title aux">
@@ -115,64 +100,20 @@
                             <img src="{{config.wwwroot}}/theme/suap/pix/arrow-forward-outline.svg" alt="Próximo">
                         </button>
                     </div>
-                </div>
-            </section>
-            {{! <div id="page-content" class="d-print-block main-inner bg-green">
-                <div id="region-main-box">
-                </div>
-            </div> }}
+                </section>
+                {{! <div id="page-content" class="d-print-block main-inner bg-green">
+                    <div id="region-main-box">
+                    </div>
+                </div> }}
+            </div>
         </div>
         
         {{> theme_boost/footer }}
     </div>
+        
+           
     
-    <div class="frontpage-footer"> 
-        <div class="frontpage-footer-content">
-            <div class="frontpage-footer-content-first-section">
-                <p class="frontpage-footer-title">{{{sitename}}}</p>
-                <a class="frontpage-footer-suport-button" href="{{config.wwwroot}}">Botão para o suporte</a>
-                <p>Texto sobre as redes sociais do IFRN ZL</p>
-                <div class="frontpage-footer-socialmedia">
-                    <a href="https://www.facebook.com/" target="_blank">
-                        <img src="{{config.wwwroot}}/theme/suap/pix/logo-facebook.svg" alt="Facebook">
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank">
-                        <img src="{{config.wwwroot}}/theme/suap/pix/logo-instagram.svg" alt="Instagram">
-                    </a>
-                </div>
-            </div>
-            <div class="frontpage-footer-content-second-section">
-                <div class="frontpage-footer-content-second-section-column">
-                    <p>Sobre</p>
-                    <p>Item One</p>
-                    <p>Item Two</p>
-                    <p>Item Three</p>
-                    <p>Item Four</p>
-                </div>
-                <div class="frontpage-footer-content-second-section-column">
-                    <p>Ambientes</p>
-                    <p>Item One</p>
-                    <p>Item Two</p>
-                    <p>Item Three</p>
-                    <p>Item Four</p>
-                </div>
-                <div class="frontpage-footer-content-second-section-column">
-                    <p>Contato</p>
-                    <p>Item One</p>
-                    <p>Item Two</p>
-                    <p>Item Three</p>
-                    <p>Item Four</p>
-                </div>
-            </div>
-        </div>
-        <div class="frontpage-footer-credits">
-            <p>Tema: © 2024 IFRN/ZL - DEAD. All Rights Reserved.</p>
-            <div class="frontpage-footer-credits-links">
-                <a href="{{config.wwwroot}}">Moodle</a>
-                <a href="{{config.wwwroot}}">Ajuda</a>
-            </div>
-        </div>
-    </div>
+    {{> theme_suap/footer}}
 
     <div class="modal-overlay" id="modal-overlay"></div>
 
@@ -208,9 +149,9 @@
             </div>
             <div class="filter-content-learningpath-column">
                 <h5 class="filter-content-column-title">Trilha</h5>
-                <label><input type="checkbox" value="basico"> Básico</label>
-                <label><input type="checkbox" value="intermediario"> Intermediário</label>
-                <label><input type="checkbox" value="avancado"> Avançado</label>
+                {{#learningpaths}}
+                    <label><input type="checkbox" value="{{id}}"> {{name}}</label>
+                {{/learningpaths}}
             </div>
         </div>
         <div class="filter-footer">
@@ -221,3 +162,45 @@
 
 </body>
 </html>
+
+{{#js}}
+require(
+[
+    'jquery',
+    'core_message/message_popover'
+],
+function($, Popover) {
+    var toggle = $('#message-drawer-toggle-{{uniqid}}');
+    Popover.init(toggle);
+});
+{{/js}}
+
+
+{{#js}}
+require(['theme_suap/drawersControl'], (module) => module.init());
+
+require(['theme_suap/userPreference'], (module) => module.init());
+
+require(['theme_suap/messages'], (module) => module.renderUnreadCount());
+
+require(['theme_suap/notifications'], (module) => module.init());
+
+const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, Controller) {
+    var container = $('.popover-region-notifications');
+    var controller = new Controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+{{/js}}
+
+
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}
+

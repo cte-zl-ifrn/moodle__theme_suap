@@ -36,6 +36,8 @@ $string['rawscss_desc'] = 'Use este campo para fornecer o código SCSS ou CSS qu
 $string['rawscsspre'] = 'SCSS inicial bruto';                                                                                         
 // Raw initial SCSS setting help text.                                                                                              
 $string['rawscsspre_desc'] = 'Neste campo você pode fornecer o código SCSS de inicialização, ele será injetado antes de tudo. Na maioria das vezes você usará esta configuração para definir variáveis';
+
+// Drawers aditional strings 
 $string['drawer_course_index'] = "Índice da disciplina";
 $string['drawer_blocks'] = "Gaveta de Blocos";
 $string['drawer_user'] = "Menu do usuário";
@@ -47,7 +49,7 @@ $string['frontpagesettings'] = 'Configurações da página inicial';
 $string['frontpage_title'] = 'Título da página inicial';
 $string['frontpage_title_desc'] = '';
 $string['frontpage_buttons_configtextarea'] = 'Configuração dos botões da página inicial';
-$string['frontpage_buttons_configtextarea_desc'] = '';
+$string['frontpage_buttons_configtextarea_desc'] = 'Apague o trecho (/n) e pressione "Enter" para aplicar a quebra de linha';
 $string['frontpage_button_home'] = 'Início';
 $string['frontpage_button_about'] = 'Sobre';
 $string['hero_title'] = 'Título da seção de destaque';
@@ -88,7 +90,17 @@ $string['pagination_secret_desc'] = 'É necessário criar um token na seção de
 
 $string['frontpage_main_courses_title'] = 'Título da seção de cursos da página inicial';
 $string['frontpage_main_courses_title_desc'] = '';
+$string['frontpage_buttons_configtextarea_when_user_logged'] = 'Configuração dos botões da página inicial quando o usuário está logado';
+$string['frontpage_buttons_configtextarea_when_user_logged_desc'] = 'Apague o trecho (/n) e pressione "Enter" para aplicar a quebra de linha';
+$string['frontpage_button_courses'] = 'Cursos';
+$string['frontpage_button_courses_desc'] = '';
+$string['frontpage_button_learningpaths'] = 'Trilhas';
+$string['frontpage_button_learningpaths_desc'] = '';
 
-//Profile view
+// Profile aditional strings
 $string['aboutme'] = 'Sobre mim';
 $string['certificates'] = 'Certificados';
+
+// Setting layout navigation menu
+$string['layouttype'] = 'Sempre mostrar o menu superior';
+$string['layouttype_desc'] = 'O menu superior é usado nos Moodles que não estão integrados ao Painel AVA';
