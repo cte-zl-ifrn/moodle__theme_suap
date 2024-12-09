@@ -79,6 +79,27 @@ if (!$courseindex) {
     $courseindexopen = false;
 }
 
+// Checar se está na página de enrol de curso
+if ($PAGE->pagetype === 'enrol-index') {
+    $is_enrol_course_page = true;
+    $extraclasses[] = 'layout-width-expanded';
+    $extraclasses[] = 'enrol-page';
+    if (isguestuser()) {
+        $enrolpage_and_guestuser = true;
+        $extraclasses[] = 'counteroff';
+    }
+}
+
+$conf = get_config('theme_suap');
+
+$topmenuon = $conf->layouttype;
+if($topmenuon) {
+    $extraclasses[] = 'topmenuon';
+}
+
+$frontpage_buttons_configtextarea = parse_configtextarea_string($conf->frontpage_buttons_configtextarea);
+$frontpage_buttons_configtextarea_when_user_logged = parse_configtextarea_string($conf->frontpage_buttons_configtextarea_when_user_logged);
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 
@@ -157,9 +178,14 @@ $templatecontext = [
     'userid' => $userid,
     'rolename' => $rolestr,
     'isloggedin' => $isloggedin,
+    'isguestuser' => isguestuser(),
     'is_admin' => $is_admin,
     'items_theme_suap' => $items_theme_suap, 
-    'getUserPreference' => $getUserPreference
-    
+    'getUserPreference' => $getUserPreference,
+    'isenrolpage' => $is_enrol_course_page,
+    'enrolpage_and_guestuser' => $enrolpage_and_guestuser,
+    'topmenuon' => $topmenuon,
+    'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
+    'frontpage_buttons_configtextarea_when_user_logged' => $frontpage_buttons_configtextarea_when_user_logged,
 ];
 echo $OUTPUT->render_from_template('theme_boost/drawers', $templatecontext);

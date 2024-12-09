@@ -59,200 +59,15 @@
 
     {{#isloggedin}}
 
-        <div class="suap-backdrop" data-region="suap-backdrop">
-            <div class="container-counter" id="container-counter">
-                <div class="counter">
-                    <div class="counter-header">
-                        <a href="{{config.wwwroot}}" class="ava-name counter-label">{{sitename}}</a>
-                        <button class="counter-toggler">    
-                            {{#pix}}i/icon-fa-solid-code, theme_suap{{/pix}}
-                        </button>
-                    </div>
-                    <div id="counter-content" {{#getUserPreference}}class="content-reverse"{{/getUserPreference}}>
-                        <div id="content-part1" {{#getUserPreference}}class="content-original"{{/getUserPreference}}>
-                            {{#usermenu}}
-                            <div class="drawer-toggler" id="user-toggler" data-drawer="drawer-user">
-                                {{> core/user_menu_metadata }}
-                                <div class="user-info counter-label">
-                                    <p class="user-name">
-                                        {{userfullname}}
-                                    </p>
-                                    
-                                    <span class="user-role">{{rolename}}</span>
-                                </div>
-                            </div>
-                            {{/usermenu}}
-
-                            {{# output.search_box }}
-                                {{{ output.search_box }}}
-                                <div class="divider border-left h-75 align-self-center mx-1"></div>
-                            {{/output.search_box}}
-
-                            <div class="drawer-toggler counter-option" data-drawer="drawer-notifications">
-                                <i class="fa-regular fa-bell"></i>
-                                <span class="counter-label">{{#str}} notifications, message {{/str}}</span>
-                                <span class="count-notification hidden" data-region="count-container"></span>
-                            </div>
-                            <div id="message-drawer-toggle-{{uniqid}}" class="drawer-toggler counter-option" data-drawer="drawer-messages"> 
-                                <i class="fa-regular fa-comment"></i>
-                                <span class="counter-label">{{#str}} messages,core_message {{/str}}</span>
-                                <span class="count-notification hidden" data-region="count-container"></span>
-                            </div>
-                        </div>
-                        <div id="content-part2">
-                            {{#courseindex}}
-                                <div class="drawer-toggler counter-option" data-drawer="drawer-index">
-                                    <i class="fa-solid fa-align-left"></i>
-                                    <span class="counter-label">{{#str}} drawer_course_index, theme_suap {{/str}}</span>
-                                </div>
-                            {{/courseindex}}
-                            {{#hasblocks}}   
-                                <div class="drawer-toggler counter-option" data-drawer="drawer-blocks">
-                                    {{#pix}}i/icon-fa-solid-drawer, theme_suap{{/pix}}
-                                    <span class="counter-label">{{#str}} drawer_blocks, theme_suap, {{/str}}</span>
-                                </div>
-                            {{/hasblocks}}
-                        </div>
-                    </div>   
-                </div>
-
-                <div class="drawers">
-                    {{#usermenu}}
-                    <div class="drawer-content" id="drawer-user">
-                        <div class="drawer-header">
-                            <div class="drawer-header-info">
-                                <i class="fa-regular fa-user"></i>
-                                <h2>{{#str}}  drawer_user, theme_suap {{/str}}</h2>
-                            </div>
-                            <a href="#" class="drawer-close" data-drawer="drawer-user">
-                                <i class="fa-solid fa-xmark"></i>
-                            </a>
-                        </div>
-                        <ul class="drawer-list">
-                            {{> core/user_menu }}
-                        </ul>
-                                
-                    </div>
-                    {{/usermenu}}
-
-                    <div class="drawer-content" id="drawer-notifications" data-userid={{userid}}> 
-
-                        <div class="drawer-header" data-region="drawer-header">
-                            <div class="drawer-header-info">
-                                <i class="fa-regular fa-bell" aria-hidden="true"></i>
-                                <a href="#" class="return-notification" data-action="return-list" aria-label="Retornar para lista de notificações">
-                                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                                </a>
-                                <h2>{{#str}} notifications, message {{/str}}</h2>
-                            </div>
-                            <div class="drawer-header-tools">
-                                <a class="tool-item" class="mark-all-read" href="#" data-action="mark-all-read">
-                                    <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
-                                </a>
-                                <a class="tool-item" href="{{config.wwwroot}}/message/notificationpreferences.php">
-                                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
-                                </a>                                
-                                <a class="tool-item drawer-close" href="#" data-drawer="drawer-notifications">
-                                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div> 
-                        
-                        <div class="drawer-body" data-region="notification-scroll">
-                            <div class="notification_list" data-region="notification-list">
-                                {{> theme_suap/notification_list}}
-                            </div>
-                            <span class="hidden" data-region="loading-icon-container">
-                                {{> core/loading }}
-                            </span>
-                            <div class="notification-full hidden" data-region="notification-full"></div>
-                        </div> 
-
-                    </div>
-
-                    <div class="drawer-content" id="drawer-messages">
-                        {{{ output.standard_after_main_region_html }}}
-                    </div>
-
-                    <div class="drawer-content" id="drawer-index">
-                        <div class="drawer-header">
-                            <div class="drawer-header-info">
-                                <i class="fa-solid fa-align-left"></i>
-                                <h2>{{#str}} drawer_course_index, theme_suap {{/str}}</h2>
-                            </div>
-                            <div class="drawer-header-tools">
-                                {{> theme_boost/courseindexdrawercontrols}}
-                                <a href="#" class="drawer-close tool-item" data-drawer="drawer-user">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                        {{#courseindex}}
-                            {{< theme_boost/drawer }}
-                                {{$id}}theme_boost-drawers-courseindex{{/id}}
-                                {{$drawerheadercontent}}
-                                    {{> theme_boost/courseindexdrawercontrols}}
-                                {{/drawerheadercontent}}
-                                {{$drawerclasses}}drawer {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
-                                {{$drawercontent}}
-                                    {{{courseindex}}}
-                                {{/drawercontent}}
-                                {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
-                                {{$drawerstate}}show-drawer-left{{/drawerstate}}
-                                {{$tooltipplacement}}right{{/tooltipplacement}}
-                                {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
-                            {{/ theme_boost/drawer}}
-                        {{/courseindex}}                      
-                    </div>
-
-                    <div class="drawer-content" id="drawer-blocks">
-                        <div class="drawer-header">
-                            <div class="drawer-header-info">
-                                {{#pix}}i/icon-fa-solid-drawer-black, theme_suap{{/pix}}
-                                <h2>{{#str}} drawer_blocks, theme_suap, {{/str}}</h2>
-                            </div>
-                            <div class="drawer-header-tools">
-                                <a href="#" class="drawer-close tool-item" data-drawer="drawer-user">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </a>
-                            </div>
-                        </div>
-                        {{#hasblocks}}
-                            {{< theme_boost/drawer }}
-                                {{$id}}theme_boost-drawers-blocks{{/id}}
-                                {{$drawerclasses}}drawer{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
-                                {{$drawercontent}}
-                                    <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
-                                        {{{ addblockbutton }}}
-                                        {{{ sidepreblocks }}}
-                                    </section>
-                                {{/drawercontent}}
-                                {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
-                                {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
-                                {{$drawerstate}}show-drawer-right{{/drawerstate}}
-                                {{$tooltipplacement}}left{{/tooltipplacement}}
-                                {{$drawercloseonresize}}1{{/drawercloseonresize}}
-                                {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
-                            {{/ theme_boost/drawer}}
-                        {{/hasblocks}}
-                    </div> 
-
-                </div>
-            </div>
-
-        </div>
+    {{^enrolpage_and_guestuser}}
+        {{> theme_suap/counter}}
+    {{/enrolpage_and_guestuser}}
 
     {{! </nav> }}
     {{/isloggedin}}
         {{!> theme_boost/navbar }}
 
-    <div class="navbar-suap">   
-        <ul id="breadcrumb">            
-            <a id="navbar-breadcrumb"  href="{{config.wwwroot}}"><i  class="icon fa fa-home"></i></a>    
-            {{{navbar}}} 
-        </ul>     
-        {{{ output.edit_switch }}}
-    </div>
+    {{> theme_suap/navbar}}
 
     <div id="page" data-region="mainpage" data-usertour="scroller" class="page-suap {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">   
         <div class="max-width-suap">
@@ -297,6 +112,9 @@
             {{> theme_boost/footer }}
         </div>
     </div>
+    {{#isenrolpage}}
+        {{> theme_suap/footer}}
+    {{/isenrolpage}}
 </div>
 
 

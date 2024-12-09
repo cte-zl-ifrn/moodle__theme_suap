@@ -1,0 +1,19 @@
+<div class="navbar-suap">
+    
+    <div class="navbar-suap-ava-name">
+        <h2>{{sitename}}</h2>
+    </div>
+    
+    <div class="navbar-suap-container">  
+        {{{navbar}}} 
+        {{> theme_suap/notloggedinmenu}}
+        {{{ output.edit_switch }}}
+    </div>
+    {{#topmenuon}}
+    {{#navbar}}
+        <div class="navbar-suap-pos">
+            {{{navbar}}}
+        </div>
+    {{/navbar}}
+    {{/topmenuon}}
+</div>

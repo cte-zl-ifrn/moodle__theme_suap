@@ -37,6 +37,11 @@ if ($courseindexopen) {
     $extraclasses[] = 'drawer-open-index';
 }
 
+$counterClose = get_user_preferences('theme_suap_counter_close');
+if ($counterClose) {
+    $extraclasses[] = 'counter-close';
+}
+
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 if (!$hasblocks) {
@@ -67,6 +72,9 @@ if ($PAGE->has_secondary_navigation()) {
     }
 }
 
+// A frontpage utiliza a largura maior
+$extraclasses[] = 'layout-width-expanded';
+
 $primary = new core\navigation\output\primary($PAGE);
 $renderer = $PAGE->get_renderer('core');
 $primarymenu = $primary->export_for_template($renderer);
@@ -76,6 +84,17 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
+
+if(!isloggedin() || isguestuser()) {
+    $extraclasses[] = 'counteroff';
+}
+
+//Usuário possui capacidade de editar página
+if (has_capability('moodle/course:manageactivities', $PAGE->context) || 
+    (!isloggedin() || isguestuser()) ) {
+    $extraclasses[] = 'editswitchon';
+    $viewNavbar = true;
+}
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 
@@ -137,7 +156,10 @@ $templatecontext = [
     'frontpage_buttons_configtextarea' => $frontpage_buttons_configtextarea,
     'frontpage_buttons_configtextarea_when_user_logged' => $frontpage_buttons_configtextarea_when_user_logged,
     'frontpage_main_courses_title' => $conf->frontpage_main_courses_title,
-    'learningpaths' => $learningpaths
+    'learningpaths' => $learningpaths,
+    'topmenuon' => true, // Menu superior é sempre ativo na frontpage
+    'viewnavbar' => $viewNavbar,
+    'loggedin_and_notguestuser' => isloggedin() && !isguestuser(),
 ];
 
 echo $OUTPUT->render_from_template('theme_suap/frontpage', $templatecontext);

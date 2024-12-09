@@ -39,9 +39,8 @@
     --font-heading7: 700 2.375rem/normal var(--font-family); /*38px*/
 
     --font-button1: 600 1rem/normal var(--font-family);
-    --font-button3: 600 0.75rem/normal var(--font-family); /*12px*/
     --font-button2: 600 0.875rem/normal var(--font-family); /*14px*/
-    --font-button4: 600 1rem/normal var(--font-family); /*16px*/
+    --font-button3: 600 0.75rem/normal var(--font-family); /*12px*/
 
     --font-paragraph1: 400 1rem/normal var(--font-family);
     --font-paragraph2: 400 0.875rem/normal var(--font-family); /*14px*/
@@ -52,6 +51,7 @@
     --counter-default: 252px;
     --drawer-open: 294px;
     --max-width-layout: 894px;
+    --max-width-layout-expanded: 1180px;
 
     /* SHADOWS */
     --shadow-primary: 0px 4px 4px 0px #00000040;

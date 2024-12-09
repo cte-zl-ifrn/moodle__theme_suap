@@ -197,11 +197,19 @@ ul, ol {
     }
 }
 
+.topmenuon #page.page-suap {
+    margin-top: 80px;
+}
+#page.page-suap {
+    margin-top: 54px;
+}
 .page-suap {
     margin-left: var(--counter-default);
-    margin-top: 54px;
-    padding: 2rem;
     transition: all .2s ease-in-out;
+    padding: 2rem;
+}
+.counteroff .page-suap {
+    margin-left: 0;
 }
 .content {
     max-width: 830px;
@@ -341,6 +349,10 @@ ul, ol {
     margin-right: auto;
 }
 
+.layout-width-expanded .max-width-suap {
+    max-width: var(--max-width-layout-expanded);
+}
+
 .breadcrumb { 
     background-color: var(--general-white);
     pointer-events: all;
@@ -378,12 +390,14 @@ ul, ol {
 }
 
 .btn-primary {
+    padding: .5rem 1rem;
     background-color: var(--primary);
     border-radius: 40px;
     font: var(--font-button1);
     border: none;
     &:hover, &:focus {
         background-color: var(--primary-dark);
+        text-decoration: none;
     }
 
 }
