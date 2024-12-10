@@ -190,38 +190,6 @@
 </body>
 </html>
 
-{{#js}}
-require(
-[
-    'jquery',
-    'core_message/message_popover'
-],
-function($, Popover) {
-    var toggle = $('#message-drawer-toggle-{{uniqid}}');
-    Popover.init(toggle);
-});
-{{/js}}
-
-
-{{#js}}
-require(['theme_suap/drawersControl'], (module) => module.init());
-
-require(['theme_suap/userPreference'], (module) => module.init());
-
-require(['theme_suap/messages'], (module) => module.renderUnreadCount());
-
-require(['theme_suap/notifications'], (module) => module.init());
-
-const drawerNotification = document.querySelector('[data-drawer="drawer-notifications"]');
-
-require(['jquery', 'message_popup/notification_popover_controller'], function($, Controller) {
-    var container = $('.popover-region-notifications');
-    var controller = new Controller(container);
-    controller.registerEventListeners();
-    controller.registerListNavigationEventListeners();
-});
-{{/js}}
-
 
 {{#js}}
 M.util.js_pending('theme_boost/loader');
