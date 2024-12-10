@@ -125,7 +125,7 @@ class course_renderer extends \core_course_renderer {
         $output = html_writer::start_div('course-area');
 
         for ($i = 0; $i < 8; $i++) {
-            $output .= html_writer::start_div('course-card skeleton');
+            $output .= html_writer::start_div('frontpage-course-card skeleton');
 
             $output .= html_writer::start_div('course-image-container skeleton-image');
             $output .= html_writer::tag('div', '', ['class' => 'skeleton-image-placeholder skeleton']);
