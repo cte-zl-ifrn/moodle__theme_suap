@@ -170,11 +170,16 @@ if ($is_admin || $USER->id == $id) {
     $has_edit_button = true;
 }
 
-$edit_url = new moodle_url('/user/editadvanced.php', array(
+$edit_itens = array(
     'id' => $id,
     'course' => $courseid,
     'returnto' => 'profile'
-));
+);
+if($is_admin) {
+    $edit_url = new moodle_url('/user/editadvanced.php', $edit_itens);
+} else {
+    $edit_url = new moodle_url('/user/edit.php', $edit_itens);
+}
 
 // Get profile image and alternative text
 $profile_picture = new user_picture($user);
