@@ -269,7 +269,7 @@ $templatecontext = [
     'rolename' => $rolestr,
     'isloggedin' => $isloggedin,
     'is_admin' => $is_admin,
-    'items_theme_suap' => theme_suap_add_admin_items_user_menu(), 
+    'theme_suap_items_user_menu_admin' => theme_suap_add_admin_items_user_menu(), 
     'getUserPreference' => $getUserPreference,
     'not_course_context_profile' => $notCourseContextProfile
 ];
