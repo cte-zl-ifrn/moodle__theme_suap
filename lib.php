@@ -106,14 +106,14 @@ function theme_suap_add_admin_items_user_menu(): ?array {
     if(is_siteadmin($USER->id)) {
         $items[] = [
             'link' => [
-                'title' => 'Admin',
+                'title' => get_string('administrationsite', 'core'),
                 'url' => $CFG->wwwroot . '/admin/search.php',
             ]
         ];
 
         $items[] = [
             'link' => [
-                'title' => 'Courses',
+                'title' => get_string('mycourses', 'core'),
                 'url' => $CFG->wwwroot . '/my/courses.php',
             ]
         ]; 
