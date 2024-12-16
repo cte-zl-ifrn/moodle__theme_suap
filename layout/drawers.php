@@ -44,7 +44,6 @@ if(isloggedin()) {
         }
         $rolestr = implode(', ', $rolestr);
     }
-
 }
 
 if (isloggedin()) {
@@ -134,25 +133,6 @@ $userid = $USER->id;
 //pega a preferencia no banco
 $getUserPreference = get_user_preferences('visual_preference');
 
-// Define a lista de items no formato esperado
-$items_theme_suap = [];
-
-// Adicionar condicionalmente os itens de administrador
-if ($is_admin) {
-    $items_theme_suap[] = [
-        'link' => [
-            'title' => 'Admin',
-            'url' => $CFG->wwwroot . '/admin/search.php',
-        ]
-    ];
-
-    $items_theme_suap[] = [
-        'link' => [
-            'title' => 'Courses',
-            'url' => $CFG->wwwroot . '/my/courses.php',
-        ]
-    ];
-}
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -180,7 +160,7 @@ $templatecontext = [
     'isloggedin' => $isloggedin,
     'isguestuser' => isguestuser(),
     'is_admin' => $is_admin,
-    'items_theme_suap' => $items_theme_suap, 
+    'theme_suap_items_user_menu_admin' => theme_suap_add_admin_items_user_menu(), 
     'getUserPreference' => $getUserPreference,
     'isenrolpage' => $is_enrol_course_page,
     'enrolpage_and_guestuser' => $enrolpage_and_guestuser,

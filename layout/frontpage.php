@@ -128,6 +128,7 @@ $templatecontext = [
     'primarymoremenu' => $primarymenu['moremenu'],
     'secondarymoremenu' => $secondarynavigation ?: false,
     'mobileprimarynav' => $primarymenu['mobileprimarynav'],
+    'theme_suap_items_user_menu_admin' => theme_suap_add_admin_items_user_menu(),
     'usermenu' => $primarymenu['user'],
     'langmenu' => $primarymenu['lang'],
     'forceblockdraweropen' => $forceblockdraweropen,
