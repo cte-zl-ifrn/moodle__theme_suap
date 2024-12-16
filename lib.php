@@ -94,3 +94,30 @@ function theme_suap_user_preferences(): array {
       
     ];
 }
+
+/**
+ * Adiciona itens específicos de administrador ao menu de usuário.
+ *
+ * @param array $items O array de itens para adicionar os links.
+ * @return array O array atualizado com os itens de administrador.
+ */
+function theme_suap_add_admin_items_user_menu(): ?array {
+    
+    if(is_siteadmin($USER->id)) {
+        $items[] = [
+            'link' => [
+                'title' => 'Admin',
+                'url' => $CFG->wwwroot . '/admin/search.php',
+            ]
+        ];
+
+        $items[] = [
+            'link' => [
+                'title' => 'Courses',
+                'url' => $CFG->wwwroot . '/my/courses.php',
+            ]
+        ]; 
+    }
+
+    return $items;
+}
