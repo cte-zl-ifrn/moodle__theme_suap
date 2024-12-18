@@ -76,7 +76,7 @@ $courses_response = [];
 foreach ($courses as $course) {
     $image_url = \core_course\external\course_summary_exporter::get_course_image($course);
     if (empty($image_url)) {
-        $image_url = "{$CFG->wwwroot}/theme/suap/pix/default.jpeg";
+        $image_url = "{$CFG->wwwroot}/theme/suap/pix/default-course-image.webp";
     }
 
     $category = $categories[$course->category];
