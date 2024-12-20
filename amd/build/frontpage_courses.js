@@ -41,7 +41,7 @@ define([["core_user/repository"]], function (RepositoryUser) {
                     </div>
                 `;
                 courseArea.innerHTML += `
-                    <div class="course-card" id="${course.id}">
+                    <div class="frontpage-course-card" id="${course.id}">
                         <a class="course-image-container" href="${baseurl}/course/view.php?id=${course.id}">
                             <img src="${course.image_url}" alt="${course.fullname}" class="course-image">
                         </a>

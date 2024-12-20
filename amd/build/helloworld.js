@@ -37,7 +37,7 @@ define([],
 
                 courses.forEach(course => {
                     courseArea.innerHTML += `
-                        <div class="course-card">
+                        <div class="frontpage-course-card">
                             <div class="course-image-container">
                                 <img src="${course.courseimage}" alt="${course.fullname}" class="course-image">
                             </div>

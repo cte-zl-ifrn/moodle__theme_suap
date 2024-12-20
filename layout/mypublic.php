@@ -113,31 +113,6 @@ $userid = $USER->id;
 //pega a preferencia no banco
 $getUserPreference = get_user_preferences('visual_preference');
 
-// Define a lista de items no formato esperado
-$items_theme_suap = [];
-
-// Adicionar condicionalmente os itens de administrador
-if ($is_admin) {
-    $items_theme_suap[] = [
-        'id' => 'admin_item_1',
-        'class' => 'the-last',
-        'link' => [
-            'title' => 'Admin',
-            'url' => $CFG->wwwroot . '/admin/search.php',
-            'pixicon' => 't/admin'
-        ]
-    ];
-
-    $items_theme_suap[] = [
-        'id' => 'admin',
-        'class' => 'the-last',
-        'link' => [
-            'title' => 'Courses',
-            'url' => $CFG->wwwroot . '/my/courses.php',
-            'pixicon' => 't/courses'
-        ]
-    ];
-}
 
 // require_once("../config.php");
 // require_once($CFG->dirroot.'/user/profile/lib.php');
@@ -170,11 +145,17 @@ if ($is_admin || $USER->id == $id) {
     $has_edit_button = true;
 }
 
-$edit_url = new moodle_url('/user/editadvanced.php', array(
+$edit_itens = array(
     'id' => $id,
     'course' => $courseid,
     'returnto' => 'profile'
-));
+);
+
+if($is_admin) {
+    $edit_url = new moodle_url('/user/editadvanced.php', $edit_itens);
+} else {
+    $edit_url = new moodle_url('/user/edit.php', $edit_itens);
+}
 
 // Get profile image and alternative text
 $profile_picture = new user_picture($user);
@@ -288,7 +269,7 @@ $templatecontext = [
     'rolename' => $rolestr,
     'isloggedin' => $isloggedin,
     'is_admin' => $is_admin,
-    'items_theme_suap' => $items_theme_suap, 
+    'theme_suap_items_user_menu_admin' => theme_suap_add_admin_items_user_menu(), 
     'getUserPreference' => $getUserPreference,
     'not_course_context_profile' => $notCourseContextProfile
 ];

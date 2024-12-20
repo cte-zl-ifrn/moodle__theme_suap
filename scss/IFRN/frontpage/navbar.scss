@@ -298,7 +298,7 @@ div[role="main"] {
     padding: 10px 0;
 }
 
-.course-card {
+.frontpage-course-card {
     width: 24%;
     height: 380px;
     display: flex;
@@ -409,7 +409,7 @@ div[role="main"] {
 
 }
 
-.course-card.skeleton {
+.frontpage-course-card.skeleton {
     // background-color: #f0f0f0;
     border-radius: 4px;
     margin-right: 1%;
@@ -502,14 +502,14 @@ div[role="main"] {
 
 
 @media (max-width: 1178px) {
-    .course-card {
+    .frontpage-course-card {
         width: calc(33.33% - 10px);
         margin-right: 10px;
     }
 }
 
 @media (max-width: 800px) {
-    .course-card {
+    .frontpage-course-card {
         width: calc(50% - 10px);
         margin-right: 10px;
     }
