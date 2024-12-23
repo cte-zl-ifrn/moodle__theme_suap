@@ -33,7 +33,7 @@ $sql_conditions = [];
 $params = [];
 
 if (!empty($query)) {
-    $sql_conditions[] = "fullname LIKE :query";
+    $sql_conditions[] = "LOWER(fullname) LIKE LOWER(:query)";
     $params['query'] = '%' . $query . '%';
 }
 
