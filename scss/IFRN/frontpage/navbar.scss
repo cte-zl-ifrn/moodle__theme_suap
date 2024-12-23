@@ -6,88 +6,6 @@ div[role="main"] {
     margin-right: 0 !important;
 }
 
-.frontpage-menu {
-    width: 100%;
-    display: flex;
-
-    .frontpage-menu-logo {
-        background-color: var(--primary);
-        width: 250px;
-        padding: 0;
-        height: 100%;
-        margin-left: 0;
-        margin-top: 20px;
-        border-top-right-radius: 16px;
-        border-bottom-right-radius: 16px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        h2 {
-            margin: 0;
-            color: white;
-        }
-    }
-
-    .frontpage-navbar-content {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        // padding-left: 20px;
-        padding-right: 10px;
-
-        h3 {
-            align-self: center;
-            margin-bottom: 0 !important;
-        }
-
-        .frontpage-navbar-start-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: start;
-            width: 100%;
-
-            a {
-                background: none;
-                border: none;
-                font: var(--font-button2);
-                color: var(--dark);
-                text-decoration: none;
-                margin-right: .5rem;
-                padding: .5rem 1rem; //8px 16px
-            }
-        }
-
-        .frontpage-navbar-end-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            width: fit-content;
-
-            span {
-                width: 1px;
-                height: 32px;
-                background: var(--light-dark);
-                margin: 0 20px;
-            }
-
-            select {
-                background: none;
-                border: none;
-                cursor: pointer;
-                font: var(--font-button1);
-                color: var(--dark);
-            }
-
-            // a {
-            //     color: var(--general-white);
-            //     text-decoration: none;
-            // }
-        }
-    }
-    
-}
 
 .frontpage-hero-header {
     margin-bottom: 30px;
@@ -269,6 +187,15 @@ div[role="main"] {
     gap: 2rem;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+
+    @include media-breakpoint-down(lg) {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .frontpage-course-card {
@@ -468,20 +395,6 @@ div[role="main"] {
             background-color: var(--primary);
             color: var(--general-white);
         }
-    }
-}
-
-
-@include media-breakpoint-down(lg) {
-    .course-area {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-}
-
-@include media-breakpoint-down(sm) {
-    .course-area {
-        grid-template-columns: 1fr;
     }
 }
 
