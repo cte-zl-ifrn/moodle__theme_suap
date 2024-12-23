@@ -1,7 +1,7 @@
 define([["core_user/repository"]], function (RepositoryUser) {
     let url = '';
     let currentPage = 0;
-    const limit = 8;
+    const limit = 9;
     let totalCourses = 0;
 
     const courseArea = document.querySelector('.course-area');
@@ -41,18 +41,18 @@ define([["core_user/repository"]], function (RepositoryUser) {
                     </div>
                 `;
                 courseArea.innerHTML += `
-                    <div class="frontpage-course-card" id="${course.id}">
-                        <a class="course-image-container" href="${baseurl}/course/view.php?id=${course.id}">
+                    <a class="frontpage-course-card" id="${course.id}" href="${baseurl}/course/view.php?id=${course.id}">
+                        <div class="course-image-container">
                             <img src="${course.image_url}" alt="${course.fullname}" class="course-image">
-                        </a>
-                        <a class="course-category" href="${course.category_url}">${course.category_name}</a>
-                        <a class="course-name" href="${baseurl}/course/view.php?id=${course.id}">${course.fullname}</a>
+                        </div>
+                        <span class="course-category">${course.category_name}</span>
+                        <span class="course-name">${course.fullname}</span>
                         <div class="course-detail">
                             ${workloadArea}
                             ${certificateArea}
                             ${langArea}
                         </div>
-                    </div>
+                    </a>
                 `;
             });
 
