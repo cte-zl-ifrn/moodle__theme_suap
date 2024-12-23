@@ -355,11 +355,16 @@ div[role="main"] {
 .pagination {
     margin: 0 auto 50px;
     width: fit-content;
+    &.disabled {
+        display: none;
+    }
 
     .pagination-button {
         background-color: transparent;
         border: none;
-
+        &[disabled] {
+            display: none;
+        }
         &#prev {
             margin-right: 5px;
         }

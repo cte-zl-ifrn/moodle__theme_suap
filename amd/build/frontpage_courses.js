@@ -1,4 +1,4 @@
-define([["core_user/repository"]], function (RepositoryUser) {
+define(["core/str"], function (str) {
     let url = '';
     let currentPage = 0;
     const limit = 9;
@@ -6,6 +6,7 @@ define([["core_user/repository"]], function (RepositoryUser) {
 
     const courseArea = document.querySelector('.course-area');
     const searchInput = document.querySelector('#search');
+    const pagination = document.querySelector('.pagination');
     const paginationNumbers = document.querySelector('#pagination-numbers');
     const prevPageButton = document.querySelector('#prev-page');
     const nextPageButton = document.querySelector('#next-page');
@@ -20,6 +21,13 @@ define([["core_user/repository"]], function (RepositoryUser) {
             totalCourses = total;
 
             courseArea.innerHTML = '';
+
+            if(courses.length == 0) {
+                str.get_string('nomorecourses', 'core').then(value => {
+                    nomorecourse = value;
+                    courseArea.innerHTML = '<p>' + value + '</p>';
+                })
+            }
 
             courses.forEach(course => {
                 const certificateArea = course.has_certificate !== "Sim" ? '' : `
@@ -69,6 +77,13 @@ define([["core_user/repository"]], function (RepositoryUser) {
         nextPageButton.disabled = (currentPage + 1) * limit >= totalCourses;
 
         const totalPages = Math.ceil(totalCourses / limit);
+
+        // Possui uma página não precisa de paginação
+        if (totalPages <= 1) {
+            pagination.classList.add('disabled');
+            return;
+        }
+
         const pageRange = 2;
         let startPage = Math.max(0, currentPage - pageRange);
         let endPage = Math.min(totalPages - 1, currentPage + pageRange);
@@ -91,6 +106,8 @@ define([["core_user/repository"]], function (RepositoryUser) {
 
         nextPageButton.setAttribute('page', currentPage + 1);
         prevPageButton.setAttribute('page', currentPage - 1);
+
+        pagination.classList.remove('disabled');
     }
 
     function createPageButton(page) {
