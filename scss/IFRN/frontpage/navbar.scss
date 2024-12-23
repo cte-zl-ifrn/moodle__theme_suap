@@ -2,32 +2,6 @@ div[role="main"] {
     padding: 0;
 }
 
-.content-when-sidebar-opened {
-    margin-left: calc(var(--counter-default) - 4px) !important;
-}
-
-.content-when-sidebar-closed {
-    margin-left: calc(var(--counter-close) - 4px) !important;
-}
-
-// TODO: fazer o mesmo para o navbar
-.navbar-when-sidebar-opened {
-    padding-left: calc(var(--counter-default) + 15px) !important;
-    // padding-right: ;
-}
-
-.navbar-when-sidebar-closed {
-    padding-left: calc(var(--counter-close) + 5px) !important;
-}
-
-.footer-when-sidebar-opened {
-    padding: 100px 100px 20px calc(var(--counter-default) + 64px) !important;
-}
-
-.footer-when-sidebar-closed {
-    padding: 100px 160px 20px calc(var(--counter-default)) !important;
-}
-
 .show-drawer-right {
     margin-right: 0 !important;
 }
@@ -35,9 +9,6 @@ div[role="main"] {
 .frontpage-menu {
     width: 100%;
     display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // height: 50px;
 
     .frontpage-menu-logo {
         background-color: var(--primary);

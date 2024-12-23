@@ -214,32 +214,6 @@ define([["core_user/repository"]], function (RepositoryUser) {
 
     document.querySelector('#modal-overlay').addEventListener('click', closeFilter);
 
-    document.querySelector('.counter-toggler')?.addEventListener('click', () => {
-        const div = document.querySelector('#sidebar-area');
-        const footer = document.querySelector('.frontpage-footer');
-        const navbar = document.querySelector('#navbar');
-        if (div.classList.contains('content-when-sidebar-opened')) {
-            div.className = 'content-when-sidebar-closed';
-            // footer.classList.remove('footer-when-sidebar-opened');
-            // footer.classList.add('footer-when-sidebar-closed');
-            navbar.classList.remove('navbar-when-sidebar-opened');
-            navbar.classList.add('navbar-when-sidebar-closed');
-        } else {
-            div.className = 'content-when-sidebar-opened';
-            // footer.classList.remove('footer-when-sidebar-closed');
-            // footer.classList.add('footer-when-sidebar-opened');
-            navbar.classList.remove('navbar-when-sidebar-closed');
-            navbar.classList.add('navbar-when-sidebar-opened');
-        }
-
-        // TODO: Salvar preferência do usuário corretamente
-        // if(body.classList.contains('counter-close')) {
-        //     RepositoryUser.setUserPreference('theme_suap_counter_close', true);
-        // } else {
-        //     RepositoryUser.setUserPreference('theme_suap_counter_close', false);
-        // }
-    });
-
     window.addEventListener('load', correctMainPadding);
 
     return {
