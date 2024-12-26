@@ -376,8 +376,14 @@ div[role="main"] {
         img {
             width: 16px;
             height: 16px;
-            color: #098e95;
+            color: var(--primary);
             margin: 0 5px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            > span {
+                display: none;
+            }
         }
     }
 
