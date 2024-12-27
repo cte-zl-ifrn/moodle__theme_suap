@@ -1,11 +1,12 @@
-define([["core_user/repository"]], function (RepositoryUser) {
+define(["core/str"], function (str) {
     let url = '';
     let currentPage = 0;
-    const limit = 8;
+    const limit = 9;
     let totalCourses = 0;
 
     const courseArea = document.querySelector('.course-area');
     const searchInput = document.querySelector('#search');
+    const pagination = document.querySelector('.pagination');
     const paginationNumbers = document.querySelector('#pagination-numbers');
     const prevPageButton = document.querySelector('#prev-page');
     const nextPageButton = document.querySelector('#next-page');
@@ -20,6 +21,13 @@ define([["core_user/repository"]], function (RepositoryUser) {
             totalCourses = total;
 
             courseArea.innerHTML = '';
+
+            if(courses.length == 0) {
+                str.get_string('nomorecourses', 'core').then(value => {
+                    nomorecourse = value;
+                    courseArea.innerHTML = '<p>' + value + '</p>';
+                })
+            }
 
             courses.forEach(course => {
                 const certificateArea = course.has_certificate !== "Sim" ? '' : `
@@ -41,18 +49,18 @@ define([["core_user/repository"]], function (RepositoryUser) {
                     </div>
                 `;
                 courseArea.innerHTML += `
-                    <div class="frontpage-course-card" id="${course.id}">
-                        <a class="course-image-container" href="${baseurl}/course/view.php?id=${course.id}">
+                    <a class="frontpage-course-card" id="${course.id}" href="${baseurl}/course/view.php?id=${course.id}">
+                        <div class="course-image-container">
                             <img src="${course.image_url}" alt="${course.fullname}" class="course-image">
-                        </a>
-                        <a class="course-category" href="${course.category_url}">${course.category_name}</a>
-                        <a class="course-name" href="${baseurl}/course/view.php?id=${course.id}">${course.fullname}</a>
+                        </div>
+                        <span class="course-category">${course.category_name}</span>
+                        <span class="course-name">${course.fullname}</span>
                         <div class="course-detail">
                             ${workloadArea}
                             ${certificateArea}
                             ${langArea}
                         </div>
-                    </div>
+                    </a>
                 `;
             });
 
@@ -69,6 +77,13 @@ define([["core_user/repository"]], function (RepositoryUser) {
         nextPageButton.disabled = (currentPage + 1) * limit >= totalCourses;
 
         const totalPages = Math.ceil(totalCourses / limit);
+
+        // Possui uma página não precisa de paginação
+        if (totalPages <= 1) {
+            pagination.classList.add('disabled');
+            return;
+        }
+
         const pageRange = 2;
         let startPage = Math.max(0, currentPage - pageRange);
         let endPage = Math.min(totalPages - 1, currentPage + pageRange);
@@ -91,6 +106,8 @@ define([["core_user/repository"]], function (RepositoryUser) {
 
         nextPageButton.setAttribute('page', currentPage + 1);
         prevPageButton.setAttribute('page', currentPage - 1);
+
+        pagination.classList.remove('disabled');
     }
 
     function createPageButton(page) {
@@ -213,32 +230,6 @@ define([["core_user/repository"]], function (RepositoryUser) {
     document.querySelector('#close-filter').addEventListener('click', closeFilter);
 
     document.querySelector('#modal-overlay').addEventListener('click', closeFilter);
-
-    document.querySelector('.counter-toggler')?.addEventListener('click', () => {
-        const div = document.querySelector('#sidebar-area');
-        const footer = document.querySelector('.frontpage-footer');
-        const navbar = document.querySelector('#navbar');
-        if (div.classList.contains('content-when-sidebar-opened')) {
-            div.className = 'content-when-sidebar-closed';
-            // footer.classList.remove('footer-when-sidebar-opened');
-            // footer.classList.add('footer-when-sidebar-closed');
-            navbar.classList.remove('navbar-when-sidebar-opened');
-            navbar.classList.add('navbar-when-sidebar-closed');
-        } else {
-            div.className = 'content-when-sidebar-opened';
-            // footer.classList.remove('footer-when-sidebar-closed');
-            // footer.classList.add('footer-when-sidebar-opened');
-            navbar.classList.remove('navbar-when-sidebar-closed');
-            navbar.classList.add('navbar-when-sidebar-opened');
-        }
-
-        // TODO: Salvar preferência do usuário corretamente
-        // if(body.classList.contains('counter-close')) {
-        //     RepositoryUser.setUserPreference('theme_suap_counter_close', true);
-        // } else {
-        //     RepositoryUser.setUserPreference('theme_suap_counter_close', false);
-        // }
-    });
 
     window.addEventListener('load', correctMainPadding);
 
