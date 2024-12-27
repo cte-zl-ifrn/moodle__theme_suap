@@ -145,7 +145,7 @@
         .carousel-inner {
             overflow: visible;
         }
-        .carousel-item .carousel-navigation-link::after {
+        .carousel-item:not(.submenu) .carousel-navigation-link::after {
             position: absolute;
             right: 1.5rem;
             font-family: 'Font Awesome 6 Free';
@@ -153,6 +153,13 @@
             font-size: 1rem;
             color: var(--dark);
         } 
+        .carousel-navigation-link span {
+            pointer-events: none;
+        }
+        .dropdown-item::before {
+            top: .8rem;
+            left: .8rem;
+        }
     }
     .usermenu, #usermenu-carousel, .carousel-inner, .carousel-item {
         height: 100%;
